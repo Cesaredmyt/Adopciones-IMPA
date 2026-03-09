@@ -17,7 +17,7 @@ const zain = Zain({
 });
 
 export const metadata: Metadata = {
-  title: "Centro de Atención Animal | Morelia",
+  title: "Instituto Michoacano de Protección Animal | Morelia",
   description: "Adopta y cambia una vida",
 };
 

@@ -158,7 +158,7 @@ export async function confirmarCitaAdopcion(
             nombreMascota: mascota.nombre,
             fechaTexto,
             horaTexto: input.hora,
-            lugar: "Centro de Atención Animal de Morelia",
+            lugar: "Instituto Michoacano de Protección Animal",
             folio: nuevaCita.id,
         });
     }

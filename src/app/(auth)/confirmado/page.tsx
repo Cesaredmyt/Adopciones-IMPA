@@ -25,7 +25,7 @@ export default function Confirmado() {
       <div className="bg-white rounded-2xl shadow-lg border border-[var(--brand-purple)]/15 p-8 w-full max-w-md text-center">
         <Image
           src="/logo.png"
-          alt="Logo CAAM"
+          alt="Logo IMPA"
           width={120}
           height={120}
           className="mx-auto mb-4"
@@ -47,7 +47,7 @@ export default function Confirmado() {
         </Button>
       </div>
       <p className="text-center text-xs text-[var(--brand-dark)]/60 mt-4">
-        Hecho con <span className="text-[var(--brand-pink)]">❤</span> por CAAM
+        Hecho con <span className="text-[var(--brand-pink)]">❤</span> por IMPA
         Morelia
       </p>
     </div>

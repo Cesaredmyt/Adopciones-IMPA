@@ -96,7 +96,7 @@ export default function AdminHeader() {
           <Image src="/logo.png" alt="CAAM" width={40} height={40} />
           <div className="flex flex-col items-start">
             <span className="font-bold text-xl text-[#FFF8F0] leading-tight">
-              Centro de Atención Animal
+              Instituto Michoacano de Protección Animal
             </span>
             <span className="font-medium text-sm text-[#FFF8F0]">
               Morelia, Michoacán

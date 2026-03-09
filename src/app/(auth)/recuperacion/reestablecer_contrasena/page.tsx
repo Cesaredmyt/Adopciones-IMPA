@@ -10,11 +10,11 @@ import { Button } from "@/components/ui/Button";
 
 function RequirementItem({ met, text }: { met: boolean; text: string }) {
   return (
-    <div className="flex items-center gap-2 text-xs">
-      <span className={met ? "text-green-600" : "text-red-500"}>
+    <div className="flex items-center gap-2 text-xs font-medium">
+      <span className={met ? "text-emerald-600" : "text-rose-500"}>
         {met ? "✔" : "✘"}
       </span>
-      <span className={met ? "text-green-600" : "text-red-500"}>{text}</span>
+      <span className={met ? "text-emerald-700" : "text-slate-500"}>{text}</span>
     </div>
   );
 }
@@ -101,49 +101,47 @@ export default function NuevaContrasenaPage() {
   }
 
   return (
-    <div
-      className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4"
-      style={{
-        backgroundImage:
-          "radial-gradient(ellipse at 20% 10%, rgba(91,75,182,0.08), transparent 45%), radial-gradient(ellipse at 80% 0%, rgba(240,79,147,0.08), transparent 45%)",
-      }}
-    >
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-6 mt-10">
-          <Link href="/(marketing)">
+        
+        {/* Encabezado */}
+        <div className="text-center mb-8 mt-10">
+          <Link href="/">
             <Image
               src="/logo.png"
-              alt="Logo CAAM"
+              alt="Logo Instituto"
               width={900}
               height={900}
-              className="mx-auto mb-4 h-20 w-auto"
+              className="mx-auto mb-4 h-24 w-auto drop-shadow-sm"
               priority
             />
           </Link>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[var(--brand-dark)]">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
             Restablecer contraseña
           </h1>
-          <p className="text-[var(--brand-dark)]/70 mt-2 text-sm">
+          <p className="text-slate-500 text-sm mt-2">
             Ingresa una nueva contraseña para recuperar el acceso a tu cuenta.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg border border-[var(--brand-purple)]/15 p-6">
+        {/* Tarjeta */}
+        <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8">
+          
           {error && (
-            <div className="mb-4 rounded-lg border border-red-200/70 bg-red-50 px-3 py-2 text-sm text-red-700">
+            <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 font-medium text-center">
               {error}
             </div>
           )}
 
           {mensaje && (
-            <div className="mb-4 rounded-lg border border-green-200/70 bg-green-50 px-3 py-2 text-sm text-green-700">
+            <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 font-medium text-center">
               {mensaje}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <label className="block">
-              <span className="block text-sm font-medium text-[var(--brand-dark)]">
+              <span className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Nueva contraseña
               </span>
               <input
@@ -153,14 +151,15 @@ export default function NuevaContrasenaPage() {
                 onBlur={() => password === "" && setShowRequirements(false)}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 transition-all"
                 required
               />
             </label>
 
+            {/* Caja de requisitos */}
             {showRequirements && (
-              <div className="mt-3 p-3 bg-gray-50 rounded-md space-y-2 border border-gray-200">
-                <p className="text-xs font-semibold text-gray-700 mb-2">
+              <div className="mt-3 p-4 bg-slate-50/50 rounded-xl space-y-2.5 border border-slate-100 transition-all">
+                <p className="text-xs font-bold text-slate-700 mb-1">
                   Requisitos de la contraseña:
                 </p>
 
@@ -186,12 +185,11 @@ export default function NuevaContrasenaPage() {
             <Button
               type="submit"
               full
-              variant="primary"
               disabled={loading}
-              className="flex items-center gap-2"
+              className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 mt-4 shadow-sm transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
                 <Lock className="w-4 h-4" />
               )}
@@ -199,18 +197,19 @@ export default function NuevaContrasenaPage() {
             </Button>
           </form>
 
-          <div className="text-center mt-6">
+          {/* Enlace de regreso */}
+          <div className="text-center mt-6 pt-4 border-t border-slate-100">
             <Link
               href="/login"
-              className="text-[var(--brand-purple)] hover:text-[var(--brand-pink)] text-sm font-medium"
+              className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors"
             >
               ← Volver al inicio de sesión
             </Link>
           </div>
         </div>
 
-        <p className="mb-10 text-center text-xs text-[var(--brand-dark)]/60 mt-10">
-          Transformando adopciones en historias de amor
+        <p className="mt-8 text-center text-xs font-medium text-slate-400 flex items-center justify-center gap-1">
+          Hecho con <span className="text-emerald-500 text-sm">💚</span> por IMPA Morelia
         </p>
       </div>
     </div>

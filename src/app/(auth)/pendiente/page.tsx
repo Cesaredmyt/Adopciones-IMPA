@@ -114,17 +114,17 @@ export default function Pendiente() {
 
         <Image
           src="/logo.png"
-          alt="Logo CAAM"
+          alt="Logo IMPA"
           width={120}
           height={120}
           className="mx-auto mb-4 relative z-10"
         />
 
         <h1 className="text-3xl font-bold text-[#9B2E45] relative z-10">
-          CAAM
+          IMPA
         </h1>
         <h2 className="text-xl font-bold text-[#9B2E45] mb-2 relative z-10">
-          Centro de Atención Animal
+          Instituto Michoacano de Protección Animal
         </h2>
         <h3 className="text-lg font-semibold text-[#9B2E45] mb-8 relative z-10">
           Morelia, Michoacán

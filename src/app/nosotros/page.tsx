@@ -32,7 +32,7 @@ export default function SobreNosotros() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mb-6 text-lg leading-relaxed max-w-3xl mx-auto relative z-10"
             >
-              En el <strong>Centro de Atención Animal de Morelia (CAAM)</strong>{" "}
+              En el <strong>Instituto Michoacano de Protección Animal (IMPA)</strong>{" "}
               trabajamos con pasión y compromiso por la salud pública, el
               bienestar animal y la seguridad ciudadana. Nuestro equipo busca
               que cada perro y gato reciba atención digna, cariño y la
@@ -294,7 +294,7 @@ export default function SobreNosotros() {
         <div className="container mx-auto px-4 py-6 text-sm text-center">
           © 2025{" "}
           <span className="font-semibold">
-            Centro de Atención Animal Morelia
+            Instituto Michoacano de Protección Animal (IMPA)
           </span>
           . Todos los derechos reservados.
         </div>

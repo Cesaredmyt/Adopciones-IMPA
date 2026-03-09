@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button, ButtonLink } from "@/components/ui/Button";
-import { createClient } from "@/lib/supabase/client";
 
 export default function RecuperarContrasena() {
   const [correo, setCorreo] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [mensaje, setMensaje] = useState<string | null>(null); // Usaremos solo "mensaje"
+  const [mensaje, setMensaje] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // 🔧 Debe ser async porque usamos "await"
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -44,44 +43,52 @@ export default function RecuperarContrasena() {
       );
     } catch (err) {
       console.error(err);
-      setError("Ocurrió un error inesperado.");
+      setError("Ocurrió un error inesperado al conectar con el servidor.");
       setLoading(false);
     }
   };
 
   return (
     <div
-      className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4"
+      className="min-h-screen flex items-center justify-center px-4 relative"
       style={{
-        backgroundImage:
-          "radial-gradient(ellipse at 20% 10%, rgba(91,75,182,0.08), transparent 45%), radial-gradient(ellipse at 80% 0%, rgba(240,79,147,0.08), transparent 45%)",
+        backgroundImage: "url('/fondo.jpg')", 
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
-      <div className="w-full max-w-md">
-        {/* Encabezado */}
-        <div className="text-center mb-6">
-          <Image
-            src="/logo.png"
-            alt="Logo CAAM"
-            width={200}
-            height={200}
-            className="mx-auto mb-4 h-20 w-auto"
-            priority
-          />
-          <h1 className="text-2xl font-extrabold tracking-tight text-[var(--brand-dark)]">
-            Recuperar contraseña
-          </h1>
-          <p className="text-[var(--brand-dark)]/70 mt-1 text-sm">
-            Ingresa tu correo y te enviaremos instrucciones para restablecerla
-          </p>
-        </div>
+      {/* Capa de oscurecimiento (Overlay) */}
+      <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
 
-        {/* Tarjeta */}
-        <div className="bg-white rounded-2xl shadow-lg border border-[var(--brand-purple)]/15 p-6">
+      <div className="w-full max-w-md relative z-10 my-8">
+        
+        {/* Tarjeta Blanca que contiene TODO */}
+        <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-8">
+          
+          {/* Encabezado (Ahora dentro de la tarjeta) */}
+          <div className="text-center mb-8">
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Logo Instituto"
+                width={900}
+                height={900}
+                className="mx-auto mb-4 h-24 w-auto drop-shadow-sm"
+                priority
+              />
+            </Link>
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+              Recuperar contraseña
+            </h1>
+            <p className="text-slate-500 text-sm mt-2 font-medium">
+              Ingresa tu correo y te enviaremos instrucciones.
+            </p>
+          </div>
+
           {error && (
             <div
               role="alert"
-              className="mb-4 rounded-lg border border-red-200/70 bg-red-50 px-3 py-2 text-sm text-red-700"
+              className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium text-center"
             >
               {error}
             </div>
@@ -90,15 +97,15 @@ export default function RecuperarContrasena() {
           {mensaje && (
             <div
               role="alert"
-              className="mb-4 rounded-lg border border-green-200/70 bg-green-50 px-3 py-2 text-sm text-green-700"
+              className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 font-medium text-center"
             >
               {mensaje}
             </div>
           )}
 
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-5">
             <label className="block">
-              <span className="block text-sm font-medium text-[var(--brand-dark)]">
+              <span className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Correo electrónico
               </span>
               <input
@@ -107,29 +114,35 @@ export default function RecuperarContrasena() {
                 onChange={(e) => setCorreo(e.target.value)}
                 placeholder="tucorreo@ejemplo.com"
                 autoComplete="email"
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-[var(--brand-dark)] placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[var(--brand-purple)]/20 focus:border-[var(--brand-purple)] transition"
+                required
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 transition-all"
               />
             </label>
 
-            <Button type="submit" full variant="primary" disabled={loading}>
+            <Button
+              className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 mt-4 shadow-sm transition-colors"
+              type="submit"
+              full
+              disabled={loading}
+            >
               {loading ? "Enviando..." : "Enviar instrucciones"}
             </Button>
-          </form>
 
-          <div className="text-center mt-4">
-            <ButtonLink
-              href="/login"
-              variant="ghost"
-              className="text-[var(--brand-purple)]"
-            >
-              Volver al inicio de sesión
-            </ButtonLink>
-          </div>
+            <div className="text-center pt-4 border-t border-slate-100 mt-6">
+              <ButtonLink
+                href="/login"
+                variant="ghost"
+                className="text-emerald-600 hover:text-emerald-700 text-sm font-bold transition-colors"
+              >
+                ← Volver al inicio de sesión
+              </ButtonLink>
+            </div>
+          </form>
         </div>
 
-        <p className="text-center text-xs text-[var(--brand-dark)]/60 mt-4">
-          Hecho con <span className="text-[var(--brand-pink)]">❤</span> por CAAM
-          Morelia
+        {/* Texto final sobre la foto */}
+        <p className="mt-6 text-center text-xs font-medium text-white/80 drop-shadow-md flex items-center justify-center gap-1">
+          Hecho con <span className="text-emerald-400 text-sm">💚</span> por IMPA Morelia
         </p>
       </div>
     </div>
