@@ -118,9 +118,9 @@ export default function RegistroWizard() {
       >
         {/* Header compacto con logo - sin botón de cerrar */}
         <div className="sticky top-0 z-10 flex items-center gap-3 px-5 py-4 border-b bg-white/80 backdrop-blur">
-          <Image src="/logo.jpg" alt="Logo CAAM" width={40} height={40} className="h-10 w-auto" />
+          <Image src="/logo.jpg" alt="Logo IMPA" width={40} height={40} className="h-10 w-auto" />
           <div>
-            <h2 id="reg-title" className="text-lg font-semibold text-[var(--brand-dark)]">Adopciones CAAM</h2>
+            <h2 id="reg-title" className="text-lg font-semibold text-[var(--brand-dark)]">Adopciones IMPA</h2>
             <p className="text-xs text-[var(--brand-dark)]/70">Registro</p>
           </div>
         </div>

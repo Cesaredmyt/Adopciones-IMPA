@@ -21,7 +21,7 @@ export default function MarketingLayout({
         <div className="container mx-auto px-4 py-6 text-sm text-center">
           © 2025{" "}
           <span className="font-semibold">
-            Centro de Atención Animal Morelia
+            Instituto Michoacano de Protección Animal
           </span>
           . Todos los derechos reservados.
         </div>

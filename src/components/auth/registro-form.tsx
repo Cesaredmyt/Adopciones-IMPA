@@ -136,8 +136,8 @@ export default function RegistroForm() {
           onClick={onClick}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-2 border rounded-md hover:border-[#8B5E34] 
-        focus:border-[#8B5E34] focus:ring-2 focus:ring-[#8B5E34]/20 focus:outline-none"
+          className="w-full pl-10 pr-10 py-2 border rounded-xl hover:border-emerald-500 
+        focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all"
         />
       );
     }
@@ -593,11 +593,11 @@ export default function RegistroForm() {
   const RequirementItem = ({ met, text }: { met: boolean; text: string }) => (
     <div className="flex items-center space-x-2">
       {met ? (
-        <Check className="h-4 w-4 text-green-600" />
+        <Check className="h-4 w-4 text-emerald-600" />
       ) : (
-        <X className="h-4 w-4 text-red-600" />
+        <X className="h-4 w-4 text-rose-500" />
       )}
-      <span className={cn("text-sm", met ? "text-green-600" : "text-red-600")}>
+      <span className={cn("text-sm", met ? "text-emerald-700" : "text-slate-500")}>
         {text}
       </span>
     </div>
@@ -607,43 +607,43 @@ export default function RegistroForm() {
   const renderStep1 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold">Datos Personales</h2>
-        <p className="text-sm text-gray-600">
+        <h2 className="text-xl font-semibold text-slate-800">Datos Personales</h2>
+        <p className="text-sm text-slate-500">
           Información básica y de contacto
         </p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="nombres">
-          Nombres <span className="text-red-500">*</span>
+        <Label htmlFor="nombres" className="text-slate-700 font-medium">
+          Nombres <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5 pointer-events-none" />
           <Input
             id="nombres"
             value={formData.nombres || ""}
             onChange={(e) => handleInputChange("nombres", e.target.value)}
             className={cn(
-              "pl-10",
-              errors.nombres?.length > 0 && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              errors.nombres?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: Juan Carlos"
             disabled={isLoading}
           />
         </div>
         {errors.nombres?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="apellido_paterno">
-          Apellido Paterno <span className="text-red-500">*</span>
+        <Label htmlFor="apellido_paterno" className="text-slate-700 font-medium">
+          Apellido Paterno <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
             id="apellido_paterno"
             value={formData.apellido_paterno || ""}
@@ -651,26 +651,26 @@ export default function RegistroForm() {
               handleInputChange("apellido_paterno", e.target.value)
             }
             className={cn(
-              "pl-10",
-              errors.apellido_paterno?.length > 0 && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              errors.apellido_paterno?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: García"
             disabled={isLoading}
           />
         </div>
         {errors.apellido_paterno?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="apellido_materno">
-          Apellido Materno <span className="text-red-500">*</span>
+        <Label htmlFor="apellido_materno" className="text-slate-700 font-medium">
+          Apellido Materno <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
             id="apellido_materno"
             value={formData.apellido_materno || ""}
@@ -678,26 +678,26 @@ export default function RegistroForm() {
               handleInputChange("apellido_materno", e.target.value)
             }
             className={cn(
-              "pl-10",
-              errors.apellido_materno?.length > 0 && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              errors.apellido_materno?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: García"
             disabled={isLoading}
           />
         </div>
         {errors.apellido_materno?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email">
-          Correo Electrónico <span className="text-red-500">*</span>
+        <Label htmlFor="email" className="text-slate-700 font-medium">
+          Correo Electrónico <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
             id="email"
             type="email"
@@ -705,24 +705,24 @@ export default function RegistroForm() {
             onChange={(e) => handleInputChange("email", e.target.value)}
             onBlur={(e) => checkEmailExists(e.target.value)}
             className={cn(
-              "pl-10",
-              (errors.email?.length > 0 || emailExists) && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              (errors.email?.length > 0 || emailExists) && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="ejemplo@correo.com"
             disabled={isLoading}
           />
           {isCheckingEmail && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-gray-300 border-t-[#8B5E34] rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-emerald-600 rounded-full" />
             </div>
           )}
         </div>
         {emailExists && (
-          <div className="flex items-start space-x-2 text-red-600">
+          <div className="flex items-start space-x-2 text-rose-500">
             <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
             <p className="text-sm">
               Este correo electrónico ya está registrado.{" "}
-              <a href="/login" className="underline hover:text-red-700">
+              <a href="/login" className="underline hover:text-rose-700 font-semibold">
                 Inicia sesión aquí
               </a>
             </p>
@@ -730,33 +730,33 @@ export default function RegistroForm() {
         )}
         {!emailExists &&
           errors.email?.map((error, index) => (
-            <p key={index} className="text-sm text-red-600">
+            <p key={index} className="text-sm text-rose-500">
               {error}
             </p>
           ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="telefono">
-          Teléfono <span className="text-red-500">*</span>
+        <Label htmlFor="telefono" className="text-slate-700 font-medium">
+          Teléfono <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
             id="telefono"
             type="tel"
             value={formData.telefono || ""}
             onChange={(e) => handleInputChange("telefono", e.target.value)}
             className={cn(
-              "pl-10",
-              errors.telefono?.length > 0 && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              errors.telefono?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="555 123 4567"
             disabled={isLoading}
           />
         </div>
         {errors.telefono?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
@@ -768,20 +768,19 @@ export default function RegistroForm() {
   const renderStep2 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold">Información Adicional</h2>
-        <p className="text-sm text-gray-600">
+        <h2 className="text-xl font-semibold text-slate-800">Información Adicional</h2>
+        <p className="text-sm text-slate-500">
           Datos complementarios requeridos
         </p>
       </div>
 
       {/* === FECHA DE NACIMIENTO === */}
       <div className="space-y-2">
-        <Label htmlFor="fecha_nacimiento">
-          Fecha de Nacimiento <span className="text-red-500">*</span>
+        <Label htmlFor="fecha_nacimiento" className="text-slate-700 font-medium">
+          Fecha de Nacimiento <span className="text-rose-500">*</span>
         </Label>
 
         {/* === VALIDACIÓN DE EDAD === */}
-        {/** Puedes moverla arriba si ya la tienes fuera, pero aquí queda auto-contenida */}
         {(() => {
           const validarEdad = (date: Date) => {
             const today = new Date();
@@ -809,13 +808,12 @@ export default function RegistroForm() {
             });
           };
 
-          // Guardamos temporalmente función en window para usarla abajo
           (window as any).validarEdad = validarEdad;
           return null;
         })()}
 
         <div className="relative">
-          <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 z-10 pointer-events-none" />
+          <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4 z-10 pointer-events-none" />
 
           <DatePicker
             selected={
@@ -856,7 +854,6 @@ export default function RegistroForm() {
 
                 handleInputChange("fecha_nacimiento", `${yyyy}-${mm}-${dd}`);
 
-            
                 if (!isNaN(parsed.getTime())) {
                   (window as any).validarEdad(parsed);
                 }
@@ -865,11 +862,11 @@ export default function RegistroForm() {
             dateFormat="dd/MM/yyyy"
             placeholderText="Selecciona o escribe tu fecha de nacimiento"
             className={cn(
-              "w-full pl-10 pr-10 py-2 border rounded-md",
-              "hover:border-[#8B5E34] focus:border-[#8B5E34] focus:ring-2 focus:ring-[#8B5E34]/20 focus:outline-none",
+              "w-full pl-10 pr-10 py-2 border rounded-xl transition-all",
+              "hover:border-emerald-500 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none",
               errors.fecha_nacimiento?.length > 0
-                ? "border-red-500"
-                : "border-gray-300"
+                ? "border-rose-500"
+                : "border-slate-200"
             )}
             wrapperClassName="w-full"
             maxDate={new Date()}
@@ -879,27 +876,27 @@ export default function RegistroForm() {
           />
 
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <Calendar className="h-4 w-4 text-[#8B5E34] opacity-60" />
+            <Calendar className="h-4 w-4 text-emerald-600 opacity-60" />
           </div>
         </div>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-slate-400">
           Selecciona tu fecha de nacimiento del calendario
         </p>
 
         {errors.fecha_nacimiento?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="curp">
-          CURP <span className="text-red-500">*</span>
+        <Label htmlFor="curp" className="text-slate-700 font-medium">
+          CURP <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
             id="curp"
             value={formData.curp || ""}
@@ -908,8 +905,8 @@ export default function RegistroForm() {
             }
             onBlur={(e) => checkCurpExists(e.target.value)}
             className={cn(
-              "pl-10",
-              (errors.curp?.length > 0 || curpExists) && "border-red-500"
+              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              (errors.curp?.length > 0 || curpExists) && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="GABC800101HDFRRR01"
             maxLength={18}
@@ -917,42 +914,42 @@ export default function RegistroForm() {
           />
           {isCheckingCurp && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-gray-300 border-t-[#8B5E34] rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-emerald-600 rounded-full" />
             </div>
           )}
         </div>
         {curpExists && (
-          <div className="flex items-start space-x-2 text-red-600">
+          <div className="flex items-start space-x-2 text-rose-500">
             <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
             <p className="text-sm">Este CURP ya está registrado</p>
           </div>
         )}
         {!curpExists &&
           errors.curp?.map((error, index) => (
-            <p key={index} className="text-sm text-red-600">
+            <p key={index} className="text-sm text-rose-500">
               {error}
             </p>
           ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="ocupacion">
-          Ocupación <span className="text-red-500">*</span>
+        <Label htmlFor="ocupacion" className="text-slate-700 font-medium">
+          Ocupación <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 z-10 pointer-events-none" />
+          <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4 z-10 pointer-events-none" />
           <select
             id="ocupacion"
             value={formData.ocupacion || ""}
             onChange={(e) => handleInputChange("ocupacion", e.target.value)}
             className={cn(
-              "w-full pl-10 pr-10 py-2 border rounded-md appearance-none cursor-pointer",
+              "w-full pl-10 pr-10 py-2.5 border rounded-xl appearance-none cursor-pointer",
               "bg-white transition-all",
-              "hover:border-[#8B5E34] focus:border-[#8B5E34] focus:ring-2 focus:ring-[#8B5E34]/20 focus:outline-none",
-              "text-sm",
+              "hover:border-emerald-500 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none",
+              "text-sm text-slate-900",
               errors.ocupacion?.length > 0
-                ? "border-red-500"
-                : "border-gray-300",
+                ? "border-rose-500"
+                : "border-slate-200",
               isLoading && "opacity-50 cursor-not-allowed"
             )}
             disabled={isLoading}
@@ -970,7 +967,7 @@ export default function RegistroForm() {
           </select>
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
             <svg
-              className="h-4 w-4 text-[#8B5E34]"
+              className="h-4 w-4 text-emerald-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -985,7 +982,7 @@ export default function RegistroForm() {
           </div>
         </div>
         {errors.ocupacion?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600">
+          <p key={index} className="text-sm text-rose-500">
             {error}
           </p>
         ))}
@@ -997,15 +994,15 @@ export default function RegistroForm() {
   const renderStep3 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold">Seguridad y Términos</h2>
-        <p className="text-sm text-gray-600">
+        <h2 className="text-xl font-semibold text-slate-800">Seguridad y Términos</h2>
+        <p className="text-sm text-slate-500">
           Configura tu contraseña y acepta los términos
         </p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">
-          Contraseña <span className="text-red-500">*</span>
+        <Label htmlFor="password" className="text-slate-700 font-medium">
+          Contraseña <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
           <Input
@@ -1015,8 +1012,9 @@ export default function RegistroForm() {
             onChange={(e) => handleInputChange("password", e.target.value)}
             onBlur={(e) => validatePassword(e.target.value)}
             className={cn(
+              "rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
               errors.password?.length > 0 || passwordError
-                ? "border-red-500"
+                ? "border-rose-500"
                 : ""
             )}
             placeholder="Mínimo 8 caracteres"
@@ -1026,7 +1024,7 @@ export default function RegistroForm() {
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-slate-400"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
@@ -1039,8 +1037,8 @@ export default function RegistroForm() {
 
         {/* Indicadores de requisitos en tiempo real */}
         {showRequirements && (
-          <div className="mt-3 p-3 bg-gray-50 rounded-md space-y-2 border border-gray-200">
-            <p className="text-xs font-semibold text-gray-700 mb-2">
+          <div className="mt-3 p-4 bg-slate-50/50 rounded-xl space-y-2 border border-slate-100">
+            <p className="text-xs font-semibold text-slate-700 mb-2">
               Requisitos de la contraseña:
             </p>
             <RequirementItem
@@ -1063,22 +1061,22 @@ export default function RegistroForm() {
         )}
 
         {passwordError && (
-          <div className="flex items-start space-x-2 text-red-600">
+          <div className="flex items-start space-x-2 text-rose-500">
             <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
             <p className="text-sm">{passwordError}</p>
           </div>
         )}
         {!passwordError &&
           errors.password?.map((error, index) => (
-            <p key={index} className="text-sm text-red-600">
+            <p key={index} className="text-sm text-rose-500">
               {error}
             </p>
           ))}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword">
-          Confirmar Contraseña <span className="text-red-500">*</span>
+        <Label htmlFor="confirmPassword" className="text-slate-700 font-medium">
+          Confirmar Contraseña <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
           <Input
@@ -1090,8 +1088,9 @@ export default function RegistroForm() {
             }
             onBlur={(e) => validateConfirmPassword(e.target.value)}
             className={cn(
+              "rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
               errors.confirmPassword?.length > 0 || confirmPasswordError
-                ? "border-red-500"
+                ? "border-rose-500"
                 : ""
             )}
             placeholder="Repite tu contraseña"
@@ -1101,7 +1100,7 @@ export default function RegistroForm() {
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-slate-400"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           >
             {showConfirmPassword ? (
@@ -1112,14 +1111,14 @@ export default function RegistroForm() {
           </Button>
         </div>
         {confirmPasswordError && (
-          <div className="flex items-start space-x-2 text-red-600">
+          <div className="flex items-start space-x-2 text-rose-500">
             <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
             <p className="text-sm">{confirmPasswordError}</p>
           </div>
         )}
         {!confirmPasswordError &&
           errors.confirmPassword?.map((error, index) => (
-            <p key={index} className="text-sm text-red-600">
+            <p key={index} className="text-sm text-rose-500">
               {error}
             </p>
           ))}
@@ -1135,26 +1134,27 @@ export default function RegistroForm() {
               onChange={(e) =>
                 handleInputChange("acceptTerms", e.target.checked)
               }
+              className="data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
             />
           </div>
 
           <div className="text-sm">
-            <Label htmlFor="acceptTerms" className="cursor-pointer">
+            <Label htmlFor="acceptTerms" className="cursor-pointer text-slate-700">
               Acepto los{" "}
               <button
                 type="button"
-                className="text-blue-600 hover:underline"
+                className="text-emerald-600 font-medium hover:underline"
                 onClick={() => setShowTerminosModal(true)}
               >
                 términos y condiciones
               </button>
-              <span className="text-red-500 ml-1">*</span>
+              <span className="text-rose-500 ml-1">*</span>
             </Label>
           </div>
         </div>
 
         {errors.acceptTerms?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600 ml-7">
+          <p key={index} className="text-sm text-rose-500 ml-7">
             {error}
           </p>
         ))}
@@ -1168,20 +1168,21 @@ export default function RegistroForm() {
               onChange={(e) =>
                 handleInputChange("acceptPrivacy", e.target.checked)
               }
+              className="data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
             />
           </div>
 
           <div className="text-sm">
-            <Label htmlFor="acceptPrivacy" className="cursor-pointer">
+            <Label htmlFor="acceptPrivacy" className="cursor-pointer text-slate-700">
               Acepto la{" "}
               <button
                 type="button"
-                className="text-blue-600 hover:underline"
+                className="text-emerald-600 font-medium hover:underline"
                 onClick={() => setShowPrivacidadModal(true)}
               >
                 política de privacidad
               </button>
-              <span className="text-red-500 ml-1">*</span>
+              <span className="text-rose-500 ml-1">*</span>
             </Label>
           </div>
         </div>
@@ -1197,7 +1198,7 @@ export default function RegistroForm() {
         />
 
         {errors.acceptPrivacy?.map((error, index) => (
-          <p key={index} className="text-sm text-red-600 ml-7">
+          <p key={index} className="text-sm text-rose-500 ml-7">
             {error}
           </p>
         ))}
@@ -1206,21 +1207,21 @@ export default function RegistroForm() {
   );
 
   return (
-    <Card className="w-full max-w-md mx-auto border border-gray-200 shadow-md bg-white">
+    <Card className="w-full max-w-md mx-auto border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl bg-white p-2">
       <CardHeader>
-        <CardTitle className="text-[#2E2E2E]">Registro de Adoptante</CardTitle>
-        <CardDescription className="text-[#6B6B6B]">
+        <CardTitle className="text-2xl font-extrabold text-slate-900 tracking-tight">Registro de Adoptante</CardTitle>
+        <CardDescription className="text-slate-500 font-medium mt-1">
           Paso {currentStep} de {totalSteps}
         </CardDescription>
 
         {/* Indicador de progreso */}
-        <div className="flex space-x-2 pt-2">
+        <div className="flex space-x-2 pt-4">
           {[1, 2, 3].map((step) => (
             <div
               key={step}
               className={cn(
                 "flex-1 h-2 rounded-full transition-all duration-300",
-                step <= currentStep ? "bg-[#8B5E34]" : "bg-gray-300"
+                step <= currentStep ? "bg-emerald-500" : "bg-slate-200"
               )}
             />
           ))}
@@ -1237,21 +1238,21 @@ export default function RegistroForm() {
           {errors.general?.map((error, index) => (
             <div
               key={index}
-              className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md"
+              className="mt-6 p-4 bg-rose-50 border border-rose-200 rounded-xl"
             >
-              <p className="text-sm text-red-600">{error}</p>
+              <p className="text-sm font-medium text-rose-700 text-center">{error}</p>
             </div>
           ))}
 
           {/* Botones de navegación */}
-          <div className="flex justify-between pt-6">
+          <div className="flex justify-between pt-8 gap-4">
             <Button
               variant="ghost"
               onClick={handlePrevStep}
               disabled={currentStep === 1 || isLoading}
-              className="text-[#8B5E34] hover:bg-[#F5EFE9]"
+              className="text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl px-4 py-5"
             >
-              <ChevronLeft className="h-4 w-4 mr-2" />
+              <ChevronLeft className="h-5 w-5 mr-1" />
               Anterior
             </Button>
 
@@ -1266,10 +1267,10 @@ export default function RegistroForm() {
                   curpExists || 
                   errors.fecha_nacimiento?.length > 0
                 }
-                className="bg-[#8B5E34] hover:bg-[#734C29] text-white font-semibold"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
                 Siguiente
-                <ChevronRight className="h-4 w-4 ml-2" />
+                <ChevronRight className="h-5 w-5 ml-1" />
               </Button>
             ) : (
               <Button
@@ -1277,7 +1278,7 @@ export default function RegistroForm() {
                 disabled={
                   isLoading || !!passwordError || !!confirmPasswordError
                 }
-                className="bg-[#8B5E34] hover:bg-[#734C29] text-white font-semibold"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
                 {isLoading ? "Registrando..." : "Crear Cuenta"}
               </Button>
@@ -1285,15 +1286,17 @@ export default function RegistroForm() {
           </div>
 
           {/* Enlace de inicio de sesión */}
-          <p className="mt-6 text-sm text-center text-[#6B6B6B]">
-            ¿Ya tienes cuenta?{" "}
-            <a
-              href="/login"
-              className="text-[#B87333] font-medium hover:underline"
-            >
-              Inicia sesión
-            </a>
-          </p>
+          <div className="mt-8 pt-6 border-t border-slate-100 text-center">
+            <p className="text-sm text-slate-600">
+              ¿Ya tienes cuenta?{" "}
+              <a
+                href="/login"
+                className="text-emerald-600 font-bold hover:text-emerald-700 transition-colors ml-1"
+              >
+                Inicia sesión
+              </a>
+            </p>
+          </div>
         </form>
       </CardContent>
     </Card>

@@ -289,7 +289,7 @@ export default function CertificadoPDF({ adoptante, mascota, fecha }) {
               />
               <Text style={styles.firmaLine} />
               <Text style={styles.firmaLabel}>Cristiano Ronaldo</Text>
-              <Text style={styles.cargoLabel}>Director del CAAM</Text>
+              <Text style={styles.cargoLabel}>Director del IMPA</Text>
             </View>
 
             {/* ADOPTANTE */}

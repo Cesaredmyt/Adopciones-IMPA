@@ -19,7 +19,7 @@ export default function ModalSeguimiento({
       {/* HEADER */}
       <div className="rounded-2xl p-6 shadow-md border border-[#E3D3C3] bg-gradient-to-br from-[#F7EFE7] to-[#EFE3D7] mb-6">
         <h2 className={`${playfair.className} text-3xl font-bold text-[#4A2F1B]`}>
-          Seguimiento del CAAM
+          Seguimiento del IMPA
         </h2>
         <p className={`${poppins.className} text-sm text-[#7A5C49] mt-2`}>
           Información sobre las visitas y llamadas posteriores a la adopción.
@@ -38,7 +38,7 @@ export default function ModalSeguimiento({
           </div>
           <p className={`${poppins.className} text-[#4A392E] leading-relaxed`}>
             El seguimiento consiste en llamadas telefónicas o visitas programadas por personal del
-            CAAM para verificar el estado y bienestar de la mascota adoptada.
+            IMPA para verificar el estado y bienestar de la mascota adoptada.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function ModalSeguimiento({
         </div>
 
         <p className={`${poppins.className} text-[15px] text-[#4A392E] font-medium pt-2`}>
-          Al aceptar, reconoces que el CAAM podrá contactarte para validar el bienestar de la mascota.
+          Al aceptar, reconoces que el IMPA podrá contactarte para validar el bienestar de la mascota.
         </p>
       </div>
 
