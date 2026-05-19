@@ -135,7 +135,7 @@ export default function SolicitudPendienteSection({
 
                                             <ul className="text-xs text-[#7a5c49] space-y-2 leading-relaxed">
                                                 <li>• Agenda tu visita para convivir con tu mascota.</li>
-                                                <li>• El CAAM evaluará cómo interactúan.</li>
+                                                <li>• El IMPA evaluará cómo interactúan.</li>
                                                 <li>• Si es aprobada, llenarás el formulario final.</li>
                                                 <li>• Luego un administrador revisará tu información.</li>
                                             </ul>

@@ -192,9 +192,7 @@ export default function RegistroForm() {
       }
 
       return exists;
-    } catch (error) {
-      console.error("Error verificando email:", error);
-
+    } catch {
       setEmailExists(false);
       return false;
     } finally {
@@ -232,8 +230,8 @@ export default function RegistroForm() {
           return newErrors;
         });
       }
-    } catch (error) {
-      console.error("Error verificando CURP:", error);
+    } catch {
+      // Silenciamos: ya hay UI para "verificar CURP" deshabilitado en error.
     } finally {
       setIsCheckingCurp(false);
     }
@@ -543,41 +541,15 @@ export default function RegistroForm() {
       if (!res.ok) throw new Error(data.error || "Error en el registro");
 
       // ==========================================================
-      // 2️⃣ ENVIAR CORREO DESPUÉS DEL REGISTRO (NO bloquear si falla)
-      // ==========================================================
-      console.log("📤 Enviando datos al correo:", {
-        email: formData.email,
-        nombre: formData.nombres,
-        confirmationUrl: data?.confirmationUrl,
-      });
-
-      try {
-        await fetch("/api/email/registro", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: formData.email || "",
-            nombre: formData.nombres || "",
-            confirmationUrl: data?.confirmationUrl || "",
-          }),
-        });
-      } catch (emailError) {
-        console.error("No se pudo enviar el correo:", emailError);
-        // 🔥 Importante: NO hacemos return
-        // El registro no debe fallar por el correo
-      }
-
-      // ==========================================================
+      // 2️⃣ El correo de confirmación lo envía /api/auth/register
+      //    server-side. El link NUNCA llega al cliente.
       // 3️⃣ REDIRECCIÓN FINAL
       // ==========================================================
       localStorage.setItem("registro_email", formData.email || "");
       localStorage.setItem("registro_nombre", formData.nombres || "");
-      localStorage.setItem("registro_confirmationUrl", data.confirmationUrl);
 
       router.push("/pendiente");
     } catch (error: unknown) {
-      console.error("Error en registro:", error);
-
       const errorMessage =
         error instanceof Error
           ? error.message

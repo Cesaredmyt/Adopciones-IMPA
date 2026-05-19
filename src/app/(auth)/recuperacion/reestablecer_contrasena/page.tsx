@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 
 function RequirementItem({ met, text }: { met: boolean; text: string }) {
@@ -19,7 +18,11 @@ function RequirementItem({ met, text }: { met: boolean; text: string }) {
   );
 }
 
-export default function NuevaContrasenaPage() {
+function NuevaContrasenaInner() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token") ?? "";
+
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
@@ -33,44 +36,28 @@ export default function NuevaContrasenaPage() {
     hasNumber: false,
   });
 
-  const router = useRouter();
-
-  // 🟢 1. Capturar el token del hash y crear sesión
+  // Validación visual de requisitos.
   useEffect(() => {
-    const supabase = createClient();
-    const hash = window.location.hash;
-
-    if (hash && hash.includes("access_token")) {
-      const params = new URLSearchParams(hash.replace("#", ""));
-      const access_token = params.get("access_token");
-      const refresh_token = params.get("refresh_token");
-
-      if (access_token && refresh_token) {
-        supabase.auth.setSession({
-          access_token,
-          refresh_token,
-        });
-      }
-    }
-  }, []);
-
-  // 🟢 2. Validar requisitos al escribir contraseña
-  useEffect(() => {
-    const reqs = {
+    setPasswordRequirements({
       minLength: password.length >= 8,
       hasUpperCase: /[A-Z]/.test(password),
       hasLowerCase: /[a-z]/.test(password),
       hasNumber: /[0-9]/.test(password),
-    };
-
-    setPasswordRequirements(reqs);
+    });
   }, [password]);
 
-  // 🟢 3. Enviar y cambiar contraseña
+  // Si no llega token en la URL, el flujo es inválido desde el principio.
+  const hasToken = token.length > 0;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
     setMensaje("");
+
+    if (!hasToken) {
+      setError("Enlace inválido. Solicita uno nuevo.");
+      return;
+    }
 
     if (
       !passwordRequirements.minLength ||
@@ -83,28 +70,39 @@ export default function NuevaContrasenaPage() {
     }
 
     setLoading(true);
+    try {
+      const res = await fetch("/api/auth/reset/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password }),
+      });
 
-    const supabase = createClient();
-    const { error } = await supabase.auth.updateUser({ password });
+      const data = await res.json().catch(() => ({}));
 
-    setLoading(false);
+      if (!res.ok) {
+        setError(
+          data?.error ||
+            "No se pudo cambiar la contraseña. Solicita un nuevo enlace."
+        );
+        setLoading(false);
+        return;
+      }
 
-    if (error) {
-      setError("Error al cambiar la contraseña: " + error.message);
-    } else {
       setMensaje(
-        "Contraseña actualizada correctamente. Ya puedes iniciar sesión."
+        "Contraseña actualizada. Inicia sesión con tu nueva contraseña."
       );
       setPassword("");
+      setLoading(false);
       setTimeout(() => router.push("/login"), 2000);
+    } catch {
+      setError("No se pudo conectar con el servidor. Inténtalo de nuevo.");
+      setLoading(false);
     }
   }
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        
-        {/* Encabezado */}
         <div className="text-center mb-8 mt-10">
           <Link href="/">
             <Image
@@ -124,9 +122,17 @@ export default function NuevaContrasenaPage() {
           </p>
         </div>
 
-        {/* Tarjeta */}
         <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8">
-          
+          {!hasToken && (
+            <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 font-medium text-center">
+              Este enlace es inválido o ya expiró. Solicita uno nuevo en{" "}
+              <Link href="/recuperacion" className="underline font-semibold">
+                /recuperacion
+              </Link>
+              .
+            </div>
+          )}
+
           {error && (
             <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 font-medium text-center">
               {error}
@@ -153,10 +159,10 @@ export default function NuevaContrasenaPage() {
                 placeholder="••••••••"
                 className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 transition-all"
                 required
+                disabled={!hasToken}
               />
             </label>
 
-            {/* Caja de requisitos */}
             {showRequirements && (
               <div className="mt-3 p-4 bg-slate-50/50 rounded-xl space-y-2.5 border border-slate-100 transition-all">
                 <p className="text-xs font-bold text-slate-700 mb-1">
@@ -185,7 +191,7 @@ export default function NuevaContrasenaPage() {
             <Button
               type="submit"
               full
-              disabled={loading}
+              disabled={loading || !hasToken}
               className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 mt-4 shadow-sm transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
@@ -197,7 +203,6 @@ export default function NuevaContrasenaPage() {
             </Button>
           </form>
 
-          {/* Enlace de regreso */}
           <div className="text-center mt-6 pt-4 border-t border-slate-100">
             <Link
               href="/login"
@@ -209,9 +214,25 @@ export default function NuevaContrasenaPage() {
         </div>
 
         <p className="mt-8 text-center text-xs font-medium text-slate-400 flex items-center justify-center gap-1">
-          Hecho con <span className="text-emerald-500 text-sm">💚</span> por IMPA Morelia
+          Hecho con <span className="text-emerald-500 text-sm">💚</span> por
+          IMPA Morelia
         </p>
       </div>
     </div>
+  );
+}
+
+// useSearchParams requiere Suspense boundary en Next 15.
+export default function NuevaContrasenaPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
+        </div>
+      }
+    >
+      <NuevaContrasenaInner />
+    </Suspense>
   );
 }

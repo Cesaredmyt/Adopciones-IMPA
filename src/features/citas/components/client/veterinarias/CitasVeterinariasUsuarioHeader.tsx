@@ -37,7 +37,7 @@ export function CitasVeterinariasUsuarioHeader({
             onClick={() => {
               if (bloqueado) {
                 setMensaje(
-                  "Ya tienes una cita pendiente. Espera la confirmación del CAAM antes de agendar otra."
+                  "Ya tienes una cita pendiente. Espera la confirmación del IMPA antes de agendar otra."
                 );
                 return;
               }

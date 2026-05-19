@@ -101,7 +101,7 @@ export function CitasVeterinariasUsuarioAgendar({
                 Estado: {m.estado_mascota}
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                📍 CAAM - Centro de Atención Animal de Morelia
+                📍 IMPA - Instituto Michoacano de Protección Animal
               </p>
             </div>
           </div>

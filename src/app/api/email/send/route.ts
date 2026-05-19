@@ -7,6 +7,10 @@ import citaVeterinaria from "../templates/citaVeterinaria";
 import documentacionAprobada from "../templates/documentacionAprobada";
 import documentacionRechazada from "../templates/documentacionRechazada";
 import recordatorioCita from "../templates/recordatorioCita";
+import {
+  isAuthorizedInternalRequest,
+  unauthorizedResponse,
+} from "@/lib/email/internalAuth";
 
 const templates: any = {
   resetPassword,
@@ -18,7 +22,13 @@ const templates: any = {
   recordatorioCita,
 };
 
+// Endpoint INTERNO — requiere cabecera x-internal-token.
+// Sólo es llamado server-to-server por /api/auth/reset-password.
 export async function POST(req: Request) {
+  if (!isAuthorizedInternalRequest(req)) {
+    return unauthorizedResponse();
+  }
+
   try {
     const { type, email, data } = await req.json();
 
@@ -38,8 +48,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("❌ Error enviando correo:", err);
+  } catch {
+    console.error("Error en /api/email/send");
     return NextResponse.json({ error: "Error interno" }, { status: 500 });
   }
 }

@@ -30,7 +30,7 @@ export async function POST(req: Request) {
           <tr>
             <td style="text-align:center">
               <img src="https://caamorelia.vercel.app/logo.png" width="120" style="margin-bottom:10px" />
-              <h2 style="color:#9B2E45;margin:0;font-weight:900;">Centro de Atención Animal de Morelia</h2>
+              <h2 style="color:#9B2E45;margin:0;font-weight:900;">Instituto Michoacano de Protección Animal</h2>
             </td>
           </tr>
 
@@ -63,8 +63,8 @@ export async function POST(req: Request) {
               <hr style="margin:24px 0;border:none;border-top:1px solid #eee" />
 
               <p style="text-align:center;color:#888;font-size:12px">
-                © 2025 Centro de Atención Animal de Morelia<br>
-                Hecho con ❤ por el equipo CAAM
+                © 2025 Instituto Michoacano de Protección Animal<br>
+                Hecho con ❤ por el equipo IMPA
               </p>
             </td>
           </tr>
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: email,
-      subject: `Cita cancelada – CAAM`,
+      subject: `Cita cancelada – IMPA`,
       html,
     });
 

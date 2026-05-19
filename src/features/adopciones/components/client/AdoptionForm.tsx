@@ -415,7 +415,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
                 >
                   <b>visitas o llamadas de seguimiento</b>
                 </span>{" "}
-                del CAAM.
+                del IMPA.
 
                 <span
                   onClick={() => setOpenSeguimiento(true)}

@@ -1,97 +1,84 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import {
+  clientIp,
+  enforceRateLimit,
+  LIMITS,
+} from "@/lib/auth/ratelimit";
 
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs';
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+// POST /api/auth/check-email
+// Body: { email?: string } | { curp: string, action: "check-curp" }
+//
+// Endpoint de UX para el wizard de registro: permite mostrar "este correo /
+// CURP ya está registrado" sin esperar a submit final. Es un endpoint de
+// enumeración por diseño, mitigado con rate-limit duro por IP. En Fase 6
+// se evaluará reemplazarlo por validación de unicidad sólo en /api/auth/register.
+//
+// La consulta de email usa `perfiles.email` (con índice) en vez de
+// listUsers() que paginaba sobre auth.users — O(1) en vez de O(N).
 
 export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { email, curp, action } = body;
+  const rateLimit = await enforceRateLimit(clientIp(request), LIMITS.checkEmail);
+  if (rateLimit) return rateLimit;
 
-    // Si la acción es verificar CURP
+  try {
+    const body = await request.json().catch(() => ({}));
+    const { email, curp, action } = body ?? {};
+
+    // ============================================================
+    // Verificación de CURP
+    // ============================================================
     if (action === "check-curp") {
-      if (!curp) {
+      if (typeof curp !== "string" || curp.length !== 18) {
         return NextResponse.json(
-          { error: "CURP es requerido" },
+          { error: "CURP inválido" },
           { status: 400 }
         );
       }
 
-      // Verificar si el CURP ya existe en la tabla perfiles
-      const { data: perfiles, error: perfilesError } = await supabaseAdmin
+      const { data, error } = await supabaseAdmin
         .from("perfiles")
-        .select("curp")
+        .select("id")
         .eq("curp", curp.toUpperCase())
         .limit(1);
 
-      if (perfilesError) {
+      if (error) {
         return NextResponse.json(
           { error: "Error al verificar CURP" },
           { status: 500 }
         );
       }
 
-      const curpExists = perfiles && perfiles.length > 0;
-
-      return NextResponse.json({ 
-        exists: curpExists,
-        available: !curpExists 
-      }, {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const exists = !!(data && data.length > 0);
+      return NextResponse.json({ exists, available: !exists });
     }
 
-    // Si no, verificar email (comportamiento por defecto)
-    if (!email) {
-      return NextResponse.json(
-        { error: "Email es requerido" },
-        { status: 400 }
-      );
+    // ============================================================
+    // Verificación de email (default)
+    // ============================================================
+    if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Email inválido" }, { status: 400 });
     }
 
-    // Verificar si el email ya existe en auth.users
-    const { data: authUsers, error: authError } = await supabaseAdmin.auth.admin.listUsers();
+    const { data, error } = await supabaseAdmin
+      .from("perfiles")
+      .select("id")
+      .eq("email", email.toLowerCase())
+      .limit(1);
 
-    if (authError) {
+    if (error) {
       return NextResponse.json(
         { error: "Error al verificar email" },
         { status: 500 }
       );
     }
 
-    // Buscar si el email ya está registrado (case-insensitive)
-    const emailExists = authUsers.users.some(
-      (user) => user.email?.toLowerCase() === email.toLowerCase()
-    );
-
-    return NextResponse.json({ 
-      exists: emailExists,
-      available: !emailExists 
-    }, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-  } catch (err: unknown) {
-    const errorMessage = err instanceof Error ? err.message : "Error desconocido";
-    
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    const exists = !!(data && data.length > 0);
+    return NextResponse.json({ exists, available: !exists });
+  } catch {
+    return NextResponse.json({ error: "Error interno" }, { status: 500 });
   }
-}
-
-// Endpoint de prueba GET (opcional - puedes eliminarlo si quieres)
-export async function GET() {
-  return NextResponse.json({ 
-    message: "API check-email funcionando",
-    method: "Use POST con {email: 'tu@email.com'} o {curp: 'CURP...', action: 'check-curp'}"
-  });
 }

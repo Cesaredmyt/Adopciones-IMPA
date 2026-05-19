@@ -215,7 +215,7 @@ export default function CertificadoPDF({ adoptante, mascota, fecha }) {
   // 🔥 PARA FIRMA: SOLO NOMBRES
   const adoptanteFirma = adoptante.split(" ").slice(0, 2).join(" ");
 
-  const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CAAM-${mascota.id}`;
+  const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=IMPA-${mascota.id}`;
 
   return (
     <Document>
@@ -233,7 +233,7 @@ export default function CertificadoPDF({ adoptante, mascota, fecha }) {
         <View style={styles.content}>
           <Text style={styles.title}>Certificado de Adopción</Text>
           <Text style={styles.subtitle}>
-            Centro de Atención Animal de Morelia
+            Instituto Michoacano de Protección Animal
           </Text>
 
           {/* FOTO */}

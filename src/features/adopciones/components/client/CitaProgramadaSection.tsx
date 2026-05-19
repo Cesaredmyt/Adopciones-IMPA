@@ -45,7 +45,7 @@ export default function CitaProgramadaSection({
 
                     <p className="mt-2 text-sm text-[#1e40af] leading-relaxed">
                         Acude a tu cita en la fecha y hora indicadas. Después de la visita,
-                        el CAAM evaluará la interacción para continuar con el proceso.
+                        el IMPA evaluará la interacción para continuar con el proceso.
                     </p>
 
                     {/* Datos */}
@@ -87,7 +87,7 @@ export default function CitaProgramadaSection({
                     </p>
 
                     <ol className="space-y-2">
-                        <li>• Asiste a tu cita en el CAAM.</li>
+                        <li>• Asiste a tu cita en el IMPA.</li>
                         <li>• El equipo evaluará la interacción.</li>
                         <li>• Si es aprobada, podrás continuar el proceso.</li>
                     </ol>

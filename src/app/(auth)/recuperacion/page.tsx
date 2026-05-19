@@ -41,8 +41,7 @@ export default function RecuperarContrasena() {
       setMensaje(
         "Si el correo existe en nuestro sistema, recibirás un enlace para restablecer tu contraseña."
       );
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError("Ocurrió un error inesperado al conectar con el servidor.");
       setLoading(false);
     }

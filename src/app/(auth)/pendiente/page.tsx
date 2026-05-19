@@ -16,11 +16,11 @@ export default function Pendiente() {
   const [cooldown, setCooldown] = useState(0);
 
   // ================================================================
-  // 🔥 RECUPERAR DATOS DEL REGISTRO (localStorage + sessionStorage)
+  // 🔥 RECUPERAR DATOS DEL REGISTRO (sólo email — el link NO vive
+  // en el cliente; lo regenera el server al reenviar.)
   // ================================================================
   const getRegistroData = () => {
-    if (typeof window === "undefined")
-      return { email: null, nombre: null, confirmationUrl: null };
+    if (typeof window === "undefined") return { email: null, nombre: null };
 
     return {
       email:
@@ -29,14 +29,11 @@ export default function Pendiente() {
       nombre:
         localStorage.getItem("registro_nombre") ||
         sessionStorage.getItem("registro_nombre"),
-      confirmationUrl:
-        localStorage.getItem("registro_confirmationUrl") ||
-        sessionStorage.getItem("registro_confirmationUrl"),
     };
   };
 
   const registroData = getRegistroData();
-  const { email, nombre, confirmationUrl } = registroData;
+  const { email, nombre } = registroData;
 
   // ================================================================
   // 🔥  AUTO-DETECTAR SI YA CONFIRMÓ EL CORREO
@@ -58,22 +55,17 @@ export default function Pendiente() {
   // 🔥  FUNCIÓN PARA REENVIAR CORREO
   // ================================================================
   const reenviarCorreo = async () => {
-    if (!email || !confirmationUrl) {
-      console.warn("No hay datos para reenviar correo.");
+    if (!email) {
       return;
     }
 
     setReenviando(true);
     setReenviado(false);
 
-    const res = await fetch("/api/email/reenviar", {
+    const res = await fetch("/api/auth/resend-verification", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        nombre,
-        confirmationUrl,
-      }),
+      body: JSON.stringify({ email }),
     });
 
     setReenviando(false);

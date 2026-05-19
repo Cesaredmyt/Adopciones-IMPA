@@ -93,7 +93,7 @@ export default function AdminHeader() {
       <nav className="container mx-auto flex items-center justify-between px-6 py-5">
         {/* Logo */}
         <Link href="/dashboards/administrador" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="CAAM" width={40} height={40} />
+          <Image src="/logo.png" alt="IMPA" width={40} height={40} />
           <div className="flex flex-col items-start">
             <span className="font-bold text-xl text-[#FFF8F0] leading-tight">
               Instituto Michoacano de Protección Animal

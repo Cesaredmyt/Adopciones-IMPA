@@ -37,7 +37,7 @@ export default function CitaAprobadaSection({
                         ¡Tu cita fue aprobada! 🎉
                     </h3>
                     <p className="text-sm sm:text-base text-blue-700 mt-1">
-                        El CAAM confirmó que la interacción con tu mascota fue positiva.
+                        El IMPA confirmó que la interacción con tu mascota fue positiva.
                     </p>
                 </div>
             </div>

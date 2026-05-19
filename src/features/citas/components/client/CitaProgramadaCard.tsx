@@ -34,7 +34,7 @@ export default function CitaProgramadaCard({
 
                     <p className="mt-2 text-sm text-[#7a5c49]">
                         Te esperamos en el{" "}
-                        <strong className="text-[#BC5F36]">CAAM</strong> para conocer a{" "}
+                        <strong className="text-[#BC5F36]">IMPA</strong> para conocer a{" "}
                         <span className="font-semibold">
                             {cita.mascota?.nombre}
                         </span>

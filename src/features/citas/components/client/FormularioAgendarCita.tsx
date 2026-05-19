@@ -73,7 +73,7 @@ export default function FormularioAgendarCita({
                         {mascota?.nombre}
                     </h4>
                     <p className="text-sm text-[#7a5c49] mt-1">
-                        <MapPin className="inline h-4 w-4 text-[#BC5F36]" /> CAAM Morelia
+                        <MapPin className="inline h-4 w-4 text-[#BC5F36]" /> IMPA Morelia
                     </p>
                 </div>
 

@@ -1,67 +1,89 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { sendPasswordReset } from "@/lib/email/sendPasswordReset";
+import { issueToken } from "@/lib/auth/tokens";
+import { getSiteUrl } from "@/lib/auth/siteUrl";
+import {
+  enforceRateLimit,
+  identityWithEmail,
+  LIMITS,
+} from "@/lib/auth/ratelimit";
+
+// POST /api/auth/reset-password
+// Body: { email: string }
+//
+// Emite un token propio (purpose: password_reset, 15 min, un solo uso) y manda
+// el correo con un link a /recuperacion/reestablecer_contrasena?token=...
+//
+// Respuesta SIEMPRE 200 OK uniforme — no filtramos si el email existe.
+
+const RESET_TOKEN_TTL_SECONDS = 15 * 60; // 15 min
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const body = await req.json().catch(() => ({}));
+    const email =
+      typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
 
-    if (!email) {
-      return NextResponse.json(
-        { error: "El correo es obligatorio" },
-        { status: 400 }
-      );
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Correo inválido" }, { status: 400 });
     }
 
-    console.log("🔗 Generando link de recuperación para:", email);
+    const rateLimit = await enforceRateLimit(
+      identityWithEmail(req, email),
+      LIMITS.resetRequest
+    );
+    if (rateLimit) return rateLimit;
 
-    // 1️⃣ Generar el link con Supabase
-    const { data, error } = await supabaseAdmin.auth.admin.generateLink({
-      type: "recovery",
-      email,
-      options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/recuperacion/reestablecer_contrasena`,
-      },
-    });
+    const { data: perfil } = await supabaseAdmin
+      .from("perfiles")
+      .select("id, nombres")
+      .eq("email", email)
+      .maybeSingle();
 
-    if (error) {
-      console.error("❌ Error generando link:", error);
-      return NextResponse.json({ error: error.message }, { status: 400 });
+    if (!perfil) {
+      // Email no registrado — respuesta uniforme silenciosa.
+      return NextResponse.json({
+        ok: true,
+        message: "Correo enviado si el usuario existe.",
+      });
     }
 
-    const resetUrl = data?.properties?.action_link;
-
-    if (!resetUrl) {
-      return NextResponse.json(
-        { error: "Supabase no devolvió el enlace de recuperación." },
-        { status: 500 }
-      );
+    let token: string;
+    try {
+      const issued = await issueToken({
+        userId: perfil.id as string,
+        purpose: "password_reset",
+        ttlSeconds: RESET_TOKEN_TTL_SECONDS,
+        request: req,
+      });
+      token = issued.token;
+    } catch {
+      console.error("Fallo emitiendo token de reset");
+      return NextResponse.json({
+        ok: true,
+        message: "Correo enviado si el usuario existe.",
+      });
     }
 
-    const nombre = data?.user?.user_metadata?.nombre || "Usuario";
+    const resetUrl = `${getSiteUrl()}/recuperacion/reestablecer_contrasena?token=${encodeURIComponent(token)}`;
 
-    // 2️⃣ Enviar el correo usando tu sistema
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://caamorelia.vercel.app";
-
-await fetch(`${baseUrl}/api/email/send`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "resetPassword",
-        email,
-        data: {
-          nombre,
-          url: resetUrl,
-        },
-      }),
-    });
+    try {
+      await sendPasswordReset({
+        to: email,
+        nombre: (perfil.nombres as string | null) ?? "Usuario",
+        resetUrl,
+      });
+    } catch {
+      console.error("Fallo enviando correo de recuperación");
+    }
 
     return NextResponse.json({
       ok: true,
       message: "Correo enviado si el usuario existe.",
     });
-  } catch (err) {
-    console.error("💥 Error en reset:", err);
+  } catch {
+    console.error("Error en /api/auth/reset-password");
     return NextResponse.json({ error: "Error interno" }, { status: 500 });
   }
 }

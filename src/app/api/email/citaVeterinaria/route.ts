@@ -40,8 +40,8 @@ export async function POST(req: Request) {
       <table align="center" width="520" style="background: #ffffff; border-radius: 14px; padding: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
         <tr>
           <td style="text-align: center;">
-            <img src="https://caamorelia.vercel.app/logo.png" width="120" alt="Logo CAAM" style="margin-bottom: 10px;" />
-            <h2 style="color:#9B2E45;margin:0;font-weight:900;">Centro de Atención Animal de Morelia</h2>
+            <img src="https://caamorelia.vercel.app/logo.png" width="120" alt="Logo IMPA" style="margin-bottom: 10px;" />
+            <h2 style="color:#9B2E45;margin:0;font-weight:900;">Instituto Michoacano de Protección Animal</h2>
             <h2 style="color: #9B2E45; margin: 0; margin-bottom: 20px; font-size: 22px; font-weight: 900;">
               Cita Veterinaria Agendada
             </h2>
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
             <p>Hola <strong>${nombre}</strong>,</p>
             <p>
               Tu cita veterinaria ha sido registrada correctamente.  
-              El equipo del CAAM revisará tu solicitud y te confirmará lo antes posible.
+              El equipo del IMPA revisará tu solicitud y te confirmará lo antes posible.
             </p>
 
             <div style="background: #FCE8E8; padding: 15px; border-radius: 10px; margin: 20px 0;">
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
             <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
 
             <p style="text-align: center; font-size: 13px; color: #777;">
-              Centro de Atención Animal de Morelia<br />
+              Instituto Michoacano de Protección Animal<br />
               Este correo es una confirmación automática.
             </p>
           </td>
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
 
     // Enviar correo
     await transporter.sendMail({
-      from: `"CAAM Morelia" <${process.env.SMTP_EMAIL}>`,
+      from: `"IMPA Morelia" <${process.env.SMTP_EMAIL}>`,
       to: email,
       subject: "Cita Veterinaria Registrada",
       html,

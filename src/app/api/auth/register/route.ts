@@ -1,31 +1,49 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { sendAccountConfirmation } from "@/lib/email/sendAccountConfirmation";
+import {
+  clientIp,
+  enforceRateLimit,
+  LIMITS,
+} from "@/lib/auth/ratelimit";
+import { registerSchema } from "@/lib/auth/schemas/register";
+import { issueToken } from "@/lib/auth/tokens";
+import { getSiteUrl } from "@/lib/auth/siteUrl";
+
+const VERIFY_TOKEN_TTL_SECONDS = 60 * 60 * 24; // 24 h
 
 export async function POST(req: Request) {
-  try {
-    const formData = await req.json();
+  // Rate limit por IP — 3 registros/hora.
+  const rateLimit = await enforceRateLimit(clientIp(req), LIMITS.register);
+  if (rateLimit) return rateLimit;
 
-    console.log("📝 Iniciando registro para:", formData.email);
+  try {
+    const raw = await req.json().catch(() => ({}));
+    const parsed = registerSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json(
+        {
+          error: "Datos de registro inválidos",
+          issues: parsed.error.issues,
+        },
+        { status: 400 }
+      );
+    }
+    const data = parsed.data;
 
     // =======================================
     // 1️⃣ CREAR USUARIO EN SUPABASE
     // =======================================
     const { data: authData, error: authError } =
       await supabaseAdmin.auth.admin.createUser({
-        email: formData.email,
-        password: formData.password,
+        email: data.email,
+        password: data.password,
         user_metadata: {
-          nombre: formData.nombres,
+          nombre: data.nombres,
         },
       });
 
-    console.log("👤 Resultado creación usuario:", {
-      userId: authData?.user?.id,
-      error: authError?.message,
-    });
-
     if (authError || !authData.user) {
-      console.error("❌ Error creando usuario:", authError);
       return NextResponse.json(
         { error: authError?.message || "No se pudo crear el usuario" },
         { status: 400 }
@@ -37,30 +55,25 @@ export async function POST(req: Request) {
     // =======================================
     // 2️⃣ CREAR PERFIL EN TABLA perfiles
     // =======================================
-    console.log("💾 Creando perfil para usuario:", userId);
-
     const { error: perfilError } = await supabaseAdmin
       .from("perfiles")
       .insert([
         {
           id: userId,
-          nombres: formData.nombres,
-          apellido_paterno: formData.apellido_paterno,
-          apellido_materno: formData.apellido_materno || null,
-          curp: formData.curp || null,
-          telefono: formData.telefono || null,
-          fecha_nacimiento: formData.fecha_nacimiento || null,
-          ocupacion: formData.ocupacion || null,
-          email: formData.email,
+          nombres: data.nombres,
+          apellido_paterno: data.apellido_paterno,
+          apellido_materno: data.apellido_materno || null,
+          curp: data.curp || null,
+          telefono: data.telefono || null,
+          fecha_nacimiento: data.fecha_nacimiento || null,
+          ocupacion: data.ocupacion || null,
+          email: data.email,
           rol_id: 2,
         },
       ]);
 
     if (perfilError) {
-      console.error("❌ Error creando perfil:", perfilError);
-
       await supabaseAdmin.auth.admin.deleteUser(userId);
-
       return NextResponse.json(
         { error: `Error creando perfil: ${perfilError.message}` },
         { status: 400 }
@@ -68,61 +81,54 @@ export async function POST(req: Request) {
     }
 
     // =======================================
-    // 3️⃣ GENERAR LINK DE CONFIRMACIÓN
+    // 3️⃣ EMITIR TOKEN PROPIO DE VERIFICACIÓN.
+    // Hash en DB, plano sólo en el correo. 24 h, un solo uso.
     // =======================================
-    console.log("🔗 Generando link de verificación…");
-
-    const { data: linkData, error: linkError } =
-      await supabaseAdmin.auth.admin.generateLink({
-        type: "signup",
-        email: formData.email,
-        password: formData.password, // requerido por Supabase
+    let token: string;
+    try {
+      const issued = await issueToken({
+        userId,
+        purpose: "verify_email",
+        ttlSeconds: VERIFY_TOKEN_TTL_SECONDS,
+        request: req,
       });
-
-    if (linkError) {
-      console.error("❌ Error generando link de verificación:", linkError);
+      token = issued.token;
+    } catch {
+      console.error("Fallo emitiendo token de verificación");
       return NextResponse.json(
-        {
-          error:
-            linkError.message ||
-            "No se pudo generar el link de verificación.",
-        },
-        { status: 400 }
-      );
-    }
-
-    const confirmationUrl = linkData?.properties?.action_link;
-
-    console.log("✅ Link de confirmación generado:", confirmationUrl);
-
-    if (!confirmationUrl) {
-      return NextResponse.json(
-        { error: "Supabase no devolvió el link de confirmación" },
+        { error: "No se pudo generar el link de verificación." },
         { status: 500 }
       );
     }
 
-    console.log("🎉 Usuario, perfil y link generados con éxito.");
+    const confirmationUrl = `${getSiteUrl()}/api/auth/verify?token=${encodeURIComponent(token)}`;
 
     // =======================================
-    // 4️⃣ RESPUESTA FINAL PARA handleSubmit
+    // 4️⃣ ENVIAR CORREO DE CONFIRMACIÓN (server-side).
+    // El link NUNCA regresa al cliente.
     // =======================================
+    try {
+      await sendAccountConfirmation({
+        to: data.email,
+        nombre: data.nombres,
+        confirmationUrl,
+      });
+    } catch {
+      console.error("Fallo enviando correo de confirmación tras registro");
+    }
+
     return NextResponse.json(
       {
         success: true,
-        confirmationUrl,
+        email: data.email,
+        nombre: data.nombres,
       },
       { status: 200 }
     );
   } catch (err: unknown) {
     const errorMessage =
       err instanceof Error ? err.message : "Error desconocido";
-
-    console.error("❌ Error general en registro:", errorMessage);
-
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    console.error("Error general en /api/auth/register");
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

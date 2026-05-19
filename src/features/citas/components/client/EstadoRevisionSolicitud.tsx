@@ -34,7 +34,7 @@ export default function EstadoRevisionSolicitud() {
                         Tu formulario está en revisión
                     </h3>
                     <p className="text-sm text-[#7a5c49] mt-1">
-                        Ya completaste el formulario de adopción. El equipo del CAAM
+                        Ya completaste el formulario de adopción. El equipo del IMPA
                         está revisando tu información. Por favor espera la
                         confirmación final.
                     </p>

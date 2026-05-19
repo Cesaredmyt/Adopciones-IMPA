@@ -23,7 +23,7 @@ export function buildAdopcionRechazadaEmail({
           <td style="text-align:center;">
             <img 
               src="https://caamorelia.vercel.app/logo.png" 
-              alt="Logo CAAM"
+              alt="Logo IMPA"
               style="width:120px; margin-bottom:10px;"
             />
           </td>
@@ -85,7 +85,7 @@ export function buildAdopcionRechazadaEmail({
         <!-- FOOTER -->
         <tr>
           <td style="text-align:center; padding-top:26px; font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} CAAM Morelia · Correo automático
+            © ${new Date().getFullYear()} IMPA Morelia · Correo automático
           </td>
         </tr>
 

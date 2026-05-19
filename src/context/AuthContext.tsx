@@ -1,9 +1,17 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
+
+// AuthContext expone el `user` desde el cliente para componentes que
+// necesiten UI condicional (botones de login/logout, etc.).
+//
+// IMPORTANTE: este context NO es fuente de autorización. Las decisiones
+// de seguridad real ocurren server-side vía requireSession/requireRole.
+// Aquí sólo reflejamos el estado de la cookie de sesión en el browser.
 
 type AuthContextType = {
-  user: any;
+  user: User | null;
   loading: boolean;
 };
 
@@ -15,22 +23,20 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
 
   useEffect(() => {
-    // obtener usuario actual
+    const supabase = createClient();
+
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
       setLoading(false);
     });
 
-    // escuchar cambios de sesión
     const { data: subscription } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
-        setLoading(false);
       }
     );
 

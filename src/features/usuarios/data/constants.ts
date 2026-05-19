@@ -14,7 +14,7 @@ export const MOCK_USER: User = {
   edad: 34,
   ocupacion: "Veterinaria",
   avatar: "https://ui-avatars.com/api/?name=Maria+Garcia&background=8B4513&color=fff&size=200",
-  bio: "Amante de los animales, voluntaria en CAAM desde 2020.",
+  bio: "Amante de los animales, voluntaria en IMPA desde 2020.",
   activo: true,
 };
 
