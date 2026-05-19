@@ -126,7 +126,7 @@ export default function AdopcionAprobadaSection({
                                         Tu formulario está en revisión
                                     </h3>
                                     <p className="text-sm text-[#7a5c49] mt-1">
-                                        Ya completaste el formulario de adopción. El equipo del CAAM lo
+                                        Ya completaste el formulario de adopción. El equipo del IMPA lo
                                         está revisando.
                                     </p>
                                 </div>

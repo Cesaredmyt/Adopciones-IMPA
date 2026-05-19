@@ -27,7 +27,7 @@ export default function ConfirmacionCita({
                     </h3>
                     <p className="mt-1 text-base text-[#5a4b3f]">
                         Tu visita ha sido agendada exitosamente 🐾. Te esperamos en el{" "}
-                        <span className="font-semibold text-[#BC5F36]">CAAM</span>; por favor
+                        <span className="font-semibold text-[#BC5F36]">IMPA</span>; por favor
                         llega <strong>10 minutos antes</strong>.
                     </p>
                 </div>
@@ -57,7 +57,7 @@ export default function ConfirmacionCita({
                     <div className="mt-3 text-sm">
                         <p className="flex items-center justify-center gap-1 text-[#5b4032]">
                             <MapPin className="h-4 w-4 text-[#BC5F36]" />
-                            <strong>CAAM - Centro de Atención Animal de Morelia</strong>
+                            <strong>IMPA - Instituto Michoacano de Protección Animal</strong>
                         </p>
                         <p className="text-xs text-[#a4836b] mt-1">
                             Av. Acueducto 1234, Morelia, Michoacán
@@ -98,7 +98,7 @@ export default function ConfirmacionCita({
                     <div className="mt-6 border-t border-[#eadacb] pt-4 text-sm text-[#7a5c49] leading-relaxed">
                         <p>
                             Si necesitas reprogramar tu cita, comunícate con el equipo del{" "}
-                            <span className="text-[#BC5F36] font-medium">CAAM</span> o
+                            <span className="text-[#BC5F36] font-medium">IMPA</span> o
                             cancélala desde tu panel de usuario.
                         </p>
                     </div>

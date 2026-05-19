@@ -54,11 +54,11 @@ export async function POST(req: Request) {
             <tr>
               <td style="text-align: center;">
                 <img src="https://caamorelia.vercel.app/logo.png"
-                  alt="Logo CAAM"
+                  alt="Logo IMPA"
                   width="120"
                   style="margin: 0 auto 10px; display: block;" />
                 <h2 style="color: #9B2E45; margin-bottom: 6px; font-weight: 900;">
-                  Centro de Atención Animal de Morelia
+                  Instituto Michoacano de Protección Animal
                 </h2>
               </td>
             </tr>
@@ -117,8 +117,8 @@ export async function POST(req: Request) {
                 <hr style="margin: 25px 0; border: none; border-top: 1px solid #eee;" />
 
                 <p style="text-align: center; color: #888; font-size: 12px; line-height: 1.4;">
-                  © 2025 Centro de Atención Animal de Morelia<br/>
-                  Hecho con <span style="color: #f17a36;">❤</span> por el equipo CAAM
+                  © 2025 Instituto Michoacano de Protección Animal<br/>
+                  Hecho con <span style="color: #f17a36;">❤</span> por el equipo IMPA
                 </p>
               </td>
             </tr>

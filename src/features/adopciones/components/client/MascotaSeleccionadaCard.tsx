@@ -93,7 +93,7 @@ export default function MascotaSeleccionadaCard({
 
         <ul className="text-[12px] text-[#7a5c49] space-y-1 leading-relaxed">
           <li>• Ha sido evaluada y está apta para convivir contigo.</li>
-          <li>• El equipo del CAAM verificó su salud y comportamiento.</li>
+          <li>• El equipo del IMPA verificó su salud y comportamiento.</li>
           <li>• Lista para avanzar al siguiente paso de adopción.</li>
         </ul>
       </div>

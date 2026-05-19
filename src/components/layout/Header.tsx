@@ -26,7 +26,7 @@ export default function Header() {
       <nav className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="CAAM" width={50} height={50} />
+          <Image src="/logo.png" alt="IMPA" width={50} height={50} />
           <div className="hidden sm:flex flex-col">
             <span className="font-bold text-base text-[#FFF8F0] leading-tight">
               Instituto Michoacano de Protección Animal

@@ -11,7 +11,7 @@ export default function EstadoAdopcionAprobada() {
             </h3>
 
             <p className="mt-2 text-sm text-green-700">
-                ¡Felicidades! El proceso de adopción ha sido aprobado. El CAAM se pondrá
+                ¡Felicidades! El proceso de adopción ha sido aprobado. El IMPA se pondrá
                 en contacto contigo para coordinar los pasos finales.
             </p>
         </div>

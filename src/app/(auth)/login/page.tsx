@@ -4,12 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button, ButtonLink } from "@/components/ui/Button";
-import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 export default function LoginCAAM() {
   const router = useRouter();
-  const supabase = createClient();
 
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
@@ -20,9 +18,7 @@ export default function LoginCAAM() {
     e.preventDefault();
 
     if (!correo || !contrasena) {
-      //setError("Por favor completa ambos campos.");
-      setError("Checa tu info papito.");
-
+      setError("Completa correo y contraseña.");
       return;
     }
 
@@ -30,65 +26,27 @@ export default function LoginCAAM() {
     setLoading(true);
 
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword(
-        {
-          email: correo,
-          password: contrasena,
-        }
-      );
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: correo, password: contrasena }),
+      });
 
-      if (authError) {
-        let errorMessage = "Credenciales incorrectas";
+      const data = await res.json().catch(() => ({}));
 
-        if (authError.message === "Invalid login credentials") {
-          errorMessage = "Email o contraseña incorrectos";
-        } else if (authError.message === "Email not confirmed") {
-          errorMessage = "Por favor verifica tu email antes de iniciar sesión";
-        }
-
-        setError(errorMessage);
+      if (!res.ok) {
+        setError(data?.error || "Credenciales incorrectas");
         setLoading(false);
         return;
       }
 
-      // Validar de confirmado
-      if (data.user && !data.user.email_confirmed_at) {
-        await supabase.auth.signOut();
-        setError(
-          "Tu cuenta aún no ha sido verificada. Revisa tu bandeja de entrada."
-        );
-        setLoading(false);
-        return;
-      }
-
-      if (data.user) {
-        // obtener perfil del usuario
-        console.log("Usuario logueado:", data.user.id);
-
-        const { data: perfil, error: perfilError } = await supabase
-          .from("perfiles")
-          .select("rol_id")
-          .eq("id", data.user.id)
-          .single();
-
-        if (perfilError) {
-          console.error("Error al obtener el perfil:", perfilError);
-          setError("Ocurrió un error al cargar tu perfil. Intenta nuevamente.");
-          setLoading(false);
-          return;
-        }
-
-        console.log("Perfil encontrado:", perfil);
-
-        //Redirigir según el rol
-        if (perfil?.rol_id === 1) {
-          router.push("/dashboards/administrador");
-        } else {
-          router.push("/dashboards/usuario");
-        }
-      }
-    } catch (err) {
-      console.error(err);
+      const target =
+        typeof data?.redirect === "string" ? data.redirect : "/dashboards/usuario";
+      // refresh() para que el server lea las cookies recién seteadas antes
+      // de renderizar el dashboard.
+      router.replace(target);
+      router.refresh();
+    } catch {
       setError("No se pudo conectar con el servidor. Inténtalo de nuevo.");
       setLoading(false);
     }

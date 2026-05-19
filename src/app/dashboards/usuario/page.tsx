@@ -4,20 +4,13 @@ import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
-const supabase = createClient();
 import {
-  PawPrint,
   ShieldCheck,
   Sparkles,
   Heart,
-  ArrowRight,
   CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import Protected from "@/components/Protected";
-import PageHead from "@/components/layout/PageHead";
-import { getUserRole } from "@/lib/supabase/getRole";
-import { useRouter } from "next/navigation";
 
 /* ===========================================================
    PARALLAX MARCADO (SEGURO)
@@ -35,43 +28,21 @@ function useParallax(multiplier: number) {
 }
 
 export default function DashboardUsuarioPage() {
-  const router = useRouter();
-
-  // TODOS LOS HOOKS VAN ARRIBA (importante)
-  const [allowed, setAllowed] = useState(false);
-  const [checking, setChecking] = useState(true);
-  const parallax = useParallax(10); // <-- SE LLAMA SIEMPRE
+  // Rol y sesión ya validados server-side por dashboards/usuario/layout.tsx.
+  // Aquí solo recuperamos el nombre del user para UI.
+  const parallax = useParallax(10);
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
+    const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
       setUserName(data?.user?.user_metadata?.nombre || "Usuario");
     });
   }, []);
 
-  useEffect(() => {
-    const verifyRole = async () => {
-      const rol = await getUserRole();
-      if (rol === 2) setAllowed(true);
-      else router.push("/dashboards/administrador");
-      setChecking(false);
-    };
-    verifyRole();
-  }, [router]);
-
   return (
-    <Protected>
-      <div className="space-y-20">
-        {/* LOADER SIN ROMPER HOOKS */}
-        {checking && (
-          <p className="text-center text-sm text-gray-500">Cargando...</p>
-        )}
-
-        {!checking && !allowed && null}
-
-        {/* CONTENIDO DEL DASHBOARD */}
-        {!checking && allowed && (
-          <>
+    <div className="space-y-20">
+      <>
             {/* HERO PRINCIPAL */}
             <section
               onMouseMove={parallax.handleMouseMove}
@@ -123,7 +94,7 @@ export default function DashboardUsuarioPage() {
 
                   <p className="mt-6 text-lg text-[#6b4a3b] max-w-xl">
                     Conoce mascotas, revisa compatibilidad y completa tu proceso
-                    con acompañamiento del CAAM.
+                    con acompañamiento del IMPA.
                   </p>
 
                   {/* BOTÓN ANIMADO */}
@@ -169,7 +140,7 @@ export default function DashboardUsuarioPage() {
             <section className="space-y-10">
               {/* TÍTULO ARRIBA */}
               <h2 className="text-3xl font-extrabold text-[#2b1b12] text-center">
-                Beneficios de adoptar con CAAM
+                Beneficios de adoptar con IMPA
               </h2>
 
               {/* FEATURES ABAJO, ANCHOS */}
@@ -244,10 +215,8 @@ export default function DashboardUsuarioPage() {
                 />
               </div>
             </section>
-          </>
-        )}
+      </>
       </div>
-    </Protected>
   );
 }
 

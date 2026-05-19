@@ -71,7 +71,7 @@ export default function UserHeader() {
       >
         {/* Logo */}
         <Link href="/dashboards/usuario" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="CAAM" width={40} height={40} />
+          <Image src="/logo.png" alt="IMPA" width={40} height={40} />
           <div className="flex flex-col items-start">
             <span className="font-bold text-xl text-[#FFF8F0]">
               Instituto Michoacano de Protección Animal

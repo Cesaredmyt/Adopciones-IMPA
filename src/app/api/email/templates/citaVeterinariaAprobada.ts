@@ -22,7 +22,7 @@ export function buildCitaVeterinariaAprobadaEmail({
         <tr>
           <td style="text-align:center;">
             <img src="https://caamorelia.vercel.app/logo.png"
-              alt="CAAM Logo" 
+              alt="IMPA Logo" 
               style="width:120px; margin-bottom:10px;" />
           </td>
         </tr>
@@ -68,14 +68,14 @@ export function buildCitaVeterinariaAprobadaEmail({
               Te pedimos llegar 5 a 10 minutos antes para evitar retrasos.
             </p>
 
-            <p>¡Nos vemos pronto en el CAAM! 🐾</p>
+            <p>¡Nos vemos pronto en el IMPA! 🐾</p>
           </td>
         </tr>
 
         <!-- FOOTER -->
         <tr>
           <td style="text-align:center; padding-top:26px; font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} CAAM Morelia · Correo automático
+            © ${new Date().getFullYear()} IMPA Morelia · Correo automático
           </td>
         </tr>
       </table>

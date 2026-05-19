@@ -1,5 +1,4 @@
 "use client";
-console.log("CAAMSelect NUEVO");
 import { useEffect, useRef, useState } from "react";
 
 interface Option {

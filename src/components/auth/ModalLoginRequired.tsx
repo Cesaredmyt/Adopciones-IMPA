@@ -35,7 +35,7 @@ export default function ModalLoginRequired({ open, onClose }: Props) {
 
                     <Button
                         variant="ghost"
-                        onClick={() => router.push("/registro")}
+                        onClick={() => router.push("/register")}
                         className="cursor-pointer"
                     >
                         Crear cuenta

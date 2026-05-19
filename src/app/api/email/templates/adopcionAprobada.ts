@@ -21,7 +21,7 @@ export function buildAdopcionAprobadaEmail({
           <td style="text-align:center;">
             <img 
               src="https://caamorelia.vercel.app/logo.png" 
-              alt="Logo CAAM"
+              alt="Logo IMPA"
               style="width:120px; margin-bottom:10px;"
             />
           </td>
@@ -69,7 +69,7 @@ export function buildAdopcionAprobadaEmail({
               <strong>${nombreMascota}</strong> ha sido <strong style="color:#9B2E45;">aprobado</strong>!
             </p>
 
-            <p>Ahora puedes acudir al <strong>CAAM</strong> para recoger a tu nuevo compañero de vida.</p>
+            <p>Ahora puedes acudir al <strong>IMPA</strong> para recoger a tu nuevo compañero de vida.</p>
 
             <div style="background:#fff4f4; padding:16px; border-radius:12px; margin:18px 0; border-left:6px solid #9B2E45;">
               <p style="margin:0; font-size:15px;">
@@ -93,7 +93,7 @@ export function buildAdopcionAprobadaEmail({
         <!-- FOOTER -->
         <tr>
           <td style="text-align:center; padding-top:26px; font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} CAAM Morelia · Correo automático
+            © ${new Date().getFullYear()} IMPA Morelia · Correo automático
           </td>
         </tr>
 

@@ -59,7 +59,7 @@ export default function EstadoSolicitudEnProceso({
                         {" "}
                         formulario final de adopción
                     </strong>
-                    . Esto permitirá al equipo del CAAM continuar con la evaluación.
+                    . Esto permitirá al equipo del IMPA continuar con la evaluación.
                 </p>
 
                 <p className="text-sm text-[#a4836b] italic">

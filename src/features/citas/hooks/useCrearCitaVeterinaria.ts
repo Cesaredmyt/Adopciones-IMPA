@@ -154,7 +154,7 @@ export function useCrearCitaVeterinaria({
       setMascotaSeleccionada(null);
 
       setMensaje(
-        "Cita agendada correctamente. Espera confirmación del CAAM."
+        "Cita agendada correctamente. Espera confirmación del IMPA."
       );
     },
 

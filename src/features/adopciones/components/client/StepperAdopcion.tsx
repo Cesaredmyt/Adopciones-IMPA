@@ -18,7 +18,7 @@ const PASOS_ADOPCION = [
     titulo: "Cita",
     desc: "Agenda una visita.",
     detalle:
-      "Programa una visita al CAAM para conocer personalmente a tu mascota.",
+      "Programa una visita al IMPA para conocer personalmente a tu mascota.",
     ruta: "/dashboards/usuario/citas",
   },
   {
@@ -26,7 +26,7 @@ const PASOS_ADOPCION = [
     titulo: "Formulario",
     desc: "Llena tus datos.",
     detalle:
-      "Completa el formulario para continuar con la evaluación del CAAM.",
+      "Completa el formulario para continuar con la evaluación del IMPA.",
     ruta: "/dashboards/usuario/citas",
   },
   {

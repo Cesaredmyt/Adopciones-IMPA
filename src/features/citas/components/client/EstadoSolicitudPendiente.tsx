@@ -33,7 +33,7 @@ export default function EstadoSolicitudPendiente({
                     <span className="font-semibold text-[#BC5F36]">
                         {mascota?.nombre}
                     </span>
-                    . Elige un día y horario para tu visita al CAAM.
+                    . Elige un día y horario para tu visita al IMPA.
                 </p>
 
                 <p className="mt-3 text-xs text-[#a4836b] italic">
@@ -85,7 +85,7 @@ export default function EstadoSolicitudPendiente({
                     <div className="flex-1 text-center lg:text-left space-y-2">
                         <h4 className="text-base sm:text-lg font-extrabold text-[#8b4513] flex items-center justify-center lg:justify-start gap-2">
                             <MapPin className="h-4 w-4 text-[#BC5F36]" />
-                            Centro de Atención Animal de Morelia (CAAM)
+                            Instituto Michoacano de Protección Animal (IMPA)
                         </h4>
 
                         <p className="text-xs sm:text-sm text-[#7a5c49] leading-relaxed max-w-[360px] mx-auto lg:mx-0">
@@ -123,7 +123,7 @@ export default function EstadoSolicitudPendiente({
                     >
                         <div className="w-full h-32 sm:h-36 relative">
                             <iframe
-                                title="CAAM Mapa"
+                                title="IMPA Mapa"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.2406524803994!2d-101.1734343!3d19.7266529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86a28e98ea321735%3A0x191bd93c0bd16085!2sCentro%20de%20Atenci%C3%B3n%20Animal!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
                                 width="100%"
                                 height="100%"
@@ -145,7 +145,7 @@ export default function EstadoSolicitudPendiente({
 
                         <div className="p-3 text-center">
                             <h5 className="text-xs font-bold text-[#8b4513]">
-                                Ubicación del CAAM
+                                Ubicación del IMPA
                             </h5>
                             <p className="text-[11px] text-[#7a5c49] mt-1 leading-relaxed">
                                 Haz clic en el mapa para abrir la ubicación en Google Maps.

@@ -96,7 +96,7 @@ export default function MascotaCardUsuario({
     const linkQR = `https://caamorelia.vercel.app/mascota/${m.id}`;
 
     // 🌟 Mensaje emocional + profesional
-    const mensaje = `🐾 *CAAM Morelia – Adopta, cambia vidas*  
+    const mensaje = `🐾 *IMPA Morelia – Adopta, cambia vidas*  
 
 Hoy queremos presentarte a *${m.nombre}*.  
 Es una vida rescatada que ha pasado por mucho… pero aún conserva una enorme capacidad de amar. 💛🐶  
@@ -110,7 +110,7 @@ ${linkQR}
 Desde este link puedes ver toda su información y adoptarla.  
 
 Gracias por abrir tu corazón.  
-— *CAAM Morelia* 🧡`;
+— *IMPA Morelia* 🧡`;
 
     // 📱 ANDROID / iOS — Compartir usando Web Share API
     if (navigator.share) {

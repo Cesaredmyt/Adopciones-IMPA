@@ -39,7 +39,7 @@ export default function citaConocerMascota({ nombre, mascota, fecha, hora, direc
 
             <hr style="margin:25px 0;border-top:1px solid #eee;">
             <p style="text-align:center;color:#888;font-size:12px;">
-              © CAAM – Centro de Atención Animal Morelia
+              © IMPA – Instituto Michoacano de Protección Animal
             </p>
 
           </td></tr>
