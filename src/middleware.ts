@@ -39,6 +39,7 @@ const PUBLIC_PATHS = [
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   console.log("Middleware activado para:", pathname);
+  return NextResponse.next();
 
   // Permitir archivos estáticos
   if (
