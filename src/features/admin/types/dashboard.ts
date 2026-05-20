@@ -7,6 +7,7 @@ export interface DashboardStats {
 
     citasAdopPend: number;
     citasVetPend: number;
+    esterilizacionesPend: number;
 }
 
 export interface DashboardPendiente {
@@ -15,7 +16,7 @@ export interface DashboardPendiente {
     link: string;
 }
 
-export type ActividadTipo = "documento" | "cita" | "mascota";
+export type ActividadTipo = "documento" | "cita" | "mascota" | "esterilizacion";
 
 export interface ActividadItemType {
     tipo: ActividadTipo;

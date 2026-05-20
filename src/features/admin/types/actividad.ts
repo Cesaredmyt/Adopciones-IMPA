@@ -31,3 +31,16 @@ export interface MascotaAdoptadaActividadRow {
     updated_at: string;
 }
 
+export interface EsterilizacionActividadRow {
+    estado: string;
+    created_at: string;
+    updated_at: string;
+    folio: string;
+    mascotas: {
+        nombre: string | null;
+    } | null;
+    perfiles: {
+        nombres: string | null;
+    } | null;
+}
+

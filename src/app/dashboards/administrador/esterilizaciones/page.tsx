@@ -1,132 +1,241 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
-import ModalExpediente from "./components/ModalExpediente";
-import FormularioCirugia from "./components/FormularioCirugia";
-import TablaHistorial from "./components/TablaHistorial";
-import PanelDashboard from "./components/PanelDashboard";
+import React from "react";
+import PageHead from "@/components/layout/PageHead";
+import Pagination from "@/components/ui/Pagination";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
-export interface RegistroEsterilizacion {
-  id: string;
-  folio: string;
-  nombre_responsable: string;
-  telefono_responsable: string;
-  nombre_mascota: string;
-  peso: number;
-  especie: string;
-  sexo: string;
-  edad: string | null;
-  notas_clinicas: string | null;
-  estado: string;
-  created_at: string;
-}
+import { useEsterilizacionesAdmin } from "@/features/esterilizaciones/queries/esterilizaciones-queries";
+import { useAccionesEsterilizacion } from "@/features/esterilizaciones/hooks/useAccionesEsterilizacion";
+import { useEsterilizacionesFilterState } from "@/features/esterilizaciones/hooks/useEsterilizacionesFilterState";
+import { useEsterilizacionesOrdenadas } from "@/features/esterilizaciones/hooks/useEsterilizacionesOrdenadas";
 
-export default function EsterilizacionesPage() {
-  const supabase = createClient();
+import EsterilizacionesSkeleton from "@/features/esterilizaciones/components/client/EsterilizacionesSkeleton";
+import { EsterilizacionesKPIs } from "@/features/esterilizaciones/components/client/EsterilizacionesKPIs";
+import { EsterilizacionesTablaAdmin } from "@/features/esterilizaciones/components/client/EsterilizacionesTablaAdmin";
+import { EsterilizacionesCardsAdmin } from "@/features/esterilizaciones/components/client/EsterilizacionesCardsAdmin";
+import { EsterilizacionesPanelLateral } from "@/features/esterilizaciones/components/client/EsterilizacionesPanelLateral";
+import { ModalExpediente } from "@/features/esterilizaciones/components/client/ModalExpediente";
+import { ModalProgramar } from "@/features/esterilizaciones/components/client/ModalProgramar";
+import { ModalCompletarCirugia } from "@/features/esterilizaciones/components/client/ModalCompletarCirugia";
+import { ModalMotivo } from "@/features/esterilizaciones/components/client/ModalMotivo";
 
-  const [vistaActiva, setVistaActiva] = useState<'dashboard' | 'tabla' | 'formulario'>('dashboard'); 
-  const [registros, setRegistros] = useState<RegistroEsterilizacion[]>([]);
-  const [cargandoDatos, setCargandoDatos] = useState(true);
-  
-  const [registroSeleccionado, setRegistroSeleccionado] = useState<RegistroEsterilizacion | null>(null);
+import type { EsterilizacionAdminRow } from "@/features/esterilizaciones/types/esterilizacion";
 
-  const cargarEsterilizaciones = async () => {
-    setCargandoDatos(true);
-    try {
-      const { data, error } = await supabase
-        .from('esterilizaciones')
-        .select('*')
-        .order('created_at', { ascending: false });
+const ITEMS_PER_PAGE_DESKTOP = 10;
+const ITEMS_PER_PAGE_MOBILE = 5;
 
-      if (error) throw error;
-      setRegistros(data || []);
-    } catch (error) {
-      console.error("Error al obtener datos de Supabase:", error);
-    } finally {
-      setCargandoDatos(false);
+export default function EsterilizacionesAdminPage() {
+  const isMobile = useIsMobile();
+  const ITEMS_PER_PAGE = isMobile ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE_DESKTOP;
+
+  const { filtro, query, setQuery } = useEsterilizacionesFilterState();
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useEsterilizacionesAdmin({ search: query });
+
+  const acciones = useAccionesEsterilizacion();
+
+  const items = React.useMemo(
+    () => data?.pages.flatMap((p) => p.items) ?? [],
+    [data]
+  );
+
+  const ordenadas = useEsterilizacionesOrdenadas(items, filtro, query);
+
+  /* ===== Paginación UI ===== */
+  const [uiPage, setUiPage] = React.useState(1);
+  const pagesLoaded = data?.pages.length ?? 1;
+  const totalPages = hasNextPage ? pagesLoaded + 1 : pagesLoaded;
+
+  const paginated = ordenadas.slice(
+    (uiPage - 1) * ITEMS_PER_PAGE,
+    uiPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = async (next: number) => {
+    if (next < uiPage) {
+      setUiPage(next);
+      return;
     }
+    if (next > pagesLoaded && hasNextPage && !isFetchingNextPage) {
+      await fetchNextPage();
+    }
+    setUiPage(next);
   };
 
-  useEffect(() => {
-    cargarEsterilizaciones();
-  }, []);
-
-  const handleEstadoChange = async (id: string, nuevoEstado: string) => {
-    try {
-      const { error } = await supabase
-        .from('esterilizaciones')
-        .update({ estado: nuevoEstado })
-        .eq('id', id);
-
-      if (error) throw error;
-      setRegistros(prev => prev.map(reg => 
-        reg.id === id ? { ...reg, estado: nuevoEstado } : reg
-      ));
-
-    } catch (error) {
-      console.error("Error al actualizar el estado:", error);
-      alert("Hubo un error al cambiar el estado del paciente.");
-    }
+  /* ===== KPIs ===== */
+  const totales = {
+    pendientes: items.filter((i) => i.estado === "pendiente").length,
+    programadas: items.filter((i) => i.estado === "programada").length,
+    completadas: items.filter((i) => i.estado === "completada").length,
+    canceladas: items.filter((i) =>
+      ["cancelada", "rechazada"].includes(i.estado)
+    ).length,
   };
+
+  const proximas = items
+    .filter(
+      (i) =>
+        i.estado === "programada" &&
+        i.fecha_programada &&
+        new Date(i.fecha_programada) > new Date()
+    )
+    .sort(
+      (a, b) =>
+        new Date(a.fecha_programada!).getTime() -
+        new Date(b.fecha_programada!).getTime()
+    )
+    .slice(0, 4);
+
+  /* ===== Modales ===== */
+  const [verItem, setVerItem] = React.useState<EsterilizacionAdminRow | null>(
+    null
+  );
+  const [programar, setProgramar] = React.useState<EsterilizacionAdminRow | null>(
+    null
+  );
+  const [completar, setCompletar] = React.useState<EsterilizacionAdminRow | null>(
+    null
+  );
+  const [rechazar, setRechazar] = React.useState<EsterilizacionAdminRow | null>(
+    null
+  );
+  const [cancelar, setCancelar] = React.useState<EsterilizacionAdminRow | null>(
+    null
+  );
+
+  if (isLoading) {
+    return (
+      <div className="p-6 space-y-4">
+        <PageHead
+          title="Esterilizaciones"
+          subtitle="Gestión clínica y control de cirugías del IMPA."
+        />
+        <EsterilizacionesSkeleton />
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6 md:p-8 min-h-screen bg-slate-50/50">
-      
-      <div className="mb-8 flex justify-between items-end">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Módulo de Esterilizaciones</h1>
-          <p className="text-slate-500 mt-1 font-medium">Gestión clínica y control de campañas del IMPA.</p>
-        </div>
-      </div>
+    <div className="p-6 space-y-6">
+      <PageHead
+        title="Esterilizaciones"
+        subtitle="Gestión clínica y control de cirugías del IMPA."
+        right={
+          <div className="relative w-full sm:w-72">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Buscar por folio, mascota o solicitante"
+              className="w-full pl-3 pr-3 py-2 text-sm border border-slate-200 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+            />
+          </div>
+        }
+      />
 
-      <div className="flex space-x-6 border-b border-slate-200 mb-8 overflow-x-auto">
-        <button onClick={() => setVistaActiva('dashboard')} className={`pb-3 px-1 text-sm font-semibold transition-all border-b-2 whitespace-nowrap ${vistaActiva === 'dashboard' ? 'border-emerald-600 text-emerald-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Panel de Control</button>
-        <button onClick={() => setVistaActiva('tabla')} className={`pb-3 px-1 text-sm font-semibold transition-all border-b-2 whitespace-nowrap ${vistaActiva === 'tabla' ? 'border-emerald-600 text-emerald-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Registro Histórico</button>
-        <button onClick={() => setVistaActiva('formulario')} className={`pb-3 px-1 text-sm font-semibold transition-all border-b-2 whitespace-nowrap ${vistaActiva === 'formulario' ? 'border-emerald-600 text-emerald-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Nueva Cirugía</button>
-      </div>
+      <EsterilizacionesKPIs totales={totales} />
 
-      {/* VISTA A: DASHBOARD */}
-      {vistaActiva === 'dashboard' && (
-         <PanelDashboard 
-            registros={registros} 
-            cargandoDatos={cargandoDatos} 
-        />
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_0.8fr] gap-6 items-start">
+        <div className="space-y-4">
+          <EsterilizacionesTablaAdmin
+            items={paginated}
+            onVer={setVerItem}
+            onAprobar={acciones.aprobar}
+            onRechazar={setRechazar}
+            onProgramar={setProgramar}
+            onIniciar={acciones.iniciarCirugia}
+            onCompletar={setCompletar}
+            onCancelar={setCancelar}
+          />
 
-      {/* VISTA B: TABLA HISTÓRICA */}
-      {vistaActiva === 'tabla' && (
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <TablaHistorial 
-            registros={registros}
-            cargandoDatos={cargandoDatos}
-            onEstadoChange={handleEstadoChange}
-            onVerExpediente={setRegistroSeleccionado}
+          <EsterilizacionesCardsAdmin
+            items={paginated}
+            onVer={setVerItem}
+            onAprobar={acciones.aprobar}
+            onRechazar={setRechazar}
+            onProgramar={setProgramar}
+            onIniciar={acciones.iniciarCirugia}
+            onCompletar={setCompletar}
+            onCancelar={setCancelar}
           />
         </div>
-      )}
 
-      {/* VISTA C: FORMULARIO CLÍNICO */}
-      {vistaActiva === 'formulario' && (
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
-          <FormularioCirugia 
-            onCancel={() => setVistaActiva('dashboard')}
-            onSuccess={() => {
-              cargarEsterilizaciones();
-              setVistaActiva('dashboard');
-            }}
-          />
-        </div>
-      )}
+        <EsterilizacionesPanelLateral items={items} proximas={proximas} />
+      </div>
 
-      {/* MODAL IMPORTADO */}
-      {registroSeleccionado && (
-        <ModalExpediente 
-          registro={registroSeleccionado} 
-          onClose={() => setRegistroSeleccionado(null)} 
-        />
-      )}
+      <Pagination
+        page={uiPage}
+        totalPages={totalPages}
+        onChange={handlePageChange}
+        itemsPerPage={ITEMS_PER_PAGE}
+        totalItems={ordenadas.length}
+        itemsLabel="esterilizaciones"
+      />
 
+      {/* Modales */}
+      <ModalExpediente
+        registro={verItem}
+        open={!!verItem}
+        onClose={() => setVerItem(null)}
+      />
+
+      <ModalProgramar
+        registro={programar}
+        open={!!programar}
+        onClose={() => setProgramar(null)}
+        onConfirm={async (fecha) => {
+          if (programar) {
+            await acciones.programar(programar, fecha);
+            setProgramar(null);
+          }
+        }}
+      />
+
+      <ModalCompletarCirugia
+        registro={completar}
+        open={!!completar}
+        onClose={() => setCompletar(null)}
+        onConfirm={async (payload) => {
+          if (completar) {
+            await acciones.completar(completar, payload);
+            setCompletar(null);
+          }
+        }}
+      />
+
+      <ModalMotivo
+        open={!!rechazar}
+        title={`Rechazar solicitud · ${rechazar?.folio ?? ""}`}
+        label="Motivo del rechazo *"
+        placeholder="Explica por qué no se aprueba la solicitud..."
+        onClose={() => setRechazar(null)}
+        onConfirm={async (motivo) => {
+          if (rechazar) {
+            await acciones.rechazar(rechazar, motivo);
+            setRechazar(null);
+          }
+        }}
+      />
+
+      <ModalMotivo
+        open={!!cancelar}
+        title={`Cancelar cirugía · ${cancelar?.folio ?? ""}`}
+        label="Motivo de cancelación *"
+        placeholder="Explica por qué se cancela la cirugía..."
+        onClose={() => setCancelar(null)}
+        onConfirm={async (motivo) => {
+          if (cancelar) {
+            await acciones.cancelar(cancelar, motivo);
+            setCancelar(null);
+          }
+        }}
+      />
     </div>
   );
 }

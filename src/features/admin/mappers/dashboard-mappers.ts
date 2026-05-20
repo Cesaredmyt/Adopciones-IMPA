@@ -31,5 +31,12 @@ export function mapPendientes(stats: DashboardStats): DashboardPendiente[] {
             link: "/dashboards/administrador/usuarios",
         });
 
+    if (stats.esterilizacionesPend > 0)
+        list.push({
+            id: 5,
+            descripcion: `${stats.esterilizacionesPend} solicitudes de esterilización por revisar`,
+            link: "/dashboards/administrador/esterilizaciones",
+        });
+
     return list;
 }

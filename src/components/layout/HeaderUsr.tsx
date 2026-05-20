@@ -146,6 +146,11 @@ export default function UserHeader() {
                 label: "Citas veterinarias",
                 icon: Stethoscope,
               },
+              {
+                href: "/dashboards/usuario/esterilizaciones",
+                label: "Esterilizaciones",
+                icon: Stethoscope,
+              },
             ]}
           />
 
@@ -220,6 +225,11 @@ export default function UserHeader() {
                 {
                   href: "/dashboards/usuario/citas-veterinarias",
                   label: "Citas veterinarias",
+                  icon: Stethoscope,
+                },
+                {
+                  href: "/dashboards/usuario/esterilizaciones",
+                  label: "Esterilizaciones",
                   icon: Stethoscope,
                 },
               ]}

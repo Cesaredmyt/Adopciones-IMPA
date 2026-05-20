@@ -40,6 +40,13 @@ export function useActividadRealtime(filtro: string) {
                     queryClient.invalidateQueries({ queryKey: ["dashboard", "actividad", filtro] });
                 }
             )
+            .on(
+                "postgres_changes",
+                { event: "*", schema: "public", table: "esterilizaciones" },
+                () => {
+                    queryClient.invalidateQueries({ queryKey: ["dashboard", "actividad", filtro] });
+                }
+            )
             .subscribe();
 
         return () => {

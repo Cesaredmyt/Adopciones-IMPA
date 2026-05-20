@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FileText, CalendarDays, PawPrint } from "lucide-react";
+import { FileText, CalendarDays, PawPrint, Stethoscope } from "lucide-react";
 
 function formatTimeAgo(fechaStr: string) {
     const fecha = new Date(fechaStr);
@@ -28,6 +28,7 @@ export function ActivityItem({
         documento: <FileText className="h-4 w-4 text-[#BC5F36]" />,
         cita: <CalendarDays className="h-4 w-4 text-[#BC5F36]" />,
         mascota: <PawPrint className="h-4 w-4 text-[#BC5F36]" />,
+        esterilizacion: <Stethoscope className="h-4 w-4 text-[#BC5F36]" />,
     };
 
     return (

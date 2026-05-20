@@ -24,7 +24,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   const [filtro, setFiltro] = useState<
-    "todo" | "documento" | "cita" | "mascota"
+    "todo" | "documento" | "cita" | "mascota" | "esterilizacion"
   >("todo");
 
   const { data: stats, isLoading: loadingStats } = useDashboardStats();

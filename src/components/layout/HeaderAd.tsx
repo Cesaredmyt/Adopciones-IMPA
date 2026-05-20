@@ -17,6 +17,7 @@ import {
   LogOutIcon,
   ChevronDown,
   FolderKanban,
+  Stethoscope,
 } from "lucide-react";
 
 export default function AdminHeader() {
@@ -159,6 +160,7 @@ export default function AdminHeader() {
                   { href: "/dashboards/administrador/seguimiento", label: "Seguimiento", icon: FileText },
                   { href: "/dashboards/administrador/gestion_citas", label: "Citas de adopción", icon: CalendarDays },
                   { href: "/dashboards/administrador/citas-veterinarias", label: "Citas veterinarias", icon: CalendarHeart },
+                  { href: "/dashboards/administrador/esterilizaciones", label: "Esterilizaciones", icon: Stethoscope },
                 ].map(({ href, label, icon: Icon }) => (
                   <Link
                     key={href}

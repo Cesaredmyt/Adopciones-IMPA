@@ -26,6 +26,7 @@ export async function obtenerStatsDashboard() {
         adoptables,
         citasAdopPend,
         citasVetPend,
+        esterilizacionesPend,
     ] = await Promise.all([
         supabase
             .from("documentos")
@@ -74,6 +75,11 @@ export async function obtenerStatsDashboard() {
             .from("citas_veterinarias")
             .select("*", { head: true, count: "exact" })
             .eq("estado", "pendiente"),
+
+        supabase
+            .from("esterilizaciones")
+            .select("*", { head: true, count: "exact" })
+            .eq("estado", "pendiente"),
     ]);
 
     logger.info("obtenerStatsDashboard:success", {
@@ -85,6 +91,7 @@ export async function obtenerStatsDashboard() {
         mascotasAdoptables: adoptables.count ?? 0,
         citasAdopPend: citasAdopPend.count ?? 0,
         citasVetPend: citasVetPend.count ?? 0,
+        esterilizacionesPend: esterilizacionesPend.count ?? 0,
     });
 
     return {
@@ -96,5 +103,6 @@ export async function obtenerStatsDashboard() {
         mascotasAdoptables: adoptables.count ?? 0,
         citasAdopPend: citasAdopPend.count ?? 0,
         citasVetPend: citasVetPend.count ?? 0,
+        esterilizacionesPend: esterilizacionesPend.count ?? 0,
     };
 }

@@ -2,31 +2,36 @@
 
 import React from "react";
 
+type Filtro = "todo" | "documento" | "cita" | "mascota" | "esterilizacion";
+
+const OPCIONES: { value: Filtro; label: string }[] = [
+    { value: "todo", label: "Todo" },
+    { value: "documento", label: "Documentos" },
+    { value: "cita", label: "Citas" },
+    { value: "mascota", label: "Mascotas" },
+    { value: "esterilizacion", label: "Esterilizaciones" },
+];
+
 export function ActividadFilters({
     filtro,
     setFiltro,
 }: {
-    filtro: "todo" | "documento" | "cita" | "mascota";
-    setFiltro: (f: "todo" | "documento" | "cita" | "mascota") => void;
+    filtro: Filtro;
+    setFiltro: (f: Filtro) => void;
 }) {
     return (
         <div className="flex gap-2 sm:gap-3 min-w-max px-1 pb-1 border-b border-[#eadacb]">
-            {["todo", "documento", "cita", "mascota"].map((f) => (
+            {OPCIONES.map(({ value, label }) => (
                 <button
-                    key={f}
-                    onClick={() => setFiltro(f as "todo" | "documento" | "cita" | "mascota")}
-                    className={`whitespace-nowrap px-4 py-1.5 rounded-t-md text-sm font-semibold transition-all duration-200 border-b-2 ${filtro === f
+                    key={value}
+                    onClick={() => setFiltro(value)}
+                    className={`whitespace-nowrap px-4 py-1.5 rounded-t-md text-sm font-semibold transition-all duration-200 border-b-2 ${
+                        filtro === value
                             ? "border-[#BC5F36] text-[#BC5F36] bg-[#fff8f4]"
                             : "border-transparent text-[#7a5c49] hover:text-[#BC5F36]"
-                        }`}
+                    }`}
                 >
-                    {f === "todo"
-                        ? "Todo"
-                        : f === "documento"
-                            ? "Documentos"
-                            : f === "cita"
-                                ? "Citas"
-                                : "Mascotas"}
+                    {label}
                 </button>
             ))}
         </div>

@@ -8,10 +8,11 @@ import type {
     CitaAdopcionActividadRow,
     CitaVeterinariaActividadRow,
     MascotaAdoptadaActividadRow,
+    EsterilizacionActividadRow,
 } from "../types/actividad";
 
 export async function obtenerActividadReciente(
-    filtro: "todo" | "documento" | "cita" | "mascota"
+    filtro: "todo" | "documento" | "cita" | "mascota" | "esterilizacion"
 ): Promise<ActividadItemType[]> {
     const supabase = await createClient();
     const eventos: ActividadItemType[] = [];
@@ -121,6 +122,48 @@ export async function obtenerActividadReciente(
                 fecha: m.updated_at,
             })
         );
+    }
+
+    if (filtro === "todo" || filtro === "esterilizacion") {
+        const { data: est, error } = await supabase
+            .from("esterilizaciones")
+            .select(`
+                estado,
+                created_at,
+                updated_at,
+                folio,
+                mascotas:mascota_id(nombre),
+                perfiles:usuario_id(nombres)
+            `)
+            .returns<EsterilizacionActividadRow[]>();
+
+        if (error) {
+            logger.error("obtenerActividadReciente:esterilizaciones_error", {
+                message: error.message,
+            });
+        }
+
+        est?.forEach((e) => {
+            const quien = e.perfiles?.nombres ?? "Un adoptante";
+            const mascotaNombre = e.mascotas?.nombre ?? "una mascota";
+
+            let mensaje = `${quien} solicitó la esterilización de "${mascotaNombre}" (${e.folio}).`;
+            if (e.estado === "completada") {
+                mensaje = `Esterilización de "${mascotaNombre}" completada (${e.folio}).`;
+            } else if (e.estado === "complicacion") {
+                mensaje = `Esterilización de "${mascotaNombre}" finalizada con complicaciones (${e.folio}).`;
+            } else if (e.estado === "programada") {
+                mensaje = `Esterilización de "${mascotaNombre}" programada (${e.folio}).`;
+            } else if (e.estado === "cancelada" || e.estado === "rechazada") {
+                mensaje = `Solicitud de esterilización de "${mascotaNombre}" ${e.estado} (${e.folio}).`;
+            }
+
+            eventos.push({
+                tipo: "esterilizacion",
+                mensaje,
+                fecha: e.updated_at ?? e.created_at,
+            });
+        });
     }
 
     eventos.sort(

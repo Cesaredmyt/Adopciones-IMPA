@@ -8,6 +8,7 @@ import {
     Calendar,
     Users,
     PawPrint,
+    Stethoscope,
 } from "lucide-react";
 import type { DashboardStats } from "../../types/dashboard";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
     const router = useRouter();
 
     return (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             <StatCard
                 label="Documentos pendientes"
                 value={stats.documentosPendientes}
@@ -50,6 +51,13 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
                 value={stats.mascotasAdoptables}
                 icon={<PawPrint className="h-6 w-6" />}
                 onClick={() => router.push("/dashboards/administrador/mascotas")}
+            />
+
+            <StatCard
+                label="Esterilizaciones pendientes"
+                value={stats.esterilizacionesPend}
+                icon={<Stethoscope className="h-6 w-6" />}
+                onClick={() => router.push("/dashboards/administrador/esterilizaciones")}
             />
         </div>
     );
