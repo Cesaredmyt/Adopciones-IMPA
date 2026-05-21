@@ -6,6 +6,8 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import MascotaCard from "@/features/mascotas/components/client/MascotaCard";
 import type { Mascota } from "@/features/mascotas/types/mascotas";
 import MascotasFeedSkeleton from "@/features/mascotas/components/client/MascotasFeedSkeleton";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { Search } from "lucide-react";
 
 
 type Props = {
@@ -14,8 +16,8 @@ type Props = {
     sexo: string;
     onView: (m: Mascota) => void;
     onAdopt: (m: Mascota) => void;
-    limit?: number;          
-    disableInfinite?: boolean; 
+    limit?: number;
+    disableInfinite?: boolean;
 };
 
 
@@ -46,7 +48,6 @@ export default function MascotasFeed({
 
     const mascotas = data?.pages.flatMap((p) => p.items) ?? [];
 
-    // Loading inicial
     if (isLoading) {
         return <MascotasFeedSkeleton />;
     }
@@ -54,36 +55,33 @@ export default function MascotasFeed({
 
     return (
         <>
-            <section
-                className="
-    grid gap-4
-    grid-cols-1
-    sm:grid-cols-2
-    lg:grid-cols-3
-  "
-            >
-
-                {mascotas.map((m) => (
-                    <MascotaCard
+            <section className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {mascotas.map((m, i) => (
+                    <div
                         key={m.id}
-                        m={m}
-                        onView={() => onView(m)}
-                        onAdopt={() => onAdopt(m)}
-                    />
+                        className="stagger-item"
+                        style={{ ['--i' as any]: i % 12 }}
+                    >
+                        <MascotaCard
+                            m={m}
+                            onView={() => onView(m)}
+                            onAdopt={() => onAdopt(m)}
+                        />
+                    </div>
                 ))}
 
                 {mascotas.length === 0 && (
-                    <div className="col-span-full py-12 text-center text-[#7a5c49]">
-                        <div className="text-4xl mb-2 opacity-80">🔎</div>
-                        <p className="font-semibold">
-                            No encontramos mascotas con esos filtros
-                        </p>
+                    <div className="col-span-full">
+                        <EmptyState
+                            icon={<Search size={26} />}
+                            title="No encontramos mascotas con esos filtros"
+                            description="Intenta ajustar los filtros de especie, sexo o el término de búsqueda para descubrir más amigos esperando un hogar."
+                        />
                     </div>
                 )}
             </section>
 
 
-            {/* Sentinel */}
             {hasNextPage && (
                 <div
                     ref={loadMoreRef}
@@ -91,10 +89,9 @@ export default function MascotasFeed({
                 />
             )}
 
-            {/* Loader incremental tipo feed */}
             {isFetchingNextPage && (
-                <div className="py-6 flex justify-center opacity-40 transition-opacity duration-300">
-                    <div className="w-4 h-4 border-2 border-[#17cf17] border-t-transparent rounded-full animate-spin" />
+                <div className="py-6 flex justify-center transition-opacity duration-300">
+                    <div className="w-5 h-5 border-2 border-impa-500 border-t-transparent rounded-full animate-spin" />
                 </div>
             )}
         </>

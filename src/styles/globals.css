@@ -1,9 +1,9 @@
 /* ============================================================
    IMPA — Instituto Michoacano de Protección Animal
-   Design Tokens & Global Styles
+   Design Tokens & Global Styles  ·  v2 (Premium SaaS)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
@@ -22,44 +22,69 @@
   --impa-800: #0d660d;
   --impa-900: #0a4f0a;
 
-  /* Surfaces */
-  --impa-bg:           #f6f8f6;
+  /* Surfaces — Sistema de capas */
+  --impa-bg:           #f3f6f3;   /* Page background (más cálido y diferenciado) */
+  --impa-bg-elevated: #f8faf8;   /* Elevated regions sobre bg */
+  --impa-surface-1:   #ffffff;   /* Card por defecto */
+  --impa-surface-2:   #f6f8f6;   /* Subsection / muted card */
+  --impa-surface-3:   #eef2ee;   /* Hover surface / chip / tag */
   --impa-card:         #ffffff;
   --impa-muted-bg:     #f0f4f0;
+  --impa-tinted-bg:    #f6fbf6;   /* Suave tinte verde */
 
   /* Text */
-  --impa-text:         #111811;
+  --impa-text:         #0f160f;
+  --impa-text-strong:  #07120a;
   --impa-text-muted:   #586e58;
-  --impa-text-subtle:  #638863;
+  --impa-text-subtle:  #7a8e7a;
+  --impa-text-quiet:   #95a795;
 
   /* Borders */
-  --impa-border:        #dce5dc;
-  --impa-border-strong: #c3d4c3;
+  --impa-border:        #e2eae2;
+  --impa-border-strong: #c8d7c8;
+  --impa-border-faint:  #eef3ee;
 
   /* Feedback */
   --impa-success:      #16a34a;
   --impa-success-soft: #dcfce7;
+  --impa-success-ring: #86efac;
   --impa-warning:      #d97706;
   --impa-warning-soft: #fef3c7;
+  --impa-warning-ring: #fcd34d;
   --impa-danger:       #dc2626;
   --impa-danger-soft:  #fee2e2;
+  --impa-danger-ring:  #fca5a5;
   --impa-info:         #0284c7;
   --impa-info-soft:    #e0f2fe;
+  --impa-info-ring:    #7dd3fc;
 
-  /* Shadows */
-  --impa-shadow-xs: 0 1px 2px 0 rgb(17 24 17 / 0.04);
-  --impa-shadow-sm: 0 1px 3px 0 rgb(17 24 17 / 0.06), 0 1px 2px -1px rgb(17 24 17 / 0.04);
-  --impa-shadow-md: 0 4px 12px -2px rgb(17 24 17 / 0.08), 0 2px 4px -2px rgb(17 24 17 / 0.04);
-  --impa-shadow-lg: 0 12px 24px -8px rgb(17 24 17 / 0.10), 0 4px 8px -4px rgb(17 24 17 / 0.06);
-  --impa-shadow-xl: 0 24px 48px -12px rgb(17 24 17 / 0.14);
-  --impa-ring:      0 0 0 4px rgb(23 207 23 / 0.15);
+  /* Shadows — Premium SaaS depth */
+  --impa-shadow-xs:    0 1px 2px 0 rgb(10 24 14 / 0.04);
+  --impa-shadow-sm:    0 1px 3px 0 rgb(10 24 14 / 0.06), 0 1px 2px -1px rgb(10 24 14 / 0.04);
+  --impa-shadow-md:    0 6px 16px -4px rgb(10 24 14 / 0.08), 0 3px 6px -3px rgb(10 24 14 / 0.05);
+  --impa-shadow-lg:    0 16px 32px -8px rgb(10 24 14 / 0.12), 0 6px 12px -4px rgb(10 24 14 / 0.06);
+  --impa-shadow-xl:    0 28px 56px -12px rgb(10 24 14 / 0.18), 0 12px 20px -8px rgb(10 24 14 / 0.08);
+  --impa-shadow-glow:  0 12px 32px -8px rgb(23 207 23 / 0.32);
+  --impa-shadow-inner: inset 0 1px 0 0 rgb(255 255 255 / 0.6);
+  --impa-ring:         0 0 0 4px rgb(23 207 23 / 0.18);
+  --impa-ring-soft:    0 0 0 4px rgb(23 207 23 / 0.10);
 
   /* Radii */
+  --impa-radius-xs: 0.375rem;
   --impa-radius-sm: 0.5rem;
   --impa-radius:    0.75rem;
   --impa-radius-md: 1rem;
   --impa-radius-lg: 1.25rem;
   --impa-radius-xl: 1.5rem;
+  --impa-radius-2xl: 2rem;
+
+  /* Motion */
+  --impa-ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --impa-ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --impa-ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --impa-duration-fast: 140ms;
+  --impa-duration:      220ms;
+  --impa-duration-slow: 320ms;
 
   /* Typography */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -104,24 +129,31 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--impa-bg);
+  background:
+    radial-gradient(1200px 600px at 88% -8%, rgba(23,207,23,0.06), transparent 55%),
+    radial-gradient(900px 500px at -10% 8%, rgba(23,207,23,0.04), transparent 60%),
+    var(--impa-bg);
+  background-attachment: fixed;
   color: var(--impa-text);
   font-family: var(--font-sans);
   font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--impa-text);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
   font-weight: 700;
 }
+
+h1 { letter-spacing: -0.025em; }
 
 a {
   color: inherit;
   text-decoration: none;
   text-underline-offset: 3px;
-  transition: color 160ms ease;
+  transition: color var(--impa-duration-fast) var(--impa-ease);
 }
 
 a:hover { color: var(--impa-600); }
@@ -131,9 +163,15 @@ a:hover { color: var(--impa-600); }
   color: var(--impa-900);
 }
 
+button, [role="button"], a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ============================================================
-   Utilities — IMPA
+   Utility classes — IMPA premium surfaces
    ============================================================ */
+
+/* Cards */
 .impa-card {
   background: var(--impa-card);
   border: 1px solid var(--impa-border);
@@ -141,17 +179,65 @@ a:hover { color: var(--impa-600); }
   box-shadow: var(--impa-shadow-sm);
 }
 
+.impa-card-elevated {
+  background: linear-gradient(180deg, #ffffff 0%, var(--impa-surface-2) 100%);
+  border: 1px solid var(--impa-border);
+  border-radius: var(--impa-radius-md);
+  box-shadow: var(--impa-shadow-md);
+}
+
 .impa-card-hover {
-  transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+  transition:
+    box-shadow var(--impa-duration) var(--impa-ease),
+    transform var(--impa-duration) var(--impa-ease),
+    border-color var(--impa-duration) var(--impa-ease);
 }
 .impa-card-hover:hover {
   box-shadow: var(--impa-shadow-md);
   border-color: var(--impa-border-strong);
+  transform: translateY(-1px);
 }
 
+.impa-lift {
+  transition:
+    box-shadow var(--impa-duration) var(--impa-ease-out),
+    transform var(--impa-duration) var(--impa-ease-out),
+    border-color var(--impa-duration) var(--impa-ease-out);
+  will-change: transform;
+}
+.impa-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--impa-shadow-lg);
+}
+.impa-lift:active { transform: translateY(0); }
+
+/* Surface helpers */
+.impa-surface { background: var(--impa-surface-1); }
+.impa-surface-2 { background: var(--impa-surface-2); }
+.impa-surface-3 { background: var(--impa-surface-3); }
+.impa-surface-tinted { background: var(--impa-tinted-bg); }
+
+/* Glass panel */
+.impa-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border: 1px solid rgba(226, 234, 226, 0.7);
+  box-shadow: var(--impa-shadow-sm);
+}
+
+/* Focus */
 .impa-focus-ring:focus-visible {
   outline: none;
   box-shadow: var(--impa-ring);
+}
+
+/* Page backgrounds */
+.impa-page-bg {
+  background:
+    radial-gradient(900px 400px at 10% -10%, rgba(23,207,23,0.10), transparent 60%),
+    radial-gradient(700px 300px at 95% 10%, rgba(23,207,23,0.06), transparent 60%),
+    var(--impa-bg);
 }
 
 .impa-gradient-bg {
@@ -161,24 +247,91 @@ a:hover { color: var(--impa-600); }
     var(--impa-bg);
 }
 
+.impa-hero-mesh {
+  background:
+    radial-gradient(60% 70% at 12% 18%, rgba(23,207,23,0.18), transparent 60%),
+    radial-gradient(50% 60% at 92% 6%, rgba(63,210,63,0.12), transparent 60%),
+    radial-gradient(70% 80% at 80% 100%, rgba(168,241,168,0.18), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%);
+}
+
 .impa-divider {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--impa-border), transparent);
+}
+
+.impa-divider-strong {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--impa-border-strong), transparent);
+}
+
+/* Section frames */
+.impa-section {
+  background: var(--impa-surface-1);
+  border: 1px solid var(--impa-border);
+  border-radius: var(--impa-radius-lg);
+  box-shadow: var(--impa-shadow-sm);
+}
+
+/* Subtle inner highlight on premium cards */
+.impa-highlight-top {
+  position: relative;
+}
+.impa-highlight-top::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.85), transparent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Pill / chip */
+.impa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--impa-surface-3);
+  color: var(--impa-text-muted);
+  border: 1px solid var(--impa-border);
+  transition: all var(--impa-duration-fast) var(--impa-ease);
+}
+.impa-chip-brand {
+  background: var(--impa-50);
+  color: var(--impa-700);
+  border-color: var(--impa-200);
+}
+
+/* Decorative dot indicator */
+.impa-dot {
+  width: 0.45rem; height: 0.45rem;
+  border-radius: 9999px;
+  display: inline-block;
 }
 
 /* ============================================================
    Scrollbar
    ============================================================ */
 .custom-scroll::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 .custom-scroll::-webkit-scrollbar-thumb {
   background: var(--impa-border-strong);
-  border-radius: 4px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--impa-text-subtle);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 .custom-scroll::-webkit-scrollbar-track {
   background: transparent;
@@ -191,20 +344,32 @@ a:hover { color: var(--impa-600); }
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-slide { animation: impa-fade-slide 220ms ease-out; }
+.animate-fade-slide { animation: impa-fade-slide 220ms var(--impa-ease-out); }
 
 @keyframes impa-fade-in {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in { animation: impa-fade-in 250ms ease-out; }
+.animate-fade-in { animation: impa-fade-in 260ms var(--impa-ease-out); }
+
+@keyframes impa-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: impa-fade-up 420ms var(--impa-ease-out) both; }
+
+@keyframes impa-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: impa-scale-in 200ms var(--impa-ease-out); }
 
 @keyframes impa-float {
   0%   { transform: translateY(0); }
   50%  { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
-.animate-floating { animation: impa-float 3s ease-in-out infinite; }
+.animate-floating { animation: impa-float 5s ease-in-out infinite; }
 
 @keyframes impa-heartbeat {
   0%   { transform: scale(1); }
@@ -227,9 +392,40 @@ a:hover { color: var(--impa-600); }
   100% { background-position: 200% 0; }
 }
 .impa-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(23,207,23,0.08), transparent);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(23,207,23,0.10) 50%,
+    rgba(255,255,255,0) 100%
+  );
   background-size: 200% 100%;
-  animation: impa-shimmer 1.4s ease-in-out infinite;
+  animation: impa-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes impa-pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgb(23 207 23 / 0.45); }
+  70%  { box-shadow: 0 0 0 12px rgb(23 207 23 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(23 207 23 / 0); }
+}
+.impa-pulse-ring { animation: impa-pulse-ring 1.6s ease-out infinite; }
+
+/* Stagger helpers — usar inline style --i: N (delay index) */
+.stagger-item {
+  animation: impa-fade-up 480ms var(--impa-ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-floating,
+  .impa-pulse-ring,
+  .impa-shimmer,
+  .stagger-item,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-fade-slide {
+    animation: none !important;
+  }
 }
 
 /* ============================================================

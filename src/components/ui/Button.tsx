@@ -6,34 +6,45 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none select-none",
+  [
+    "inline-flex items-center justify-center gap-2 rounded-xl font-semibold",
+    "transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-impa-out",
+    "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25",
+    "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:shadow-none",
+    "active:translate-y-[1px] cursor-pointer select-none whitespace-nowrap",
+  ].join(" "),
   {
     variants: {
       variant: {
         primary:
-          "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 active:bg-impa-700",
+          "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 hover:shadow-impa-md active:bg-impa-700",
+        cta:
+          "bg-impa-cta text-white shadow-impa-md hover:shadow-impa-glow hover:-translate-y-[1px] active:translate-y-0",
         secondary:
-          "bg-impa-50 text-impa-700 border border-impa-100 hover:bg-impa-100 active:bg-impa-200",
+          "bg-impa-50 text-impa-700 border border-impa-100 hover:bg-impa-100 hover:border-impa-200 active:bg-impa-200",
         outline:
-          "bg-white text-impa-text border border-impa-line hover:border-impa-300 hover:bg-impa-50/50 active:bg-impa-50",
+          "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:border-impa-300 hover:bg-impa-50/60 hover:shadow-impa-sm active:bg-impa-50",
         ghost:
-          "text-impa-text hover:bg-impa-50 active:bg-impa-100",
+          "text-impa-text hover:bg-impa-surface-3 active:bg-impa-100",
+        soft:
+          "bg-impa-surface-2 text-impa-text border border-transparent hover:bg-impa-surface-3 hover:border-impa-line",
         danger:
-          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 active:bg-red-800",
+          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         destructive:
-          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 active:bg-red-800",
+          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         success:
-          "bg-impa-600 text-white shadow-impa-sm hover:bg-impa-700 active:bg-impa-800",
+          "bg-impa-600 text-white shadow-impa-sm hover:bg-impa-700 hover:shadow-impa-md active:bg-impa-800",
         link:
-          "text-impa-600 hover:text-impa-700 underline-offset-4 hover:underline",
+          "text-impa-600 hover:text-impa-700 underline-offset-4 hover:underline px-0",
       },
       size: {
-        xs: "h-7 px-2.5 text-xs",
+        xs: "h-7 px-2.5 text-xs gap-1.5",
         sm: "h-8 px-3 text-xs",
         md: "h-10 px-4 text-sm",
         lg: "h-11 px-5 text-sm",
         xl: "h-12 px-6 text-base",
         icon: "h-10 w-10 p-0",
+        'icon-sm': "h-8 w-8 p-0",
       },
       full: { true: "w-full", false: "" },
     },

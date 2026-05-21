@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
+import { Tabs } from "@/components/ui/Tabs";
+import { FileText, CalendarDays, PawPrint, Stethoscope, LayoutGrid } from "lucide-react";
 
 type Filtro = "todo" | "documento" | "cita" | "mascota" | "esterilizacion";
 
-const OPCIONES: { value: Filtro; label: string }[] = [
-    { value: "todo", label: "Todo" },
-    { value: "documento", label: "Documentos" },
-    { value: "cita", label: "Citas" },
-    { value: "mascota", label: "Mascotas" },
-    { value: "esterilizacion", label: "Esterilizaciones" },
+const OPCIONES: { value: Filtro; label: string; icon: any }[] = [
+    { value: "todo", label: "Todo", icon: LayoutGrid },
+    { value: "documento", label: "Documentos", icon: FileText },
+    { value: "cita", label: "Citas", icon: CalendarDays },
+    { value: "mascota", label: "Mascotas", icon: PawPrint },
+    { value: "esterilizacion", label: "Esterilizaciones", icon: Stethoscope },
 ];
 
 export function ActividadFilters({
@@ -20,20 +22,16 @@ export function ActividadFilters({
     setFiltro: (f: Filtro) => void;
 }) {
     return (
-        <div className="flex gap-2 sm:gap-3 min-w-max px-1 pb-1 border-b border-[#dce5dc]">
-            {OPCIONES.map(({ value, label }) => (
-                <button
-                    key={value}
-                    onClick={() => setFiltro(value)}
-                    className={`whitespace-nowrap px-4 py-1.5 rounded-t-md text-sm font-semibold transition-all duration-200 border-b-2 ${
-                        filtro === value
-                            ? "border-[#17cf17] text-[#17cf17] bg-[#fff8f4]"
-                            : "border-transparent text-[#7a5c49] hover:text-[#17cf17]"
-                    }`}
-                >
-                    {label}
-                </button>
-            ))}
-        </div>
+        <Tabs
+            variant="segmented"
+            size="sm"
+            value={filtro}
+            onChange={(v) => setFiltro(v as Filtro)}
+            items={OPCIONES.map((o) => ({
+                value: o.value,
+                label: o.label,
+                icon: o.icon,
+            }))}
+        />
     );
 }

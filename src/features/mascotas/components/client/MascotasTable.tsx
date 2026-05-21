@@ -2,9 +2,12 @@
 
 import React from "react";
 import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import Pagination from "@/components/ui/Pagination";
+import { ImageIcon, Pencil, Trash2 } from "lucide-react";
 import type { Mascota } from "@/features/mascotas/types/mascotas";
+import { cn } from "@/lib/utils";
 
 export type RowMascota = {
   id: string;
@@ -63,182 +66,193 @@ export default function MascotasTable({
     <>
       {/* MOBILE */}
       {isMobile ? (
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {pageData.map((m) => {
             const foto = getFotoSrc(m);
-            const sexo =
-              m.sexo?.toLowerCase() === "hembra" ? "Hembra" : "Macho";
-            const colorSexo =
-              sexo === "Hembra"
-                ? "bg-pink-100 text-pink-700"
-                : "bg-blue-100 text-blue-700";
+            const esHembra = m.sexo?.toLowerCase() === "hembra";
 
             return (
-              <div
+              <article
                 key={m.id}
-                className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 space-y-3"
+                className="impa-card-hover bg-white border border-impa-line rounded-2xl overflow-hidden"
               >
-                <div className="w-full h-40 rounded-lg overflow-hidden bg-slate-100">
-                  {foto && (
+                <div className="relative h-44 bg-impa-surface-2">
+                  {foto ? (
                     <img
                       src={foto}
                       alt={m.nombre}
                       className="w-full h-full object-cover"
                     />
+                  ) : (
+                    <div className="w-full h-full grid place-items-center text-impa-quiet">
+                      <ImageIcon size={28} />
+                    </div>
+                  )}
+                  <div className="absolute top-3 left-3 flex gap-1.5">
+                    <Badge variant={esHembra ? "female" : "male"} size="sm">
+                      {esHembra ? "Hembra" : "Macho"}
+                    </Badge>
+                  </div>
+                </div>
+
+                <div className="p-4 space-y-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold text-impa-text leading-tight truncate">
+                        {m.nombre}
+                      </h3>
+                      <p className="text-xs text-impa-muted mt-0.5">
+                        {m.especie} · {m.raza || "Criollo"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs">
+                    <Info label="Tamaño" value={m.tamano || "—"} />
+                    <Info label="Edad" value={m.edadMeses || "—"} />
+                  </dl>
+
+                  {m.descripcion && (
+                    <p className="text-xs text-impa-muted line-clamp-2">
+                      {m.descripcion}
+                    </p>
+                  )}
+
+                  {!disableActions && (
+                    <div className="flex justify-end gap-2 pt-1">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => actions?.onEdit?.(m)}
+                      >
+                        <Pencil size={13} />
+                        Editar
+                      </Button>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        disabled={deleteDisabledForId?.(m.id)}
+                        onClick={() => actions?.onDelete?.(m)}
+                      >
+                        <Trash2 size={13} />
+                        Eliminar
+                      </Button>
+                    </div>
                   )}
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-[#5C3D2E]">
-                    {m.nombre}
-                  </h3>
-                  <span
-                    className={`text-xs px-2 py-1 rounded-full font-semibold ${colorSexo}`}
-                  >
-                    {sexo}
-                  </span>
-                </div>
-
-                <div className="text-sm text-slate-700 space-y-1">
-                  <p><b>Especie:</b> {m.especie}</p>
-                  <p><b>Raza:</b> {m.raza || "Criollo"}</p>
-                  <p><b>Tamaño:</b> {m.tamano || "—"}</p>
-                  <p><b>Edad:</b> {m.edadMeses || "—"}</p>
-                  <p className="line-clamp-2"><b>Personalidad:</b> {m.descripcion || "—"}</p>
-                </div>
-
-                {!disableActions && (
-                  <div className="flex justify-end gap-2 pt-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => actions?.onViewCard?.(m)}
-                    >
-                      Ver
-                    </Button>
-
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => actions?.onEdit?.(m)}
-                    >
-                      Editar
-                    </Button>
-
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      disabled={deleteDisabledForId?.(m.id)}
-                      onClick={() => actions?.onDelete?.(m)}
-                    >
-                      Eliminar
-                    </Button>
-                  </div>
-                )}
-              </div>
+              </article>
             );
           })}
         </div>
       ) : (
-        <div className="w-full overflow-x-auto">
-          <table className="min-w-[950px] w-full border border-slate-200 rounded-lg overflow-hidden">
-            <thead className="bg-impa-50">
-              <tr className="text-left text-slate-700">
-                <Th>Foto</Th>
-                <Th>Nombre</Th>
-                <Th>Especie</Th>
-                <Th>Sexo</Th>
-                <Th>Raza</Th>
-                <Th>Tamaño</Th>
-                <Th>Edad</Th>
-                <Th>Personalidad</Th>
-                {!disableActions && <Th className="text-right">Acciones</Th>}
-              </tr>
-            </thead>
+        /* DESKTOP — Premium table */
+        <div className="rounded-2xl border border-impa-line bg-white shadow-impa-sm overflow-hidden">
+          <div className="w-full overflow-x-auto custom-scroll">
+            <table className="min-w-[980px] w-full">
+              <thead className="bg-gradient-to-b from-impa-surface-2 to-impa-surface-2/40 border-b border-impa-line">
+                <tr className="text-left">
+                  <Th>Mascota</Th>
+                  <Th>Especie</Th>
+                  <Th>Sexo</Th>
+                  <Th>Raza</Th>
+                  <Th>Tamaño</Th>
+                  <Th>Edad</Th>
+                  <Th>Personalidad</Th>
+                  {!disableActions && <Th className="text-right">Acciones</Th>}
+                </tr>
+              </thead>
 
-            <tbody className="divide-y divide-slate-100">
-              {pageData.map((m) => {
-                const foto = getFotoSrc(m);
-                const sexo =
-                  m.sexo?.toLowerCase() === "hembra" ? "Hembra" : "Macho";
-                const colorSexo =
-                  sexo === "Hembra"
-                    ? "bg-pink-100 text-pink-700"
-                    : "bg-blue-100 text-blue-700";
+              <tbody className="divide-y divide-impa-line-faint">
+                {pageData.map((m) => {
+                  const foto = getFotoSrc(m);
+                  const esHembra = m.sexo?.toLowerCase() === "hembra";
 
-                return (
-                  <tr key={m.id} className="hover:bg-impa-50/40">
-                    <Td>
-                      <button
-                        onClick={() => actions?.onViewCard?.(m)}
-                        className="block w-14 h-14 rounded-lg overflow-hidden bg-slate-100"
-                      >
-                        {foto && (
-                          <img
-                            src={foto}
-                            alt={m.nombre}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </button>
-                    </Td>
-
-                    <Td>
-                      <button
-                        onClick={() => actions?.onViewCard?.(m)}
-                        className="px-2 py-1 rounded-md transition text-[15px] font-semibold hover:bg-impa-100 hover:ring-2 hover:ring-impa-300 hover:text-impa-800"
-                      >
-                        {m.nombre}
-                      </button>
-                    </Td>
-
-                    <Td>{m.especie}</Td>
-
-                    <Td>
-                      <span
-                        className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${colorSexo}`}
-                      >
-                        {sexo}
-                      </span>
-                    </Td>
-
-                    <Td>{m.raza || "Criollo"}</Td>
-                    <Td>{m.tamano || "—"}</Td>
-                    <Td>{m.edadMeses || "—"}</Td>
-
-                    <Td className="max-w-[320px]">
-                      <p className="line-clamp-2 text-slate-700">
-                        {m.descripcion || "—"}
-                      </p>
-                    </Td>
-
-                    {!disableActions && (
-                      <Td className="text-right">
-                        <div className="flex justify-end gap-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => actions?.onEdit?.(m)}
-                          >
-                            Editar
-                          </Button>
-
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            disabled={deleteDisabledForId?.(m.id)}
-                            onClick={() => actions?.onDelete?.(m)}
-                          >
-                            Eliminar
-                          </Button>
-                        </div>
+                  return (
+                    <tr
+                      key={m.id}
+                      className="group hover:bg-impa-tinted/60 transition-colors duration-150"
+                    >
+                      <Td>
+                        <button
+                          onClick={() => actions?.onViewCard?.(m)}
+                          className="flex items-center gap-3 group/btn cursor-pointer text-left max-w-[280px]"
+                        >
+                          <span className="relative block w-12 h-12 rounded-xl overflow-hidden bg-impa-surface-2 ring-1 ring-impa-line shrink-0 transition-transform duration-200 group-hover/btn:scale-105">
+                            {foto ? (
+                              <img
+                                src={foto}
+                                alt={m.nombre}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <span className="absolute inset-0 grid place-items-center text-impa-quiet">
+                                <ImageIcon size={16} />
+                              </span>
+                            )}
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block font-semibold text-impa-text text-[14px] leading-tight group-hover/btn:text-impa-700 transition-colors duration-150 truncate">
+                              {m.nombre}
+                            </span>
+                            <span className="block text-[11px] text-impa-muted mt-0.5 truncate">
+                              {m.raza || "Criollo"}
+                            </span>
+                          </span>
+                        </button>
                       </Td>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+
+                      <Td>
+                        <span className="text-impa-text text-sm">{m.especie}</span>
+                      </Td>
+
+                      <Td>
+                        <Badge variant={esHembra ? "female" : "male"} size="sm">
+                          {esHembra ? "Hembra" : "Macho"}
+                        </Badge>
+                      </Td>
+
+                      <Td className="text-impa-text">{m.raza || "Criollo"}</Td>
+                      <Td className="text-impa-text capitalize">{m.tamano || "—"}</Td>
+                      <Td className="text-impa-text">{m.edadMeses || "—"}</Td>
+
+                      <Td className="max-w-[280px]">
+                        <p className="line-clamp-2 text-impa-muted text-sm">
+                          {m.descripcion || "—"}
+                        </p>
+                      </Td>
+
+                      {!disableActions && (
+                        <Td className="text-right">
+                          <div className="flex justify-end gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-150">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => actions?.onEdit?.(m)}
+                              aria-label="Editar"
+                            >
+                              <Pencil size={13} />
+                              <span className="hidden xl:inline">Editar</span>
+                            </Button>
+
+                            <Button
+                              variant="danger"
+                              size="sm"
+                              disabled={deleteDisabledForId?.(m.id)}
+                              onClick={() => actions?.onDelete?.(m)}
+                              aria-label="Eliminar"
+                            >
+                              <Trash2 size={13} />
+                              <span className="hidden xl:inline">Eliminar</span>
+                            </Button>
+                          </div>
+                        </Td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
@@ -254,28 +268,36 @@ export default function MascotasTable({
             onChange={onPageChange}
           />
         )}
-
-
     </>
   );
 }
 
-function Th(props: React.HTMLAttributes<HTMLTableCellElement>) {
+function Info({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-1.5 min-w-0">
+      <dt className="text-impa-quiet font-medium">{label}:</dt>
+      <dd className="text-impa-text font-medium truncate">{value}</dd>
+    </div>
+  );
+}
+
+function Th({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
       {...props}
-      className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-wide ${props.className || ""
-        }`}
+      className={cn(
+        "px-4 py-3 text-[11px] font-bold uppercase tracking-[0.06em] text-impa-muted",
+        className
+      )}
     />
   );
 }
 
-function Td(props: React.TdHTMLAttributes<HTMLTableCellElement>) {
+function Td({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
       {...props}
-      className={`px-3 py-3 align-middle text-sm text-slate-800 ${props.className || ""
-        }`}
+      className={cn("px-4 py-3 align-middle text-sm", className)}
     />
   );
 }

@@ -569,7 +569,7 @@ export default function RegistroForm() {
       ) : (
         <X className="h-4 w-4 text-rose-500" />
       )}
-      <span className={cn("text-sm", met ? "text-impa-700" : "text-slate-500")}>
+      <span className={cn("text-sm", met ? "text-impa-700" : "text-impa-muted")}>
         {text}
       </span>
     </div>
@@ -579,18 +579,18 @@ export default function RegistroForm() {
   const renderStep1 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-slate-800">Datos Personales</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-xl font-semibold text-impa-text-strong">Datos Personales</h2>
+        <p className="text-sm text-impa-muted">
           Información básica y de contacto
         </p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="nombres" className="text-slate-700 font-medium">
+        <Label htmlFor="nombres" className="text-impa-text font-semibold text-sm">
           Nombres <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5 pointer-events-none" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-5 w-5 pointer-events-none" />
           <Input
             id="nombres"
             value={formData.nombres || ""}
@@ -611,11 +611,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="apellido_paterno" className="text-slate-700 font-medium">
+        <Label htmlFor="apellido_paterno" className="text-impa-text font-semibold text-sm">
           Apellido Paterno <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4" />
           <Input
             id="apellido_paterno"
             value={formData.apellido_paterno || ""}
@@ -638,11 +638,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="apellido_materno" className="text-slate-700 font-medium">
+        <Label htmlFor="apellido_materno" className="text-impa-text font-semibold text-sm">
           Apellido Materno <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4" />
           <Input
             id="apellido_materno"
             value={formData.apellido_materno || ""}
@@ -665,11 +665,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-slate-700 font-medium">
+        <Label htmlFor="email" className="text-impa-text font-semibold text-sm">
           Correo Electrónico <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4" />
           <Input
             id="email"
             type="email"
@@ -685,7 +685,7 @@ export default function RegistroForm() {
           />
           {isCheckingEmail && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-impa-600 rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-impa-line border-t-impa-600 rounded-full" />
             </div>
           )}
         </div>
@@ -709,11 +709,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="telefono" className="text-slate-700 font-medium">
+        <Label htmlFor="telefono" className="text-impa-text font-semibold text-sm">
           Teléfono <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4" />
           <Input
             id="telefono"
             type="tel"
@@ -740,15 +740,15 @@ export default function RegistroForm() {
   const renderStep2 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-slate-800">Información Adicional</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-xl font-semibold text-impa-text-strong">Información Adicional</h2>
+        <p className="text-sm text-impa-muted">
           Datos complementarios requeridos
         </p>
       </div>
 
       {/* === FECHA DE NACIMIENTO === */}
       <div className="space-y-2">
-        <Label htmlFor="fecha_nacimiento" className="text-slate-700 font-medium">
+        <Label htmlFor="fecha_nacimiento" className="text-impa-text font-semibold text-sm">
           Fecha de Nacimiento <span className="text-rose-500">*</span>
         </Label>
 
@@ -785,7 +785,7 @@ export default function RegistroForm() {
         })()}
 
         <div className="relative">
-          <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4 z-10 pointer-events-none" />
+          <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4 z-10 pointer-events-none" />
 
           <DatePicker
             selected={
@@ -838,7 +838,7 @@ export default function RegistroForm() {
               "hover:border-impa-500 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none",
               errors.fecha_nacimiento?.length > 0
                 ? "border-rose-500"
-                : "border-slate-200"
+                : "border-impa-line"
             )}
             wrapperClassName="w-full"
             maxDate={new Date()}
@@ -852,7 +852,7 @@ export default function RegistroForm() {
           </div>
         </div>
 
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-impa-muted">
           Selecciona tu fecha de nacimiento del calendario
         </p>
 
@@ -864,11 +864,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="curp" className="text-slate-700 font-medium">
+        <Label htmlFor="curp" className="text-impa-text font-semibold text-sm">
           CURP <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+          <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4" />
           <Input
             id="curp"
             value={formData.curp || ""}
@@ -886,7 +886,7 @@ export default function RegistroForm() {
           />
           {isCheckingCurp && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-impa-600 rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-impa-line border-t-impa-600 rounded-full" />
             </div>
           )}
         </div>
@@ -905,11 +905,11 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="ocupacion" className="text-slate-700 font-medium">
+        <Label htmlFor="ocupacion" className="text-impa-text font-semibold text-sm">
           Ocupación <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
-          <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4 z-10 pointer-events-none" />
+          <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-impa-muted h-4 w-4 z-10 pointer-events-none" />
           <select
             id="ocupacion"
             value={formData.ocupacion || ""}
@@ -918,10 +918,10 @@ export default function RegistroForm() {
               "w-full pl-10 pr-10 py-2.5 border rounded-xl appearance-none cursor-pointer",
               "bg-white transition-all",
               "hover:border-impa-500 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none",
-              "text-sm text-slate-900",
+              "text-sm text-impa-text",
               errors.ocupacion?.length > 0
                 ? "border-rose-500"
-                : "border-slate-200",
+                : "border-impa-line",
               isLoading && "opacity-50 cursor-not-allowed"
             )}
             disabled={isLoading}
@@ -966,14 +966,14 @@ export default function RegistroForm() {
   const renderStep3 = () => (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-slate-800">Seguridad y Términos</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-xl font-semibold text-impa-text-strong">Seguridad y Términos</h2>
+        <p className="text-sm text-impa-muted">
           Configura tu contraseña y acepta los términos
         </p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password" className="text-slate-700 font-medium">
+        <Label htmlFor="password" className="text-impa-text font-semibold text-sm">
           Contraseña <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
@@ -996,7 +996,7 @@ export default function RegistroForm() {
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-slate-400"
+            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-impa-muted"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
@@ -1009,8 +1009,8 @@ export default function RegistroForm() {
 
         {/* Indicadores de requisitos en tiempo real */}
         {showRequirements && (
-          <div className="mt-3 p-4 bg-slate-50/50 rounded-xl space-y-2 border border-slate-100">
-            <p className="text-xs font-semibold text-slate-700 mb-2">
+          <div className="mt-3 p-4 bg-impa-50/40 rounded-xl space-y-2 border border-impa-100">
+            <p className="text-xs font-semibold text-impa-text mb-2">
               Requisitos de la contraseña:
             </p>
             <RequirementItem
@@ -1047,7 +1047,7 @@ export default function RegistroForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword" className="text-slate-700 font-medium">
+        <Label htmlFor="confirmPassword" className="text-impa-text font-semibold text-sm">
           Confirmar Contraseña <span className="text-rose-500">*</span>
         </Label>
         <div className="relative">
@@ -1072,7 +1072,7 @@ export default function RegistroForm() {
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-slate-400"
+            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-impa-muted"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           >
             {showConfirmPassword ? (
@@ -1111,7 +1111,7 @@ export default function RegistroForm() {
           </div>
 
           <div className="text-sm">
-            <Label htmlFor="acceptTerms" className="cursor-pointer text-slate-700">
+            <Label htmlFor="acceptTerms" className="cursor-pointer text-impa-text">
               Acepto los{" "}
               <button
                 type="button"
@@ -1145,7 +1145,7 @@ export default function RegistroForm() {
           </div>
 
           <div className="text-sm">
-            <Label htmlFor="acceptPrivacy" className="cursor-pointer text-slate-700">
+            <Label htmlFor="acceptPrivacy" className="cursor-pointer text-impa-text">
               Acepto la{" "}
               <button
                 type="button"
@@ -1179,21 +1179,33 @@ export default function RegistroForm() {
   );
 
   return (
-    <Card className="w-full max-w-md mx-auto border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl bg-white p-2">
+    <Card elevated className="w-full max-w-md mx-auto rounded-2xl p-2 impa-highlight-top">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-slate-900 tracking-tight">Registro de Adoptante</CardTitle>
-        <CardDescription className="text-slate-500 font-medium mt-1">
-          Paso {currentStep} de {totalSteps}
+        <div className="flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-impa-50 border border-impa-200 text-[10px] font-bold uppercase tracking-wider text-impa-700">
+            Paso {currentStep} de {totalSteps}
+          </span>
+          <span className="text-xs text-impa-muted font-medium">
+            {Math.round((currentStep / totalSteps) * 100)}%
+          </span>
+        </div>
+        <CardTitle className="text-2xl font-bold text-impa-text-strong tracking-tight mt-2">
+          Crea tu cuenta
+        </CardTitle>
+        <CardDescription className="text-impa-muted mt-1">
+          Unos pasos para comenzar tu proceso de adopción responsable.
         </CardDescription>
 
         {/* Indicador de progreso */}
-        <div className="flex space-x-2 pt-4">
+        <div className="flex gap-2 pt-5">
           {[1, 2, 3].map((step) => (
             <div
               key={step}
               className={cn(
-                "flex-1 h-2 rounded-full transition-all duration-300",
-                step <= currentStep ? "bg-impa-500" : "bg-slate-200"
+                "flex-1 h-1.5 rounded-full transition-all duration-500 ease-impa-out",
+                step <= currentStep
+                  ? "bg-gradient-to-r from-impa-500 to-impa-600 shadow-impa-ring-soft"
+                  : "bg-impa-surface-3"
               )}
             />
           ))}
@@ -1217,53 +1229,55 @@ export default function RegistroForm() {
           ))}
 
           {/* Botones de navegación */}
-          <div className="flex justify-between pt-8 gap-4">
+          <div className="flex items-center justify-between pt-8 gap-4">
             <Button
               variant="ghost"
+              size="lg"
               onClick={handlePrevStep}
               disabled={currentStep === 1 || isLoading}
-              className="text-impa-600 hover:bg-impa-50 hover:text-impa-700 rounded-xl px-4 py-5"
             >
-              <ChevronLeft className="h-5 w-5 mr-1" />
+              <ChevronLeft className="h-4 w-4" />
               Anterior
             </Button>
 
             {currentStep < totalSteps ? (
               <Button
+                variant="cta"
+                size="lg"
                 onClick={handleNextStep}
                 disabled={
                   isLoading ||
                   isCheckingEmail ||
                   emailExists ||
                   isCheckingCurp ||
-                  curpExists || 
-                  errors.fecha_nacimiento?.length > 0
+                  curpExists ||
+                  (errors.fecha_nacimiento?.length ?? 0) > 0
                 }
-                className="bg-impa-600 hover:bg-impa-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
                 Siguiente
-                <ChevronRight className="h-5 w-5 ml-1" />
+                <ChevronRight className="h-4 w-4" />
               </Button>
             ) : (
               <Button
+                variant="cta"
+                size="lg"
                 onClick={handleSubmit}
                 disabled={
                   isLoading || !!passwordError || !!confirmPasswordError
                 }
-                className="bg-impa-600 hover:bg-impa-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
-                {isLoading ? "Registrando..." : "Crear Cuenta"}
+                {isLoading ? "Registrando..." : "Crear cuenta"}
               </Button>
             )}
           </div>
 
           {/* Enlace de inicio de sesión */}
-          <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-            <p className="text-sm text-slate-600">
+          <div className="mt-8 pt-6 border-t border-impa-line text-center">
+            <p className="text-sm text-impa-muted">
               ¿Ya tienes cuenta?{" "}
               <a
                 href="/login"
-                className="text-impa-600 font-bold hover:text-impa-700 transition-colors ml-1"
+                className="text-impa-600 font-semibold hover:text-impa-700 hover:underline transition-colors duration-150 ml-1 cursor-pointer"
               >
                 Inicia sesión
               </a>

@@ -150,14 +150,14 @@ Gracias por abrir tu corazón.
     }
   };
 
-  // 🎨 Títulos de sección suaves
+  // Títulos de sección — IMPA brand
   const tituloSuave: React.CSSProperties = {
-    color: "#638863",
-    fontWeight: 700,
-    fontSize: "0.75rem",
-    letterSpacing: "0.6px",
+    color: "#0f830f",
+    fontWeight: 800,
+    fontSize: "0.72rem",
+    letterSpacing: "0.08em",
     textTransform: "uppercase",
-    marginBottom: "8px",
+    marginBottom: "10px",
     display: "inline-block",
   };
 
@@ -168,14 +168,14 @@ Gracias por abrir tu corazón.
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 py-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-impa-text-strong/55 backdrop-blur-md px-4 py-8"
           onClick={onClose}
         >
           <motion.article
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.25 }}
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-impa-xl grid md:grid-cols-2 overflow-hidden border border-impa-line font-sans"
             onClick={(e) => e.stopPropagation()}
           >
@@ -189,22 +189,24 @@ Gracias por abrir tu corazón.
 
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition"
+                className="absolute top-4 right-4 grid place-items-center w-9 h-9 bg-white/95 hover:bg-white rounded-full shadow-impa-md transition-all duration-200 cursor-pointer hover:shadow-impa-lg"
+                aria-label="Cerrar"
               >
-                <X className="w-5 h-5 text-impa-muted" />
+                <X className="w-4 h-4 text-impa-text" />
               </button>
 
               <div className="absolute top-4 left-4 flex items-center gap-2">
                 <span
-                  className={`px-3 py-1 rounded-full text-white font-semibold text-xs sm:text-sm shadow-lg
-                    ${esHembra ? "bg-pink-500/90" : "bg-blue-500/90"}
+                  className={`px-3 py-1 rounded-full text-white font-semibold text-xs sm:text-sm shadow-impa-md backdrop-blur-sm
+                    ${esHembra ? "bg-pink-500/95" : "bg-blue-500/95"}
                   `}
                 >
                   {sexoLabel}
                 </span>
 
                 {m.estado?.toLowerCase() === "disponible" && (
-                  <span className="px-3 py-1 rounded-full bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/95 text-white font-semibold text-xs sm:text-sm shadow-impa-md backdrop-blur-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white impa-pulse-ring" />
                     Disponible
                   </span>
                 )}

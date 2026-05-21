@@ -2,6 +2,9 @@
 import React from "react";
 import type { Mascota } from "@/features/mascotas/types/mascotas";
 import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
+import { Eye, Heart, ImageIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
   m: Mascota;
@@ -16,104 +19,134 @@ export default function MascotaCard({
   onAdopt,
   adoptDisabled = false,
 }: Props) {
-  // Imagen (fuente única y tipada)
   const fotoSrc = m.imagen_url ?? null;
 
   const estado = m.estado?.toLowerCase() ?? "disponible";
   const disponible =
     m.disponible_adopcion !== false && estado === "disponible";
 
+  const esHembra = m.sexo?.toLowerCase() === "hembra";
+
   let botonTexto = "Adoptar";
   let disabled = adoptDisabled;
+  let estadoBadge: React.ReactNode = null;
 
   if (estado === "adoptada") {
     botonTexto = "Adoptada";
     disabled = true;
+    estadoBadge = (
+      <Badge variant="neutral" size="md">
+        Adoptada
+      </Badge>
+    );
   } else if (estado === "en_proceso") {
     botonTexto = "En proceso";
     disabled = true;
+    estadoBadge = (
+      <Badge variant="warning" size="md">
+        En proceso
+      </Badge>
+    );
   } else if (!disponible) {
     botonTexto = "No disponible";
     disabled = true;
+  } else {
+    estadoBadge = (
+      <Badge variant="success" size="md" dot>
+        Disponible
+      </Badge>
+    );
   }
 
   return (
-    <article className="masc-card group animate-fade-in">
-      {/* Imagen */}
-      <div className="media">
+    <article
+      className={cn(
+        "group relative overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-sm",
+        "transition-[transform,box-shadow,border-color] duration-300 ease-impa-out",
+        "hover:-translate-y-1 hover:shadow-impa-lg hover:border-impa-line-strong",
+        "animate-fade-in flex flex-col"
+      )}
+    >
+      {/* Media */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-impa-surface-2">
         {fotoSrc ? (
           <img
             src={fotoSrc}
             alt={m.nombre}
-            className="media-img group-hover:scale-105 transition-transform duration-500"
             onClick={onView}
+            className="w-full h-full object-cover cursor-pointer transition-transform duration-500 ease-impa-out group-hover:scale-[1.06]"
           />
         ) : (
-          <div className="media-placeholder" />
+          <div className="w-full h-full grid place-items-center text-impa-quiet">
+            <ImageIcon size={36} />
+          </div>
         )}
 
-        {/* Sexo */}
-        <span className={`sex ${m.sexo === "hembra" ? "f" : "m"}`}>
-          {m.sexo.charAt(0).toUpperCase() +
-            m.sexo.slice(1).toLowerCase()}
-        </span>
+        {/* Top-left: género */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+          <Badge variant={esHembra ? "female" : "male"} size="md" className="shadow-impa-sm">
+            {esHembra ? "Hembra" : "Macho"}
+          </Badge>
+        </div>
 
-        {/* Estado */}
-        {estado !== "disponible" && (
-          <span
-            className={`estado-tag ${estado === "adoptada" ? "adoptada" : "proceso"
-              }`}
+        {/* Top-right: estado */}
+        <div className="absolute top-3 right-3 flex items-center gap-1.5">
+          {estadoBadge && (
+            <span className="shadow-impa-sm rounded-full">{estadoBadge}</span>
+          )}
+        </div>
+
+        {/* Bottom overlay quick action */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-impa-out">
+          <button
+            onClick={onView}
+            className="w-full inline-flex items-center justify-center gap-1.5 h-9 rounded-lg bg-white/95 text-impa-text text-xs font-semibold shadow-impa-sm hover:bg-white hover:shadow-impa-md transition-all duration-200 cursor-pointer"
           >
-            {botonTexto}
-          </span>
-        )}
+            <Eye size={14} />
+            Ver detalle
+          </button>
+        </div>
       </div>
 
-      {/* Info */}
-      <div className="body">
-        <div className="titleRow">
-          <h3 className="name" title={m.nombre}>
-            {m.nombre}
-          </h3>
-          <span className="pill">
-            {m.raza?.especie ?? "Desconocido"}
-          </span>
+      {/* Body */}
+      <div className="p-4 sm:p-5 flex flex-col gap-3 flex-1">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3
+              className="text-lg sm:text-[19px] font-bold text-impa-text leading-tight tracking-tight truncate"
+              title={m.nombre}
+            >
+              {m.nombre}
+            </h3>
+            <p className="text-xs text-impa-muted mt-0.5 truncate">
+              {m.raza?.nombre ?? "Criollo"} · {m.raza?.especie ?? "Mascota"}
+            </p>
+          </div>
+          <button
+            aria-label="Guardar favorito"
+            className="grid place-items-center w-9 h-9 rounded-lg text-impa-quiet hover:text-impa-600 hover:bg-impa-50 transition-colors duration-150 cursor-pointer shrink-0"
+          >
+            <Heart size={16} />
+          </button>
         </div>
 
-        <div className="meta">
-          <span>
-            <strong>Raza:</strong>{" "}
-            {m.raza?.nombre ?? "Criollo"}
-          </span>
+        <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[13px]">
+          <Meta label="Tamaño" value={cap(m.tamano) || "—"} />
+          <Meta label="Edad" value={m.edad ? String(m.edad) : "—"} />
+          <Meta
+            label="Personalidad"
+            value={m.personalidad || m.descripcion_fisica || "—"}
+            full
+          />
+        </dl>
 
-          <span>
-            <strong>Tamaño:</strong>{" "}
-            {m.tamano
-              ? m.tamano.charAt(0).toUpperCase() +
-              m.tamano.slice(1).toLowerCase()
-              : "—"}
-          </span>
-
-          <span>
-            <strong>Edad:</strong>{" "}
-            {m.edad ?? "—"}
-          </span>
-
-          <span>
-            <strong>Pers:</strong>{" "}
-            {m.personalidad ||
-              m.descripcion_fisica ||
-              "—"}
-          </span>
-        </div>
-
-        <footer className="actions">
-          <Button variant="ghost" size="md" onClick={onView}>
+        <footer className="flex items-center justify-between gap-2 pt-2 mt-auto border-t border-impa-line-faint">
+          <Button variant="ghost" size="sm" onClick={onView}>
             Ver más
           </Button>
           <Button
             variant="primary"
-            size="md"
+            size="sm"
             onClick={onAdopt}
             disabled={disabled}
           >
@@ -121,162 +154,32 @@ export default function MascotaCard({
           </Button>
         </footer>
       </div>
-
-      {/* ====================== ESTILOS ====================== */}
-      <style jsx>{`
-        .masc-card {
-          background: #fffaf2;
-          border: 1px solid #dce5dc;
-          border-radius: 18px;
-          overflow: hidden;
-          box-shadow: 0 4px 12px rgba(43, 27, 18, 0.1);
-          display: flex;
-          flex-direction: column;
-          transition: all 0.3s ease;
-          font-family: "Inter", sans-serif;
-        }
-
-        .masc-card * {
-          font-family: "Inter", sans-serif !important;
-        }
-
-        .masc-card:hover {
-          transform: translateY(-6px) scale(1.015);
-          box-shadow: 0 8px 30px rgba(43, 27, 18, 0.18);
-        }
-
-        .media {
-          position: relative;
-          height: 260px;
-          background: #f7eee4;
-          overflow: hidden;
-        }
-
-        .media-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .media-placeholder {
-          width: 100%;
-          height: 100%;
-          background: #f2e8dc;
-        }
-
-        /* SEXO */
-        .sex {
-          position: absolute;
-          left: 14px;
-          top: 14px;
-          padding: 6px 12px;
-          border-radius: 999px;
-          font-weight: 700;
-          font-size: 13px;
-          color: #fff;
-          text-transform: capitalize;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .sex.f {
-          background: #ec4899;
-        }
-        .sex.m {
-          background: #3b82f6;
-        }
-
-        /* ESTADO */
-        .estado-tag {
-          position: absolute;
-          bottom: 14px;
-          right: 14px;
-          padding: 6px 12px;
-          border-radius: 999px;
-          font-weight: 700;
-          font-size: 12px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .estado-tag.proceso {
-          background: #facc15;
-          color: #1f1f1f;
-        }
-        .estado-tag.adoptada {
-          background: #a8a29e;
-          color: #fff;
-        }
-
-        .body {
-          padding: 16px 14px 18px;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .titleRow {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-        }
-
-        .name {
-          margin: 0;
-          color: #0f830f;
-          font-weight: 700;
-          font-size: 20px;
-          line-height: 1.2;
-        }
-
-        .pill {
-          background: #f3e7dc;
-          color: #0f830f;
-          border-radius: 999px;
-          padding: 5px 10px;
-          font-weight: 600;
-          font-size: 12px;
-        }
-
-        .meta {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 4px;
-          color: #6c5241;
-          font-size: 14px;
-        }
-
-        .meta span {
-          display: flex;
-          gap: 4px;
-          align-items: center;
-        }
-
-        .meta strong {
-          color: #111811;
-          font-weight: 700;
-          min-width: 75px;
-        }
-
-        .actions {
-          display: flex;
-          gap: 10px;
-          margin-top: 12px;
-        }
-
-       @keyframes feedReveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.feed-item {
-  opacity: 0;
-  animation: feedReveal 0.9s ease-out forwards;
-}
-      `}</style>
     </article>
   );
+}
+
+function Meta({
+  label,
+  value,
+  full,
+}: {
+  label: string;
+  value: React.ReactNode;
+  full?: boolean;
+}) {
+  return (
+    <div className={cn("min-w-0", full && "col-span-2")}>
+      <dt className="text-[10px] uppercase tracking-[0.08em] font-bold text-impa-quiet">
+        {label}
+      </dt>
+      <dd className="text-impa-text text-[13px] mt-0.5 capitalize truncate">
+        {value}
+      </dd>
+    </div>
+  );
+}
+
+function cap(s: string | null | undefined) {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 }

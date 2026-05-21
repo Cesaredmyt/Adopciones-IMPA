@@ -1,6 +1,7 @@
 "use client";
-import {Search} from "lucide-react";
-import React, {useEffect, useRef, useState} from "react";
+import { Search, ChevronDown, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type Props = {
     q: string;
@@ -12,9 +13,9 @@ type Props = {
     ESPECIES: readonly string[];
 };
 
-type Opt = {label: string; value: string};
+type Opt = { label: string; value: string };
 
-function useClickOutside(ref: React.RefObject<HTMLElement>, onClose: () => void) {
+function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () => void) {
     useEffect(() => {
         function handler(e: MouseEvent) {
             if (ref.current && !ref.current.contains(e.target as Node)) onClose();
@@ -42,161 +43,106 @@ function MenuSelect({
     const current = options.find((o) => o.value === value) ?? options[0];
 
     return (
-        <div className="mselect" ref={boxRef}>
+        <div className="relative w-full" ref={boxRef}>
             <button
                 type="button"
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-label={ariaLabel}
-                className="mselect-trigger"
                 onClick={() => setOpen((o) => !o)}
+                className={cn(
+                    "flex items-center justify-between gap-2 w-full h-11 px-3.5 rounded-xl border text-sm font-medium cursor-pointer",
+                    "transition-[box-shadow,border-color,background-color] duration-200 ease-impa-out",
+                    "bg-white shadow-impa-xs hover:bg-impa-tinted hover:border-impa-300",
+                    "focus-visible:outline-none focus-visible:border-impa-500 focus-visible:ring-4 focus-visible:ring-impa-500/15",
+                    open ? "border-impa-500 ring-4 ring-impa-500/15 bg-white" : "border-impa-line"
+                )}
             >
-                <span>{current.label}</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden className="chev">
-                    <path fill="currentColor" d="M7 10l5 5 5-5z" />
-                </svg>
+                <span className={cn("truncate", current.value === options[0].value ? "text-impa-muted" : "text-impa-text")}>
+                    {current.label}
+                </span>
+                <ChevronDown
+                    size={16}
+                    className={cn("text-impa-muted transition-transform duration-200 shrink-0", open && "rotate-180")}
+                />
             </button>
 
             {open && (
-                <div className="mselect-menu" role="listbox">
-                    {options.map((opt) => (
-                        <button
-                            key={opt.value}
-                            role="option"
-                            aria-selected={opt.value === value}
-                            className={"mselect-item " + (opt.value === value ? "is-active" : "")}
-                            onClick={() => {
-                                onChange(opt.value);
-                                setOpen(false);
-                            }}
-                        >
-                            {opt.label}
-                        </button>
-                    ))}
+                <div
+                    role="listbox"
+                    className="absolute left-0 right-0 top-[calc(100%+6px)] z-40 rounded-xl bg-white border border-impa-line shadow-impa-lg overflow-hidden animate-fade-slide p-1"
+                >
+                    {options.map((opt) => {
+                        const active = opt.value === value;
+                        return (
+                            <button
+                                key={opt.value}
+                                role="option"
+                                aria-selected={active}
+                                onClick={() => {
+                                    onChange(opt.value);
+                                    setOpen(false);
+                                }}
+                                className={cn(
+                                    "w-full text-left px-3 py-2 rounded-lg text-sm cursor-pointer",
+                                    "transition-colors duration-150",
+                                    active
+                                        ? "bg-impa-50 text-impa-700 font-semibold"
+                                        : "text-impa-text hover:bg-impa-surface-3"
+                                )}
+                            >
+                                {opt.label}
+                            </button>
+                        );
+                    })}
                 </div>
             )}
-
-            <style jsx>{`
-                .mselect {
-                    position: relative;
-                    width: 100%;
-                    max-width: 260px;
-                }
-                .mselect-trigger {
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 10px 12px;
-                    border: 1px solid var(--line);
-                    border-radius: 12px;
-                    background: #fff;
-                    box-shadow: 0 4px 14px rgba(43, 27, 18, 0.06);
-                    color: #111811;
-                    font-weight: 400;
-                }
-                .chev {
-                    color: #0f830f;
-                    opacity: 0.9;
-                }
-                .mselect-menu {
-                    position: absolute;
-                    left: 0;
-                    top: calc(100% + 8px);
-                    z-index: 40;
-                    width: 100%;
-                    min-width: 220px;
-                    background: #ecfdec;
-                    border-radius: 10px;
-                    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-                    overflow: hidden;
-                }
-                .mselect-item {
-                    width: 100%;
-                    text-align: left;
-                    padding: 10px 14px;
-                    color: #0f830f;
-                    font-weight: 400;
-                    background: transparent;
-                    border: none;
-                    cursor: pointer;
-                    transition: background 0.12s ease;
-                }
-                .mselect-item:hover {
-                    background: #a8f1a8;
-                }
-                .mselect-item.is-active {
-                    background: #a8f1a8;
-                }
-            `}</style>
         </div>
     );
 }
 
-export default function Filters({q, onQ, especie, onEspecie, sexo, onSexo, ESPECIES}: Props) {
+export default function Filters({ q, onQ, especie, onEspecie, sexo, onSexo, ESPECIES }: Props) {
     const especieOpts: Opt[] = [
-        {label: "Todas las especies", value: "Todas"},
-        ...ESPECIES.map((e) => ({label: e, value: e})),
+        { label: "Todas las especies", value: "Todas" },
+        ...ESPECIES.map((e) => ({ label: e, value: e })),
     ];
     const sexoOpts: Opt[] = [
-        {label: "Ambos sexos", value: "Todos"},
-        {label: "Macho", value: "Macho"},
-        {label: "Hembra", value: "Hembra"},
+        { label: "Ambos sexos", value: "Todos" },
+        { label: "Macho", value: "Macho" },
+        { label: "Hembra", value: "Hembra" },
     ];
+
     return (
-        <section className="filters">
-            <div className="search">
-                <span className="searchIcon">
-                    <Search size={16} />
-                </span>
+        <section className="grid gap-3 sm:grid-cols-[1fr_220px_200px] my-5">
+            <div className="relative">
+                <Search
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-impa-muted pointer-events-none"
+                />
                 <input
                     value={q}
                     onChange={(e) => onQ(e.target.value)}
                     placeholder="Busca por nombre, raza o descripción…"
+                    className={cn(
+                        "w-full h-11 pl-10 pr-9 rounded-xl border border-impa-line bg-white text-sm text-impa-text shadow-impa-xs",
+                        "transition-[box-shadow,border-color,background-color] duration-200 ease-impa-out",
+                        "placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-tinted",
+                        "focus-visible:outline-none focus-visible:border-impa-500 focus-visible:ring-4 focus-visible:ring-impa-500/15 focus-visible:bg-white"
+                    )}
                 />
+                {q && (
+                    <button
+                        onClick={() => onQ("")}
+                        aria-label="Limpiar búsqueda"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 grid place-items-center w-7 h-7 rounded-md text-impa-muted hover:text-impa-text hover:bg-impa-surface-3 transition-colors duration-150 cursor-pointer"
+                    >
+                        <X size={14} />
+                    </button>
+                )}
             </div>
 
             <MenuSelect value={especie} onChange={onEspecie} options={especieOpts} ariaLabel="Filtrar por especie" />
             <MenuSelect value={sexo} onChange={onSexo} options={sexoOpts} ariaLabel="Filtrar por sexo" />
-
-            <style jsx>{`
-                .filters {
-                    display: grid;
-                    grid-template-columns: 1fr 220px 200px;
-                    gap: 12px;
-                    margin: 18px 0 10px;
-                }
-                .search {
-                    position: relative;
-                }
-                .search input {
-                    width: 100%;
-                    padding: 10px 12px 10px 34px;
-                    border: 1px solid var(--line);
-                    border-radius: 12px;
-                    background: #fff;
-                    outline: none;
-                    box-shadow: 0 4px 14px rgba(43, 27, 18, 0.06);
-                }
-                .search input:focus {
-                    border-color: #d7c4b2;
-                }
-                .searchIcon {
-                    position: absolute;
-                    left: 10px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    color: #a78d7b;
-                    pointer-events: none;
-                    display: flex;
-                    align-items: center;
-                }
-                @media (max-width: 720px) {
-                    .filters {
-                        grid-template-columns: 1fr;
-                    }
-                }
-            `}</style>
         </section>
     );
 }

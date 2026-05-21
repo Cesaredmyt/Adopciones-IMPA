@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { PawPrint, Sparkles } from "lucide-react";
 import PageHead from "@/components/layout/PageHead";
 import Filters from "@/features/mascotas/components/client/Filters";
 import MascotasFeed from "@/features/mascotas/components/client/MascotasFeed";
@@ -23,12 +24,18 @@ export default function MascotasPublicPage() {
   return (
     <>
       <PageHead
-        title="Mascotas"
-        subtitle="Explora a nuestros adorables compañeros 🐾"
+        icon={<PawPrint size={22} />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Adopción responsable
+          </>
+        }
+        title="Encuentra a tu próximo mejor amigo"
+        subtitle="Explora nuestras mascotas rescatadas y conoce su historia. Cada una espera por su hogar para siempre."
       />
 
-      <div className="mb-6">        
-        <Filters
+      <Filters
         q={q}
         onQ={setQ}
         especie={especie}
@@ -37,7 +44,6 @@ export default function MascotasPublicPage() {
         onSexo={setSexo}
         ESPECIES={ESPECIES}
       />
-      </div>
 
       <MascotasFeed
         search={q}

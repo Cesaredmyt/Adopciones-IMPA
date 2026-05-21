@@ -8,24 +8,21 @@ export interface CheckboxProps
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ className, ...props }, ref) => {
     return (
-      <div className="relative">
+      <div className="relative inline-flex">
         <input
           type="checkbox"
           className={cn(
-            "peer h-4 w-4 shrink-0 rounded-sm border border-primary",
-            "appearance-none",
-            "bg-white checked:bg-primary checked:border-primary",
-            "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "peer h-[18px] w-[18px] shrink-0 cursor-pointer rounded-md border border-impa-line-strong appearance-none",
+            "bg-white shadow-impa-xs transition-[background-color,border-color,box-shadow] duration-150 ease-impa-out",
+            "checked:bg-impa-500 checked:border-impa-500 checked:shadow-impa-ring-soft",
+            "hover:border-impa-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           ref={ref}
           {...props}
         />
-
-        {props.checked && (
-          <Check className="absolute top-0 left-0 h-4 w-4 text-primary-foreground pointer-events-none" />
-        )}
+        <Check className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3 w-3 stroke-[3] text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-150" />
       </div>
     );
   }

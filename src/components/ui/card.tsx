@@ -1,14 +1,23 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type CardProps = React.HTMLAttributes<HTMLDivElement>;
+type CardProps = React.HTMLAttributes<HTMLDivElement> & {
+  /** Eleva la card con superficies y sombra más marcada */
+  elevated?: boolean;
+  /** Aplica un hover-lift sutil */
+  interactive?: boolean;
+};
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, elevated, interactive, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        "rounded-2xl border border-impa-line bg-white text-impa-text shadow-impa-sm transition-shadow hover:shadow-impa-md",
+        "relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color] duration-200 ease-impa-out",
+        elevated
+          ? "bg-gradient-to-b from-white to-impa-surface-2 shadow-impa-md"
+          : "bg-white",
+        interactive && "cursor-pointer hover:-translate-y-0.5 hover:shadow-impa-lg hover:border-impa-line-strong",
         className
       )}
       {...props}
@@ -21,7 +30,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex flex-col space-y-1.5 p-5", className)}
+      className={cn("flex flex-col space-y-1.5 p-5 sm:p-6", className)}
       {...props}
     />
   )
@@ -59,7 +68,7 @@ CardDescription.displayName = "CardDescription";
 
 const CardContent = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("p-5 pt-0", className)} {...props} />
+    <div ref={ref} className={cn("p-5 sm:p-6 pt-0", className)} {...props} />
   )
 );
 CardContent.displayName = "CardContent";
@@ -69,7 +78,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(
-        "flex items-center gap-2 p-5 pt-0 border-t border-impa-line",
+        "flex items-center gap-2 p-5 sm:p-6 pt-4 border-t border-impa-line bg-impa-surface-2/40 rounded-b-2xl",
         className
       )}
       {...props}

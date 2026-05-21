@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -29,26 +30,32 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300 ease-impa-out",
         scrolled
-          ? "bg-white/85 backdrop-blur-md border-b border-impa-line shadow-impa-sm"
-          : "bg-white/60 backdrop-blur-sm border-b border-transparent"
-      }`}
+          ? "bg-white/80 backdrop-blur-xl border-b border-impa-line shadow-impa-xs"
+          : "bg-white/40 backdrop-blur-md border-b border-transparent"
+      )}
     >
+      {scrolled && (
+        <span className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-impa-200/60 to-transparent" />
+      )}
+
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-16">
         {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2.5 group impa-focus-ring rounded-lg"
         >
-          <Image
-            src="/impa-isotipo.svg"
-            alt="IMPA"
-            width={36}
-            height={36}
-            priority
-            className="rounded-lg shadow-impa-xs"
-          />
+          <span className="relative grid place-items-center w-9 h-9 rounded-xl bg-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.04]">
+            <Image
+              src="/impa-isotipo.svg"
+              alt="IMPA"
+              width={26}
+              height={26}
+              priority
+            />
+          </span>
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="font-bold text-[15px] text-impa-text tracking-tight">
               IMPA
@@ -67,11 +74,12 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all impa-focus-ring ${
+                  className={cn(
+                    "relative px-3.5 py-2 text-sm font-medium rounded-lg impa-focus-ring transition-colors duration-200 ease-impa-out cursor-pointer",
                     active
                       ? "text-impa-700"
-                      : "text-impa-muted hover:text-impa-text hover:bg-impa-50"
-                  }`}
+                      : "text-impa-muted hover:text-impa-text hover:bg-impa-surface-3"
+                  )}
                 >
                   {link.label}
                   {active && (
@@ -87,25 +95,25 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-2">
           <Link
             href="/login"
-            className="px-4 py-2 text-sm font-medium text-impa-muted hover:text-impa-text rounded-lg transition impa-focus-ring"
+            className="px-4 py-2 text-sm font-medium text-impa-muted hover:text-impa-text rounded-lg transition-colors duration-200 impa-focus-ring cursor-pointer"
           >
             Iniciar sesión
           </Link>
           <Link
             href="/register"
-            className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 active:bg-impa-700 transition-all impa-focus-ring"
+            className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-impa-cta text-white shadow-impa-sm hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 ease-impa-out impa-focus-ring cursor-pointer"
           >
             Crear cuenta
             <ArrowRight
               size={14}
-              className="group-hover:translate-x-0.5 transition-transform"
+              className="group-hover:translate-x-0.5 transition-transform duration-200"
             />
           </Link>
         </div>
 
         {/* Mobile button */}
         <button
-          className="md:hidden text-impa-text p-2 rounded-lg hover:bg-impa-50 transition impa-focus-ring"
+          className="md:hidden text-impa-text p-2 rounded-lg hover:bg-impa-surface-3 transition-colors duration-150 impa-focus-ring cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menú"
         >
@@ -124,11 +132,12 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition ${
+                    className={cn(
+                      "flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 cursor-pointer",
                       active
-                        ? "bg-impa-50 text-impa-700"
-                        : "text-impa-text hover:bg-impa-50"
-                    }`}
+                        ? "bg-impa-50 text-impa-700 border border-impa-200"
+                        : "text-impa-text hover:bg-impa-surface-3"
+                    )}
                   >
                     {link.label}
                   </Link>
@@ -139,14 +148,14 @@ export default function Header() {
               <Link
                 href="/login"
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-2.5 text-sm font-medium text-impa-text rounded-lg hover:bg-impa-50 transition text-center"
+                className="px-4 py-2.5 text-sm font-medium text-impa-text rounded-lg hover:bg-impa-surface-3 transition-colors duration-150 text-center cursor-pointer"
               >
                 Iniciar sesión
               </Link>
               <Link
                 href="/register"
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-2.5 text-sm font-semibold text-white bg-impa-500 hover:bg-impa-600 rounded-lg transition text-center"
+                className="px-4 py-2.5 text-sm font-semibold text-white bg-impa-cta hover:shadow-impa-glow rounded-lg transition-shadow duration-150 text-center cursor-pointer"
               >
                 Crear cuenta
               </Link>

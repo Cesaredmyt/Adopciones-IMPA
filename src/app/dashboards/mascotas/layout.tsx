@@ -3,9 +3,9 @@ import PageShell from "@/components/layout/PageShell";
 
 export default function MascotasLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#ecfdec]"> 
+    <div className="min-h-screen">
       <Header />
-      <PageShell>{children}</PageShell>
+      <PageShell width="wide">{children}</PageShell>
     </div>
   );
 }

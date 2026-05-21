@@ -42,7 +42,7 @@ export default function Pagination({
   })();
 
   const chipBase =
-    "min-w-[2rem] h-8 px-2 rounded-lg text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/15";
+    "min-w-[2.25rem] h-9 px-2 rounded-lg text-xs font-semibold transition-all duration-200 ease-impa-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 cursor-pointer";
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 text-sm">
@@ -65,15 +65,16 @@ export default function Pagination({
         <button
           onClick={() => page > 1 && goTo(page - 1)}
           disabled={page === 1}
+          aria-label="Página anterior"
           className={cn(
-            "h-8 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1 transition bg-white",
+            "h-9 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 ease-impa-out bg-white shadow-impa-xs cursor-pointer",
             page === 1
-              ? "text-impa-line cursor-not-allowed"
-              : "text-impa-text hover:bg-impa-50 hover:border-impa-300"
+              ? "text-impa-quiet cursor-not-allowed opacity-60"
+              : "text-impa-text hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm"
           )}
         >
           <ChevronLeft className="w-4 h-4" />
-          Anterior
+          <span className="hidden sm:inline">Anterior</span>
         </button>
 
         <div className="flex items-center gap-1">
@@ -82,17 +83,18 @@ export default function Pagination({
               <button
                 key={i}
                 onClick={() => goTo(p)}
+                aria-current={p === page ? "page" : undefined}
                 className={cn(
                   chipBase,
                   p === page
-                    ? "bg-impa-500 text-white shadow-impa-sm"
-                    : "bg-white text-impa-text border border-impa-line hover:bg-impa-50 hover:border-impa-300"
+                    ? "bg-impa-cta text-white shadow-impa-sm scale-[1.02]"
+                    : "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm hover:-translate-y-px"
                 )}
               >
                 {p}
               </button>
             ) : (
-              <span key={i} className="px-1 text-impa-muted text-xs">
+              <span key={i} className="px-1 text-impa-quiet text-xs">
                 {p}
               </span>
             )
@@ -102,14 +104,15 @@ export default function Pagination({
         <button
           onClick={() => page < totalPages && goTo(page + 1)}
           disabled={page === totalPages}
+          aria-label="Página siguiente"
           className={cn(
-            "h-8 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1 transition bg-white",
+            "h-9 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 ease-impa-out bg-white shadow-impa-xs cursor-pointer",
             page === totalPages
-              ? "text-impa-line cursor-not-allowed"
-              : "text-impa-text hover:bg-impa-50 hover:border-impa-300"
+              ? "text-impa-quiet cursor-not-allowed opacity-60"
+              : "text-impa-text hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm"
           )}
         >
-          Siguiente
+          <span className="hidden sm:inline">Siguiente</span>
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>

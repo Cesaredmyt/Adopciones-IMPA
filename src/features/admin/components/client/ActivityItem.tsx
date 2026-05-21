@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { FileText, CalendarDays, PawPrint, Stethoscope } from "lucide-react";
+import { FileText, CalendarDays, PawPrint, Stethoscope, Activity } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function formatTimeAgo(fechaStr: string) {
     const fecha = new Date(fechaStr);
@@ -15,6 +16,13 @@ function formatTimeAgo(fechaStr: string) {
     return `hace ${dias} día${dias > 1 ? "s" : ""}`;
 }
 
+const colorByTipo: Record<string, { bg: string; text: string; border: string }> = {
+    documento:       { bg: "bg-amber-50",  text: "text-amber-700",   border: "border-amber-200" },
+    cita:            { bg: "bg-sky-50",    text: "text-sky-700",     border: "border-sky-200" },
+    mascota:         { bg: "bg-impa-50",   text: "text-impa-700",    border: "border-impa-200" },
+    esterilizacion:  { bg: "bg-rose-50",   text: "text-rose-700",    border: "border-rose-200" },
+};
+
 export function ActivityItem({
     tipo,
     mensaje,
@@ -25,18 +33,21 @@ export function ActivityItem({
     fecha: string;
 }) {
     const iconos: Record<string, React.ReactNode> = {
-        documento: <FileText className="h-4 w-4 text-[#17cf17]" />,
-        cita: <CalendarDays className="h-4 w-4 text-[#17cf17]" />,
-        mascota: <PawPrint className="h-4 w-4 text-[#17cf17]" />,
-        esterilizacion: <Stethoscope className="h-4 w-4 text-[#17cf17]" />,
+        documento: <FileText className="h-4 w-4" />,
+        cita: <CalendarDays className="h-4 w-4" />,
+        mascota: <PawPrint className="h-4 w-4" />,
+        esterilizacion: <Stethoscope className="h-4 w-4" />,
     };
+    const c = colorByTipo[tipo] || { bg: "bg-impa-surface-3", text: "text-impa-muted", border: "border-impa-line" };
 
     return (
-        <li className="flex items-start gap-3 border-b pb-2">
-            <span className="mt-1">{iconos[tipo]}</span>
-            <div>
-                <p className="text-sm text-slate-700">{mensaje}</p>
-                <p className="text-xs text-slate-400">{formatTimeAgo(fecha)}</p>
+        <li className="group flex items-start gap-3 py-3 first:pt-0 last:pb-0 border-b border-impa-line-faint last:border-0 transition-colors duration-150">
+            <span className={cn("grid place-items-center w-9 h-9 rounded-lg border shrink-0 transition-transform duration-200 group-hover:scale-105", c.bg, c.text, c.border)}>
+                {iconos[tipo] ?? <Activity className="h-4 w-4" />}
+            </span>
+            <div className="min-w-0 flex-1">
+                <p className="text-sm text-impa-text leading-snug">{mensaje}</p>
+                <p className="text-xs text-impa-quiet mt-0.5">{formatTimeAgo(fecha)}</p>
             </div>
         </li>
     );

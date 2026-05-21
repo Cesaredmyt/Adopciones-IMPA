@@ -6,9 +6,15 @@ import type { ActividadItemType } from "../../types/dashboard";
 
 export function ActividadList({ actividad }: { actividad: ActividadItemType[] }) {
     return (
-        <ul className="space-y-3">
+        <ul className="divide-y divide-impa-line-faint">
             {actividad.map((a, i) => (
-                <ActivityItem key={i} tipo={a.tipo} mensaje={a.mensaje} fecha={a.fecha} />
+                <div
+                    key={i}
+                    className="stagger-item"
+                    style={{ ['--i' as any]: i }}
+                >
+                    <ActivityItem tipo={a.tipo} mensaje={a.mensaje} fecha={a.fecha} />
+                </div>
             ))}
         </ul>
     );

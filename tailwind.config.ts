@@ -55,12 +55,27 @@ const config: Config = {
           700: '#0f830f',
           800: '#0d660d',
           900: '#0a4f0a',
-          bg:        '#f6f8f6',
-          card:      '#ffffff',
-          muted:     '#586e58',
-          subtle:    '#638863',
-          text:      '#111811',
-          line:      '#dce5dc',
+
+          // Surfaces & semantic
+          bg:           '#f3f6f3',
+          'bg-elev':    '#f8faf8',
+          surface:      '#ffffff',
+          'surface-2':  '#f6f8f6',
+          'surface-3':  '#eef2ee',
+          card:         '#ffffff',
+          tinted:       '#f6fbf6',
+
+          // Text
+          text:        '#0f160f',
+          'text-strong': '#07120a',
+          muted:       '#586e58',
+          subtle:      '#7a8e7a',
+          quiet:       '#95a795',
+
+          // Borders
+          line:         '#e2eae2',
+          'line-strong':'#c8d7c8',
+          'line-faint': '#eef3ee',
         },
       },
       borderRadius: {
@@ -71,12 +86,26 @@ const config: Config = {
         '2xl': 'calc(var(--radius) + 8px)',
       },
       boxShadow: {
-        'impa-xs': '0 1px 2px 0 rgb(17 24 17 / 0.04)',
-        'impa-sm': '0 1px 3px 0 rgb(17 24 17 / 0.06), 0 1px 2px -1px rgb(17 24 17 / 0.04)',
-        'impa-md': '0 4px 12px -2px rgb(17 24 17 / 0.08), 0 2px 4px -2px rgb(17 24 17 / 0.04)',
-        'impa-lg': '0 12px 24px -8px rgb(17 24 17 / 0.10), 0 4px 8px -4px rgb(17 24 17 / 0.06)',
-        'impa-xl': '0 24px 48px -12px rgb(17 24 17 / 0.14)',
-        'impa-ring': '0 0 0 4px rgb(23 207 23 / 0.15)',
+        'impa-xs':   '0 1px 2px 0 rgb(10 24 14 / 0.04)',
+        'impa-sm':   '0 1px 3px 0 rgb(10 24 14 / 0.06), 0 1px 2px -1px rgb(10 24 14 / 0.04)',
+        'impa-md':   '0 6px 16px -4px rgb(10 24 14 / 0.08), 0 3px 6px -3px rgb(10 24 14 / 0.05)',
+        'impa-lg':   '0 16px 32px -8px rgb(10 24 14 / 0.12), 0 6px 12px -4px rgb(10 24 14 / 0.06)',
+        'impa-xl':   '0 28px 56px -12px rgb(10 24 14 / 0.18), 0 12px 20px -8px rgb(10 24 14 / 0.08)',
+        'impa-glow': '0 12px 32px -8px rgb(23 207 23 / 0.32)',
+        'impa-ring': '0 0 0 4px rgb(23 207 23 / 0.18)',
+        'impa-ring-soft': '0 0 0 4px rgb(23 207 23 / 0.10)',
+        'impa-inner': 'inset 0 1px 0 0 rgb(255 255 255 / 0.6)',
+      },
+      transitionTimingFunction: {
+        'impa':      'cubic-bezier(0.22, 1, 0.36, 1)',
+        'impa-out':  'cubic-bezier(0.16, 1, 0.3, 1)',
+        'impa-in':   'cubic-bezier(0.4, 0, 1, 1)',
+      },
+      backgroundImage: {
+        'impa-mesh':
+          'radial-gradient(60% 70% at 12% 18%, rgba(23,207,23,0.18), transparent 60%), radial-gradient(50% 60% at 92% 6%, rgba(63,210,63,0.12), transparent 60%), radial-gradient(70% 80% at 80% 100%, rgba(168,241,168,0.18), transparent 60%), linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%)',
+        'impa-cta':
+          'linear-gradient(135deg, #17cf17 0%, #11a611 100%)',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
