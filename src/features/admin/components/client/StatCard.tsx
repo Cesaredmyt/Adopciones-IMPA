@@ -2,7 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function StatCard({
   label,
@@ -19,6 +19,23 @@ export function StatCard({
 }) {
   const hasAlert = value > 0 && label !== "Mascotas adoptables";
 
+  // Pseudo-sparkline (deterministic per label)
+  const seed = label.length;
+  const points = Array.from({ length: 12 }, (_, i) => {
+    const v = Math.sin((seed + i) * 0.7) * 0.5 + 0.5;
+    return v;
+  });
+  const max = Math.max(...points);
+  const min = Math.min(...points);
+  const norm = points.map((p) => (p - min) / (max - min || 1));
+  const w = 100;
+  const h = 28;
+  const stepX = w / (points.length - 1);
+  const path = norm
+    .map((v, i) => `${i === 0 ? "M" : "L"} ${(i * stepX).toFixed(1)} ${(h - v * h).toFixed(1)}`)
+    .join(" ");
+  const area = `${path} L ${w} ${h} L 0 ${h} Z`;
+
   return (
     <button
       type="button"
@@ -29,17 +46,20 @@ export function StatCard({
         "hover:-translate-y-0.5 hover:shadow-impa-lg",
         "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20",
         hasAlert
-          ? "border-impa-200 bg-gradient-to-br from-white via-impa-50/50 to-impa-100/30 hover:border-impa-300"
+          ? "border-impa-200 bg-gradient-to-br from-white via-impa-50/40 to-impa-100/30 hover:border-impa-300"
           : "border-impa-line bg-gradient-to-br from-white to-impa-surface-2/60 hover:border-impa-line-strong"
       )}
     >
       {/* Decorative blob */}
       <span
         className={cn(
-          "pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-          hasAlert ? "bg-impa-300/30" : "bg-impa-200/25"
+          "pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500",
+          hasAlert ? "bg-impa-300/40" : "bg-impa-200/30"
         )}
       />
+
+      {/* Top highlight line */}
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
 
       <div className="relative flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -53,7 +73,7 @@ export function StatCard({
 
         <div
           className={cn(
-            "grid place-items-center w-12 h-12 rounded-xl border shrink-0 transition-transform duration-300 group-hover:scale-105",
+            "grid place-items-center w-11 h-11 rounded-xl border shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
             color ?? "bg-impa-50 border-impa-200 text-impa-600"
           )}
         >
@@ -61,9 +81,30 @@ export function StatCard({
         </div>
       </div>
 
-      <div className="relative mt-4 flex items-center gap-1.5 text-xs font-semibold text-impa-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-        Ver detalle
-        <ArrowRight size={12} />
+      {/* Sparkline + CTA */}
+      <div className="relative mt-4 flex items-end justify-between gap-3">
+        <svg viewBox={`0 0 ${w} ${h}`} className="h-7 w-24 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+          <defs>
+            <linearGradient id={`spark-${seed}`} x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="rgb(23,207,23)" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="rgb(23,207,23)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d={area} fill={`url(#spark-${seed})`} />
+          <path
+            d={path}
+            fill="none"
+            stroke="rgb(17,166,17)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+
+        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-impa-600 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          Ver
+          <ArrowUpRight size={12} />
+        </span>
       </div>
     </button>
   );

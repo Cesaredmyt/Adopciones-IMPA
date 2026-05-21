@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Header";
-import { Heart, MapPin } from "lucide-react";
+import { Heart, MapPin, Phone, Mail, Facebook, Instagram, ArrowUpRight } from "lucide-react";
 
 export default function MarketingLayout({
   children,
@@ -9,92 +9,174 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--impa-bg)]">
+    <div className="min-h-screen flex flex-col bg-impa-bg">
       <Navbar />
       <main className="flex-1 w-full overflow-x-hidden">{children}</main>
 
-      <footer className="border-t border-impa-line bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-3">
-              <Image
-                src="/impa-isotipo.svg"
-                alt="IMPA"
-                width={36}
-                height={36}
-                className="rounded-lg shadow-impa-xs"
-              />
-              <span className="font-bold text-lg text-impa-text">IMPA</span>
+      {/* ============ FOOTER PREMIUM ============ */}
+      <footer className="relative overflow-hidden border-t border-impa-line bg-white">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/60 to-transparent" />
+
+        {/* Ambient mesh */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-50">
+          <div className="absolute -top-20 -left-20 w-[420px] h-[420px] rounded-full bg-impa-100/60 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-[380px] h-[380px] rounded-full bg-impa-50 blur-3xl" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-12 gap-10">
+          {/* Brand block */}
+          <div className="md:col-span-5">
+            <Link href="/" className="inline-flex items-center gap-2.5 group">
+              <span className="grid place-items-center w-11 h-11 rounded-2xl bg-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.04]">
+                <Image
+                  src="/impa-isotipo.svg"
+                  alt="IMPA"
+                  width={28}
+                  height={28}
+                />
+              </span>
+              <span className="font-bold text-xl text-impa-text-strong tracking-tight">
+                IMPA
+              </span>
             </Link>
-            <p className="text-sm text-impa-muted leading-relaxed max-w-sm">
+            <p className="mt-4 text-sm text-impa-muted leading-relaxed max-w-md">
               Instituto Michoacano de Protección Animal — promovemos la adopción
               responsable, la esterilización gratuita y el bienestar animal en
               Michoacán.
             </p>
-            <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-impa-muted">
-              <MapPin size={13} />
-              Morelia, Michoacán · México
-            </p>
+
+            <div className="mt-5 space-y-2.5 text-sm">
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-impa-muted hover:text-impa-700 transition-colors duration-150 cursor-pointer group"
+              >
+                <span className="grid place-items-center w-8 h-8 rounded-lg bg-impa-50 border border-impa-100 text-impa-600 group-hover:bg-impa-100 transition-colors duration-150">
+                  <MapPin size={14} />
+                </span>
+                Morelia, Michoacán · México
+              </a>
+              <a
+                href="tel:+524434000000"
+                className="inline-flex items-center gap-2 text-impa-muted hover:text-impa-700 transition-colors duration-150 cursor-pointer group"
+              >
+                <span className="grid place-items-center w-8 h-8 rounded-lg bg-impa-50 border border-impa-100 text-impa-600 group-hover:bg-impa-100 transition-colors duration-150">
+                  <Phone size={14} />
+                </span>
+                +52 (443) 400 0000
+              </a>
+              <a
+                href="mailto:contacto@impa.org.mx"
+                className="inline-flex items-center gap-2 text-impa-muted hover:text-impa-700 transition-colors duration-150 cursor-pointer group"
+              >
+                <span className="grid place-items-center w-8 h-8 rounded-lg bg-impa-50 border border-impa-100 text-impa-600 group-hover:bg-impa-100 transition-colors duration-150">
+                  <Mail size={14} />
+                </span>
+                contacto@impa.org.mx
+              </a>
+            </div>
+
+            <div className="mt-5 flex items-center gap-2">
+              {[
+                { icon: Facebook, label: "Facebook" },
+                { icon: Instagram, label: "Instagram" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href="#"
+                  aria-label={s.label}
+                  className="grid place-items-center w-9 h-9 rounded-lg bg-white border border-impa-line text-impa-muted hover:text-impa-700 hover:border-impa-300 hover:bg-impa-50 transition-colors duration-150 cursor-pointer shadow-impa-xs"
+                >
+                  <s.icon size={15} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold text-impa-text mb-3">
+          {/* Links */}
+          <div className="md:col-span-2">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.1em] text-impa-quiet mb-4">
               Explora
             </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/dashboards/mascotas"
-                  className="text-impa-muted hover:text-impa-700 transition"
-                >
-                  Mascotas en adopción
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/nosotros"
-                  className="text-impa-muted hover:text-impa-700 transition"
-                >
-                  Sobre IMPA
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/register"
-                  className="text-impa-muted hover:text-impa-700 transition"
-                >
-                  Crear cuenta
-                </Link>
-              </li>
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { href: "/dashboards/mascotas", label: "Mascotas en adopción" },
+                { href: "/nosotros", label: "Sobre IMPA" },
+                { href: "/register", label: "Crear cuenta" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="inline-flex items-center gap-1 text-impa-muted hover:text-impa-700 transition-colors duration-150 cursor-pointer group"
+                  >
+                    {l.label}
+                    <ArrowUpRight
+                      size={12}
+                      className="opacity-0 -translate-x-0.5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150"
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold text-impa-text mb-3">
+          <div className="md:col-span-2">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.1em] text-impa-quiet mb-4">
               Acceso
             </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/login"
-                  className="text-impa-muted hover:text-impa-700 transition"
-                >
-                  Iniciar sesión
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/recuperacion"
-                  className="text-impa-muted hover:text-impa-700 transition"
-                >
-                  Recuperar contraseña
-                </Link>
-              </li>
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { href: "/login", label: "Iniciar sesión" },
+                { href: "/recuperacion", label: "Recuperar contraseña" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="inline-flex items-center gap-1 text-impa-muted hover:text-impa-700 transition-colors duration-150 cursor-pointer group"
+                  >
+                    {l.label}
+                    <ArrowUpRight
+                      size={12}
+                      className="opacity-0 -translate-x-0.5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150"
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* Newsletter / CTA */}
+          <div className="md:col-span-3">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.1em] text-impa-quiet mb-4">
+              Mantente al día
+            </h4>
+            <p className="text-sm text-impa-muted mb-3 leading-relaxed">
+              Recibe noticias sobre adopciones, campañas y eventos.
+            </p>
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <input
+                type="email"
+                placeholder="tu@correo.com"
+                className="flex-1 min-w-0 h-10 px-3 rounded-lg border border-impa-line bg-white text-sm text-impa-text placeholder:text-impa-subtle shadow-impa-xs hover:border-impa-300 focus-visible:outline-none focus-visible:border-impa-500 focus-visible:ring-4 focus-visible:ring-impa-500/15 transition-all duration-200"
+              />
+              <button
+                type="submit"
+                className="h-10 px-3.5 rounded-lg bg-impa-cta text-white font-semibold text-xs shadow-impa-sm hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 cursor-pointer"
+              >
+                Suscribir
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className="border-t border-impa-line">
+        {/* Bottom strip */}
+        <div className="relative border-t border-impa-line bg-impa-surface-2/60">
           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-impa-muted">
             <p>© {new Date().getFullYear()} IMPA. Todos los derechos reservados.</p>
             <p className="inline-flex items-center gap-1">
