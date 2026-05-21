@@ -7,7 +7,64 @@
 @import "tailwindcss";
 
 /* ============================================================
-   IMPA Brand Tokens
+   Tailwind v4 @theme — Tokens IMPA registrados como utilidades
+   (sin esto las clases bg-impa-*, text-impa-*, border-impa-*
+    NO se generan y la app se ve blanca / rota)
+   ============================================================ */
+@theme {
+  /* Brand verde IMPA */
+  --color-impa-50:  #ecfdec;
+  --color-impa-100: #d3f9d3;
+  --color-impa-200: #a8f1a8;
+  --color-impa-300: #74e574;
+  --color-impa-400: #3fd23f;
+  --color-impa-500: #17cf17;
+  --color-impa-600: #11a611;
+  --color-impa-700: #0f830f;
+  --color-impa-800: #0d660d;
+  --color-impa-900: #0a4f0a;
+
+  /* Superficies y semánticos */
+  --color-impa-bg:           #eef3ee;
+  --color-impa-bg-elev:      #f4f8f4;
+  --color-impa-surface:      #ffffff;
+  --color-impa-surface-2:    #f3f7f3;
+  --color-impa-surface-3:    #e9efe9;
+  --color-impa-card:         #ffffff;
+  --color-impa-tinted:       #effaef;
+
+  /* Texto */
+  --color-impa-text:         #0f160f;
+  --color-impa-text-strong:  #07120a;
+  --color-impa-muted:        #586e58;
+  --color-impa-subtle:       #7a8e7a;
+  --color-impa-quiet:        #95a795;
+
+  /* Bordes */
+  --color-impa-line:         #dbe5db;
+  --color-impa-line-strong:  #bfd0bf;
+  --color-impa-line-faint:   #e7eee7;
+
+  /* Sombras IMPA */
+  --shadow-impa-xs:   0 1px 2px 0 rgb(10 24 14 / 0.04);
+  --shadow-impa-sm:   0 1px 3px 0 rgb(10 24 14 / 0.06), 0 1px 2px -1px rgb(10 24 14 / 0.04);
+  --shadow-impa-md:   0 6px 16px -4px rgb(10 24 14 / 0.08), 0 3px 6px -3px rgb(10 24 14 / 0.05);
+  --shadow-impa-lg:   0 16px 32px -8px rgb(10 24 14 / 0.12), 0 6px 12px -4px rgb(10 24 14 / 0.06);
+  --shadow-impa-xl:   0 28px 56px -12px rgb(10 24 14 / 0.18), 0 12px 20px -8px rgb(10 24 14 / 0.08);
+  --shadow-impa-glow: 0 12px 32px -8px rgb(23 207 23 / 0.32);
+
+  /* Easings IMPA */
+  --ease-impa:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-impa-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-impa-in:  cubic-bezier(0.4, 0, 1, 1);
+
+  /* Imágenes de fondo (gradient CTA) */
+  --background-image-impa-cta: linear-gradient(135deg, #17cf17 0%, #11a611 100%);
+}
+
+/* ============================================================
+   IMPA Brand Tokens (CSS vars de respaldo para utilidades
+   personalizadas como .impa-card, etc.)
    ============================================================ */
 :root {
   /* Brand — Verde IMPA */

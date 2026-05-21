@@ -502,18 +502,6 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 animate-fade-in">
           <div className="mx-auto max-w-[1400px]">{children}</div>
         </main>
-
-        <footer className="border-t border-impa-line bg-white/60">
-          <div className="max-w-[1400px] mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-impa-muted">
-            <p>
-              © {new Date().getFullYear()}{" "}
-              <span className="font-semibold text-impa-text">
-                Instituto Michoacano de Protección Animal
-              </span>
-            </p>
-            <p>Panel administrativo · v2.0</p>
-          </div>
-        </footer>
       </div>
     </div>
   );
