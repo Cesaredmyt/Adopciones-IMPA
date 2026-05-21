@@ -29,9 +29,9 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
     }
 
     return (
-        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#111811]">Sube tus documentos</h3>
-            <p className="mt-1 text-sm text-[#7a5c49]">
+        <section className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-sm">
+            <h3 className="text-base font-bold text-impa-text tracking-tight">Sube tus documentos</h3>
+            <p className="mt-1 text-sm text-impa-muted">
                 Adjunta los archivos requeridos. Si algún documento fue rechazado, podrás volver a subir sólo ese.
             </p>
 
@@ -45,23 +45,30 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
                     return (
                         <div
                             key={doc.id}
-                            className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-[#f0e6dc] bg-[#fffaf4] p-3"
+                            className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-impa-line bg-impa-surface-2/60 p-3 transition-all duration-200 hover:bg-impa-tinted hover:border-impa-300"
                         >
                             <div className="flex-1">
-                                <p className="text-sm font-extrabold text-[#111811]">{doc.label}</p>
+                                <p className="text-sm font-bold text-impa-text">{doc.label}</p>
                                 {estado === "aprobado" && (
-                                    <p className="text-xs text-green-700 mt-1">Documento Aprobado</p>
+                                    <p className="inline-flex items-center gap-1.5 text-xs text-emerald-700 mt-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                        Documento Aprobado
+                                    </p>
                                 )}
                                 {estado === "pendiente" && (
-                                    <p className="text-xs text-impa-700 mt-1">Documento En revisión</p>
+                                    <p className="inline-flex items-center gap-1.5 text-xs text-amber-700 mt-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                                        Documento En revisión
+                                    </p>
                                 )}
                                 {estado === "rechazado" && (
-                                    <p className="text-xs text-red-700 mt-1">
+                                    <p className="inline-flex items-start gap-1.5 text-xs text-red-700 mt-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1 shrink-0" />
                                         Documento Rechazado — {motivo || "Verifica el motivo y súbelo nuevamente."}
                                     </p>
                                 )}
                                 {archivos[doc.id] && (
-                                    <p className="text-xs text-[#6b4f40] mt-1 truncate max-w-[240px]">
+                                    <p className="text-xs text-impa-muted mt-1 truncate max-w-[240px]">
                                         Nuevo archivo: {archivos[doc.id]?.name}
                                     </p>
                                 )}
@@ -70,12 +77,12 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
                                         href={info.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-xs text-[#17cf17] underline mt-1 hover:text-[#8c3f1e]"
+                                        className="inline-block text-xs text-impa-700 font-semibold underline underline-offset-4 mt-1 hover:text-impa-800"
                                     >
                                         Ver archivo actual
                                     </a>
                                 ) : (
-                                    <p className="text-xs text-[#b09a8c] mt-1 italic">Sin enlace válido</p>
+                                    <p className="text-xs text-impa-quiet mt-1 italic">Sin enlace válido</p>
                                 )}
                             </div>
 

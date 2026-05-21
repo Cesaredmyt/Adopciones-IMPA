@@ -25,9 +25,10 @@ export default function VerificarEmailPage() {
           </Link>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8">
+        <div className="relative bg-white rounded-2xl shadow-impa-xl border border-impa-line p-7 sm:p-8 overflow-hidden">
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent" />
           <div className="text-center mb-6">
-            <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-impa-50 text-impa-600 mb-4">
+            <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-gradient-to-br from-impa-50 to-white border border-impa-200 text-impa-600 mb-4 shadow-impa-xs">
               <Mail size={28} />
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-impa-text">
@@ -61,13 +62,13 @@ export default function VerificarEmailPage() {
           <div className="mt-6 space-y-2.5">
             <Link
               href="/login"
-              className="w-full h-11 inline-flex items-center justify-center rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 transition"
+              className="w-full h-12 inline-flex items-center justify-center rounded-xl bg-impa-cta text-white font-semibold text-sm shadow-impa-md hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 ease-impa-out cursor-pointer"
             >
               Ir a iniciar sesión
             </Link>
             <Link
               href="/"
-              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm hover:bg-impa-50 transition"
+              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm transition-all duration-200 cursor-pointer"
             >
               <ArrowLeft size={14} />
               Volver al inicio

@@ -22,15 +22,15 @@
   --impa-800: #0d660d;
   --impa-900: #0a4f0a;
 
-  /* Surfaces — Sistema de capas */
-  --impa-bg:           #f3f6f3;   /* Page background (más cálido y diferenciado) */
-  --impa-bg-elevated: #f8faf8;   /* Elevated regions sobre bg */
+  /* Surfaces — Sistema de capas (con más profundidad) */
+  --impa-bg:           #eef3ee;   /* Page background — más tintado, menos blanco */
+  --impa-bg-elevated: #f4f8f4;   /* Elevated regions sobre bg */
   --impa-surface-1:   #ffffff;   /* Card por defecto */
-  --impa-surface-2:   #f6f8f6;   /* Subsection / muted card */
-  --impa-surface-3:   #eef2ee;   /* Hover surface / chip / tag */
+  --impa-surface-2:   #f3f7f3;   /* Subsection / muted card */
+  --impa-surface-3:   #e9efe9;   /* Hover surface / chip / tag */
   --impa-card:         #ffffff;
-  --impa-muted-bg:     #f0f4f0;
-  --impa-tinted-bg:    #f6fbf6;   /* Suave tinte verde */
+  --impa-muted-bg:     #edf2ed;
+  --impa-tinted-bg:    #effaef;   /* Tinte verde más perceptible */
 
   /* Text */
   --impa-text:         #0f160f;
@@ -39,10 +39,10 @@
   --impa-text-subtle:  #7a8e7a;
   --impa-text-quiet:   #95a795;
 
-  /* Borders */
-  --impa-border:        #e2eae2;
-  --impa-border-strong: #c8d7c8;
-  --impa-border-faint:  #eef3ee;
+  /* Borders — más definidos para mejor contraste */
+  --impa-border:        #dbe5db;
+  --impa-border-strong: #bfd0bf;
+  --impa-border-faint:  #e7eee7;
 
   /* Feedback */
   --impa-success:      #16a34a;
@@ -130,8 +130,9 @@ body {
   margin: 0;
   padding: 0;
   background:
-    radial-gradient(1200px 600px at 88% -8%, rgba(23,207,23,0.06), transparent 55%),
-    radial-gradient(900px 500px at -10% 8%, rgba(23,207,23,0.04), transparent 60%),
+    radial-gradient(1200px 600px at 88% -8%, rgba(23,207,23,0.09), transparent 55%),
+    radial-gradient(900px 500px at -10% 8%, rgba(23,207,23,0.07), transparent 60%),
+    radial-gradient(800px 400px at 50% 105%, rgba(168,241,168,0.10), transparent 60%),
     var(--impa-bg);
   background-attachment: fixed;
   color: var(--impa-text);

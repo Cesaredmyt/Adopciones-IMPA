@@ -316,7 +316,7 @@ Gracias por abrir tu corazón.
               )}
 
               {m.fecha_ingreso && (
-                <p className="text-xs text-slate-500 mt-4">
+                <p className="text-xs text-impa-quiet mt-4">
                   Fecha de ingreso:{" "}
                   {new Date(m.fecha_ingreso).toLocaleDateString("es-MX")}
                 </p>
@@ -331,7 +331,7 @@ Gracias por abrir tu corazón.
                   />
                   <Button
                     variant="ghost"
-                    className="mt-2 text-[#17cf17]"
+                    className="mt-2 text-impa-700 hover:text-impa-800"
                     onClick={handleVerQR}
                   >
                     Ver QR
@@ -340,7 +340,7 @@ Gracias por abrir tu corazón.
                   <div className="flex items-center gap-3 mt-2">
                     <Button
                       variant="ghost"
-                      className="text-[#17cf17]"
+                      className="text-impa-700 hover:text-impa-800"
                       onClick={handleDescargarQR}
                     >
                       Descargar
@@ -348,7 +348,7 @@ Gracias por abrir tu corazón.
 
                     <Button
                       variant="ghost"
-                      className="text-[#17cf17]"
+                      className="text-impa-700 hover:text-impa-800"
                       onClick={handleCompartirQR}
                     >
                       Compartir
@@ -377,7 +377,7 @@ Gracias por abrir tu corazón.
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 px-4"
+                  className="fixed inset-0 z-[10000] flex items-center justify-center bg-impa-text-strong/55 backdrop-blur-md px-4"
                   onClick={() => setShowQrModal(false)}
                 >
                   <motion.div
@@ -386,24 +386,25 @@ Gracias por abrir tu corazón.
                     exit={{ scale: 0.9, opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-white rounded-2xl p-6 shadow-2xl max-w-sm w-full flex flex-col items-center"
+                    className="bg-white rounded-2xl p-6 shadow-impa-xl border border-impa-line max-w-sm w-full flex flex-col items-center"
                   >
                     <div className="w-full flex justify-between items-center mb-4">
-                      <h4 className="text-sm font-extrabold text-[#2B1B12]">
+                      <h4 className="text-sm font-bold text-impa-text">
                         Código QR de {m.nombre}
                       </h4>
                       <button
                         onClick={() => setShowQrModal(false)}
-                        className="p-1 rounded-full hover:bg-slate-100 transition"
+                        aria-label="Cerrar"
+                        className="grid place-items-center w-8 h-8 rounded-lg text-impa-muted hover:text-impa-text hover:bg-impa-surface-3 transition-colors duration-150 cursor-pointer"
                       >
-                        <X className="w-4 h-4 text-slate-600" />
+                        <X className="w-4 h-4" />
                       </button>
                     </div>
 
                     <img
                       src={qrUrl}
                       alt={`QR de ${m.nombre}`}
-                      className="w-48 h-48 object-contain border rounded-xl p-3 bg-white shadow-md"
+                      className="w-48 h-48 object-contain border border-impa-line rounded-xl p-3 bg-white shadow-impa-sm"
                     />
                   </motion.div>
                 </motion.div>

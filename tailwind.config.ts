@@ -57,13 +57,13 @@ const config: Config = {
           900: '#0a4f0a',
 
           // Surfaces & semantic
-          bg:           '#f3f6f3',
-          'bg-elev':    '#f8faf8',
+          bg:           '#eef3ee',
+          'bg-elev':    '#f4f8f4',
           surface:      '#ffffff',
-          'surface-2':  '#f6f8f6',
-          'surface-3':  '#eef2ee',
+          'surface-2':  '#f3f7f3',
+          'surface-3':  '#e9efe9',
           card:         '#ffffff',
-          tinted:       '#f6fbf6',
+          tinted:       '#effaef',
 
           // Text
           text:        '#0f160f',
@@ -73,9 +73,9 @@ const config: Config = {
           quiet:       '#95a795',
 
           // Borders
-          line:         '#e2eae2',
-          'line-strong':'#c8d7c8',
-          'line-faint': '#eef3ee',
+          line:         '#dbe5db',
+          'line-strong':'#bfd0bf',
+          'line-faint': '#e7eee7',
         },
       },
       borderRadius: {

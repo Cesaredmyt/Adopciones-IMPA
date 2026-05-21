@@ -2,6 +2,7 @@
 
 import { Clock, CalendarClock, CheckCircle, XCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { cn } from "@/lib/utils";
 
 export type Cita = {
   id: string;
@@ -29,25 +30,77 @@ function Th(props: React.HTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
       {...props}
-      className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#111811] ${props.className || ""}`}
+      className={cn(
+        "px-4 py-3 text-[11px] font-bold uppercase tracking-[0.06em] text-impa-muted",
+        props.className
+      )}
     />
   );
 }
 
 const badgeAsistencia = (a: Cita["asistencia"]) => {
   if (a === "asistio")
-    return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-green-100 text-green-700">asistió</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        asistió
+      </span>
+    );
   if (a === "no_asistio_no_apto")
-    return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-red-100 text-red-700">no asistió / no apto</span>;
-  return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-gray-100 text-gray-600">pendiente</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 bg-red-50 text-red-700 border border-red-200">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+        no asistió / no apto
+      </span>
+    );
+  return (
+    <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 bg-impa-surface-3 text-impa-muted border border-impa-line">
+      pendiente
+    </span>
+  );
 };
 
 const badgeInteraccion = (i: Cita["interaccion"]) => {
   if (i === "buena_aprobada")
-    return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-green-50 text-green-700 border border-green-200">aprobada</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        aprobada
+      </span>
+    );
   if (i === "no_apta")
-    return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-red-50 text-red-700 border border-red-200">no apta</span>;
-  return <span className="text-xs font-semibold rounded-full px-2 py-1 bg-gray-50 text-gray-600 border border-gray-200">—</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 bg-red-50 text-red-700 border border-red-200">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+        no apta
+      </span>
+    );
+  return (
+    <span className="inline-flex items-center text-xs font-semibold rounded-full px-2.5 py-1 bg-impa-surface-3 text-impa-quiet border border-impa-line">
+      —
+    </span>
+  );
+};
+
+const badgeEstado = (estado: Cita["estado"]) => {
+  const map = {
+    programada: "bg-amber-50 text-amber-700 border-amber-200",
+    completada: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    cancelada: "bg-impa-surface-3 text-impa-muted border-impa-line",
+  } as const;
+
+  const dot = {
+    programada: "bg-amber-500",
+    completada: "bg-emerald-500",
+    cancelada: "bg-impa-quiet",
+  } as const;
+
+  return (
+    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-2.5 py-1 border ${map[estado]}`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${dot[estado]}`} />
+      {estado}
+    </span>
+  );
 };
 
 export default function CitasTable({
@@ -59,85 +112,66 @@ export default function CitasTable({
   const isMobile = useIsMobile();
 
   return (
-    <div className="bg-white rounded-2xl border border-[#dce5dc] shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-impa-line shadow-impa-sm overflow-hidden">
 
-      {/* ===========================
-           MOBILE VIEW - CARDS
-      ============================ */}
+      {/* MOBILE VIEW - CARDS */}
       {isMobile && (
         <div className="p-3 space-y-3 md:hidden">
-          {items.map((cita) => (
+          {items.map((cita: any) => (
             <div
               key={cita.id}
-              className="rounded-2xl border border-[#dce5dc] bg-white p-4 shadow-sm
-              flex flex-col gap-2 max-w-full overflow-hidden"
+              className="rounded-2xl border border-impa-line bg-white p-4 shadow-impa-xs flex flex-col gap-2 max-w-full overflow-hidden transition-all duration-200 hover:shadow-impa-md"
             >
-              {/* Usuario */}
-              <p className="font-semibold text-[#2B1B12] text-base break-words max-w-full">
+              <p className="font-semibold text-impa-text text-base break-words max-w-full">
                 {[
                   cita.usuario?.nombres,
                   cita.usuario?.apellido_paterno,
                   cita.usuario?.apellido_materno,
                 ].filter(Boolean).join(" ")}
-
               </p>
-              <p className="text-sm text-[#6b4f40] break-all max-w-full">
+              <p className="text-sm text-impa-muted break-all max-w-full">
                 {cita.usuario?.email}
               </p>
 
-              {/* Mascota */}
-              <p className="mt-1 text-sm font-medium text-[#2B1B12] break-normal">
-                Mascota: {cita.mascota?.nombre ?? "—"}
+              <p className="mt-1 text-sm font-medium text-impa-text">
+                Mascota: <span className="font-semibold">{cita.mascota?.nombre ?? "—"}</span>
               </p>
 
-              {/* Fecha/Hora */}
-              <p className="text-sm text-[#6b4f40] whitespace-nowrap">
+              <p className="text-sm text-impa-muted whitespace-nowrap flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5 text-impa-600" />
                 {new Date(cita.fecha_cita).toLocaleDateString("es-MX")} — {cita.hora_cita.slice(0, 5)}
               </p>
 
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2 mt-2 max-w-full break-words">
-                {/* Estado */}
-                <span
-                  className={`px-2 py-1 rounded-md text-xs font-semibold ${cita.estado === "programada"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : cita.estado === "completada"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-gray-100 text-gray-700"
-                    }`}
-                >
-                  {cita.estado}
-                </span>
-
-                {/* Asistencia */}
+              <div className="flex flex-wrap gap-2 mt-2 max-w-full">
+                {badgeEstado(cita.estado)}
                 {badgeAsistencia(cita.asistencia)}
-
-                {/* Interacción */}
                 {badgeInteraccion(cita.interaccion)}
               </div>
 
-              {/* Acciones */}
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {cita.estado === "programada" && !cita.asistencia && !cita.interaccion && (
                   <>
                     <button
-                      className="text-sm font-semibold text-[#17cf17]"
+                      className="inline-flex items-center gap-1 rounded-lg border border-impa-line px-2.5 py-1.5 text-xs font-semibold text-impa-text hover:bg-impa-50 hover:border-impa-300 transition-colors duration-150 cursor-pointer"
                       onClick={() => onReprogramar(cita)}
                     >
+                      <CalendarClock size={13} />
                       Reprogramar
                     </button>
 
                     <button
-                      className="text-sm font-semibold text-green-600"
+                      className="inline-flex items-center gap-1 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs font-semibold text-emerald-700 hover:bg-emerald-100 transition-colors duration-150 cursor-pointer"
                       onClick={() => onEvaluar(cita)}
                     >
+                      <CheckCircle size={13} />
                       Evaluar
                     </button>
 
                     <button
-                      className="text-sm font-semibold text-red-600"
+                      className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-100 transition-colors duration-150 cursor-pointer"
                       onClick={() => onCancelar(cita.id)}
                     >
+                      <XCircle size={13} />
                       Cancelar
                     </button>
                   </>
@@ -147,21 +181,19 @@ export default function CitasTable({
           ))}
 
           {items.length === 0 && (
-            <div className="text-center py-8 text-[#6b4f40]">
+            <div className="text-center py-8 text-impa-muted text-sm">
               No hay citas para mostrar
             </div>
           )}
         </div>
       )}
 
-      {/* ===========================
-           DESKTOP VIEW - TABLE
-      ============================ */}
+      {/* DESKTOP VIEW - TABLE */}
       {!isMobile && (
-        <div className="overflow-x-auto hidden md:block">
+        <div className="overflow-x-auto hidden md:block custom-scroll">
           <table className="w-full border-collapse text-sm">
             <thead className="sticky top-0 z-[1]">
-              <tr className="bg-[#FFF4E7] border-y border-[#dce5dc]">
+              <tr className="bg-gradient-to-b from-impa-surface-2 to-impa-surface-2/40 border-b border-impa-line">
                 <Th className="text-left">Usuario</Th>
                 <Th className="text-left">Mascota</Th>
                 <Th className="text-left">Fecha</Th>
@@ -173,31 +205,30 @@ export default function CitasTable({
               </tr>
             </thead>
 
-            <tbody>
-              {items.map((cita, idx) => (
+            <tbody className="divide-y divide-impa-line-faint">
+              {items.map((cita: any) => (
                 <tr
                   key={cita.id}
-                  className={`border-b border-[#F3E8DC] ${idx % 2 === 0 ? "bg-white" : "bg-[#FFFDF9]"
-                    }`}
+                  className="group bg-white hover:bg-impa-tinted/60 transition-colors duration-150"
                 >
-                  {/* Usuario */}
-                  <td className="px-3 py-3 text-[#2B1B12] font-medium">
-                    {[
-                      cita.usuario?.nombres,
-                      cita.usuario?.apellido_paterno,
-                      cita.usuario?.apellido_materno,
-                    ].filter(Boolean).join(" ")}
-
-                    <div className="text-xs text-[#8b6f5d]">{cita.usuario?.email}</div>
+                  <td className="px-4 py-3 text-impa-text font-medium">
+                    <div className="leading-tight">
+                      <div className="group-hover:text-impa-700 transition-colors duration-150">
+                        {[
+                          cita.usuario?.nombres,
+                          cita.usuario?.apellido_paterno,
+                          cita.usuario?.apellido_materno,
+                        ].filter(Boolean).join(" ")}
+                      </div>
+                      <div className="text-xs text-impa-muted mt-0.5">{cita.usuario?.email}</div>
+                    </div>
                   </td>
 
-                  {/* Mascota */}
-                  <td className="px-3 py-3 text-[#2B1B12]">
+                  <td className="px-4 py-3 text-impa-text">
                     {cita.mascota?.nombre || "—"}
                   </td>
 
-                  {/* Fecha */}
-                  <td className="px-3 py-3 text-[#2B1B12]">
+                  <td className="px-4 py-3 text-impa-text">
                     {new Intl.DateTimeFormat("es-MX", {
                       day: "2-digit",
                       month: "2-digit",
@@ -206,56 +237,42 @@ export default function CitasTable({
                     }).format(new Date(cita.fecha_cita + "T00:00:00Z"))}
                   </td>
 
-
-                  {/* Hora */}
-                  <td className="px-3 py-3 text-[#2B1B12]">
-                    <Clock className="inline-block mr-1 h-3 w-3 text-[#17cf17]" />
-                    {(cita.hora_cita || "").slice(0, 5)}
-                  </td>
-
-                  {/* Estado */}
-                  <td className="px-3 py-3">
-                    <span
-                      className={`text-xs font-semibold rounded-full px-2 py-1 ${cita.estado === "programada"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : cita.estado === "completada"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-gray-200 text-gray-600"
-                        }`}
-                    >
-                      {cita.estado}
+                  <td className="px-4 py-3 text-impa-text">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock className="h-3.5 w-3.5 text-impa-600" />
+                      {(cita.hora_cita || "").slice(0, 5)}
                     </span>
                   </td>
 
-                  <td className="px-3 py-3">{badgeAsistencia(cita.asistencia)}</td>
-                  <td className="px-3 py-3">{badgeInteraccion(cita.interaccion)}</td>
+                  <td className="px-4 py-3">{badgeEstado(cita.estado)}</td>
+                  <td className="px-4 py-3">{badgeAsistencia(cita.asistencia)}</td>
+                  <td className="px-4 py-3">{badgeInteraccion(cita.interaccion)}</td>
 
-                  {/* Acciones */}
-                  <td className="px-3 py-3 text-right">
-                    <div className="flex flex-wrap gap-2 justify-end">
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex flex-wrap gap-1.5 justify-end opacity-80 group-hover:opacity-100 transition-opacity duration-150">
                       {cita.estado === "programada" && !cita.asistencia && !cita.interaccion && (
                         <>
                           <button
                             onClick={() => onReprogramar(cita)}
-                            className="flex items-center gap-1 rounded-md border border-[#dce5dc] px-2 py-1 text-xs font-medium text-[#2B1B12] hover:bg-[#FFF4E7]"
+                            className="inline-flex items-center gap-1 rounded-lg border border-impa-line px-2.5 py-1.5 text-xs font-semibold text-impa-text hover:bg-impa-50 hover:border-impa-300 transition-colors duration-150 cursor-pointer"
                           >
-                            <CalendarClock size={14} />
+                            <CalendarClock size={13} />
                             Reprogramar
                           </button>
 
                           <button
                             onClick={() => onEvaluar(cita)}
-                            className="flex items-center gap-1 rounded-md border border-emerald-200 px-2 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-50"
+                            className="inline-flex items-center gap-1 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs font-semibold text-emerald-700 hover:bg-emerald-100 transition-colors duration-150 cursor-pointer"
                           >
-                            <CheckCircle size={14} />
+                            <CheckCircle size={13} />
                             Evaluar
                           </button>
 
                           <button
                             onClick={() => onCancelar(cita.id)}
-                            className="flex items-center gap-1 rounded-md border border-red-200 px-2 py-1 text-xs font-semibold text-red-700 hover:bg-red-50"
+                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-100 transition-colors duration-150 cursor-pointer"
                           >
-                            <XCircle size={14} />
+                            <XCircle size={13} />
                             Cancelar
                           </button>
                         </>
@@ -267,8 +284,8 @@ export default function CitasTable({
 
               {items.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-3 py-10 text-center">
-                    <div className="text-[#6b4f40]">No hay citas para mostrar</div>
+                  <td colSpan={8} className="px-4 py-10 text-center">
+                    <div className="text-impa-muted text-sm">No hay citas para mostrar</div>
                   </td>
                 </tr>
               )}

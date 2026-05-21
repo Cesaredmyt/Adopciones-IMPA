@@ -12,9 +12,9 @@ const badgeVariants = cva(
         brand:
           "bg-impa-50 text-impa-700 border-impa-200",
         solid:
-          "bg-impa-500 text-white border-impa-500",
+          "bg-impa-cta text-white border-impa-600 shadow-impa-xs",
         outline:
-          "bg-white text-impa-text border-impa-line",
+          "bg-white text-impa-text border-impa-line shadow-impa-xs",
         success:
           "bg-emerald-50 text-emerald-700 border-emerald-200",
         warning:
@@ -44,6 +44,20 @@ const badgeVariants = cva(
   }
 );
 
+const dotColorByVariant: Record<string, string> = {
+  default: "bg-impa-quiet",
+  brand: "bg-impa-500",
+  solid: "bg-white",
+  outline: "bg-impa-quiet",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  danger: "bg-red-500",
+  info: "bg-sky-500",
+  neutral: "bg-slate-500",
+  female: "bg-pink-500",
+  male: "bg-blue-500",
+};
+
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeVariants> {
@@ -58,9 +72,10 @@ export function Badge({
   children,
   ...props
 }: BadgeProps) {
+  const dotCls = dotColorByVariant[variant ?? "default"] ?? "bg-current";
   return (
     <span className={cn(badgeVariants({ variant, size }), className)} {...props}>
-      {dot && <span className="impa-dot bg-current opacity-70" />}
+      {dot && <span className={cn("w-1.5 h-1.5 rounded-full", dotCls)} />}
       {children}
     </span>
   );

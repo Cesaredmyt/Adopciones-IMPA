@@ -63,9 +63,10 @@ export default function RecuperarContrasena() {
           </Link>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8">
+        <div className="relative bg-white rounded-2xl shadow-impa-xl border border-impa-line p-7 sm:p-8 overflow-hidden">
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent" />
           <div className="text-center mb-6">
-            <div className="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-impa-50 text-impa-600 mb-4">
+            <div className="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-impa-50 to-white border border-impa-200 text-impa-600 mb-4 shadow-impa-xs">
               <Mail size={24} />
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-impa-text">
@@ -112,14 +113,14 @@ export default function RecuperarContrasena() {
                 placeholder="tu@correo.com"
                 autoComplete="email"
                 required
-                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-[#638863] hover:border-impa-300 focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 transition-all"
+                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-tinted focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:bg-white transition-all duration-200"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 active:bg-impa-700 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full h-12 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-cta text-white font-semibold text-sm shadow-impa-md hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 ease-impa-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-impa-md cursor-pointer mt-2"
             >
               {loading ? (
                 <>
@@ -135,7 +136,7 @@ export default function RecuperarContrasena() {
           <div className="mt-6 pt-5 border-t border-impa-line text-center">
             <Link
               href="/login"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-impa-600 hover:text-impa-700 hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-impa-600 hover:text-impa-700 hover:underline underline-offset-4 transition-colors duration-150"
             >
               <ArrowLeft size={14} />
               Volver al inicio de sesión

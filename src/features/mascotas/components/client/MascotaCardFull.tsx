@@ -71,13 +71,14 @@ export default function MascotaCardFull({
   const coloresFormatted =
     m.colores?.map((c) => capitalize(c)).join(", ") || null;
 
-  // estilo suave café claro
+  // estilo de subtítulos de sección
   const tituloSuave = {
-    color: "#CDA285",
+    color: "#0f830f",
     fontWeight: 700,
-    fontSize: "1.05rem",
-    letterSpacing: "0.2px",
-    marginBottom: "10px",
+    fontSize: "0.78rem",
+    letterSpacing: "0.08em",
+    textTransform: "uppercase" as const,
+    marginBottom: "8px",
     display: "inline-block",
   };
 
@@ -88,7 +89,7 @@ export default function MascotaCardFull({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 py-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-impa-text-strong/55 backdrop-blur-md px-4 py-8"
           onClick={onClose}
         >
           <motion.article
@@ -96,11 +97,12 @@ export default function MascotaCardFull({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-[#FFF8F2] rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#17cf17]"
+            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-impa-xl grid md:grid-cols-2 overflow-hidden border border-impa-line"
             onClick={(e) => e.stopPropagation()}
           >
+            <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent z-10" />
             {/* IMAGEN */}
-            <div className="relative h-full bg-[#F4E5D5]">
+            <div className="relative h-full bg-impa-surface-2">
               <img
                 src={fotoSrc}
                 alt={m.nombre}
@@ -109,9 +111,10 @@ export default function MascotaCardFull({
 
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition"
+                aria-label="Cerrar"
+                className="absolute top-4 right-4 grid place-items-center w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full shadow-impa-md hover:bg-white hover:shadow-impa-lg transition-all duration-200 cursor-pointer"
               >
-                <X className="w-5 h-5 text-slate-700" />
+                <X className="w-5 h-5 text-impa-text" />
               </button>
 
               {/* Sexo + Estado juntos */}
@@ -143,29 +146,29 @@ export default function MascotaCardFull({
             </div>
 
             {/* INFO */}
-            <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-[#2B1B12] text-base">
+            <div className="flex flex-col p-6 md:p-8 overflow-y-auto custom-scroll max-h-[90vh] text-impa-text text-base bg-gradient-to-b from-white to-impa-surface-2/40">
 
               {/* SECCIÓN: Información general */}
               <h3 style={tituloSuave}>Información general</h3>
 
               <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 mb-6 mt-2">
                 <div>
-                  <dt className="font-semibold text-slate-700">Tamaño</dt>
+                  <dt className="font-semibold text-impa-muted">Tamaño</dt>
                   <dd className="capitalize">{m.tamano || "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Edad</dt>
+                  <dt className="font-semibold text-impa-muted">Edad</dt>
                   <dd>{m.edad ? `${m.edad} meses` : "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Peso</dt>
+                  <dt className="font-semibold text-impa-muted">Peso</dt>
                   <dd>{m.peso_kg ? `${m.peso_kg} kg` : "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Altura</dt>
+                  <dt className="font-semibold text-impa-muted">Altura</dt>
                   <dd>{m.altura_cm ? `${m.altura_cm} cm` : "—"}</dd>
                 </div>
               </dl>
@@ -175,26 +178,26 @@ export default function MascotaCardFull({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 mb-6 mt-2">
                 <div>
-                  <h4 className="font-semibold text-slate-700">
+                  <h4 className="font-semibold text-impa-muted">
                     Esterilizado
                   </h4>
                   <p>{m.esterilizado ? "Sí" : "No"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">Colores</h4>
+                  <h4 className="font-semibold text-impa-muted">Colores</h4>
                   <p>{coloresFormatted || "—"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">
+                  <h4 className="font-semibold text-impa-muted">
                     Personalidad
                   </h4>
                   <p>{capitalize(m.personalidad) || "—"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">
+                  <h4 className="font-semibold text-impa-muted">
                     Descripción física
                   </h4>
                   <p>{capitalize(m.descripcion_fisica) || "—"}</p>
@@ -205,13 +208,13 @@ export default function MascotaCardFull({
               {(m.lugar_rescate ||
                 m.condicion_ingreso ||
                 m.observaciones_medicas) && (
-                <div className="border-t border-slate-200 pt-4 mt-2">
+                <div className="border-t border-impa-line-faint pt-4 mt-2">
                   <h3 style={tituloSuave}>Datos médicos y rescate</h3>
 
                   <dl className="grid grid-cols-2 gap-x-4 gap-y-3 mt-2">
                     {m.lugar_rescate && (
                       <div>
-                        <dt className="font-semibold text-slate-700">
+                        <dt className="font-semibold text-impa-muted">
                           Lugar de rescate
                         </dt>
                         <dd>{capitalize(m.lugar_rescate)}</dd>
@@ -220,7 +223,7 @@ export default function MascotaCardFull({
 
                     {m.condicion_ingreso && (
                       <div>
-                        <dt className="font-semibold text-slate-700">
+                        <dt className="font-semibold text-impa-muted">
                           Condición al ingresar
                         </dt>
                         <dd>{capitalize(m.condicion_ingreso)}</dd>
@@ -229,7 +232,7 @@ export default function MascotaCardFull({
                   </dl>
 
                   {m.observaciones_medicas && (
-                    <p className="mt-2 text-slate-700">
+                    <p className="mt-2 text-impa-muted">
                       <strong>Observaciones:</strong>{" "}
                       {capitalize(m.observaciones_medicas)}
                     </p>
@@ -239,7 +242,7 @@ export default function MascotaCardFull({
 
               {/* QR */}
               {m.qr_code && (
-                <div className="mt-6 border-t border-slate-200 pt-4">
+                <div className="mt-6 border-t border-impa-line-faint pt-4">
                   <h3 style={tituloSuave}>Código QR</h3>
                   <div className="flex flex-col items-center gap-2 mt-2">
                     <img
@@ -250,7 +253,7 @@ export default function MascotaCardFull({
                       href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/mascotas-qr/${m.qr_code}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 text-sm underline"
+                      className="text-impa-700 hover:text-impa-800 text-sm font-semibold underline underline-offset-4"
                     >
                       Ver o descargar QR
                     </a>
@@ -260,7 +263,7 @@ export default function MascotaCardFull({
 
               {/* FECHA */}
               {m.fecha_ingreso && (
-                <p className="text-xs text-slate-500 mt-4">
+                <p className="text-xs text-impa-quiet mt-4">
                   Fecha de ingreso:{" "}
                   {new Date(m.fecha_ingreso).toLocaleDateString("es-MX")}
                 </p>

@@ -9,21 +9,29 @@ export default function DocumentosFilters({ filtro, onChange }: DocumentosFilter
   const filtros = ["todos", "pendiente", "aprobado", "rechazado"];
 
   return (
-    <div className="w-full overflow-x-auto no-scrollbar mt-4">
-      <div className="flex gap-3 min-w-max border-b border-[#dce5dc] pb-1">
-        {filtros.map((estado) => (
-          <button
-            key={estado}
-            onClick={() => onChange(estado)}
-            className={`whitespace-nowrap px-4 py-1.5 rounded-t-md text-sm font-semibold transition-all duration-200 border-b-2 ${
-              filtro === estado
-                ? "border-[#17cf17] text-[#17cf17] bg-[#fff8f4]"
-                : "border-transparent text-[#7a5c49] hover:text-[#17cf17]"
-            }`}
-          >
-            {estado.charAt(0).toUpperCase() + estado.slice(1)}
-          </button>
-        ))}
+    <div className="w-full overflow-x-auto custom-scroll mt-4">
+      <div className="flex items-end gap-1 min-w-max border-b border-impa-line">
+        {filtros.map((estado) => {
+          const active = filtro === estado;
+          return (
+            <button
+              key={estado}
+              onClick={() => onChange(estado)}
+              className={`relative -mb-px inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold cursor-pointer whitespace-nowrap transition-colors duration-200 ease-impa-out ${
+                active
+                  ? "text-impa-700"
+                  : "text-impa-muted hover:text-impa-text"
+              }`}
+            >
+              {estado.charAt(0).toUpperCase() + estado.slice(1)}
+              <span
+                className={`absolute inset-x-2 -bottom-px h-0.5 rounded-full transition-all duration-300 ease-impa-out ${
+                  active ? "bg-impa-500" : "bg-transparent"
+                }`}
+              />
+            </button>
+          );
+        })}
       </div>
     </div>
   );

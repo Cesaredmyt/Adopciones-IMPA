@@ -9,11 +9,11 @@ type CardProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, elevated, interactive, ...props }, ref) => (
+  ({ className, elevated, interactive, children, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        "relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color] duration-200 ease-impa-out",
+        "group/card relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color] duration-200 ease-impa-out overflow-hidden",
         elevated
           ? "bg-gradient-to-b from-white to-impa-surface-2 shadow-impa-md"
           : "bg-white",
@@ -21,7 +21,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         className
       )}
       {...props}
-    />
+    >
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
+      {children}
+    </div>
   )
 );
 Card.displayName = "Card";

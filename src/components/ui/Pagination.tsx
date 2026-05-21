@@ -87,7 +87,7 @@ export default function Pagination({
                 className={cn(
                   chipBase,
                   p === page
-                    ? "bg-impa-cta text-white shadow-impa-sm scale-[1.02]"
+                    ? "bg-impa-cta text-white shadow-impa-md scale-[1.05] ring-2 ring-white"
                     : "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm hover:-translate-y-px"
                 )}
               >

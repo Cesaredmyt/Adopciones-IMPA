@@ -223,11 +223,11 @@ export default function GestionCitasPage() {
 
         {/* Toggle Tabla / Calendario */}
         <div className="flex items-center gap-3">
-          <div className="flex rounded-xl border border-[#dce5dc] overflow-hidden">
+          <div className="inline-flex items-center gap-0.5 rounded-xl border border-impa-line bg-impa-surface-2 p-1 shadow-impa-xs">
             <button
-              className={`px-4 py-2 text-sm ${view === "tabla"
-                ? "bg-[#FFF4E7] text-[#2B1B12] font-semibold"
-                : "bg-white text-[#6b4f40]"
+              className={`inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 ease-impa-out ${view === "tabla"
+                ? "bg-white text-impa-text shadow-impa-sm border border-impa-line"
+                : "text-impa-muted hover:text-impa-text hover:bg-white/60"
                 }`}
               onClick={() => setView("tabla")}
             >
@@ -235,9 +235,9 @@ export default function GestionCitasPage() {
             </button>
 
             <button
-              className={`px-4 py-2 text-sm ${view === "calendario"
-                ? "bg-[#FFF4E7] text-[#2B1B12] font-semibold"
-                : "bg-white text-[#6b4f40]"
+              className={`inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 ease-impa-out ${view === "calendario"
+                ? "bg-white text-impa-text shadow-impa-sm border border-impa-line"
+                : "text-impa-muted hover:text-impa-text hover:bg-white/60"
                 }`}
               onClick={() => setView("calendario")}
             >
@@ -247,55 +247,58 @@ export default function GestionCitasPage() {
         </div>
 
         {/* KPI CHIPS COMO FILTROS */}
-        <div className="flex flex-wrap gap-3 pt-1">
+        <div className="flex flex-wrap gap-2 pt-1">
 
           {/* Programadas */}
           <button
             onClick={() => setFiltroEstado("programada")}
-            className={`px-3 py-1.5 rounded-lg border text-sm font-semibold transition
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
                 ${filtroEstado === "programada"
-                ? "bg-yellow-200 text-yellow-900 border-yellow-500 shadow-sm scale-[1.03]"
-                : "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100"}
+                ? "bg-amber-100 text-amber-800 border-amber-300 shadow-impa-xs scale-[1.03]"
+                : "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 hover:-translate-y-px"}
             `}
           >
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
             Programadas: {citas.filter((c) => c.estado === "programada").length}
           </button>
 
           {/* Completadas */}
           <button
             onClick={() => setFiltroEstado("completada")}
-            className={`px-3 py-1.5 rounded-lg border text-sm font-semibold transition
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
                 ${filtroEstado === "completada"
-                ? "bg-green-200 text-green-900 border-green-600 shadow-sm scale-[1.03]"
-                : "bg-green-50 text-green-700 border-green-200 hover:bg-green-100"}
+                ? "bg-emerald-100 text-emerald-800 border-emerald-300 shadow-impa-xs scale-[1.03]"
+                : "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100 hover:-translate-y-px"}
             `}
           >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             Completadas: {citas.filter((c) => c.estado === "completada").length}
           </button>
 
           {/* Canceladas */}
           <button
             onClick={() => setFiltroEstado("cancelada")}
-            className={`px-3 py-1.5 rounded-lg border text-sm font-semibold transition
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
                 ${filtroEstado === "cancelada"
-                ? "bg-gray-300 text-gray-900 border-gray-600 shadow-sm scale-[1.03]"
-                : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"}
+                ? "bg-impa-surface-3 text-impa-text border-impa-line-strong shadow-impa-xs scale-[1.03]"
+                : "bg-impa-surface-2 text-impa-muted border-impa-line hover:bg-impa-surface-3 hover:-translate-y-px"}
             `}
           >
+            <span className="w-1.5 h-1.5 rounded-full bg-impa-quiet" />
             Canceladas: {citas.filter((c) => c.estado === "cancelada").length}
           </button>
 
-          {/* Aprobadas (asistió + buena_aprobada) */}
+          {/* Aprobadas */}
           <button
             onClick={() => setFiltroEstado("aprobada")}
-            className={`px-3 py-1.5 rounded-lg border text-sm font-semibold flex items-center gap-1 transition
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
                 ${filtroEstado === "aprobada"
-                ? "bg-green-200 text-green-900 border-green-600 shadow-sm scale-[1.03]"
-                : "bg-green-50 text-green-700 border-green-200 hover:bg-green-100"
+                ? "bg-impa-100 text-impa-800 border-impa-300 shadow-impa-xs scale-[1.03]"
+                : "bg-impa-50 text-impa-700 border-impa-200 hover:bg-impa-100 hover:-translate-y-px"
               }
             `}
           >
-            <CheckCircle size={14} />
+            <CheckCircle size={12} />
             Aprobadas:{" "}
             {
               citas.filter(
@@ -310,7 +313,7 @@ export default function GestionCitasPage() {
           {filtroEstado !== "todas" && (
             <button
               onClick={() => setFiltroEstado("todas")}
-              className="px-3 py-1.5 rounded-md border text-sm font-medium bg-white text-[#6b4f40] hover:bg-gray-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-impa-line text-xs font-semibold bg-white text-impa-muted hover:bg-impa-surface-2 hover:text-impa-text transition-colors duration-150 cursor-pointer"
             >
               Mostrar todas
             </button>
@@ -319,13 +322,13 @@ export default function GestionCitasPage() {
       </div>
 
       {/* Buscador */}
-      <div className="flex items-center rounded-full border border-[#dce5dc] bg-white px-4 py-2 w-full md:w-96 shadow-sm">
-        <Search className="h-4 w-4 text-[#17cf17]" />
+      <div className="flex items-center gap-2 rounded-xl border border-impa-line bg-white px-3 h-10 w-full md:w-96 shadow-impa-xs transition-[border-color,box-shadow,background-color] duration-200 ease-impa-out hover:border-impa-300 focus-within:border-impa-500 focus-within:ring-4 focus-within:ring-impa-500/15">
+        <Search className="h-4 w-4 text-impa-muted" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscar por usuario, mascota o correo"
-          className="ml-2 w-full text-sm outline-none bg-transparent"
+          className="flex-1 text-sm text-impa-text placeholder:text-impa-subtle outline-none bg-transparent"
         />
       </div>
 
@@ -357,7 +360,7 @@ export default function GestionCitasPage() {
       ) : (
 
         /* VISTA CALENDARIO */
-        <div className="rounded-2xl border border-[#dce5dc] bg-white p-3">
+        <div className="rounded-2xl border border-impa-line bg-white p-3 shadow-impa-sm">
           <Calendar
             localizer={localizer}
             events={events}

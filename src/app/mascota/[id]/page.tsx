@@ -76,8 +76,9 @@ export default async function MascotaPublicPage({
   return (
     <>
       <HeaderSmart />
-      <main className="min-h-screen bg-[#FFF4E7] flex flex-col items-center justify-center p-6">
-        <article className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-[4px] border-[#17cf17] bg-white">
+      <main className="min-h-screen impa-page-bg flex flex-col items-center justify-center p-6">
+        <article className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-impa-xl border border-impa-line bg-white">
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent z-10" />
           {/* 📸 Imagen + fondo blur + chips */}
           <div className="relative h-[500px] w-full overflow-hidden">
             {/* Fondo blur con la misma imagen */}
@@ -163,45 +164,45 @@ export default async function MascotaPublicPage({
           </div>
 
           {/* 📋 Detalles */}
-          <div className="p-6 md:p-8 text-[#2B1B12]">
+          <div className="p-6 md:p-8 text-impa-text bg-gradient-to-b from-white to-impa-surface-2/40">
             {/* Información general */}
             <section className="mb-8">
-              <h2 className="text-xl font-extrabold mb-4 text-[#17cf17]">
+              <h2 className="text-[11px] font-bold uppercase tracking-[0.08em] mb-4 text-impa-700">
                 Información General
               </h2>
 
               <dl className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-5 text-sm">
                 <div>
-                  <dt className="font-semibold text-slate-700">Edad</dt>
+                  <dt className="font-semibold text-impa-muted">Edad</dt>
                   <dd className="capitalize">{mascota.edad || "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Peso</dt>
+                  <dt className="font-semibold text-impa-muted">Peso</dt>
                   <dd>{mascota.peso_kg ? `${mascota.peso_kg} Kg` : "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Altura</dt>
+                  <dt className="font-semibold text-impa-muted">Altura</dt>
                   <dd>{mascota.altura_cm ? `${mascota.altura_cm} Cm` : "—"}</dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Raza</dt>
+                  <dt className="font-semibold text-impa-muted">Raza</dt>
                   <dd className="capitalize">
                     {mascota.raza?.nombre || "Mestizo"}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Especie</dt>
+                  <dt className="font-semibold text-impa-muted">Especie</dt>
                   <dd className="capitalize">
                     {mascota.raza?.especie || "Desconocido"}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-slate-700">Esterilizado</dt>
+                  <dt className="font-semibold text-impa-muted">Esterilizado</dt>
                   <dd>{mascota.esterilizado ? "Sí" : "No"}</dd>
                 </div>
               </dl>
@@ -210,21 +211,17 @@ export default async function MascotaPublicPage({
             {/* Colores */}
             {coloresEnriquecidos.length > 0 && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
+                <h2 className="text-[11px] font-bold uppercase tracking-[0.08em] mb-3 text-impa-700">
                   Colores
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {coloresEnriquecidos.map(({ nombre, hex }) => (
                     <div
                       key={nombre}
-                      className="
-                        flex items-center gap-2 px-3 py-1.5 rounded-2xl border 
-                        bg-white border-[#17cf17] text-[#2B1B12] text-sm 
-                        shadow-sm
-                      "
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full border bg-white border-impa-line text-impa-text text-sm shadow-impa-xs hover:border-impa-300 hover:shadow-impa-sm transition-all duration-150"
                     >
                       <span
-                        className="w-4 h-4 rounded-full border border-[#111811]/30"
+                        className="w-4 h-4 rounded-full border border-impa-text/20"
                         style={{ backgroundColor: hex }}
                       />
                       <span className="capitalize">{nombre}</span>
@@ -237,7 +234,7 @@ export default async function MascotaPublicPage({
             {/* Personalidad */}
             {mascota.personalidad && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
+                <h2 className="text-[11px] font-bold uppercase tracking-[0.08em] mb-3 text-impa-700">
                   Personalidad
                 </h2>
                 <p className="capitalize text-sm">{mascota.personalidad}</p>
@@ -247,7 +244,7 @@ export default async function MascotaPublicPage({
             {/* Descripción física */}
             {mascota.descripcion_fisica && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
+                <h2 className="text-[11px] font-bold uppercase tracking-[0.08em] mb-3 text-impa-700">
                   Descripción Física
                 </h2>
                 <p className="text-sm">{mascota.descripcion_fisica}</p>
@@ -258,15 +255,15 @@ export default async function MascotaPublicPage({
             {(mascota.lugar_rescate ||
               mascota.condicion_ingreso ||
               mascota.observaciones_medicas) && (
-              <section className="mb-8 border-t border-slate-200 pt-6">
-                <h2 className="text-xl font-extrabold mb-4 text-[#17cf17]">
+              <section className="mb-8 border-t border-impa-line-faint pt-6">
+                <h2 className="text-[11px] font-bold uppercase tracking-[0.08em] mb-4 text-impa-700">
                   Datos Médicos Y De Rescate
                 </h2>
 
                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 text-sm">
                   {mascota.lugar_rescate && (
                     <div>
-                      <dt className="font-semibold text-slate-700">
+                      <dt className="font-semibold text-impa-muted">
                         Lugar De Rescate
                       </dt>
                       <dd className="capitalize">{mascota.lugar_rescate}</dd>
@@ -275,7 +272,7 @@ export default async function MascotaPublicPage({
 
                   {mascota.condicion_ingreso && (
                     <div>
-                      <dt className="font-semibold text-slate-700">
+                      <dt className="font-semibold text-impa-muted">
                         Condición De Ingreso
                       </dt>
                       <dd className="capitalize">
@@ -286,7 +283,7 @@ export default async function MascotaPublicPage({
                 </dl>
 
                 {mascota.observaciones_medicas && (
-                  <p className="mt-3 text-sm text-[#2B1B12]">
+                  <p className="mt-3 text-sm text-impa-text">
                     <strong>Observaciones:</strong>{" "}
                     {mascota.observaciones_medicas}
                   </p>
@@ -295,7 +292,7 @@ export default async function MascotaPublicPage({
             )}
 
             {/* Fecha de ingreso */}
-            <p className="text-xs text-slate-500 mt-4">
+            <p className="text-xs text-impa-quiet mt-4">
               Fecha De Ingreso:{" "}
               {new Date(mascota.fecha_ingreso).toLocaleDateString("es-MX")}
             </p>

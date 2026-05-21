@@ -88,9 +88,10 @@ export default function Pendiente() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8 text-center"
+          className="relative bg-white rounded-2xl shadow-impa-xl border border-impa-line p-7 sm:p-8 text-center overflow-hidden"
         >
-          <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-impa-50 text-impa-600 mb-5">
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent" />
+          <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-gradient-to-br from-impa-50 to-white border border-impa-200 text-impa-600 mb-5 shadow-impa-xs">
             <Mail size={28} />
           </div>
 
@@ -123,7 +124,7 @@ export default function Pendiente() {
               <button
                 onClick={reenviarCorreo}
                 disabled={reenviando || cooldown > 0}
-                className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm hover:bg-impa-50 hover:border-impa-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/15"
               >
                 <RotateCw
                   size={15}
@@ -151,7 +152,7 @@ export default function Pendiente() {
 
           <button
             onClick={() => router.push("/login")}
-            className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 transition mt-4"
+            className="w-full h-12 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-cta text-white font-semibold text-sm shadow-impa-md hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 ease-impa-out mt-4 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25"
           >
             Volver al inicio de sesión
             <ArrowRight size={15} />

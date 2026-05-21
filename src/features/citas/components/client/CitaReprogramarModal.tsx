@@ -100,23 +100,27 @@ export default function CitaReprogramarModal({
     };
 
     return (
-        <div className="fixed inset-0 z-[999] grid place-items-center bg-black/40 backdrop-blur-sm p-4 animate-fadeIn cursor-default">
+        <div className="fixed inset-0 z-[999] grid place-items-center bg-impa-text-strong/55 backdrop-blur-md p-4 animate-fade-in cursor-default">
 
             {/* CONTENEDOR */}
-            <div className="w-full max-w-lg rounded-2xl bg-white border border-[#dce5dc] shadow-2xl overflow-hidden animate-slideUp">
+            <div className="relative w-full max-w-lg rounded-2xl bg-white border border-impa-line shadow-impa-xl overflow-hidden animate-scale-in">
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
 
                 {/* HEADER */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#dce5dc] bg-[#FFF8F2]">
-                    <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-[#17cf17]" />
-                        <h3 className="text-lg font-extrabold text-[#2B1B12]">Reprogramar cita</h3>
+                <div className="flex items-center justify-between px-5 py-4 border-b border-impa-line bg-gradient-to-b from-impa-surface-2 to-white">
+                    <div className="flex items-center gap-2.5">
+                        <span className="grid place-items-center w-9 h-9 rounded-xl bg-impa-50 border border-impa-200 text-impa-700">
+                            <Calendar className="w-4 h-4" />
+                        </span>
+                        <h3 className="text-lg font-bold text-impa-text tracking-tight">Reprogramar cita</h3>
                     </div>
 
                     <button
                         onClick={onClose}
-                        className="p-1 rounded-md hover:bg-gray-100 transition cursor-pointer"
+                        aria-label="Cerrar"
+                        className="grid place-items-center w-9 h-9 rounded-lg text-impa-muted hover:text-impa-text hover:bg-impa-surface-3 transition-colors duration-150 cursor-pointer"
                     >
-                        <X className="w-5 h-5 text-[#6b4f40]" />
+                        <X className="w-5 h-5" />
                     </button>
                 </div>
 
@@ -124,27 +128,27 @@ export default function CitaReprogramarModal({
                 <div className="px-6 py-5 space-y-6">
 
                     {/* INFO DEL USUARIO */}
-                    <div className="bg-[#FFF4E7] border border-[#dce5dc] rounded-xl px-4 py-3">
-                        <p className="text-sm">
-                            <span className="font-semibold text-[#2B1B12]">
+                    <div className="bg-impa-50 border border-impa-200 rounded-xl px-4 py-3">
+                        <p className="text-sm text-impa-text">
+                            <span className="font-semibold">
                                 {cita.usuario?.nombres} {cita.usuario?.apellido_paterno} {cita.usuario?.apellido_materno}
                             </span>{" "}
                             tiene cita con{" "}
-                            <span className="italic text-[#2B1B12]">
+                            <span className="italic font-semibold text-impa-700">
                                 {cita.mascota?.nombre}
                             </span>.
                         </p>
-                        <p className="text-xs text-[#6b4f40] mt-1">Selecciona nueva fecha y hora.</p>
+                        <p className="text-xs text-impa-muted mt-1">Selecciona nueva fecha y hora.</p>
                     </div>
 
                     {/* FECHA */}
-                    <div className="space-y-1">
-                        <label className="text-xs font-semibold text-[#2B1B12]">
+                    <div className="space-y-1.5">
+                        <label className="text-xs font-semibold text-impa-text">
                             Nueva fecha
                         </label>
 
                         <div className="relative cursor-pointer">
-                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-impa-muted h-4 w-4 pointer-events-none z-[1]" />
 
                             <DatePicker
                                 selected={dateValue}
@@ -165,7 +169,7 @@ export default function CitaReprogramarModal({
 
                                 dateFormat="dd/MM/yyyy"
                                 placeholderText="Selecciona la fecha"
-                                className="w-full pl-11 pr-10 py-2 border rounded-md cursor-pointer hover:border-[#17cf17] focus:border-[#17cf17] focus:ring-2 focus:ring-[#17cf17]/20 focus:outline-none border-[#dce5dc]"
+                                className="w-full h-11 pl-10 pr-10 rounded-xl border border-impa-line bg-white text-sm text-impa-text shadow-impa-xs cursor-pointer transition-[border-color,box-shadow,background-color] duration-200 ease-impa-out hover:border-impa-300 hover:bg-impa-tinted focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:bg-white"
                                 wrapperClassName="w-full cursor-pointer"
                                 calendarClassName="react-datepicker-full"
                                 showYearDropdown
@@ -176,13 +180,13 @@ export default function CitaReprogramarModal({
                                 popperClassName="z-[2000]"
                             />
 
-                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-[#17cf17] opacity-60 h-5 w-5 pointer-events-none" />
+                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-impa-600 opacity-60 h-4 w-4 pointer-events-none" />
                         </div>
                     </div>
 
                     {/* HORAS */}
-                    <div className="space-y-1">
-                        <label className="text-xs font-semibold text-[#2B1B12]">
+                    <div className="space-y-1.5">
+                        <label className="text-xs font-semibold text-impa-text">
                             Nueva hora
                         </label>
 
@@ -196,12 +200,12 @@ export default function CitaReprogramarModal({
                                         disabled={disabled}
                                         onClick={() => onHoraChange(h)}
                                         className={`
-                                            py-2 rounded-lg border text-sm transition font-medium
+                                            py-2 rounded-lg border text-sm font-semibold transition-all duration-150
                                             ${disabled
-                                                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                                                ? "bg-impa-surface-2 text-impa-quiet border-impa-line cursor-not-allowed"
                                                 : hora === h
-                                                    ? "bg-[#17cf17] text-white border-[#17cf17] cursor-pointer"
-                                                    : "bg-white text-[#2B1B12] border-[#dce5dc] hover:bg-[#FFF4E7] cursor-pointer"
+                                                    ? "bg-impa-cta text-white border-impa-600 shadow-impa-sm cursor-pointer"
+                                                    : "bg-white text-impa-text border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:-translate-y-px cursor-pointer"
                                             }
                                         `}
                                     >
@@ -215,10 +219,10 @@ export default function CitaReprogramarModal({
                 </div>
 
                 {/* FOOTER */}
-                <div className="px-6 py-4 border-t border-[#dce5dc] bg-[#FFFDF9] flex justify-end gap-2">
+                <div className="px-6 py-4 border-t border-impa-line bg-impa-surface-2/50 flex justify-end gap-2">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 rounded-lg border text-sm text-[#2B1B12] hover:bg-gray-100 transition cursor-pointer"
+                        className="h-10 px-4 rounded-xl border border-impa-line bg-white text-sm font-semibold text-impa-text shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 transition-all duration-150 cursor-pointer"
                     >
                         Cancelar
                     </button>
@@ -226,7 +230,7 @@ export default function CitaReprogramarModal({
                     <button
                         disabled={isSaving}
                         onClick={onSubmit}
-                        className="px-4 py-2 rounded-lg bg-[#17cf17] text-white text-sm font-semibold disabled:opacity-50 hover:bg-[#a44f2e] transition cursor-pointer"
+                        className="h-10 px-4 rounded-xl bg-impa-cta text-white text-sm font-semibold shadow-impa-sm disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-impa-glow hover:-translate-y-px active:translate-y-0 transition-all duration-200 ease-impa-out cursor-pointer"
                     >
                         {isSaving ? "Guardando..." : "Guardar cambios"}
                     </button>
