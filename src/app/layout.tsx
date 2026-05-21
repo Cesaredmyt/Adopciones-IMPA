@@ -50,7 +50,7 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-[var(--impa-bg)] text-[var(--impa-text)] font-sans antialiased"
+        className="min-h-screen text-[var(--impa-text)] font-sans antialiased"
       >
         <AuthProvider>
           <Providers>{children}</Providers>

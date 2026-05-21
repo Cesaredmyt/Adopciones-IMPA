@@ -24,14 +24,14 @@
   --color-impa-800: #0d660d;
   --color-impa-900: #0a4f0a;
 
-  /* Superficies y semánticos */
-  --color-impa-bg:           #eef3ee;
-  --color-impa-bg-elev:      #f4f8f4;
+  /* Superficies y semánticos (con tinte verde más perceptible) */
+  --color-impa-bg:           #e7f1e7;
+  --color-impa-bg-elev:      #f0f6f0;
   --color-impa-surface:      #ffffff;
-  --color-impa-surface-2:    #f3f7f3;
-  --color-impa-surface-3:    #e9efe9;
+  --color-impa-surface-2:    #f0f6f0;
+  --color-impa-surface-3:    #e3ebe3;
   --color-impa-card:         #ffffff;
-  --color-impa-tinted:       #effaef;
+  --color-impa-tinted:       #e8f7e8;
 
   /* Texto */
   --color-impa-text:         #0f160f;
@@ -79,15 +79,15 @@
   --impa-800: #0d660d;
   --impa-900: #0a4f0a;
 
-  /* Surfaces — Sistema de capas (con más profundidad) */
-  --impa-bg:           #eef3ee;   /* Page background — más tintado, menos blanco */
-  --impa-bg-elevated: #f4f8f4;   /* Elevated regions sobre bg */
+  /* Surfaces — Sistema de capas (con más profundidad y tinte verde) */
+  --impa-bg:           #e7f1e7;   /* Page background — verde perceptible */
+  --impa-bg-elevated: #f0f6f0;   /* Elevated regions sobre bg */
   --impa-surface-1:   #ffffff;   /* Card por defecto */
-  --impa-surface-2:   #f3f7f3;   /* Subsection / muted card */
-  --impa-surface-3:   #e9efe9;   /* Hover surface / chip / tag */
+  --impa-surface-2:   #f0f6f0;   /* Subsection / muted card */
+  --impa-surface-3:   #e3ebe3;   /* Hover surface / chip / tag */
   --impa-card:         #ffffff;
-  --impa-muted-bg:     #edf2ed;
-  --impa-tinted-bg:    #effaef;   /* Tinte verde más perceptible */
+  --impa-muted-bg:     #eaf2ea;
+  --impa-tinted-bg:    #e8f7e8;   /* Tinte verde más perceptible */
 
   /* Text */
   --impa-text:         #0f160f;
@@ -187,9 +187,9 @@ body {
   margin: 0;
   padding: 0;
   background:
-    radial-gradient(1200px 600px at 88% -8%, rgba(23,207,23,0.09), transparent 55%),
-    radial-gradient(900px 500px at -10% 8%, rgba(23,207,23,0.07), transparent 60%),
-    radial-gradient(800px 400px at 50% 105%, rgba(168,241,168,0.10), transparent 60%),
+    radial-gradient(1100px 600px at 88% -10%, rgba(23,207,23,0.18), transparent 55%),
+    radial-gradient(900px 500px at -10% 5%, rgba(63,210,63,0.14), transparent 60%),
+    radial-gradient(900px 500px at 50% 110%, rgba(168,241,168,0.20), transparent 60%),
     var(--impa-bg);
   background-attachment: fixed;
   color: var(--impa-text);

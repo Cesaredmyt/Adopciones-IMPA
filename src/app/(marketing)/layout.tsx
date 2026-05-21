@@ -10,7 +10,14 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-impa-bg">
+    <div className="relative min-h-screen flex flex-col">
+      {/* Ambient mesh global (verde IMPA) */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-impa-200/40 blur-3xl" />
+        <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-impa-100/55 blur-3xl" />
+        <div className="absolute -bottom-32 left-1/3 w-[700px] h-[400px] rounded-full bg-impa-100/40 blur-3xl" />
+      </div>
+
       <Navbar />
       <main className="flex-1 w-full overflow-x-hidden">{children}</main>
 
