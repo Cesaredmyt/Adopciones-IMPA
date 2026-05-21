@@ -66,11 +66,11 @@ export function EsterilizacionesUsuarioSolicitar({
 
   if (elegibles.length === 0) {
     return (
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center">
-        <p className="font-semibold text-amber-800">
+      <div className="bg-impa-50 border border-impa-200 rounded-2xl p-6 text-center">
+        <p className="font-semibold text-impa-800">
           No tienes mascotas elegibles para solicitar esterilización.
         </p>
-        <p className="text-sm text-amber-700 mt-2">
+        <p className="text-sm text-impa-700 mt-2">
           Solo puedes solicitar la cirugía para mascotas con adopción aprobada y
           que aún no estén esterilizadas.
         </p>
@@ -83,18 +83,18 @@ export function EsterilizacionesUsuarioSolicitar({
       onSubmit={handleSubmit}
       className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 space-y-5"
     >
-      <h2 className="text-lg font-bold text-[#8B4513]">
+      <h2 className="text-lg font-bold text-[#0f830f]">
         Nueva solicitud de esterilización
       </h2>
 
       <label className="block text-sm">
-        <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+        <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
           Selecciona la mascota *
         </span>
         <select
           value={mascotaId}
           onChange={(e) => setMascotaId(e.target.value)}
-          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
           required
         >
           <option value="">Selecciona una mascota...</option>
@@ -107,7 +107,7 @@ export function EsterilizacionesUsuarioSolicitar({
       </label>
 
       <label className="block text-sm">
-        <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+        <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
           Peso actual (kg) *
         </span>
         <input
@@ -119,12 +119,12 @@ export function EsterilizacionesUsuarioSolicitar({
           onChange={(e) => setPeso(e.target.value)}
           placeholder="Ej. 12.5"
           required
-          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
         />
       </label>
 
       <label className="block text-sm">
-        <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+        <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
           Observaciones previas (opcional)
         </span>
         <textarea
@@ -133,7 +133,7 @@ export function EsterilizacionesUsuarioSolicitar({
           value={observaciones}
           onChange={(e) => setObservaciones(e.target.value)}
           placeholder="Alergias conocidas, medicación actual, comportamientos…"
-          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+          className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
         />
       </label>
 

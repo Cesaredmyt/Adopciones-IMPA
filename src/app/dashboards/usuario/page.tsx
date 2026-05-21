@@ -84,11 +84,11 @@ export default function DashboardUsuarioPage() {
               <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
                 {/* TEXTO IZQUIERDA */}
                 <div className="max-w-2xl">
-                  <h1 className="text-5xl md:text-6xl font-extrabold text-[#2b1b12] leading-tight">
+                  <h1 className="text-5xl md:text-6xl font-extrabold text-[#111811] leading-tight">
                     Tu adopción cambia{" "}
-                    <span className="text-[#BC5F36]">toda una vida.</span>
+                    <span className="text-[#17cf17]">toda una vida.</span>
                   </h1>
-                  <p className="mt-3 text-lg font-semibold text-[#BC5F36]">
+                  <p className="mt-3 text-lg font-semibold text-[#17cf17]">
                     Bienvenido, {userName}
                   </p>
 
@@ -139,24 +139,24 @@ export default function DashboardUsuarioPage() {
 
             <section className="space-y-10">
               {/* TÍTULO ARRIBA */}
-              <h2 className="text-3xl font-extrabold text-[#2b1b12] text-center">
+              <h2 className="text-3xl font-extrabold text-[#111811] text-center">
                 Beneficios de adoptar con IMPA
               </h2>
 
               {/* FEATURES ABAJO, ANCHOS */}
               <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <Feature
-                  icon={<ShieldCheck className="text-[#BC5F36]" />}
+                  icon={<ShieldCheck className="text-[#17cf17]" />}
                   title="Acompañamiento real"
                   desc="Te guiamos desde tu primera elección hasta tu seguimiento final con tu mascota."
                 />
                 <Feature
-                  icon={<Sparkles className="text-[#BC5F36]" />}
+                  icon={<Sparkles className="text-[#17cf17]" />}
                   title="Perfiles completos"
                   desc="Conoce energía, cuidados, compatibilidad y recomendaciones personalizadas."
                 />
                 <Feature
-                  icon={<Heart className="text-[#BC5F36]" />}
+                  icon={<Heart className="text-[#17cf17]" />}
                   title="Adopción responsable"
                   desc="Prioridad total al bienestar y adaptación saludable de tu nueva mascota."
                 />
@@ -167,7 +167,7 @@ export default function DashboardUsuarioPage() {
                 PROCESO DE ADOPCIÓN
             ======================================================== */}
             <section className="space-y-10">
-              <h2 className="text-3xl font-extrabold text-[#2b1b12] text-center">
+              <h2 className="text-3xl font-extrabold text-[#111811] text-center">
                 ¿Cómo funciona mi proceso de adopción?
               </h2>
 
@@ -184,10 +184,10 @@ export default function DashboardUsuarioPage() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.15 }}
-                    className="rounded-2xl p-6 bg-white/90 border border-[#eadacb] shadow hover:shadow-lg transition"
+                    className="rounded-2xl p-6 bg-white/90 border border-[#dce5dc] shadow hover:shadow-lg transition"
                   >
-                    <CheckCircle2 className="h-8 w-8 text-[#BC5F36]" />
-                    <p className="mt-3 text-sm font-semibold text-[#2b1b12]">
+                    <CheckCircle2 className="h-8 w-8 text-[#17cf17]" />
+                    <p className="mt-3 text-sm font-semibold text-[#111811]">
                       Paso {i + 1}
                     </p>
                     <p className="text-sm text-[#7a5c49]">{step}</p>
@@ -200,7 +200,7 @@ export default function DashboardUsuarioPage() {
                 TESTIMONIALES NUEVOS
             ======================================================== */}
             <section className="rounded-3xl p-10 bg-white/70 backdrop-blur-xl border border-[#efddca] shadow">
-              <h3 className="text-2xl font-bold text-[#2b1b12] mb-6">
+              <h3 className="text-2xl font-bold text-[#111811] mb-6">
                 Historias reales de adopción
               </h3>
 
@@ -230,10 +230,10 @@ function Feature({ icon, title, desc }: any) {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl border border-[#eadacb] bg-white p-6 shadow hover:shadow-xl hover:-translate-y-1 transition"
+      className="rounded-xl border border-[#dce5dc] bg-white p-6 shadow hover:shadow-xl hover:-translate-y-1 transition"
     >
       <div className="mb-2">{icon}</div>
-      <p className="text-lg font-extrabold text-[#2b1b12]">{title}</p>
+      <p className="text-lg font-extrabold text-[#111811]">{title}</p>
       <p className="text-sm text-[#7a5c49] mt-1">{desc}</p>
     </motion.div>
   );
@@ -245,9 +245,9 @@ function Testimonial({ name, text }: any) {
       initial={{ opacity: 0, x: -40 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl border border-[#eadacb] bg-[#fffaf4] p-6 shadow"
+      className="rounded-xl border border-[#dce5dc] bg-[#fffaf4] p-6 shadow"
     >
-      <p className="text-[#2b1b12] text-base leading-relaxed">“{text}”</p>
+      <p className="text-[#111811] text-base leading-relaxed">“{text}”</p>
       <p className="mt-3 text-xs font-semibold text-[#7a5c49]">{name}</p>
     </motion.div>
   );

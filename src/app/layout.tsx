@@ -1,24 +1,44 @@
 import "@/styles/globals.css";
-import type { Metadata } from "next";
-import { Inter, Montserrat, Zain } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
-import { Toaster } from "sonner";
 import Providers from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-});
-const zain = Zain({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-zain",
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Instituto Michoacano de Protección Animal | Morelia",
-  description: "Adopta y cambia una vida",
+  title: {
+    default: "IMPA · Instituto Michoacano de Protección Animal",
+    template: "%s · IMPA",
+  },
+  description:
+    "Plataforma oficial del IMPA para adopción responsable, esterilización y cuidado animal en Michoacán.",
+  applicationName: "IMPA",
+  icons: {
+    icon: [
+      { url: "/impa-favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/impa-favicon.svg",
+  },
+  openGraph: {
+    title: "IMPA · Adopta y cambia una vida",
+    description:
+      "Adopción responsable, esterilización gratuita y cuidado animal en Michoacán.",
+    siteName: "IMPA",
+    locale: "es_MX",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#17cf17",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -27,13 +47,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${inter.className} ${montserrat.variable} ${zain.variable}`}
-    >
+    <html lang="es" className={inter.variable}>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-background text-foreground"
+        className="min-h-screen bg-[var(--impa-bg)] text-[var(--impa-text)] font-sans antialiased"
       >
         <AuthProvider>
           <Providers>{children}</Providers>

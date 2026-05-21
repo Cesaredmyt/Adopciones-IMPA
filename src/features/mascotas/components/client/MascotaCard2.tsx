@@ -60,7 +60,7 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
             <style jsx>{`
                 .card {
                     background: #fffaf2;
-                    border: 1px solid #eadacb;
+                    border: 1px solid #dce5dc;
                     border-radius: 16px;
                     overflow: hidden;
                     box-shadow: 0 8px 24px rgba(43, 27, 18, 0.1);
@@ -115,13 +115,13 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
                 }
                 .name {
                     margin: 0;
-                    color: #8b4513;
+                    color: #0f830f;
                     font-weight: 600;
                     font-size: 22px;
                 }
                 .pill {
                     background: #f3e7dc;
-                    color: #8b4513;
+                    color: #0f830f;
                     border-radius: 999px;
                     padding: 6px 10px;
                     font-weight: 600;
@@ -144,12 +144,12 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
                 }
 
                 .meta strong {
-                color: #2b1b12;
+                color: #111811;
                 font-weight: 700;
                 min-width: 75px;
                 }
                 .desc {
-                    color: #2b1b12;
+                    color: #111811;
                     margin: 0;
                     font-size: 14px;
                 }

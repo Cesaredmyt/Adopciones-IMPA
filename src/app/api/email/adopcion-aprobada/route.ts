@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       }
     } catch (e) {
       console.warn("⚠ Error descargando imagen, usando placeholder.");
-      fotoParaPDF = "https://caamorelia.vercel.app/logo.png";
+      fotoParaPDF = "https://impa.vercel.app/logo.png";
     }
 
     const pdfBuffer = await renderToBuffer(

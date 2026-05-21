@@ -21,7 +21,7 @@ export default function UserModalSkeleton({ open, onClose }: { open: boolean; on
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
                         transition={{ type: "spring", stiffness: 140, damping: 18 }}
-                        className="w-full max-w-2xl bg-[#FFF8F2] rounded-3xl border border-[#EADACB] shadow-[0_25px_80px_rgba(0,0,0,0.28)] overflow-hidden"
+                        className="w-full max-w-2xl bg-[#FFF8F2] rounded-3xl border border-[#dce5dc] shadow-[0_25px_80px_rgba(0,0,0,0.28)] overflow-hidden"
                         onMouseDown={(e) => e.stopPropagation()}
                     >
                         {/* HEADER */}
@@ -43,7 +43,7 @@ export default function UserModalSkeleton({ open, onClose }: { open: boolean; on
                             </div>
 
                             {/* INFO DE CONTACTO */}
-                            <div className="space-y-4 bg-white border border-[#EADACB] rounded-2xl p-5 shadow-sm">
+                            <div className="space-y-4 bg-white border border-[#dce5dc] rounded-2xl p-5 shadow-sm">
                                 <Skeleton className="h-4 w-48 mb-2" />
 
                                 <div className="space-y-3">
@@ -62,7 +62,7 @@ export default function UserModalSkeleton({ open, onClose }: { open: boolean; on
                                     {[1, 2].map((i) => (
                                         <div
                                             key={i}
-                                            className="flex gap-4 border border-[#EADACB] bg-white rounded-2xl p-4"
+                                            className="flex gap-4 border border-[#dce5dc] bg-white rounded-2xl p-4"
                                         >
                                             <Skeleton className="h-[80px] w-[80px] rounded-xl" />
                                             <div className="space-y-2 w-full">
@@ -82,7 +82,7 @@ export default function UserModalSkeleton({ open, onClose }: { open: boolean; on
                                     {[1, 2].map((i) => (
                                         <div
                                             key={i}
-                                            className="flex gap-4 border border-[#EADACB] bg-white rounded-2xl p-4"
+                                            className="flex gap-4 border border-[#dce5dc] bg-white rounded-2xl p-4"
                                         >
                                             <Skeleton className="h-[80px] w-[80px] rounded-xl" />
                                             <div className="space-y-2 w-full">

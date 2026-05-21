@@ -7,6 +7,7 @@
 
 import nodemailer from "nodemailer";
 import { escapeHtml, safeHttpUrl } from "@/lib/email/safeHtml";
+import { renderImpaEmail } from "@/app/api/email/templates/_layout";
 
 type AccountConfirmationInput = {
   to: string;
@@ -15,61 +16,40 @@ type AccountConfirmationInput = {
   subject?: string;
 };
 
-function buildHtml({ nombre, confirmationUrl }: { nombre: string; confirmationUrl: string }) {
+function buildHtml({
+  nombre,
+  confirmationUrl,
+}: {
+  nombre: string;
+  confirmationUrl: string;
+}) {
   const safeNombre = escapeHtml(nombre);
   const safeUrl = safeHttpUrl(confirmationUrl);
 
-  return `
-    <html>
-      <body style="font-family: Arial, sans-serif; background-color: #faf6f6; padding: 20px;">
-        <table align="center" width="480" style="background-color: #ffffff; border-radius: 14px; padding: 30px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);">
-          <tr>
-            <td style="text-align: center;">
-              <img src="https://caamorelia.vercel.app/logo.png"
-                alt="Logo IMPA"
-                width="120"
-                style="margin: 0 auto 10px; display: block;" />
-              <h2 style="color: #9B2E45; margin-bottom: 10px; font-weight: 900;">
-                Instituto Michoacano de Protección Animal
-              </h2>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p style="color: #333; font-size: 16px;">
-                Hola <strong>${safeNombre}</strong>,
-              </p>
-              <p style="color: #333; font-size: 15px; line-height: 1.6;">
-                Confirma tu correo electrónico haciendo clic en el botón.
-              </p>
-              <p style="text-align: center; margin: 30px 0;">
-                <a href="${safeUrl}"
-                  style="background-color: #8B4513; color: white; padding: 14px 26px;
-                  text-decoration: none; border-radius: 10px; font-weight: bold;
-                  box-shadow: 0 2px 5px rgba(107,30,36,0.3); display: inline-block;">
-                  Confirmar cuenta
-                </a>
-              </p>
-              <p style="color: #555; font-size: 14px;">
-                Si tú no creaste esta cuenta, puedes ignorar este mensaje.
-              </p>
-              <hr style="margin: 25px 0; border: none; border-top: 1px solid #eee;" />
-              <p style="text-align: center; color: #888; font-size: 12px; line-height: 1.4;">
-                © 2025 Instituto Michoacano de Protección Animal
-              </p>
-            </td>
-          </tr>
-        </table>
-      </body>
-    </html>
-  `;
+  return renderImpaEmail({
+    tone: "success",
+    title: "Confirma tu cuenta",
+    preheader: "Activa tu cuenta IMPA para empezar a adoptar.",
+    content: `
+      <p style="margin:0 0 14px;">Hola <strong>${safeNombre}</strong>,</p>
+      <p style="margin:0 0 8px;">
+        Gracias por crear tu cuenta en IMPA. Confirma tu correo electrónico
+        haciendo clic en el botón para activar tu acceso.
+      </p>
+      <p style="margin:14px 0 0;font-size:13px;color:#586e58;">
+        Si tú no creaste esta cuenta, puedes ignorar este mensaje.
+      </p>
+    `,
+    cta: { label: "Confirmar cuenta", href: safeUrl },
+    ctaHint: "Este enlace expira en 24 horas.",
+  });
 }
 
 export async function sendAccountConfirmation({
   to,
   nombre,
   confirmationUrl,
-  subject = "Confirmación de cuenta – IMPA 🐾",
+  subject = "Confirma tu cuenta · IMPA",
 }: AccountConfirmationInput): Promise<void> {
   const transporter = nodemailer.createTransport({
     service: "gmail",

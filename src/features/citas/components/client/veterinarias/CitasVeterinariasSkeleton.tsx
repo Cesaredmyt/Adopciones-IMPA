@@ -46,7 +46,7 @@ export default function CitasVeterinariasSkeleton() {
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl border border-[#EADACB] p-4 shadow-sm space-y-3"
+              className="bg-white rounded-xl border border-[#dce5dc] p-4 shadow-sm space-y-3"
             >
               <div className="flex justify-between">
                 <div className="h-4 w-28 bg-[#f4e7d8] rounded" />
@@ -96,7 +96,7 @@ export default function CitasVeterinariasSkeleton() {
             {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
-                className="py-3 flex justify-between items-center border-b border-[#FDE68A]"
+                className="py-3 flex justify-between items-center border-b border-[#a8f1a8]"
               >
                 <div>
                   <div className="h-4 w-28 bg-[#f9f1e7] rounded-md mb-2" />

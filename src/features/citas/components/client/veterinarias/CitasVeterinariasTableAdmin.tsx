@@ -19,7 +19,7 @@ export function CitasVeterinariasTablaAdmin({
       <div className="bg-white rounded-xl shadow-md overflow-x-auto w-full max-w-[1200px]">
         <table className="w-full text-sm text-left text-gray-700">
 
-          <thead className="bg-[#FFF6E5] text-[#8B4513]">
+          <thead className="bg-[#FFF6E5] text-[#0f830f]">
             <tr>
               <th className="px-4 py-3 w-[18%]">Adoptante</th>
               <th className="px-4 py-3 w-[18%]">Mascota</th>
@@ -33,7 +33,7 @@ export function CitasVeterinariasTablaAdmin({
           <tbody className="divide-y divide-[#f5e6d3] text-gray-700">
 
             {citas.map((item) => (
-              <tr key={item.id} className="hover:bg-[#FFF8F0]">
+              <tr key={item.id} className="hover:bg-[#f6f8f6]">
 
                 {/* Adoptante */}
                 <td className="px-4 py-3 whitespace-normal break-words max-w-[180px]">

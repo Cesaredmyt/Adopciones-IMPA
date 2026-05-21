@@ -1,3 +1,5 @@
+import { renderImpaEmail, infoBox, petCard } from "./_layout";
+
 export function buildCitaVeterinariaCanceladaEmail({
   nombre,
   nombreMascota,
@@ -11,77 +13,32 @@ export function buildCitaVeterinariaCanceladaEmail({
   motivo: string;
   fechaTexto: string;
 }) {
-  const subject = `⚠️ Tu cita veterinaria con ${nombreMascota} ha sido cancelada`;
+  const subject = `Cita veterinaria cancelada · ${nombreMascota}`;
 
-  const html = `
-  <html>
-    <body style="font-family: Arial, sans-serif; background-color:#faf6f6; padding:24px;">
+  const content = `
+    <p style="margin:0 0 14px;">Hola <strong>${nombre}</strong>,</p>
+    <p style="margin:0 0 8px;">
+      Te informamos que tu cita veterinaria programada para
+      <strong>${fechaTexto}</strong> con <strong>${nombreMascota}</strong> ha sido
+      <strong>cancelada</strong>.
+    </p>
 
-      <table align="center" width="560" 
-        style="background:#fff; border-radius:18px; padding:30px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+    ${petCard(nombreMascota, fotoMascota)}
 
-        <!-- LOGO -->
-        <tr>
-          <td style="text-align:center;">
-            <img src="https://caamorelia.vercel.app/logo.png"
-              alt="IMPA Logo" 
-              style="width:120px; margin-bottom:10px;" />
-          </td>
-        </tr>
+    ${infoBox("Motivo", motivo || "Sin motivo especificado.", { tone: "danger" })}
 
-        <!-- TITULO -->
-        <tr>
-          <td style="text-align:center;">
-            <h1 style="color:#9B2E45; font-size:26px; font-weight:900;">
-              Cita cancelada
-            </h1>
-            <h3 style="color:#c74b63; margin-top:4px;">
-              Tu cita con ${nombreMascota} ha sido cancelada ❗
-            </h3>
-          </td>
-        </tr>
-
-        <!-- FOTO -->
-        <tr>
-          <td style="text-align:center;">
-            <img src="${fotoMascota}" alt="${nombreMascota}"
-              style="width:250px; height:250px; object-fit:cover; border-radius:20px; border:4px solid #9B2E45; margin-top:10px; margin-bottom:20px;" />
-          </td>
-        </tr>
-
-        <!-- CUERPO -->
-        <tr>
-          <td style="font-size:15px; color:#444; line-height:1.6;">
-            <p>Hola <strong>${nombre}</strong>,</p>
-
-            <p>
-              Lamentamos informarte que tu cita veterinaria programada para  
-              <strong>${fechaTexto}</strong> con <strong>${nombreMascota}</strong> ha sido
-              <strong style="color:#9B2E45;">rechazada</strong>.
-            </p>
-
-            <div style="background:#fff4f4; padding:16px; border-left:6px solid #9B2E45; border-radius:12px; margin:18px 0;">
-              <strong>Motivo:</strong><br/>
-              ${motivo || "Sin motivo especificado."}
-            </div>
-
-            <p>
-              Puedes volver a agendar otra cita cuando lo desees desde tu panel.
-            </p>
-          </td>
-        </tr>
-
-        <!-- FOOTER -->
-        <tr>
-          <td style="text-align:center; padding-top:26px; font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} IMPA Morelia · Correo automático
-          </td>
-        </tr>
-
-      </table>
-    </body>
-  </html>
+    <p style="margin:14px 0 0;">
+      Puedes volver a agendar otra cita cuando lo desees desde tu panel personal.
+    </p>
   `;
 
-  return { subject, html };
+  return {
+    subject,
+    html: renderImpaEmail({
+      tone: "danger",
+      title: "Cita cancelada",
+      preheader: `Visita con ${nombreMascota} cancelada`,
+      content,
+    }),
+  };
 }

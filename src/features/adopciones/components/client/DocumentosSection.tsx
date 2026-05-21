@@ -63,9 +63,9 @@ export default function DocumentosSection({
                 />
 
                 {/* FAQs */}
-                <section className="rounded-2xl border border-[#eadacb] bg-white p-5 text-[#2b1b12] shadow-sm mt-6">
+                <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 text-[#111811] shadow-sm mt-6">
                     <div className="flex items-center gap-2">
-                        <Info className="h-5 w-5 text-[#BC5F36]" />
+                        <Info className="h-5 w-5 text-[#17cf17]" />
                         <h3 className="text-sm font-extrabold">Preguntas frecuentes</h3>
                     </div>
                     <ul className="mt-3 grid gap-2 text-sm text-[#7a5c49]">
@@ -81,17 +81,17 @@ export default function DocumentosSection({
     /* ---------------- En revisión ---------------- */
     if (estado === "en_revision") {
         return (
-            <section className="rounded-2xl border border-[#eadacb] bg-[#fff9f3] p-10 text-center shadow-sm">
+            <section className="rounded-2xl border border-[#dce5dc] bg-[#fff9f3] p-10 text-center shadow-sm">
                 <div className="flex flex-col items-center gap-4">
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                        className="flex h-16 w-16 items-center justify-center rounded-full bg-[#BC5F36]/10"
+                        className="flex h-16 w-16 items-center justify-center rounded-full bg-[#17cf17]/10"
                     >
-                        <Clock className="h-10 w-10 text-[#BC5F36]" />
+                        <Clock className="h-10 w-10 text-[#17cf17]" />
                     </motion.div>
 
-                    <h2 className="text-xl font-extrabold text-[#2b1b12]">
+                    <h2 className="text-xl font-extrabold text-[#111811]">
                         Tus documentos están en revisión
                     </h2>
 

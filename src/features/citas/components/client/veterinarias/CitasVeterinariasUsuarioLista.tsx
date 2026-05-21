@@ -20,7 +20,7 @@ export default function CitasVeterinariasUsuarioLista({
   const ITEMS_PER_PAGE = isMobile ? 5 : 10;
 
   const estadoColor = {
-    pendiente: "text-orange-700 bg-orange-50",
+    pendiente: "text-impa-700 bg-impa-50",
     aprobada: "text-green-700 bg-green-50",
     cancelada: "text-red-700 bg-red-50",
   } as const;
@@ -51,11 +51,11 @@ export default function CitasVeterinariasUsuarioLista({
       {/* Filtro */}
       <div className="flex justify-end mt-6 mb-4">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-[#8B4513]" />
+          <Filter className="w-4 h-4 text-[#0f830f]" />
           <select
             value={filtro}
             onChange={(e) => setFiltro(e.target.value as any)}
-            className="border rounded-lg px-3 py-1 text-sm text-[#8B4513] bg-[#FFF8F3] focus:ring-[#8B4513] focus:outline-none"
+            className="border rounded-lg px-3 py-1 text-sm text-[#0f830f] bg-[#FFF8F3] focus:ring-[#0f830f] focus:outline-none"
           >
             <option value="todas">Todas</option>
             <option value="pendiente">Pendientes</option>
@@ -68,7 +68,7 @@ export default function CitasVeterinariasUsuarioLista({
       {/* Tabla Desktop */}
       <div className="hidden sm:block overflow-x-auto rounded-xl border border-gray-200">
         <table className="min-w-full text-sm">
-          <thead className="bg-[#FFF1E6] text-[#8B4513]">
+          <thead className="bg-[#ecfdec] text-[#0f830f]">
             <tr>
               <th className="px-4 py-3 text-left">Mascota</th>
               <th className="px-4 py-3 text-left">Fecha</th>
@@ -98,7 +98,7 @@ export default function CitasVeterinariasUsuarioLista({
                   key={cita.id}
                   className="border-t hover:bg-[#FFF8F3] transition"
                 >
-                  <td className="px-4 py-3 font-semibold text-[#8B4513]">
+                  <td className="px-4 py-3 font-semibold text-[#0f830f]">
                     {mascota}
                   </td>
                   <td className="px-4 py-3 font-medium">{fechaStr}</td>
@@ -138,7 +138,7 @@ export default function CitasVeterinariasUsuarioLista({
               className="bg-white border border-[#E5D1B8] rounded-xl p-4 shadow-sm"
             >
               <div className="flex justify-between items-center mb-2">
-                <h3 className="font-semibold text-[#8B4513]">{mascota}</h3>
+                <h3 className="font-semibold text-[#0f830f]">{mascota}</h3>
                 <span
                   className={`text-xs px-2 py-1 rounded-full ${estadoColor[cita.estado]}`}
                 >

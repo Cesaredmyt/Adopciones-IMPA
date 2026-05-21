@@ -20,7 +20,7 @@ export function EsterilizacionesUsuarioHeader({
   return (
     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#8B4513]">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0f830f]">
           Esterilizaciones
         </h1>
         <p className="text-slate-500 text-sm sm:text-base">

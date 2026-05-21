@@ -12,8 +12,8 @@ import { FormGrid } from "@/components/form/FormGrid";
 import { FieldWrapper } from "@/components/form/FieldWrapper";
 import { FieldLabel } from "@/components/form/FieldLabel";
 
-import { CAAMInput } from "@/components/form/CAAMInput";
-import { CAAMSelect } from "@/components/form/CAAMSelect";
+import { IMPAInput } from "@/components/form/IMPAInput";
+import { IMPASelect } from "@/components/form/IMPASelect";
 
 export default function FormRaza({
   onCancel,
@@ -45,7 +45,7 @@ export default function FormRaza({
   });
 
   return (
-    <form onSubmit={submit} className="space-y-6 text-[#2b1b12]">
+    <form onSubmit={submit} className="space-y-6 text-[#111811]">
       <FormSection title="Información de la raza">
         <FormGrid cols={3}>
           {/* Nombre */}
@@ -55,7 +55,7 @@ export default function FormRaza({
             render={({ field }) => (
               <FieldWrapper>
                 <FieldLabel>Nombre</FieldLabel>
-                <CAAMInput
+                <IMPAInput
                   placeholder="Ej. Labrador Retriever"
                   {...field}
                 />
@@ -75,7 +75,7 @@ export default function FormRaza({
             render={({ field }) => (
               <FieldWrapper>
                 <FieldLabel>Especie</FieldLabel>
-                <CAAMSelect
+                <IMPASelect
                   value={field.value}
                   onChange={field.onChange}
                   options={[
@@ -100,7 +100,7 @@ export default function FormRaza({
             render={({ field }) => (
               <FieldWrapper>
                 <FieldLabel>Tamaño</FieldLabel>
-                <CAAMSelect
+                <IMPASelect
                   value={field.value ?? ""}
                   onChange={field.onChange}
                   options={[
@@ -126,7 +126,7 @@ export default function FormRaza({
           type="button"
           onClick={onCancel}
           disabled={crearRaza.isPending}
-          className="px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#8B4513] transition"
+          className="px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#0f830f] transition"
         >
           Cancelar
         </button>
@@ -134,7 +134,7 @@ export default function FormRaza({
         <button
           type="submit"
           disabled={crearRaza.isPending}
-          className="px-4 py-2 rounded-lg bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold transition"
+          className="px-4 py-2 rounded-lg bg-[#0f830f] hover:bg-[#11a611] text-white font-semibold transition"
         >
           {crearRaza.isPending ? "Guardando..." : "Guardar raza"}
         </button>

@@ -142,7 +142,7 @@ export default function MascotasTable({
       ) : (
         <div className="w-full overflow-x-auto">
           <table className="min-w-[950px] w-full border border-slate-200 rounded-lg overflow-hidden">
-            <thead className="bg-amber-50">
+            <thead className="bg-impa-50">
               <tr className="text-left text-slate-700">
                 <Th>Foto</Th>
                 <Th>Nombre</Th>
@@ -167,7 +167,7 @@ export default function MascotasTable({
                     : "bg-blue-100 text-blue-700";
 
                 return (
-                  <tr key={m.id} className="hover:bg-amber-50/40">
+                  <tr key={m.id} className="hover:bg-impa-50/40">
                     <Td>
                       <button
                         onClick={() => actions?.onViewCard?.(m)}
@@ -186,7 +186,7 @@ export default function MascotasTable({
                     <Td>
                       <button
                         onClick={() => actions?.onViewCard?.(m)}
-                        className="px-2 py-1 rounded-md transition text-[15px] font-semibold hover:bg-amber-100 hover:ring-2 hover:ring-amber-300 hover:text-amber-800"
+                        className="px-2 py-1 rounded-md transition text-[15px] font-semibold hover:bg-impa-100 hover:ring-2 hover:ring-impa-300 hover:text-impa-800"
                       >
                         {m.nombre}
                       </button>

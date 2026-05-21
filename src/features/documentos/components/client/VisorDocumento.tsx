@@ -40,7 +40,7 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
             <Button
               variant="ghost"
               onClick={() => window.open(safeUrl, "_blank")}
-              className="text-[#BC5F36] hover:bg-[#ffe8db] flex items-center gap-1"
+              className="text-[#17cf17] hover:bg-[#ffe8db] flex items-center gap-1"
             >
               <FileText className="h-4 w-4" /> Abrir pestaña
             </Button>
@@ -53,7 +53,7 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
                 link.download = safeUrl.split("/").pop() || "documento.pdf";
                 link.click();
               }}
-              className="text-[#BC5F36] hover:bg-[#ffe8db] flex items-center gap-1"
+              className="text-[#17cf17] hover:bg-[#ffe8db] flex items-center gap-1"
             >
               Descargar
             </Button>

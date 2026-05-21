@@ -3,27 +3,27 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-// Import dinámico porque usa WebGL/THREE
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 export default function GlobeMinimal() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [globeConfig, setGlobeConfig] = useState<any>(null);
 
   useEffect(() => {
     setGlobeConfig({
-      pointOfView: { lat: 19.7008, lng: -101.186 }, // Morelia exacta
+      pointOfView: { lat: 19.7008, lng: -101.186 },
       globeImageUrl:
         "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
       backgroundColor: "#ffffff00",
       showAtmosphere: true,
-      atmosphereColor: "#f97316",
+      atmosphereColor: "#17cf17",
       atmosphereAltitude: 0.08,
       markers: [
         {
           lat: 19.7008,
           lng: -101.186,
           size: 0.12,
-          color: "#D97706",
+          color: "#17cf17",
         },
       ],
     });

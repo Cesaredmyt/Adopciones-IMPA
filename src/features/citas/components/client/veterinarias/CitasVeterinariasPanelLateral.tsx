@@ -14,25 +14,25 @@ export function CitasVeterinariasPanelLateral({
   return (
     <div className="flex flex-col gap-4 self-start">
       <div className="bg-white rounded-xl shadow-md p-4">
-        <h2 className="text-lg font-semibold text-[#8B4513] mb-3">
+        <h2 className="text-lg font-semibold text-[#0f830f] mb-3">
           Calendario de citas
         </h2>
         <CalendarioVeterinarias citas={citas} vistaCompacta />
       </div>
 
       <div className="bg-white rounded-xl shadow-md p-4">
-        <h2 className="text-lg font-semibold text-[#8B4513] mb-3">
+        <h2 className="text-lg font-semibold text-[#0f830f] mb-3">
           Próximas citas
         </h2>
 
         {proximas.length === 0 ? (
           <p className="text-sm text-gray-500">No hay próximas citas.</p>
         ) : (
-          <ul className="divide-y divide-[#FDE68A]">
+          <ul className="divide-y divide-[#a8f1a8]">
             {proximas.map((c) => (
               <li key={c.id} className="py-3 flex justify-between">
                 <div>
-                  <p className="font-medium text-[#8B4513]">{c.mascota_nombre}</p>
+                  <p className="font-medium text-[#0f830f]">{c.mascota_nombre}</p>
                   <p className="text-sm text-gray-500">
                     {format(new Date(c.fecha_cita), "EEEE d 'de' MMMM, h:mm a", {
                       locale: es,
@@ -40,7 +40,7 @@ export function CitasVeterinariasPanelLateral({
                   </p>
                 </div>
 
-                <span className="text-xs font-semibold text-[#8B4513]">
+                <span className="text-xs font-semibold text-[#0f830f]">
                   {c.estado}
                 </span>
               </li>

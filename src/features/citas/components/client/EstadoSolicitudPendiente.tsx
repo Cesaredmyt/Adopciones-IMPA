@@ -21,16 +21,16 @@ export default function EstadoSolicitudPendiente({
     diasRestantes,
 }: EstadoSolicitudPendienteProps) {
     return (
-        <div className="rounded-2xl border border-[#eadacb] bg-[#fffdf9] shadow-md p-8 space-y-6">
+        <div className="rounded-2xl border border-[#dce5dc] bg-[#fffdf9] shadow-md p-8 space-y-6">
             {/* Encabezado */}
             <div className="text-center">
-                <h3 className="text-xl font-extrabold text-[#8b4513]">
+                <h3 className="text-xl font-extrabold text-[#0f830f]">
                     Agenda tu visita 🐾
                 </h3>
 
                 <p className="mt-2 text-sm text-[#7a5c49] max-w-md mx-auto leading-relaxed">
                     Estás a un paso de convivir con{" "}
-                    <span className="font-semibold text-[#BC5F36]">
+                    <span className="font-semibold text-[#17cf17]">
                         {mascota?.nombre}
                     </span>
                     . Elige un día y horario para tu visita al IMPA.
@@ -42,8 +42,8 @@ export default function EstadoSolicitudPendiente({
             </div>
 
             {/* BARRAS DECORATIVAS */}
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#BC5F36] to-[#d9a48f] lg:hidden" />
-            <div className="hidden lg:block w-2 rounded-full bg-gradient-to-b from-[#BC5F36] to-[#d9a48f] opacity-80 shadow-sm" />
+            <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#17cf17] to-[#d9a48f] lg:hidden" />
+            <div className="hidden lg:block w-2 rounded-full bg-gradient-to-b from-[#17cf17] to-[#d9a48f] opacity-80 shadow-sm" />
 
             {/* CONTENIDO PRINCIPAL */}
             <div
@@ -52,7 +52,7 @@ export default function EstadoSolicitudPendiente({
                     max-w-[820px]
                     mx-auto
                     rounded-2xl 
-                    border border-[#eadacb] 
+                    border border-[#dce5dc] 
                     bg-[#fffaf4] 
                     shadow-md 
                     p-4 sm:p-5
@@ -63,8 +63,8 @@ export default function EstadoSolicitudPendiente({
                 "
             >
                 {/* Barra interna */}
-                <div className="h-1.5 w-full rounded-full bg-gradient-to-r from-[#BC5F36] to-[#d9a48f] lg:hidden" />
-                <div className="hidden lg:block w-1.5 rounded-full bg-gradient-to-b from-[#BC5F36] to-[#d9a48f] opacity-80 shadow-sm" />
+                <div className="h-1.5 w-full rounded-full bg-gradient-to-r from-[#17cf17] to-[#d9a48f] lg:hidden" />
+                <div className="hidden lg:block w-1.5 rounded-full bg-gradient-to-b from-[#17cf17] to-[#d9a48f] opacity-80 shadow-sm" />
 
                 {/* CARD INTERNO */}
                 <div
@@ -73,7 +73,7 @@ export default function EstadoSolicitudPendiente({
                         max-w-[760px]
                         mx-auto
                         rounded-2xl 
-                        border border-[#eadacb] 
+                        border border-[#dce5dc] 
                         bg-[#fffaf4] 
                         shadow-md 
                         p-4 sm:p-5
@@ -83,8 +83,8 @@ export default function EstadoSolicitudPendiente({
                 >
                     {/* INFO */}
                     <div className="flex-1 text-center lg:text-left space-y-2">
-                        <h4 className="text-base sm:text-lg font-extrabold text-[#8b4513] flex items-center justify-center lg:justify-start gap-2">
-                            <MapPin className="h-4 w-4 text-[#BC5F36]" />
+                        <h4 className="text-base sm:text-lg font-extrabold text-[#0f830f] flex items-center justify-center lg:justify-start gap-2">
+                            <MapPin className="h-4 w-4 text-[#17cf17]" />
                             Instituto Michoacano de Protección Animal (IMPA)
                         </h4>
 
@@ -115,7 +115,7 @@ export default function EstadoSolicitudPendiente({
                             lg:w-56
                             rounded-xl 
                             bg-[#fffaf4]
-                            border border-[#eadacb]
+                            border border-[#dce5dc]
                             shadow-md 
                             overflow-hidden
                             flex flex-col
@@ -144,7 +144,7 @@ export default function EstadoSolicitudPendiente({
                         </div>
 
                         <div className="p-3 text-center">
-                            <h5 className="text-xs font-bold text-[#8b4513]">
+                            <h5 className="text-xs font-bold text-[#0f830f]">
                                 Ubicación del IMPA
                             </h5>
                             <p className="text-[11px] text-[#7a5c49] mt-1 leading-relaxed">
@@ -161,7 +161,7 @@ export default function EstadoSolicitudPendiente({
                     onClick={onAgendar}
                     className="
                         w-full sm:w-auto
-                        bg-[#BC5F36]
+                        bg-[#17cf17]
                         hover:bg-[#a64d2e]
                         text-white font-semibold
                         px-8 py-4 
@@ -184,7 +184,7 @@ export default function EstadoSolicitudPendiente({
                         w-full sm:w-auto
                         bg-[#fff5f3]
                         border border-[#e8c9b8]
-                        text-[#BC5F36]
+                        text-[#17cf17]
                         hover:bg-[#ffe7e2]
                         px-8 py-4 
                         rounded-xl
@@ -201,7 +201,7 @@ export default function EstadoSolicitudPendiente({
 
             {/* Expiración */}
             {diasRestantes !== null && diasRestantes !== undefined && (
-                <p className="text-center text-xs font-semibold text-[#BC5F36]">
+                <p className="text-center text-xs font-semibold text-[#17cf17]">
                     ⏳ Tu solicitud expira en{" "}
                     {diasRestantes > 0
                         ? `${diasRestantes} días`

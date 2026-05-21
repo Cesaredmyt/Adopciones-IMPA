@@ -92,11 +92,11 @@ function MenuSelect({
                     border-radius: 12px;
                     background: #fff;
                     box-shadow: 0 4px 14px rgba(43, 27, 18, 0.06);
-                    color: #2b1b12;
+                    color: #111811;
                     font-weight: 400;
                 }
                 .chev {
-                    color: #8b4513;
+                    color: #0f830f;
                     opacity: 0.9;
                 }
                 .mselect-menu {
@@ -106,7 +106,7 @@ function MenuSelect({
                     z-index: 40;
                     width: 100%;
                     min-width: 220px;
-                    background: #fff1e6;
+                    background: #ecfdec;
                     border-radius: 10px;
                     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
                     overflow: hidden;
@@ -115,7 +115,7 @@ function MenuSelect({
                     width: 100%;
                     text-align: left;
                     padding: 10px 14px;
-                    color: #8b4513;
+                    color: #0f830f;
                     font-weight: 400;
                     background: transparent;
                     border: none;
@@ -123,10 +123,10 @@ function MenuSelect({
                     transition: background 0.12s ease;
                 }
                 .mselect-item:hover {
-                    background: #fde68a;
+                    background: #a8f1a8;
                 }
                 .mselect-item.is-active {
-                    background: #fde68a;
+                    background: #a8f1a8;
                 }
             `}</style>
         </div>

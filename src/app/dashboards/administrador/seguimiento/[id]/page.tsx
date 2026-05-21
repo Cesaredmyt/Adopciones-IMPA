@@ -22,7 +22,7 @@ export default function SeguimientoPorMascotaPage() {
 
   if (isLoading)
     return (
-      <div className="text-center py-20 text-[#8B4513]">
+      <div className="text-center py-20 text-[#0f830f]">
         Cargando seguimiento...
       </div>
     );
@@ -39,12 +39,12 @@ export default function SeguimientoPorMascotaPage() {
 
       <button
         onClick={() => router.push("/dashboards/administrador/seguimiento")}
-        className="group flex items-center gap-2 text-[#8B4513] mb-4 font-medium cursor-pointer"
+        className="group flex items-center gap-2 text-[#0f830f] mb-4 font-medium cursor-pointer"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition" />
         <span className="relative">
           Volver a Seguimiento
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-[#8B4513] 
+          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-[#0f830f] 
                      group-hover:w-full transition-all"></span>
         </span>
       </button>
@@ -56,7 +56,7 @@ export default function SeguimientoPorMascotaPage() {
 
       <MascotaInfoCard mascota={mascota} onImageClick={setZoomImage} />
 
-      <h3 className="text-2xl font-bold text-[#8B4513] mb-4">
+      <h3 className="text-2xl font-bold text-[#0f830f] mb-4">
         Seguimientos registrados
       </h3>
 

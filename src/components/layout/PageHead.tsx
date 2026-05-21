@@ -11,27 +11,19 @@ export default function PageHead({
   right?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 text-center sm:text-left">
-      <div className="flex flex-col gap-1 w-full">
-        <h1
-          className="
-            m-0 font-extrabold 
-            text-3xl sm:text-4xl md:text-5xl 
-            leading-tight tracking-tight 
-            text-[#8B4513]
-          "
-        >
+    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+      <div className="flex flex-col gap-1.5 min-w-0">
+        <h1 className="m-0 font-bold text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight text-impa-text">
           {title}
         </h1>
-
         {subtitle && (
-          <div className="m-0 text-base sm:text-lg text-[#7a5c49]">
+          <div className="m-0 text-sm sm:text-base text-impa-muted">
             {subtitle}
           </div>
         )}
       </div>
 
-      {right && <div className="mt-3 sm:mt-0">{right}</div>}
+      {right && <div className="flex-shrink-0">{right}</div>}
     </div>
   );
 }

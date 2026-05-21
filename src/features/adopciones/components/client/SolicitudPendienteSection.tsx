@@ -30,7 +30,7 @@ export default function SolicitudPendienteSection({
 
     return (
         <div className="rounded-xl border border-[#ffedd5] bg-[#fffaf4] p-5 mb-4 mt-5">
-            <h3 className="text-sm font-extrabold text-[#BC5F36] flex items-center gap-2">
+            <h3 className="text-sm font-extrabold text-[#17cf17] flex items-center gap-2">
                 <PawPrint className="h-4 w-4" /> Solicitud pendiente
             </h3>
 
@@ -57,13 +57,13 @@ export default function SolicitudPendienteSection({
                             onClick={() => router.push("/dashboards/usuario/citas")}
                             className="
                 w-full 
-                bg-[#BC5F36] text-white 
+                bg-[#17cf17] text-white 
                 py-3.5 
                 rounded-xl 
                 text-base font-semibold 
-                shadow-md shadow-[#bc5f36]/30
+                shadow-md shadow-[#17cf17]/30
                 hover:bg-[#a64f2b]
-                hover:shadow-lg hover:shadow-[#bc5f36]/40
+                hover:shadow-lg hover:shadow-[#17cf17]/40
                 hover:-translate-y-[2px]
                 active:scale-95
                 transition-all duration-200
@@ -81,7 +81,7 @@ export default function SolicitudPendienteSection({
                 rounded-xl 
                 bg-white/80 
                 backdrop-blur-md 
-                border border-[#eadacb] 
+                border border-[#dce5dc] 
                 p-5 
                 shadow-lg shadow-[#c7b39b]/30
                 w-full
@@ -99,7 +99,7 @@ export default function SolicitudPendienteSection({
                                 onClick={() => setMostrarAgendar(!mostrarAgendar)}
                                 className="
                   w-full 
-                  bg-[#BC5F36] text-white 
+                  bg-[#17cf17] text-white 
                   py-3 rounded-xl 
                   shadow-md 
                   font-semibold 
@@ -127,9 +127,9 @@ export default function SolicitudPendienteSection({
                                 window.innerWidth >= 1024) && (
                                     <div className="space-y-6">
                                         {/* Qué sigue */}
-                                        <div className="rounded-xl bg-white/80 backdrop-blur-md border border-[#eadacb] p-5 shadow-lg shadow-[#c7b39b]/30">
-                                            <h3 className="text-sm font-extrabold text-[#2b1b12] mb-2 flex items-center gap-2">
-                                                <span className="text-[#BC5F36] text-lg">📅</span>
+                                        <div className="rounded-xl bg-white/80 backdrop-blur-md border border-[#dce5dc] p-5 shadow-lg shadow-[#c7b39b]/30">
+                                            <h3 className="text-sm font-extrabold text-[#111811] mb-2 flex items-center gap-2">
+                                                <span className="text-[#17cf17] text-lg">📅</span>
                                                 ¿Qué sigue ahora?
                                             </h3>
 
@@ -142,8 +142,8 @@ export default function SolicitudPendienteSection({
                                         </div>
 
                                         {/* Estado del proceso */}
-                                        <div className="rounded-xl bg-white/80 backdrop-blur-md border border-[#eadacb] p-5 shadow-lg shadow-[#c7b39b]/30">
-                                            <h4 className="text-sm font-extrabold text-[#2b1b12] mb-3 flex items-center gap-2">
+                                        <div className="rounded-xl bg-white/80 backdrop-blur-md border border-[#dce5dc] p-5 shadow-lg shadow-[#c7b39b]/30">
+                                            <h4 className="text-sm font-extrabold text-[#111811] mb-3 flex items-center gap-2">
                                                 <span className="text-[#3B82F6] text-lg">📘</span>
                                                 Estado de tu proceso
                                             </h4>
@@ -153,7 +153,7 @@ export default function SolicitudPendienteSection({
                                                     <span className="text-green-600">✓</span> Mascota seleccionada
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <span className="text-[#BC5F36]">→</span> Pendiente agendar visita
+                                                    <span className="text-[#17cf17]">→</span> Pendiente agendar visita
                                                 </div>
                                                 <div className="flex items-center gap-2 opacity-70">
                                                     <span>⏳</span> Formulario (después de la visita)
@@ -172,7 +172,7 @@ export default function SolicitudPendienteSection({
                       bg-gradient-to-br from-[#fff4e6] via-[#ffe8cf] to-[#ffd8b0]
                     "
                                         >
-                                            <h4 className="text-sm font-extrabold text-[#2b1b12] mb-4 flex items-center gap-2">
+                                            <h4 className="text-sm font-extrabold text-[#111811] mb-4 flex items-center gap-2">
                                                 <span className="text-[#F59E0B] text-xl">💡</span>
                                                 Consejos para tu visita
                                             </h4>
@@ -192,10 +192,10 @@ export default function SolicitudPendienteSection({
                                                 className="
                         lg:hidden 
                         w-full 
-                        bg-[#BC5F36] text-white 
+                        bg-[#17cf17] text-white 
                         py-3 rounded-xl 
                         text-sm font-semibold
-                        shadow-md shadow-[#bc5f36]/40 
+                        shadow-md shadow-[#17cf17]/40 
                         hover:bg-[#a64f2b]
                         active:scale-95
                         transition-all duration-200

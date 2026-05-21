@@ -38,7 +38,7 @@ export default function SeguimientoCard({
       {/* ENCABEZADO */}
       <div className="flex justify-between items-center mb-4">
         <div>
-          <p className="text-[#8B4513] font-semibold text-lg">
+          <p className="text-[#0f830f] font-semibold text-lg">
             Seguimiento #{index + 1}
           </p>
           <p className="text-sm text-gray-600">
@@ -54,7 +54,7 @@ export default function SeguimientoCard({
 
       {/* ESTADO */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#8B4513] mb-1">
+        <p className="text-sm font-semibold text-[#0f830f] mb-1">
           Estado de la mascota:
         </p>
 
@@ -69,7 +69,7 @@ export default function SeguimientoCard({
       {Array.isArray(s.problemas_reportados) &&
         s.problemas_reportados.length > 0 && (
           <div className="mb-4">
-            <p className="text-sm font-semibold text-[#8B4513] mb-1">
+            <p className="text-sm font-semibold text-[#0f830f] mb-1">
               Problemas reportados:
             </p>
             <ul className="list-disc list-inside text-sm text-gray-700">
@@ -82,7 +82,7 @@ export default function SeguimientoCard({
 
       {/* OBSERVACIONES */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#8B4513] mb-1">
+        <p className="text-sm font-semibold text-[#0f830f] mb-1">
           Observaciones del adoptante:
         </p>
         <p className="text-sm text-gray-700">
@@ -93,7 +93,7 @@ export default function SeguimientoCard({
       {/* RECOMENDACIONES */}
       {s.recomendaciones && (
         <div className="mb-4">
-          <p className="text-sm font-semibold text-[#8B4513] mb-1">
+          <p className="text-sm font-semibold text-[#0f830f] mb-1">
             Recomendaciones:
           </p>
           <p className="text-sm text-gray-700">
@@ -104,7 +104,7 @@ export default function SeguimientoCard({
 
       {/* SATISFACCION */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#8B4513] mb-2">
+        <p className="text-sm font-semibold text-[#0f830f] mb-2">
           Satisfacción del adoptante:
         </p>
 
@@ -115,7 +115,7 @@ export default function SeguimientoCard({
               size={24}
               className={
                 idx < (s.satisfaccion_adoptante ?? 0)
-                  ? "text-[#BC5F36]"
+                  ? "text-[#17cf17]"
                   : "text-gray-300"
               }
             />
@@ -126,7 +126,7 @@ export default function SeguimientoCard({
       {/* FOTOS */}
       {Array.isArray(s.fotos_actuales) && s.fotos_actuales.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-[#8B4513] mb-2">
+          <p className="text-sm font-semibold text-[#0f830f] mb-2">
             Evidencias fotográficas:
           </p>
 

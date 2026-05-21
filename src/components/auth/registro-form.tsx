@@ -136,8 +136,8 @@ export default function RegistroForm() {
           onClick={onClick}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-2 border rounded-xl hover:border-emerald-500 
-        focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none transition-all"
+          className="w-full pl-10 pr-10 py-2 border rounded-xl hover:border-impa-500 
+        focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none transition-all"
         />
       );
     }
@@ -565,11 +565,11 @@ export default function RegistroForm() {
   const RequirementItem = ({ met, text }: { met: boolean; text: string }) => (
     <div className="flex items-center space-x-2">
       {met ? (
-        <Check className="h-4 w-4 text-emerald-600" />
+        <Check className="h-4 w-4 text-impa-600" />
       ) : (
         <X className="h-4 w-4 text-rose-500" />
       )}
-      <span className={cn("text-sm", met ? "text-emerald-700" : "text-slate-500")}>
+      <span className={cn("text-sm", met ? "text-impa-700" : "text-slate-500")}>
         {text}
       </span>
     </div>
@@ -596,7 +596,7 @@ export default function RegistroForm() {
             value={formData.nombres || ""}
             onChange={(e) => handleInputChange("nombres", e.target.value)}
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.nombres?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: Juan Carlos"
@@ -623,7 +623,7 @@ export default function RegistroForm() {
               handleInputChange("apellido_paterno", e.target.value)
             }
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.apellido_paterno?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: García"
@@ -650,7 +650,7 @@ export default function RegistroForm() {
               handleInputChange("apellido_materno", e.target.value)
             }
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.apellido_materno?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="Ej: García"
@@ -677,7 +677,7 @@ export default function RegistroForm() {
             onChange={(e) => handleInputChange("email", e.target.value)}
             onBlur={(e) => checkEmailExists(e.target.value)}
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               (errors.email?.length > 0 || emailExists) && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="ejemplo@correo.com"
@@ -685,7 +685,7 @@ export default function RegistroForm() {
           />
           {isCheckingEmail && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-emerald-600 rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-impa-600 rounded-full" />
             </div>
           )}
         </div>
@@ -720,7 +720,7 @@ export default function RegistroForm() {
             value={formData.telefono || ""}
             onChange={(e) => handleInputChange("telefono", e.target.value)}
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.telefono?.length > 0 && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="555 123 4567"
@@ -835,7 +835,7 @@ export default function RegistroForm() {
             placeholderText="Selecciona o escribe tu fecha de nacimiento"
             className={cn(
               "w-full pl-10 pr-10 py-2 border rounded-xl transition-all",
-              "hover:border-emerald-500 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none",
+              "hover:border-impa-500 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none",
               errors.fecha_nacimiento?.length > 0
                 ? "border-rose-500"
                 : "border-slate-200"
@@ -848,7 +848,7 @@ export default function RegistroForm() {
           />
 
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <Calendar className="h-4 w-4 text-emerald-600 opacity-60" />
+            <Calendar className="h-4 w-4 text-impa-600 opacity-60" />
           </div>
         </div>
 
@@ -877,7 +877,7 @@ export default function RegistroForm() {
             }
             onBlur={(e) => checkCurpExists(e.target.value)}
             className={cn(
-              "pl-10 rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "pl-10 rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               (errors.curp?.length > 0 || curpExists) && "border-rose-500 focus-visible:ring-rose-500/20"
             )}
             placeholder="GABC800101HDFRRR01"
@@ -886,7 +886,7 @@ export default function RegistroForm() {
           />
           {isCheckingCurp && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-emerald-600 rounded-full" />
+              <div className="animate-spin h-4 w-4 border-2 border-slate-200 border-t-impa-600 rounded-full" />
             </div>
           )}
         </div>
@@ -917,7 +917,7 @@ export default function RegistroForm() {
             className={cn(
               "w-full pl-10 pr-10 py-2.5 border rounded-xl appearance-none cursor-pointer",
               "bg-white transition-all",
-              "hover:border-emerald-500 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none",
+              "hover:border-impa-500 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none",
               "text-sm text-slate-900",
               errors.ocupacion?.length > 0
                 ? "border-rose-500"
@@ -939,7 +939,7 @@ export default function RegistroForm() {
           </select>
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
             <svg
-              className="h-4 w-4 text-emerald-600"
+              className="h-4 w-4 text-impa-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -984,7 +984,7 @@ export default function RegistroForm() {
             onChange={(e) => handleInputChange("password", e.target.value)}
             onBlur={(e) => validatePassword(e.target.value)}
             className={cn(
-              "rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.password?.length > 0 || passwordError
                 ? "border-rose-500"
                 : ""
@@ -1060,7 +1060,7 @@ export default function RegistroForm() {
             }
             onBlur={(e) => validateConfirmPassword(e.target.value)}
             className={cn(
-              "rounded-xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 transition-all",
+              "rounded-xl focus-visible:ring-impa-500/20 focus-visible:border-impa-500 transition-all",
               errors.confirmPassword?.length > 0 || confirmPasswordError
                 ? "border-rose-500"
                 : ""
@@ -1106,7 +1106,7 @@ export default function RegistroForm() {
               onChange={(e) =>
                 handleInputChange("acceptTerms", e.target.checked)
               }
-              className="data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+              className="data-[state=checked]:bg-impa-600 data-[state=checked]:border-impa-600"
             />
           </div>
 
@@ -1115,7 +1115,7 @@ export default function RegistroForm() {
               Acepto los{" "}
               <button
                 type="button"
-                className="text-emerald-600 font-medium hover:underline"
+                className="text-impa-600 font-medium hover:underline"
                 onClick={() => setShowTerminosModal(true)}
               >
                 términos y condiciones
@@ -1140,7 +1140,7 @@ export default function RegistroForm() {
               onChange={(e) =>
                 handleInputChange("acceptPrivacy", e.target.checked)
               }
-              className="data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+              className="data-[state=checked]:bg-impa-600 data-[state=checked]:border-impa-600"
             />
           </div>
 
@@ -1149,7 +1149,7 @@ export default function RegistroForm() {
               Acepto la{" "}
               <button
                 type="button"
-                className="text-emerald-600 font-medium hover:underline"
+                className="text-impa-600 font-medium hover:underline"
                 onClick={() => setShowPrivacidadModal(true)}
               >
                 política de privacidad
@@ -1193,7 +1193,7 @@ export default function RegistroForm() {
               key={step}
               className={cn(
                 "flex-1 h-2 rounded-full transition-all duration-300",
-                step <= currentStep ? "bg-emerald-500" : "bg-slate-200"
+                step <= currentStep ? "bg-impa-500" : "bg-slate-200"
               )}
             />
           ))}
@@ -1222,7 +1222,7 @@ export default function RegistroForm() {
               variant="ghost"
               onClick={handlePrevStep}
               disabled={currentStep === 1 || isLoading}
-              className="text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl px-4 py-5"
+              className="text-impa-600 hover:bg-impa-50 hover:text-impa-700 rounded-xl px-4 py-5"
             >
               <ChevronLeft className="h-5 w-5 mr-1" />
               Anterior
@@ -1239,7 +1239,7 @@ export default function RegistroForm() {
                   curpExists || 
                   errors.fecha_nacimiento?.length > 0
                 }
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
+                className="bg-impa-600 hover:bg-impa-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
                 Siguiente
                 <ChevronRight className="h-5 w-5 ml-1" />
@@ -1250,7 +1250,7 @@ export default function RegistroForm() {
                 disabled={
                   isLoading || !!passwordError || !!confirmPasswordError
                 }
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
+                className="bg-impa-600 hover:bg-impa-700 text-white font-semibold rounded-xl px-6 py-5 shadow-sm transition-colors"
               >
                 {isLoading ? "Registrando..." : "Crear Cuenta"}
               </Button>
@@ -1263,7 +1263,7 @@ export default function RegistroForm() {
               ¿Ya tienes cuenta?{" "}
               <a
                 href="/login"
-                className="text-emerald-600 font-bold hover:text-emerald-700 transition-colors ml-1"
+                className="text-impa-600 font-bold hover:text-impa-700 transition-colors ml-1"
               >
                 Inicia sesión
               </a>

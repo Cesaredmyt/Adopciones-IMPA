@@ -25,10 +25,10 @@ export function ActivityItem({
     fecha: string;
 }) {
     const iconos: Record<string, React.ReactNode> = {
-        documento: <FileText className="h-4 w-4 text-[#BC5F36]" />,
-        cita: <CalendarDays className="h-4 w-4 text-[#BC5F36]" />,
-        mascota: <PawPrint className="h-4 w-4 text-[#BC5F36]" />,
-        esterilizacion: <Stethoscope className="h-4 w-4 text-[#BC5F36]" />,
+        documento: <FileText className="h-4 w-4 text-[#17cf17]" />,
+        cita: <CalendarDays className="h-4 w-4 text-[#17cf17]" />,
+        mascota: <PawPrint className="h-4 w-4 text-[#17cf17]" />,
+        esterilizacion: <Stethoscope className="h-4 w-4 text-[#17cf17]" />,
     };
 
     return (

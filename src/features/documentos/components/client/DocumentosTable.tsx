@@ -40,7 +40,7 @@ export default function DocumentosTable({
   }, {});
 
   return (
-    <section className="rounded-2xl border border-[#eadacb] bg-white shadow-sm overflow-hidden">
+    <section className="rounded-2xl border border-[#dce5dc] bg-white shadow-sm overflow-hidden">
 
       {Object.entries(agrupado).map(([email, docs]: any) => {
         const usuario = docs[0].perfiles;
@@ -77,7 +77,7 @@ export default function DocumentosTable({
 
                 {/* Cantidad */}
                 <div className="flex items-center gap-1 whitespace-nowrap">
-                  <FileText className="h-4 w-4 text-[#BC5F36]" />
+                  <FileText className="h-4 w-4 text-[#17cf17]" />
                   <span className="font-medium text-sm">{docs.length}</span>
                   <span className="text-xs text-slate-500">docs</span>
                 </div>
@@ -101,7 +101,7 @@ export default function DocumentosTable({
                   </span>
                 )}
 
-                <span className="text-[#BC5F36] text-xl font-bold leading-none">
+                <span className="text-[#17cf17] text-xl font-bold leading-none">
                   {isOpen ? "▾" : "▸"}
                 </span>
               </div>
@@ -116,13 +116,13 @@ export default function DocumentosTable({
                     className="
                       flex flex-col sm:flex-row sm:items-center sm:justify-between
                       gap-3
-                      border border-[#eadacb] rounded-xl 
+                      border border-[#dce5dc] rounded-xl 
                       p-4 bg-white shadow-sm
                     "
                   >
                     {/* IZQUIERDA */}
                     <div className="flex items-start gap-3">
-                      <FileText className="h-5 w-5 text-[#BC5F36] flex-shrink-0" />
+                      <FileText className="h-5 w-5 text-[#17cf17] flex-shrink-0" />
                       <div>
                         <p className="font-semibold capitalize text-[#3b291d] text-sm">
                           {doc.tipo}
@@ -158,7 +158,7 @@ export default function DocumentosTable({
 
                       <button
                         onClick={() => onVerDocumento(doc.url)}
-                        className="text-[#BC5F36] hover:underline text-xs flex items-center"
+                        className="text-[#17cf17] hover:underline text-xs flex items-center"
                       >
                         <Eye className="h-4 w-4 mr-1" /> Ver
                       </button>

@@ -16,22 +16,20 @@ export default async function HeaderSmart() {
     return (
       <>
         <HeaderAd />
-        <div className="h-[6rem]" /> 
+        <div className="h-16" />
       </>
     );
   }
-
 
   if (rolMeta === "user") {
     return (
       <>
         <HeaderUsr />
-        <div className="h-[6rem]" />
+        <div className="h-16" />
       </>
     );
   }
 
-  // 🟠 Si hay perfil en tabla "perfiles"
   if (session?.user?.id) {
     const { data } = await supabase
       .from("perfiles")
@@ -43,7 +41,7 @@ export default async function HeaderSmart() {
       return (
         <>
           <HeaderAd />
-          <div className="h-[6rem]" /> 
+          <div className="h-16" />
         </>
       );
     }
@@ -52,7 +50,7 @@ export default async function HeaderSmart() {
       return (
         <>
           <HeaderUsr />
-          <div className="h-[6rem]" /> 
+          <div className="h-16" />
         </>
       );
     }

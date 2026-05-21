@@ -15,9 +15,9 @@ export default function SeguimientoItem({
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3 w-full border border-[#E5D1B8] rounded-xl px-4 py-3 bg-white">
       <div className="flex items-center gap-3">
-        <CalendarDays size={18} className="text-[#8B4513]" />
+        <CalendarDays size={18} className="text-[#0f830f]" />
         <div>
-          <p className="text-sm font-medium text-[#8B4513]">
+          <p className="text-sm font-medium text-[#0f830f]">
             {seguimiento.nombre}
           </p>
           <p className="text-xs text-gray-600">

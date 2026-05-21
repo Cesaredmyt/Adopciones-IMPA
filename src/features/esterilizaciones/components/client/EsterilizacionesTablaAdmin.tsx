@@ -38,7 +38,7 @@ export function EsterilizacionesTablaAdmin({
     <div className="hidden lg:flex justify-center w-full">
       <div className="bg-white rounded-xl shadow-md overflow-x-auto w-full max-w-[1200px]">
         <table className="w-full text-sm text-left text-gray-700">
-          <thead className="bg-[#FFF6E5] text-[#8B4513]">
+          <thead className="bg-[#FFF6E5] text-[#0f830f]">
             <tr>
               <th className="px-4 py-3 w-[10%]">Folio</th>
               <th className="px-4 py-3 w-[18%]">Mascota</th>
@@ -51,8 +51,8 @@ export function EsterilizacionesTablaAdmin({
 
           <tbody className="divide-y divide-[#f5e6d3] text-gray-700">
             {items.map((item) => (
-              <tr key={item.id} className="hover:bg-[#FFF8F0]">
-                <td className="px-4 py-3 font-semibold text-[#8B4513]">
+              <tr key={item.id} className="hover:bg-[#f6f8f6]">
+                <td className="px-4 py-3 font-semibold text-[#0f830f]">
                   {item.folio}
                 </td>
 
@@ -88,7 +88,7 @@ export function EsterilizacionesTablaAdmin({
                   <div className="flex justify-center flex-wrap gap-2">
                     <button
                       onClick={() => onVer(item)}
-                      className="p-2 text-slate-500 hover:text-[#8B4513] hover:bg-orange-50 rounded-md transition"
+                      className="p-2 text-slate-500 hover:text-[#0f830f] hover:bg-impa-50 rounded-md transition"
                       title="Ver expediente"
                     >
                       <Eye className="w-4 h-4" />

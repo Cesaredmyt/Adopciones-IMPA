@@ -1,53 +1,47 @@
-export default function citaConocerMascota({ nombre, mascota, fecha, hora, direccion }) {
+import { renderImpaEmail, detailsTable } from "./_layout";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  "https://impa.vercel.app";
+
+export default function citaConocerMascota({
+  nombre,
+  mascota,
+  fecha,
+  hora,
+  direccion,
+}: {
+  nombre: string;
+  mascota: string;
+  fecha: string;
+  hora: string;
+  direccion: string;
+}) {
+  const subject = `Cita confirmada para conocer a ${mascota}`;
+
+  const content = `
+    <p style="margin:0 0 14px;">Hola <strong>${nombre}</strong>,</p>
+    <p style="margin:0 0 8px;">
+      Tu cita para conocer a <strong>${mascota}</strong> está confirmada.
+    </p>
+
+    ${detailsTable([
+      { label: "Mascota", value: `<strong>${mascota}</strong>` },
+      { label: "Fecha", value: fecha },
+      { label: "Hora", value: hora },
+      { label: "Lugar", value: direccion },
+    ])}
+  `;
+
   return {
-    subject: `Cita confirmada para conocer a ${mascota} 🐾`,
-    body: `
-      <html>
-      <body style="font-family:Arial;background:#faf6f6;padding:20px;">
-
-        <table align="center" width="480"
-          style="background:#fff;border-radius:14px;padding:30px;">
-
-          <tr><td style="text-align:center;">
-            <img src="https://caamorelia.vercel.app/logo.png" width="120"/>
-            <h2 style="color:#9B2E45;font-weight:900;">
-              ¡Tu cita está confirmada!
-            </h2>
-          </td></tr>
-
-          <tr><td>
-
-            <p>Hola <strong>${nombre}</strong>,</p>
-
-            <p>
-              Tu cita para conocer a <strong>${mascota}</strong> ha sido confirmada.
-            </p>
-
-            <p>
-              <strong>📅 Fecha:</strong> ${fecha}<br/>
-              <strong>⏰ Hora:</strong> ${hora}<br/>
-              <strong>📍 Lugar:</strong> ${direccion}
-            </p>
-
-            <p style="text-align:center;margin:25px 0;">
-              <a href="https://caamorelia.vercel.app"
-                style="background:#8B4513;color:white;padding:14px 26px;
-                border-radius:10px;text-decoration:none;font-weight:bold;">
-                Ver detalles
-              </a>
-            </p>
-
-            <hr style="margin:25px 0;border-top:1px solid #eee;">
-            <p style="text-align:center;color:#888;font-size:12px;">
-              © IMPA – Instituto Michoacano de Protección Animal
-            </p>
-
-          </td></tr>
-
-        </table>
-
-      </body>
-      </html>
-    `,
+    subject,
+    body: renderImpaEmail({
+      tone: "success",
+      title: "Tu cita está confirmada",
+      preheader: `${fecha} · ${hora}`,
+      content,
+      cta: { label: "Ver detalles", href: SITE_URL },
+    }),
   };
 }

@@ -29,8 +29,8 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
     }
 
     return (
-        <section className="rounded-2xl border border-[#eadacb] bg-white p-5 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#2b1b12]">Sube tus documentos</h3>
+        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 shadow-sm">
+            <h3 className="text-sm font-extrabold text-[#111811]">Sube tus documentos</h3>
             <p className="mt-1 text-sm text-[#7a5c49]">
                 Adjunta los archivos requeridos. Si algún documento fue rechazado, podrás volver a subir sólo ese.
             </p>
@@ -48,12 +48,12 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
                             className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-[#f0e6dc] bg-[#fffaf4] p-3"
                         >
                             <div className="flex-1">
-                                <p className="text-sm font-extrabold text-[#2b1b12]">{doc.label}</p>
+                                <p className="text-sm font-extrabold text-[#111811]">{doc.label}</p>
                                 {estado === "aprobado" && (
                                     <p className="text-xs text-green-700 mt-1">Documento Aprobado</p>
                                 )}
                                 {estado === "pendiente" && (
-                                    <p className="text-xs text-amber-700 mt-1">Documento En revisión</p>
+                                    <p className="text-xs text-impa-700 mt-1">Documento En revisión</p>
                                 )}
                                 {estado === "rechazado" && (
                                     <p className="text-xs text-red-700 mt-1">
@@ -70,7 +70,7 @@ export default function SeccionCarga({ archivos, docs = [], onPick, onEnviar, de
                                         href={info.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-xs text-[#BC5F36] underline mt-1 hover:text-[#8c3f1e]"
+                                        className="text-xs text-[#17cf17] underline mt-1 hover:text-[#8c3f1e]"
                                     >
                                         Ver archivo actual
                                     </a>

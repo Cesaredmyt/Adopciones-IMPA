@@ -37,7 +37,7 @@ export default function ModalRechazo({
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg"
       >
-        <h2 className="text-xl font-bold text-[#BC5F36] mb-4">
+        <h2 className="text-xl font-bold text-[#17cf17] mb-4">
           Rechazar documento
         </h2>
 

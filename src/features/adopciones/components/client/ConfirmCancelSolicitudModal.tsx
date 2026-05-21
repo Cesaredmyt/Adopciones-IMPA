@@ -21,8 +21,8 @@ export default function ConfirmCancelSolicitudModal({
       }}
       className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm flex items-center justify-center px-4"
     >
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-xl border border-[#eadacb]">
-        <h3 className="text-xl font-extrabold text-[#8b4513] text-center mb-3">
+      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-xl border border-[#dce5dc]">
+        <h3 className="text-xl font-extrabold text-[#0f830f] text-center mb-3">
           ¿Cancelar tu solicitud?
         </h3>
 
@@ -34,7 +34,7 @@ export default function ConfirmCancelSolicitudModal({
         <div className="mt-8 flex justify-center gap-4">
           <Button
             onClick={onClose}
-            className="bg-[#fff5f3] border border-[#e8c9b8] text-[#BC5F36] hover:bg-[#ffe7e2] transition-all cursor-pointer"
+            className="bg-[#fff5f3] border border-[#e8c9b8] text-[#17cf17] hover:bg-[#ffe7e2] transition-all cursor-pointer"
           >
             No, regresar
           </Button>
@@ -44,7 +44,7 @@ export default function ConfirmCancelSolicitudModal({
               onConfirm();
               onClose();
             }}
-            className="bg-[#BC5F36] hover:bg-[#a64d2e] text-white transition-all cursor-pointer"
+            className="bg-[#17cf17] hover:bg-[#a64d2e] text-white transition-all cursor-pointer"
           >
             Sí, cancelar solicitud
           </Button>

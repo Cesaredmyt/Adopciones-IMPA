@@ -1,404 +1,350 @@
-/* Importar Tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* ============================================================
+   IMPA — Instituto Michoacano de Protección Animal
+   Design Tokens & Global Styles
+   ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-/* Importar fuentes de Google */
-
-/* Variables globales */
+/* ============================================================
+   IMPA Brand Tokens
+   ============================================================ */
 :root {
-  /* Fondo y texto */
-  --background: #fff8f0;
-  --foreground: #1f2240;
-  --backgroundprueba: #ae9b6677;
+  /* Brand — Verde IMPA */
+  --impa-50:  #ecfdec;
+  --impa-100: #d3f9d3;
+  --impa-200: #a8f1a8;
+  --impa-300: #74e574;
+  --impa-400: #3fd23f;
+  --impa-500: #17cf17;  /* PRIMARY */
+  --impa-600: #11a611;
+  --impa-700: #0f830f;
+  --impa-800: #0d660d;
+  --impa-900: #0a4f0a;
 
-  /* Marca principal */
-  --brand-purple: #9a6200f6;
-  /* Morado institucional */
-  --brand-pink: #c3751d;
-  /* Rosa para CTA */
-  --brand-orange: #d97706;
-  /* Naranja cálido/acento */
+  /* Surfaces */
+  --impa-bg:           #f6f8f6;
+  --impa-card:         #ffffff;
+  --impa-muted-bg:     #f0f4f0;
 
-  /* Estados */
-  --success: #22c55e;
-  /* Verde (éxito) */
-  --warning: #f59e0b;
-  /* Amarillo (advertencia) */
-  --error: #ef4444;
-  /* Rojo (error) */
+  /* Text */
+  --impa-text:         #111811;
+  --impa-text-muted:   #586e58;
+  --impa-text-subtle:  #638863;
 
-  /* Escala de neutros */
-  --neutral-100: #f9fafb;
-  --neutral-200: #e5e7eb;
-  --neutral-400: #9ca3af;
-  --neutral-700: #374151;
+  /* Borders */
+  --impa-border:        #dce5dc;
+  --impa-border-strong: #c3d4c3;
 
-  /* Fuentes */
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Montserrat', sans-serif;
-}
+  /* Feedback */
+  --impa-success:      #16a34a;
+  --impa-success-soft: #dcfce7;
+  --impa-warning:      #d97706;
+  --impa-warning-soft: #fef3c7;
+  --impa-danger:       #dc2626;
+  --impa-danger-soft:  #fee2e2;
+  --impa-info:         #0284c7;
+  --impa-info-soft:    #e0f2fe;
 
-/* Dark mode opcional */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1f2240;
-    --foreground: #f9fafb;
-  }
-}
+  /* Shadows */
+  --impa-shadow-xs: 0 1px 2px 0 rgb(17 24 17 / 0.04);
+  --impa-shadow-sm: 0 1px 3px 0 rgb(17 24 17 / 0.06), 0 1px 2px -1px rgb(17 24 17 / 0.04);
+  --impa-shadow-md: 0 4px 12px -2px rgb(17 24 17 / 0.08), 0 2px 4px -2px rgb(17 24 17 / 0.04);
+  --impa-shadow-lg: 0 12px 24px -8px rgb(17 24 17 / 0.10), 0 4px 8px -4px rgb(17 24 17 / 0.06);
+  --impa-shadow-xl: 0 24px 48px -12px rgb(17 24 17 / 0.14);
+  --impa-ring:      0 0 0 4px rgb(23 207 23 / 0.15);
 
-/* Estilos base */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-montserrat);
-  margin: 0;
-  padding: 0;
-}
+  /* Radii */
+  --impa-radius-sm: 0.5rem;
+  --impa-radius:    0.75rem;
+  --impa-radius-md: 1rem;
+  --impa-radius-lg: 1.25rem;
+  --impa-radius-xl: 1.5rem;
 
-/* Títulos con tipografía display */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-zain);
-}
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-/* Links */
-a {
-  text-underline-offset: 3px;
-  transition: color 0.2s;
-}
-
-a:hover {
-  color: var(--brand-pink);
-}
-
-/* Animaciones globales */
-@keyframes fade-slide {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-slide {
-  animation: fade-slide 0.22s ease-out;
-}
-
-/* Variables para los componentes */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  /* ---- shadcn-compatible tokens (HSL) ---- */
+  --background: 120 14% 97%;
+  --foreground: 120 14% 8%;
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 120 14% 8%;
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222.2 84% 4.9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.5rem;
+  --popover-foreground: 120 14% 8%;
+  --primary: 120 80% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 120 20% 95%;
+  --secondary-foreground: 120 14% 12%;
+  --muted: 120 14% 95%;
+  --muted-foreground: 120 12% 39%;
+  --accent: 120 50% 94%;
+  --accent-foreground: 120 14% 12%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 120 14% 88%;
+  --input: 120 14% 88%;
+  --ring: 120 80% 45%;
+  --radius: 0.75rem;
 }
 
-.dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 84% 4.9%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 94.1%;
-}
-
+/* ============================================================
+   Base
+   ============================================================ */
 * {
   border-color: hsl(var(--border));
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
+  margin: 0;
+  padding: 0;
+  background: var(--impa-bg);
+  color: var(--impa-text);
+  font-family: var(--font-sans);
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
 }
 
-
-/* ======================================
-   Estilos personalizados para react-datepicker
-   ====================================== */
-/* ======================================
-   Estilos personalizados para react-datepicker (FINAL FIX
-   ====================================== */
-
-.react-datepicker {
-  font-family: inherit !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 12px !important; 
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--impa-text);
+  letter-spacing: -0.015em;
+  font-weight: 700;
 }
 
-.react-datepicker__header {
-  background-color: #f8fafc !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  border-radius: 12px 12px 0 0 !important;
-  padding: 12px 0 !important;
+a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
 }
 
-.react-datepicker__current-month {
-  color: #0f172a !important; /* text-slate-900 */
-  font-weight: 700 !important;
-  font-size: 15px !important;
+a:hover { color: var(--impa-600); }
+
+::selection {
+  background: var(--impa-200);
+  color: var(--impa-900);
 }
 
-.react-datepicker__day-name {
-  color: #64748b !important;
-  font-weight: 600 !important;
-  width: 2rem !important;
-  line-height: 2rem !important;
-  margin: 0.2rem !important;
+/* ============================================================
+   Utilities — IMPA
+   ============================================================ */
+.impa-card {
+  background: var(--impa-card);
+  border: 1px solid var(--impa-border);
+  border-radius: var(--impa-radius-md);
+  box-shadow: var(--impa-shadow-sm);
 }
 
-.react-datepicker__day {
-  width: 2rem !important;
-  line-height: 2rem !important;
-  margin: 0.2rem !important;
-  color: #334155 !important;
-  border-radius: 50% !important;
-  transition: all 0.2s !important;
+.impa-card-hover {
+  transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+.impa-card-hover:hover {
+  box-shadow: var(--impa-shadow-md);
+  border-color: var(--impa-border-strong);
 }
 
-.react-datepicker__day:hover {
-  background-color: #d1fae5 !important;
-  color: #047857 !important;
-  border-radius: 50% !important;
+.impa-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: var(--impa-ring);
 }
 
-.react-datepicker__day--selected,
-.react-datepicker__day--keyboard-selected {
-  background-color: #059669 !important;
-  color: white !important;
-  border-radius: 50% !important;
-  font-weight: 600 !important;
+.impa-gradient-bg {
+  background:
+    radial-gradient(900px 400px at 10% -10%, rgba(23,207,23,0.10), transparent 60%),
+    radial-gradient(700px 300px at 95% 10%, rgba(23,207,23,0.06), transparent 60%),
+    var(--impa-bg);
 }
 
-/* El día de hoy */
-.react-datepicker__day--today {
-  font-weight: 700 !important;
-  color: #059669 !important;
-  background-color: #ecfdf5 !important;
-  border-radius: 50% !important;
+.impa-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--impa-border), transparent);
 }
 
-.react-datepicker__day--disabled {
-  color: #cbd5e1 !important;
-  cursor: not-allowed !important;
-}
-
-.react-datepicker__day--disabled:hover {
-  background-color: transparent !important;
-}
-
-.react-datepicker__day--outside-month {
-  color: #cbd5e1 !important;
-}
-
-.react-datepicker__navigation {
-  top: 12px !important;
-}
-
-/* Flechas de navegación */
-.react-datepicker__navigation-icon::before {
-  border-color: #64748b !important;
-  border-width: 2px 2px 0 0 !important;
-}
-
-.react-datepicker__navigation:hover *::before {
-  border-color: #059669 !important;
-}
-
-.react-datepicker__month {
-  margin: 0.8rem !important;
-}
-
-.react-datepicker-full {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-}
-
-/* ----------------------------------------------- */
-/* SOLUCIÓN DE ALTURA/SCROLL Y DROPDOWN */
-/* ----------------------------------------------- */
-
-.react-datepicker__year-dropdown,
-.react-datepicker__month-dropdown {
-  background-color: white !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 8px !important;
-  position: absolute !important;
-  z-index: 10000 !important;
-  max-height: none !important; 
-  height: auto !important; 
-  overflow-y: visible !important; 
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
-}
-
-.react-datepicker__year-dropdown .react-datepicker__year-select {
-    size: 3 !important; 
-    height: auto !important; 
-    max-height: none !important; 
-    overflow-y: scroll !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.react-datepicker__year-option {
-    padding: 4px 8px !important;
-    color: #334155 !important;
-}
-
-.react-datepicker__year-option:hover,
-.react-datepicker__month-option:hover {
-  background-color: #d1fae5 !important;
-  color: #047857 !important;
-}
-
-.react-datepicker__year-option--selected,
-.react-datepicker__month-option--selected {
-  background-color: #059669 !important;
-  color: white !important;
-}
-
-/* ----------------------------------------------- */
-/* FIN SOLUCIÓN DE ALTURA/SCROLL */
-/* ----------------------------------------------- */
-
-.react-datepicker__triangle {
-  display: none !important;
-}
-
-.react-datepicker-popper {
-  z-index: 9999 !important;
-  position: absolute !important; 
-}
-
-/* Flechitas de los dropdowns de mes/año */
-.react-datepicker__year-read-view--down-arrow,
-.react-datepicker__month-read-view--down-arrow {
-  border-color: #64748b !important;
-  border-width: 2px 2px 0 0 !important;
-  margin-top: 4px !important;
-}
-
-.react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow,
-.react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow {
-  border-color: #059669 !important;
-}
-
-.react-datepicker__year-dropdown-container,
-.react-datepicker__month-dropdown-container {
-  margin: 0 5px !important;
-}
-
-.react-datepicker__month-read-view,
-.react-datepicker__year-read-view {
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 6px !important;
-  padding: 2px 8px !important;
-  color: #0f172a !important;
-  font-weight: 600 !important;
-  transition: all 0.2s;
-}
-
-.react-datepicker__month-read-view:hover,
-.react-datepicker__year-read-view:hover {
-  border-color: #059669 !important;
-  background-color: #f0fdf4 !important;
-}
-
-/* Animaciones */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0px); }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.25s ease-out;
-}
-
-@keyframes floating {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
-.animate-floating {
-  animation: floating 3s ease-in-out infinite;
-}
-
-/* Custom Scrollbar (Ahora en tonos grises modernos) */
+/* ============================================================
+   Scrollbar
+   ============================================================ */
 .custom-scroll::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
-
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* slate-300 */
+  background: var(--impa-border-strong);
   border-radius: 4px;
 }
-
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* slate-400 */
+  background: var(--impa-text-subtle);
 }
-
 .custom-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Animaciones extra */
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.18); }
-  40% { transform: scale(1); }
-  60% { transform: scale(1.12); }
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes impa-fade-slide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide { animation: impa-fade-slide 220ms ease-out; }
+
+@keyframes impa-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: impa-fade-in 250ms ease-out; }
+
+@keyframes impa-float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.animate-floating { animation: impa-float 3s ease-in-out infinite; }
+
+@keyframes impa-heartbeat {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.18); }
+  40%  { transform: scale(1); }
+  60%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
+.heartbeat { animation: impa-heartbeat 500ms ease-in-out; }
 
-.heartbeat {
-  animation: heartbeat 0.5s ease-in-out;
-}
-
-@keyframes softBounce {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+@keyframes impa-soft-bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
+.soft-bounce { animation: impa-soft-bounce 300ms ease-out; }
 
-.soft-bounce {
-  animation: softBounce 0.3s ease-out;
+@keyframes impa-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.impa-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(23,207,23,0.08), transparent);
+  background-size: 200% 100%;
+  animation: impa-shimmer 1.4s ease-in-out infinite;
+}
+
+/* ============================================================
+   react-datepicker — IMPA theme
+   ============================================================ */
+.react-datepicker {
+  font-family: var(--font-sans) !important;
+  border: 1px solid var(--impa-border) !important;
+  border-radius: var(--impa-radius-md) !important;
+  box-shadow: var(--impa-shadow-lg) !important;
+  overflow: hidden;
+}
+.react-datepicker__header {
+  background-color: var(--impa-muted-bg) !important;
+  border-bottom: 1px solid var(--impa-border) !important;
+  border-radius: var(--impa-radius-md) var(--impa-radius-md) 0 0 !important;
+  padding: 14px 0 !important;
+}
+.react-datepicker__current-month {
+  color: var(--impa-text) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+.react-datepicker__day-name {
+  color: var(--impa-text-muted) !important;
+  font-weight: 600 !important;
+  width: 2rem !important;
+  line-height: 2rem !important;
+  margin: 0.2rem !important;
+}
+.react-datepicker__day {
+  width: 2rem !important;
+  line-height: 2rem !important;
+  margin: 0.2rem !important;
+  color: var(--impa-text) !important;
+  border-radius: 9999px !important;
+  transition: all 160ms ease !important;
+}
+.react-datepicker__day:hover {
+  background-color: var(--impa-100) !important;
+  color: var(--impa-700) !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: var(--impa-500) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+.react-datepicker__day--today {
+  font-weight: 700 !important;
+  color: var(--impa-700) !important;
+  background-color: var(--impa-50) !important;
+}
+.react-datepicker__day--disabled {
+  color: var(--impa-border-strong) !important;
+  cursor: not-allowed !important;
+}
+.react-datepicker__day--disabled:hover {
+  background-color: transparent !important;
+}
+.react-datepicker__day--outside-month {
+  color: var(--impa-border-strong) !important;
+}
+.react-datepicker__navigation { top: 14px !important; }
+.react-datepicker__navigation-icon::before {
+  border-color: var(--impa-text-muted) !important;
+  border-width: 2px 2px 0 0 !important;
+}
+.react-datepicker__navigation:hover *::before {
+  border-color: var(--impa-600) !important;
+}
+.react-datepicker__month { margin: 0.8rem !important; }
+.react-datepicker-full { width: 100%; padding: 8px; font-size: 14px; }
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown {
+  background-color: #fff !important;
+  border: 1px solid var(--impa-border) !important;
+  border-radius: var(--impa-radius-sm) !important;
+  position: absolute !important;
+  z-index: 10000 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: visible !important;
+  box-shadow: var(--impa-shadow-md) !important;
+}
+.react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover {
+  background-color: var(--impa-100) !important;
+  color: var(--impa-700) !important;
+}
+.react-datepicker__year-option--selected,
+.react-datepicker__month-option--selected {
+  background-color: var(--impa-500) !important;
+  color: #fff !important;
+}
+.react-datepicker__triangle { display: none !important; }
+.react-datepicker-popper { z-index: 9999 !important; }
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow {
+  border-color: var(--impa-text-muted) !important;
+  border-width: 2px 2px 0 0 !important;
+  margin-top: 4px !important;
+}
+.react-datepicker__month-read-view,
+.react-datepicker__year-read-view {
+  border: 1px solid var(--impa-border) !important;
+  border-radius: 6px !important;
+  padding: 2px 8px !important;
+  color: var(--impa-text) !important;
+  font-weight: 600 !important;
+  transition: all 160ms ease;
+}
+.react-datepicker__month-read-view:hover,
+.react-datepicker__year-read-view:hover {
+  border-color: var(--impa-500) !important;
+  background-color: var(--impa-50) !important;
 }

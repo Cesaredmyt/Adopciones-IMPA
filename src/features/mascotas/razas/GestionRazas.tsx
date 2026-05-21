@@ -33,7 +33,7 @@ export default function GestionRazas({
       case "pequeño":
         return "bg-emerald-100 text-emerald-700";
       case "mediano":
-        return "bg-amber-100 text-amber-700";
+        return "bg-impa-100 text-impa-700";
       case "grande":
         return "bg-rose-100 text-rose-700";
       default:
@@ -48,7 +48,7 @@ export default function GestionRazas({
         <FormRaza onCancel={onClose} />
 
         {/* LISTA DE RAZAS */}
-        <div className="bg-[#fff8f0] border border-amber-200 rounded-lg p-3 max-h-80 overflow-y-auto">
+        <div className="bg-[#f6f8f6] border border-impa-200 rounded-lg p-3 max-h-80 overflow-y-auto">
           {isLoading ? (
             <p className="text-center text-gray-500 py-4 text-sm">
               Cargando razas...

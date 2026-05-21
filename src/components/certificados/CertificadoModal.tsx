@@ -63,7 +63,7 @@ export default function CertificadoModal({ open, onClose, mascota }) {
             fileName={`Certificado-Adopcion-${nombreMascota}.pdf`}
           >
             {({ loading }) => (
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl">
+              <Button className="bg-impa-500 hover:bg-impa-600 text-white px-6 py-3 rounded-xl">
                 {loading ? "Generando PDF..." : "Descargar Certificado PDF"}
               </Button>
             )}

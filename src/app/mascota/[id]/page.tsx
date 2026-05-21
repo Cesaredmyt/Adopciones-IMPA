@@ -7,7 +7,7 @@ const COLORES_DISPONIBLES = [
   { nombre: "negro", hex: "#000000" },
   { nombre: "gris", hex: "#808080" },
   { nombre: "gris oscuro", hex: "#4B4B4B" },
-  { nombre: "café", hex: "#8B4513" },
+  { nombre: "café", hex: "#0f830f" },
   { nombre: "café claro", hex: "#B97A57" },
   { nombre: "beige", hex: "#D6B591" },
   { nombre: "crema", hex: "#F5E8C7" },
@@ -66,7 +66,7 @@ export default async function MascotaPublicPage({
     tamanoRaw === "pequeño" || tamanoRaw === "chico"
       ? "from-emerald-500 to-emerald-400"
       : tamanoRaw === "mediano"
-      ? "from-amber-500 to-amber-400"
+      ? "from-impa-500 to-impa-400"
       : tamanoRaw === "grande"
       ? "from-red-500 to-red-400"
       : "from-slate-500 to-slate-400";
@@ -77,7 +77,7 @@ export default async function MascotaPublicPage({
     <>
       <HeaderSmart />
       <main className="min-h-screen bg-[#FFF4E7] flex flex-col items-center justify-center p-6">
-        <article className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-[4px] border-[#FF8414] bg-white">
+        <article className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-[4px] border-[#17cf17] bg-white">
           {/* 📸 Imagen + fondo blur + chips */}
           <div className="relative h-[500px] w-full overflow-hidden">
             {/* Fondo blur con la misma imagen */}
@@ -94,7 +94,7 @@ export default async function MascotaPublicPage({
             />
 
             {/* Capa cálida */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#00000066] via-[#FF841420] to-transparent z-20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#00000066] via-[#17cf1720] to-transparent z-20" />
 
             {/* Chips superiores distribuidos */}
             <div className="absolute top-5 left-0 right-0 z-30 px-6 flex items-start justify-between">
@@ -166,7 +166,7 @@ export default async function MascotaPublicPage({
           <div className="p-6 md:p-8 text-[#2B1B12]">
             {/* Información general */}
             <section className="mb-8">
-              <h2 className="text-xl font-extrabold mb-4 text-[#BC5F36]">
+              <h2 className="text-xl font-extrabold mb-4 text-[#17cf17]">
                 Información General
               </h2>
 
@@ -210,7 +210,7 @@ export default async function MascotaPublicPage({
             {/* Colores */}
             {coloresEnriquecidos.length > 0 && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#BC5F36]">
+                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
                   Colores
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -219,12 +219,12 @@ export default async function MascotaPublicPage({
                       key={nombre}
                       className="
                         flex items-center gap-2 px-3 py-1.5 rounded-2xl border 
-                        bg-white border-[#FF8414] text-[#2B1B12] text-sm 
+                        bg-white border-[#17cf17] text-[#2B1B12] text-sm 
                         shadow-sm
                       "
                     >
                       <span
-                        className="w-4 h-4 rounded-full border border-[#2b1b12]/30"
+                        className="w-4 h-4 rounded-full border border-[#111811]/30"
                         style={{ backgroundColor: hex }}
                       />
                       <span className="capitalize">{nombre}</span>
@@ -237,7 +237,7 @@ export default async function MascotaPublicPage({
             {/* Personalidad */}
             {mascota.personalidad && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#BC5F36]">
+                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
                   Personalidad
                 </h2>
                 <p className="capitalize text-sm">{mascota.personalidad}</p>
@@ -247,7 +247,7 @@ export default async function MascotaPublicPage({
             {/* Descripción física */}
             {mascota.descripcion_fisica && (
               <section className="mb-8">
-                <h2 className="text-xl font-extrabold mb-3 text-[#BC5F36]">
+                <h2 className="text-xl font-extrabold mb-3 text-[#17cf17]">
                   Descripción Física
                 </h2>
                 <p className="text-sm">{mascota.descripcion_fisica}</p>
@@ -259,7 +259,7 @@ export default async function MascotaPublicPage({
               mascota.condicion_ingreso ||
               mascota.observaciones_medicas) && (
               <section className="mb-8 border-t border-slate-200 pt-6">
-                <h2 className="text-xl font-extrabold mb-4 text-[#BC5F36]">
+                <h2 className="text-xl font-extrabold mb-4 text-[#17cf17]">
                   Datos Médicos Y De Rescate
                 </h2>
 

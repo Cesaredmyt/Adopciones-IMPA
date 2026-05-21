@@ -10,15 +10,15 @@ export default function MascotaInfoCard({
   onImageClick?: (url: string | null) => void;
 }) {
   return (
-    <div className="bg-[#FFF8F0] border border-[#E5D1B8] rounded-2xl p-6 flex gap-6 mb-10">
+    <div className="bg-[#f6f8f6] border border-[#E5D1B8] rounded-2xl p-6 flex gap-6 mb-10">
       <img
         src={mascota.imagen_url ?? "/placeholder.png"}
-        className="w-40 h-40 rounded-xl object-cover border border-[#BC5F36]/40 cursor-pointer hover:opacity-90 transition"
+        className="w-40 h-40 rounded-xl object-cover border border-[#17cf17]/40 cursor-pointer hover:opacity-90 transition"
         onClick={() => onImageClick?.(mascota.imagen_url)}
       />
 
       <div className="flex flex-col justify-center">
-        <h2 className="text-3xl font-bold text-[#8B4513] flex gap-2 items-center">
+        <h2 className="text-3xl font-bold text-[#0f830f] flex gap-2 items-center">
           {mascota.nombre}
           <PawPrint size={22} />
         </h2>

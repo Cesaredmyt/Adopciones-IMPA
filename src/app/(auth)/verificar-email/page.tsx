@@ -1,67 +1,80 @@
-import { Metadata } from 'next'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/Button'
-import { Mail, CheckCircle, ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
+import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { Mail, CheckCircle2, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: 'Verificar Email - Adopciones',
-  description: 'Verifica tu correo electrónico para completar el registro',
-}
+  title: "Verificar correo",
+  description: "Verifica tu correo electrónico para completar tu registro IMPA.",
+};
 
 export default function VerificarEmailPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md mx-auto">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
-            <Mail className="h-8 w-8 text-blue-600" />
+    <div className="min-h-screen impa-gradient-bg flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
+            <Image
+              src="/impa-isotipo.svg"
+              alt="IMPA"
+              width={44}
+              height={44}
+              className="rounded-xl shadow-impa-sm"
+            />
+            <span className="font-bold text-2xl text-impa-text">IMPA</span>
+          </Link>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8">
+          <div className="text-center mb-6">
+            <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-impa-50 text-impa-600 mb-4">
+              <Mail size={28} />
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight text-impa-text">
+              Revisa tu correo
+            </h1>
+            <p className="text-impa-muted text-sm mt-2">
+              Te enviamos un enlace de verificación. Haz clic para activar tu cuenta.
+            </p>
           </div>
-          <CardTitle>¡Revisa tu correo!</CardTitle>
-          <CardDescription>
-            Te hemos enviado un enlace de verificación a tu correo electrónico
-          </CardDescription>
-        </CardHeader>
-        
-        <CardContent className="space-y-4">
-          <div className="bg-green-50 border border-green-200 rounded-md p-4">
-            <div className="flex items-start">
-              <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-3" />
-              <div className="text-sm">
-                <p className="text-green-800 font-medium">¡Registro exitoso!</p>
-                <p className="text-green-700 mt-1">
-                  Tu cuenta se ha creado correctamente. Para completar el proceso, 
-                  haz clic en el enlace que enviamos a tu correo electrónico.
-                </p>
-              </div>
+
+          <div className="rounded-xl border border-impa-200 bg-impa-50 p-4 flex items-start gap-3">
+            <CheckCircle2 size={20} className="text-impa-600 shrink-0 mt-0.5" />
+            <div className="text-sm">
+              <p className="text-impa-800 font-semibold">¡Registro exitoso!</p>
+              <p className="text-impa-700 mt-1 leading-relaxed">
+                Tu cuenta se creó correctamente. Para completar el proceso, abre el
+                enlace que llegará a tu correo en los próximos minutos.
+              </p>
             </div>
           </div>
 
-          <div className="text-sm text-gray-600 space-y-2">
-            <p><strong>¿No ves el correo?</strong></p>
-            <ul className="list-disc list-inside space-y-1 text-xs">
-              <li>Revisa tu carpeta de spam o correo no deseado</li>
-              <li>Asegúrate de haber ingresado correctamente tu email</li>
-              <li>El correo puede tardar unos minutos en llegar</li>
+          <div className="mt-5 text-sm text-impa-muted">
+            <p className="font-semibold text-impa-text mb-1.5">¿No ves el correo?</p>
+            <ul className="list-disc list-inside space-y-1 text-xs leading-relaxed">
+              <li>Revisa tu carpeta de spam o promociones</li>
+              <li>Verifica que el correo ingresado sea el correcto</li>
+              <li>El mensaje puede tardar unos minutos en llegar</li>
             </ul>
           </div>
 
-          <div className="pt-4 space-y-3">
-            <Button variant="primary" className="w-full">
-              <Link href="/login">
-                Ir a Iniciar Sesión
-              </Link>
-            </Button>
-            
-            <Button variant="ghost" className="w-full">
-              <Link href="/" className="flex items-center justify-center">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Volver al Inicio
-              </Link>
-            </Button>
+          <div className="mt-6 space-y-2.5">
+            <Link
+              href="/login"
+              className="w-full h-11 inline-flex items-center justify-center rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 transition"
+            >
+              Ir a iniciar sesión
+            </Link>
+            <Link
+              href="/"
+              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm hover:bg-impa-50 transition"
+            >
+              <ArrowLeft size={14} />
+              Volver al inicio
+            </Link>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

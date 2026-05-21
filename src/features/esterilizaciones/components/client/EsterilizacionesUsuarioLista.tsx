@@ -42,7 +42,7 @@ export default function EsterilizacionesUsuarioLista({
           className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden"
         >
           <header className="px-4 py-3 bg-[#FFF6E5] flex justify-between items-center">
-            <span className="text-sm font-bold text-[#8B4513]">
+            <span className="text-sm font-bold text-[#0f830f]">
               {item.folio}
             </span>
             <EsterilizacionEstadoBadge estado={item.estado} />
@@ -57,7 +57,7 @@ export default function EsterilizacionesUsuarioLista({
                   className="w-14 h-14 rounded-xl object-cover"
                 />
               ) : (
-                <div className="w-14 h-14 rounded-xl bg-orange-100" />
+                <div className="w-14 h-14 rounded-xl bg-impa-100" />
               )}
               <div>
                 <p className="font-bold text-slate-800">
@@ -71,20 +71,20 @@ export default function EsterilizacionesUsuarioLista({
 
             <div className="text-sm text-slate-600 space-y-1">
               <p>
-                <span className="text-xs font-bold uppercase text-[#8B4513]">
+                <span className="text-xs font-bold uppercase text-[#0f830f]">
                   Solicitada:
                 </span>{" "}
                 {formatoFecha(item.fecha_solicitud)}
               </p>
               <p>
-                <span className="text-xs font-bold uppercase text-[#8B4513]">
+                <span className="text-xs font-bold uppercase text-[#0f830f]">
                   Programada:
                 </span>{" "}
                 {formatoFecha(item.fecha_programada)}
               </p>
               {item.fecha_realizada && (
                 <p>
-                  <span className="text-xs font-bold uppercase text-[#8B4513]">
+                  <span className="text-xs font-bold uppercase text-[#0f830f]">
                     Realizada:
                   </span>{" "}
                   {formatoFecha(item.fecha_realizada)}

@@ -126,7 +126,7 @@ export default function MascotaCard({
       <style jsx>{`
         .masc-card {
           background: #fffaf2;
-          border: 1px solid #eadacb;
+          border: 1px solid #dce5dc;
           border-radius: 18px;
           overflow: hidden;
           box-shadow: 0 4px 12px rgba(43, 27, 18, 0.1);
@@ -222,7 +222,7 @@ export default function MascotaCard({
 
         .name {
           margin: 0;
-          color: #8b4513;
+          color: #0f830f;
           font-weight: 700;
           font-size: 20px;
           line-height: 1.2;
@@ -230,7 +230,7 @@ export default function MascotaCard({
 
         .pill {
           background: #f3e7dc;
-          color: #8b4513;
+          color: #0f830f;
           border-radius: 999px;
           padding: 5px 10px;
           font-weight: 600;
@@ -252,7 +252,7 @@ export default function MascotaCard({
         }
 
         .meta strong {
-          color: #2b1b12;
+          color: #111811;
           font-weight: 700;
           min-width: 75px;
         }

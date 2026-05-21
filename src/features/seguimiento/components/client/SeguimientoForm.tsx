@@ -110,20 +110,20 @@ export default function SeguimientoForm({
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-4 p-4 rounded-xl bg-[#FFF5EB] border border-[#E3C9A8] text-sm"
     >
-      <h2 className="text-lg font-bold text-[#8B4513] text-center mb-3">
+      <h2 className="text-lg font-bold text-[#0f830f] text-center mb-3">
         Registra el seguimiento de tu mascota
       </h2>
 
       <p className="text-xs text-gray-700 text-center mb-4">
         Seguimiento programado para:{" "}
-        <span className="font-semibold text-[#8B4513]">
+        <span className="font-semibold text-[#0f830f]">
           {dayjs(fechaProgramada).format("DD/MM/YYYY")}
         </span>
       </p>
 
       {/* OBSERVACIONES */}
       <div className="space-y-1">
-        <label className="block text-xs font-semibold text-[#8B4513]">
+        <label className="block text-xs font-semibold text-[#0f830f]">
           Observaciones
         </label>
         <textarea
@@ -135,7 +135,7 @@ export default function SeguimientoForm({
 
       {/* RECOMENDACIONES */}
       <div className="space-y-1">
-        <label className="block text-xs font-semibold text-[#8B4513]">
+        <label className="block text-xs font-semibold text-[#0f830f]">
           Recomendaciones (opcional)
         </label>
         <textarea
@@ -149,7 +149,7 @@ export default function SeguimientoForm({
       <div className="flex flex-col sm:flex-row gap-6">
         {/* ESTADO */}
         <div>
-          <label className="block text-xs font-semibold text-[#8B4513] mb-1">
+          <label className="block text-xs font-semibold text-[#0f830f] mb-1">
             Estado de la mascota
           </label>
           <div className="flex gap-1">
@@ -181,7 +181,7 @@ export default function SeguimientoForm({
 
         {/* CALIFICACIÓN */}
         <div>
-          <label className="block text-xs font-semibold text-[#8B4513] mb-1">
+          <label className="block text-xs font-semibold text-[#0f830f] mb-1">
             Calificación del seguimiento
           </label>
           <div className="flex gap-1">
@@ -197,7 +197,7 @@ export default function SeguimientoForm({
                 >
                   <PawPrint
                     size={26}
-                    className={active ? "text-[#BC5F36]" : "text-gray-300"}
+                    className={active ? "text-[#17cf17]" : "text-gray-300"}
                   />
                 </button>
               );
@@ -208,7 +208,7 @@ export default function SeguimientoForm({
 
       {/* PROBLEMAS */}
       <div>
-        <label className="text-xs font-semibold text-[#8B4513]">
+        <label className="text-xs font-semibold text-[#0f830f]">
           Problemas reportados (separados por comas)
         </label>
         <input
@@ -219,12 +219,12 @@ export default function SeguimientoForm({
 
       {/* FOTOS */}
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-[#8B4513]">
+        <label className="block text-sm font-semibold text-[#0f830f]">
           Fotos del seguimiento
         </label>
 
         <label className="w-full p-6 border-2 border-dashed rounded-xl bg-white flex flex-col items-center gap-2 cursor-pointer">
-          <Upload size={30} className="text-[#BC5F36]" />
+          <Upload size={30} className="text-[#17cf17]" />
           <span className="text-xs text-gray-600 text-center">
             Haz clic o arrastra fotos
           </span>
@@ -264,7 +264,7 @@ export default function SeguimientoForm({
         <Button
           type="submit"
           disabled={crearSeguimiento.isPending}
-          className="bg-[#BC5F36] text-white"
+          className="bg-[#17cf17] text-white"
         >
           {crearSeguimiento.isPending ? (
             <Loader2 className="animate-spin w-4 h-4" />

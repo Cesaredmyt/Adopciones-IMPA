@@ -18,16 +18,15 @@ export default function ModalPremium({
 
   useEffect(() => setMounted(true), []);
 
-  // Animación suave
   useEffect(() => {
     if (open) {
-      setTimeout(() => setShow(true), 10);
+      const t = setTimeout(() => setShow(true), 10);
+      return () => clearTimeout(t);
     } else {
       setShow(false);
     }
   }, [open]);
 
-  // bloquear scroll
   useEffect(() => {
     if (open) {
       const original = document.body.style.overflow;
@@ -38,27 +37,27 @@ export default function ModalPremium({
     }
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   if (!open || !mounted) return null;
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm transition"
-      style={{
-        background: "rgba(43,27,18,0.25)", // más transparente
-      }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm bg-impa-text/40 transition"
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`
-          relative rounded-2xl shadow-[0_18px_60px_rgba(43,27,18,.25)] 
-          bg-[#fdf7f1] text-[#281c13] w-full overflow-hidden 
-          transition-all duration-300 ease-out
-          ${show ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"}
-        `}
+        className={`relative rounded-2xl shadow-impa-xl border border-impa-line bg-white text-impa-text w-full overflow-hidden transition-all duration-300 ease-out ${
+          show ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
+        }`}
         style={{ maxWidth: width }}
       >
-        {/* CONTENIDO SCROLLEABLE */}
         <div className="p-6 space-y-6 custom-scroll overflow-y-auto max-h-[85vh]">
           {children}
         </div>

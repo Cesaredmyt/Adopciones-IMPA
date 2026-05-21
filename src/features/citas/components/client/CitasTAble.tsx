@@ -29,7 +29,7 @@ function Th(props: React.HTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
       {...props}
-      className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#2b1b12] ${props.className || ""}`}
+      className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#111811] ${props.className || ""}`}
     />
   );
 }
@@ -59,7 +59,7 @@ export default function CitasTable({
   const isMobile = useIsMobile();
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EADACB] shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-[#dce5dc] shadow-sm overflow-hidden">
 
       {/* ===========================
            MOBILE VIEW - CARDS
@@ -69,7 +69,7 @@ export default function CitasTable({
           {items.map((cita) => (
             <div
               key={cita.id}
-              className="rounded-2xl border border-[#EADACB] bg-white p-4 shadow-sm
+              className="rounded-2xl border border-[#dce5dc] bg-white p-4 shadow-sm
               flex flex-col gap-2 max-w-full overflow-hidden"
             >
               {/* Usuario */}
@@ -121,7 +121,7 @@ export default function CitasTable({
                 {cita.estado === "programada" && !cita.asistencia && !cita.interaccion && (
                   <>
                     <button
-                      className="text-sm font-semibold text-[#BC5F36]"
+                      className="text-sm font-semibold text-[#17cf17]"
                       onClick={() => onReprogramar(cita)}
                     >
                       Reprogramar
@@ -161,7 +161,7 @@ export default function CitasTable({
         <div className="overflow-x-auto hidden md:block">
           <table className="w-full border-collapse text-sm">
             <thead className="sticky top-0 z-[1]">
-              <tr className="bg-[#FFF4E7] border-y border-[#EADACB]">
+              <tr className="bg-[#FFF4E7] border-y border-[#dce5dc]">
                 <Th className="text-left">Usuario</Th>
                 <Th className="text-left">Mascota</Th>
                 <Th className="text-left">Fecha</Th>
@@ -209,7 +209,7 @@ export default function CitasTable({
 
                   {/* Hora */}
                   <td className="px-3 py-3 text-[#2B1B12]">
-                    <Clock className="inline-block mr-1 h-3 w-3 text-[#BC5F36]" />
+                    <Clock className="inline-block mr-1 h-3 w-3 text-[#17cf17]" />
                     {(cita.hora_cita || "").slice(0, 5)}
                   </td>
 
@@ -237,7 +237,7 @@ export default function CitasTable({
                         <>
                           <button
                             onClick={() => onReprogramar(cita)}
-                            className="flex items-center gap-1 rounded-md border border-[#EADACB] px-2 py-1 text-xs font-medium text-[#2B1B12] hover:bg-[#FFF4E7]"
+                            className="flex items-center gap-1 rounded-md border border-[#dce5dc] px-2 py-1 text-xs font-medium text-[#2B1B12] hover:bg-[#FFF4E7]"
                           >
                             <CalendarClock size={14} />
                             Reprogramar

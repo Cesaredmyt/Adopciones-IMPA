@@ -57,7 +57,7 @@ export default function AdopcionAprobadaSection({
                         : 1;
 
     return (
-        <section className="rounded-2xl border border-[#eadacb] bg-white p-5 shadow-sm text-[#2b1b12]">
+        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 shadow-sm text-[#111811]">
             {/* ✅ Banner documentos aprobados */}
             <div className="flex items-center gap-3 rounded-2xl border border-green-200 border-b-2 border-b-green-300 bg-green-50 p-3 mb-4 shadow-sm">
                 <div className="h-9 w-9 flex items-center justify-center rounded-full bg-green-100 shadow-sm">
@@ -97,10 +97,10 @@ export default function AdopcionAprobadaSection({
             <div className="mt-6">
                 {/* CASO 0: NO hay solicitud → NO hay mascota seleccionada */}
                 {!solicitudActiva ? (
-                    <div className="rounded-xl border border-[#eadacb] bg-[#fffaf4] p-4">
+                    <div className="rounded-xl border border-[#dce5dc] bg-[#fffaf4] p-4">
                         <div className="flex items-center gap-2 mb-2">
-                            <PawPrint className="h-5 w-5 text-[#BC5F36]" />
-                            <p className="text-sm font-extrabold text-[#2b1b12]">
+                            <PawPrint className="h-5 w-5 text-[#17cf17]" />
+                            <p className="text-sm font-extrabold text-[#111811]">
                                 1) Mascota seleccionada
                             </p>
                         </div>
@@ -117,12 +117,12 @@ export default function AdopcionAprobadaSection({
                     adopcionEstado === "pendiente" ? (
                         <div className="mt-0 mb-2 rounded-2xl border border-[#f2d4b7] bg-gradient-to-br from-[#fff7f1] via-white to-[#ffe9d6] p-6 shadow">
                             <div className="flex items-center gap-3">
-                                <div className="h-12 w-12 rounded-full bg-[#BC5F36] text-white flex items-center justify-center">
+                                <div className="h-12 w-12 rounded-full bg-[#17cf17] text-white flex items-center justify-center">
                                     <Info className="h-6 w-6" />
                                 </div>
 
                                 <div>
-                                    <h3 className="text-lg font-extrabold text-[#8b4513]">
+                                    <h3 className="text-lg font-extrabold text-[#0f830f]">
                                         Tu formulario está en revisión
                                     </h3>
                                     <p className="text-sm text-[#7a5c49] mt-1">

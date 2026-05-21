@@ -32,7 +32,7 @@ export default function AdopcionEnProgresoOverlay({
             >
                 <div className="text-4xl mb-3 animate-bounce">🐶</div>
 
-                <h2 className="text-lg font-extrabold text-[#2b1b12] mb-2">
+                <h2 className="text-lg font-extrabold text-[#111811] mb-2">
                     {mensaje ?? "Procesando adopción..."}
                 </h2>
 
@@ -41,7 +41,7 @@ export default function AdopcionEnProgresoOverlay({
                 </p>
 
                 <div className="mt-5 flex justify-center">
-                    <div className="w-7 h-7 border-4 border-[#BC5F36] border-t-transparent rounded-full animate-spin" />
+                    <div className="w-7 h-7 border-4 border-[#17cf17] border-t-transparent rounded-full animate-spin" />
                 </div>
             </div>
         </div>,

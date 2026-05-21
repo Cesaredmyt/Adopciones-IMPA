@@ -19,7 +19,7 @@ export function CitasVeterinariasCardsAdmin({
       {citas.map((c) => (
         <div key={c.id} className="bg-white rounded-xl border p-4 shadow-sm space-y-3">
           <div className="flex justify-between">
-            <h3 className="font-bold text-[#8B4513]">{c.mascota_nombre}</h3>
+            <h3 className="font-bold text-[#0f830f]">{c.mascota_nombre}</h3>
             <CitasVeterinariasEstadoBadge estado={c.estado} />
           </div>
 
@@ -28,7 +28,7 @@ export function CitasVeterinariasCardsAdmin({
               <img src={c.mascota_imagen} className="w-12 h-12 rounded-md object-cover" />
             )}
             <div className="text-sm">
-              <p className="font-semibold text-[#8B4513]">{c.adoptante_nombre}</p>
+              <p className="font-semibold text-[#0f830f]">{c.adoptante_nombre}</p>
               <p className="text-xs">
                 {format(new Date(c.fecha_cita), "EEEE d 'de' MMMM, h:mm a", { locale: es })}
               </p>
@@ -36,7 +36,7 @@ export function CitasVeterinariasCardsAdmin({
           </div>
 
           <p className="text-sm text-gray-700">
-            <b className="text-[#8B4513]">Motivo:</b> {c.motivo}
+            <b className="text-[#0f830f]">Motivo:</b> {c.motivo}
           </p>
 
           {c.estado === "pendiente" && (

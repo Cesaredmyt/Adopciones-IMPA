@@ -18,7 +18,7 @@ export default function PanelEstado({
   const t =
     tone === "danger"
       ? { border: "#f2d6d6", bg: "#fff5f5", iconBg: "#b42318" }
-      : { border: "#eadacb", bg: "#fff4e7", iconBg: "#BC5F36" };
+      : { border: "#dce5dc", bg: "#ecfdec", iconBg: "#17cf17" };
 
   return (
     <section
@@ -33,7 +33,7 @@ export default function PanelEstado({
           {icon}
         </span>
         <div className="flex-1">
-          <h3 className="text-sm font-extrabold text-[#2b1b12]">{title}</h3>
+          <h3 className="text-sm font-extrabold text-[#111811]">{title}</h3>
           <p className="mt-1 text-sm text-[#7a5c49]">{desc}</p>
         </div>
       </div>

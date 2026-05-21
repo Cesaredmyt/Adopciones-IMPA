@@ -1,15 +1,23 @@
 "use client";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "ghost";
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant };
 
-export default function Button({ variant = "primary", className = "", ...rest }: Props) {
+export default function Button({
+  variant = "primary",
+  className = "",
+  type = "button",
+  ...rest
+}: Props) {
   const base =
-    "inline-flex items-center gap-2 rounded-xl px-4 py-3 text-[16px] font-extrabold border transition shadow-[0_6px_14px_rgba(0,0,0,.12)]";
-  const stylePrimary = "bg-[#8B4513] text-white border-black/10 hover:brightness-110";
-  const styleGhost = "bg-white text-[#D97706] border-transparent shadow-[0_6px_14px_rgba(43,27,18,.12)] hover:brightness-105";
-  const styles = variant === "ghost" ? styleGhost : stylePrimary;
+    "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-50 disabled:pointer-events-none";
 
-  return <button className={`${base} ${styles} ${className}`} {...rest} />;
+  const styles =
+    variant === "ghost"
+      ? "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300"
+      : "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 active:bg-impa-700";
+
+  return <button type={type} className={cn(base, styles, className)} {...rest} />;
 }

@@ -19,6 +19,13 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
+type DropdownItem = {
+  href?: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  onClick?: () => void;
+};
+
 export default function UserHeader() {
   const pathname = usePathname();
   const router = useRouter();
@@ -26,18 +33,15 @@ export default function UserHeader() {
 
   const [openMobile, setOpenMobile] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [userName, setUserName] = useState("Cargando...");
+  const [userName, setUserName] = useState("Cargando…");
 
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const isActive = (href: string) => {
-    if (href === "/dashboards/usuario") {
-      return pathname === href;
-    }
-    return pathname === href || pathname.startsWith(href + "/");
-  };
+  const isActive = (href: string) =>
+    href === "/dashboards/usuario"
+      ? pathname === href
+      : pathname === href || pathname.startsWith(href + "/");
 
-  /* 🔹 Usuario actual */
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await supabase.auth.getUser();
@@ -52,7 +56,6 @@ export default function UserHeader() {
     router.push("/");
   };
 
-  /* Cerrar dropdowns al hacer clic fuera */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -64,34 +67,45 @@ export default function UserHeader() {
   }, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#BC5F36] shadow-md">
+    <header className="fixed top-0 z-50 w-full bg-white/85 backdrop-blur-md border-b border-impa-line shadow-impa-sm">
       <nav
         ref={menuRef}
-        className="container mx-auto flex items-center justify-between px-6 py-5"
+        className="max-w-[1400px] mx-auto flex items-center justify-between px-5 sm:px-8 h-16"
       >
         {/* Logo */}
-        <Link href="/dashboards/usuario" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="IMPA" width={40} height={40} />
-          <div className="flex flex-col items-start">
-            <span className="font-bold text-xl text-[#FFF8F0]">
-              Instituto Michoacano de Protección Animal
+        <Link
+          href="/dashboards/usuario"
+          className="flex items-center gap-2.5 impa-focus-ring rounded-lg"
+        >
+          <Image
+            src="/impa-isotipo.svg"
+            alt="IMPA"
+            width={34}
+            height={34}
+            priority
+            className="rounded-lg shadow-impa-xs"
+          />
+          <div className="hidden md:flex flex-col leading-tight">
+            <span className="font-bold text-[15px] text-impa-text tracking-tight">
+              IMPA
             </span>
-            <span className="font-medium text-sm text-[#FFF8F0]">
-              Morelia, Michoacán
+            <span className="text-[11px] text-impa-muted font-medium">
+              Mi espacio
             </span>
           </div>
         </Link>
 
-        {/* Boton movil */}
+        {/* Mobile button */}
         <button
-          className="lg:hidden text-[#FFF8F0] p-2"
+          className="lg:hidden text-impa-text p-2 rounded-lg hover:bg-impa-50 transition impa-focus-ring"
           onClick={() => setOpenMobile(!openMobile)}
+          aria-label="Abrir menú"
         >
           {openMobile ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {/* NAV DESKTOP */}
-        <ul className="hidden lg:flex items-center gap-8 text-lg font-medium text-[#FFF8F0]">
+        {/* Desktop nav */}
+        <ul className="hidden lg:flex items-center gap-1">
           <NavItem
             href="/dashboards/usuario"
             label="Inicio"
@@ -105,12 +119,11 @@ export default function UserHeader() {
             active={isActive("/dashboards/usuario/mascotas")}
           />
 
-          {/* Adopción */}
           <Dropdown
             label="Adopción"
             icon={HeartIcon}
             open={openDropdown === "adopcion"}
-            onOpen={() =>
+            onToggle={() =>
               setOpenDropdown(openDropdown === "adopcion" ? null : "adopcion")
             }
             items={[
@@ -127,12 +140,11 @@ export default function UserHeader() {
             ]}
           />
 
-          {/* Mis Mascotas */}
           <Dropdown
             label="Mis Mascotas"
             icon={PawPrint}
             open={openDropdown === "mascotas"}
-            onOpen={() =>
+            onToggle={() =>
               setOpenDropdown(openDropdown === "mascotas" ? null : "mascotas")
             }
             items={[
@@ -154,44 +166,42 @@ export default function UserHeader() {
             ]}
           />
 
-          {/* Usuario */}
-          <Dropdown
-            label={userName}
-            icon={User}
-            open={openDropdown === "usuario"}
-            onOpen={() =>
-              setOpenDropdown(openDropdown === "usuario" ? null : "usuario")
-            }
-            items={[
-              { href: "/dashboards/perfil", label: "Mi perfil", icon: User },
-              {
-                onClick: handleLogout,
-                label: "Cerrar sesión",
-                icon: LogOutIcon,
-              },
-            ]}
-            align="right"
-          />
+          <li className="pl-2 ml-1 border-l border-impa-line">
+            <Dropdown
+              label={userName}
+              icon={User}
+              avatar
+              open={openDropdown === "usuario"}
+              onToggle={() =>
+                setOpenDropdown(openDropdown === "usuario" ? null : "usuario")
+              }
+              items={[
+                { href: "/dashboards/perfil", label: "Mi perfil", icon: User },
+                { onClick: handleLogout, label: "Cerrar sesión", icon: LogOutIcon },
+              ]}
+              align="right"
+            />
+          </li>
         </ul>
       </nav>
 
-      {/* NAV MÓVIL */}
+      {/* Mobile nav */}
       {openMobile && (
-        <div className="lg:hidden bg-[#BC5F36] border-t border-[#e3bba7] shadow-inner animate-slideDown">
-          <ul className="flex flex-col items-center py-4 space-y-2 text-center text-[#FFF8F0]">
+        <div className="lg:hidden bg-white border-t border-impa-line animate-fade-slide">
+          <ul className="flex flex-col p-3 gap-1">
             <MobileLink
               href="/dashboards/usuario"
               label="Inicio"
               icon={LayoutDashboard}
-              router={router}
               onClick={() => setOpenMobile(false)}
+              router={router}
             />
             <MobileLink
               href="/dashboards/usuario/mascotas"
               label="Adoptables"
               icon={Dog}
-              router={router}
               onClick={() => setOpenMobile(false)}
+              router={router}
             />
 
             <MobileDropdown
@@ -237,22 +247,25 @@ export default function UserHeader() {
               setOpenMobile={setOpenMobile}
             />
 
-            <button
-              onClick={() => {
-                router.push("/dashboards/perfil");
-                setOpenMobile(false);
-              }}
-              className="block w-full px-4 py-2 hover:text-[#FDE68A]"
-            >
-              Mi perfil
-            </button>
-
-            <button
-              onClick={handleLogout}
-              className="w-[90%] mt-3 text-center px-5 py-3 rounded-md bg-[#8B4513] text-white font-semibold hover:bg-[#A0522D] transition"
-            >
-              Cerrar sesión
-            </button>
+            <li className="pt-2 mt-2 border-t border-impa-line flex flex-col gap-1">
+              <button
+                onClick={() => {
+                  router.push("/dashboards/perfil");
+                  setOpenMobile(false);
+                }}
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm text-impa-text hover:bg-impa-50 transition"
+              >
+                <User size={16} />
+                Mi perfil
+              </button>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-medium text-white bg-impa-500 hover:bg-impa-600 transition"
+              >
+                <LogOutIcon size={16} />
+                Cerrar sesión
+              </button>
+            </li>
           </ul>
         </div>
       )}
@@ -260,20 +273,30 @@ export default function UserHeader() {
   );
 }
 
-/* ========= SUBCOMPONENTES ========= */
+/* ============================ Subcomponents ============================ */
 
-function NavItem({ href, label, icon: Icon, active }: any) {
+function NavItem({
+  href,
+  label,
+  icon: Icon,
+  active,
+}: {
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  active: boolean;
+}) {
   return (
     <li>
       <Link
         href={href}
-        className={`flex items-center gap-2 px-4 py-2 rounded-md transition ${
+        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition impa-focus-ring ${
           active
-            ? "bg-[#FFF1E6] text-[#8B4513] border-b-2 border-[#FDE68A]"
-            : "hover:text-[#FDE68A]"
+            ? "bg-impa-50 text-impa-700"
+            : "text-impa-muted hover:text-impa-text hover:bg-impa-50/60"
         }`}
       >
-        <Icon size={18} />
+        <Icon size={16} />
         {label}
       </Link>
     </li>
@@ -284,22 +307,39 @@ function Dropdown({
   label,
   icon: Icon,
   open,
-  onOpen,
+  onToggle,
   items,
   align = "left",
-}: any) {
+  avatar = false,
+}: {
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  open: boolean;
+  onToggle: () => void;
+  items: DropdownItem[];
+  align?: "left" | "right";
+  avatar?: boolean;
+}) {
   return (
-    <li className="relative group">
+    <li className="relative">
       <button
-        onClick={onOpen}
-        className={`flex items-center gap-2 px-4 py-2 rounded-md transition ${
-          open ? "bg-[#FFF1E6] text-[#8B4513]" : "hover:text-[#FDE68A]"
+        onClick={onToggle}
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition impa-focus-ring ${
+          open
+            ? "bg-impa-50 text-impa-700"
+            : "text-impa-muted hover:text-impa-text hover:bg-impa-50/60"
         }`}
       >
-        <Icon size={18} />
-        <span>{label}</span>
+        {avatar ? (
+          <span className="grid place-items-center w-7 h-7 rounded-full bg-impa-500 text-white text-xs font-bold">
+            {(label?.[0] || "U").toUpperCase()}
+          </span>
+        ) : (
+          <Icon size={16} />
+        )}
+        <span className="max-w-[120px] truncate">{label}</span>
         <ChevronDown
-          size={16}
+          size={14}
           className={`transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
@@ -308,26 +348,26 @@ function Dropdown({
         <div
           className={`absolute ${
             align === "right" ? "right-0" : "left-0"
-          } mt-2 w-56 bg-[#FFF1E6] rounded-md shadow-lg py-2 text-[#8B4513] animate-fadeIn border border-[#EADACB]`}
+          } mt-2 w-60 rounded-xl bg-white border border-impa-line shadow-impa-lg py-1.5 animate-fade-slide overflow-hidden`}
         >
-          {items.map((item: any, i: number) =>
+          {items.map((item, i) =>
             item.href ? (
               <Link
                 key={i}
                 href={item.href}
-                onClick={onOpen}
-                className="flex items-center gap-2 px-4 py-2 hover:bg-[#FDE68A]/40 transition"
+                onClick={onToggle}
+                className="flex items-center gap-2.5 px-3.5 py-2 text-sm text-impa-text hover:bg-impa-50 hover:text-impa-700 transition"
               >
-                <item.icon size={16} />
+                <item.icon size={15} className="text-impa-500" />
                 <span>{item.label}</span>
               </Link>
             ) : (
               <button
                 key={i}
                 onClick={item.onClick}
-                className="w-full flex items-center gap-2 px-4 py-2 text-left hover:bg-[#FDE68A]/40 transition"
+                className="w-full flex items-center gap-2.5 px-3.5 py-2 text-left text-sm text-impa-text hover:bg-impa-50 transition"
               >
-                <item.icon size={16} />
+                <item.icon size={15} className="text-impa-muted" />
                 <span>{item.label}</span>
               </button>
             )
@@ -338,9 +378,19 @@ function Dropdown({
   );
 }
 
-/* 🔹 Mobile helpers */
-
-function MobileLink({ href, label, icon: Icon, onClick, router }: any) {
+function MobileLink({
+  href,
+  label,
+  icon: Icon,
+  onClick,
+  router,
+}: {
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  onClick?: () => void;
+  router: ReturnType<typeof useRouter>;
+}) {
   return (
     <li>
       <button
@@ -348,9 +398,9 @@ function MobileLink({ href, label, icon: Icon, onClick, router }: any) {
           router.push(href);
           onClick?.();
         }}
-        className="flex items-center justify-center gap-2 w-full px-4 py-2 text-lg hover:text-[#FDE68A] transition"
+        className="w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-medium text-impa-text hover:bg-impa-50 transition"
       >
-        <Icon size={18} />
+        <Icon size={16} />
         {label}
       </button>
     </li>
@@ -363,34 +413,40 @@ function MobileDropdown({
   items,
   router,
   setOpenMobile,
-}: any) {
+}: {
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  items: { href: string; label: string; icon: React.ComponentType<{ size?: number; className?: string }> }[];
+  router: ReturnType<typeof useRouter>;
+  setOpenMobile: (v: boolean) => void;
+}) {
   const [open, setOpen] = useState(false);
   return (
-    <li className="w-full">
+    <li>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center gap-2 w-full text-lg py-2 hover:text-[#FDE68A] transition"
+        className="w-full flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-medium text-impa-text hover:bg-impa-50 transition"
       >
-        <Icon size={18} />
+        <Icon size={16} />
         <span>{label}</span>
         <ChevronDown
-          size={16}
-          className={`transition-transform ${open ? "rotate-180" : ""}`}
+          size={14}
+          className={`ml-auto transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
       {open && (
-        <div className="bg-[#FFF1E6] rounded-md mt-1 mx-6 text-left text-[#8B4513] shadow-lg animate-fadeIn">
-          {items.map((item: any, i: number) => (
+        <div className="ml-7 mt-1 rounded-xl bg-impa-50 border border-impa-line">
+          {items.map((item, i) => (
             <button
               key={i}
               onClick={() => {
                 router.push(item.href);
                 setOpenMobile(false);
               }}
-              className="flex items-center gap-2 px-4 py-2 w-full text-left hover:bg-[#FDE68A]/40 transition"
+              className="flex items-center gap-2.5 px-3.5 py-2 w-full text-left text-sm text-impa-text hover:bg-white transition"
             >
-              <item.icon size={16} />
+              <item.icon size={14} className="text-impa-500" />
               <span>{item.label}</span>
             </button>
           ))}

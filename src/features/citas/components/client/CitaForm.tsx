@@ -35,13 +35,13 @@ export default function CitaForm({
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-lg mx-auto">
       {/* 🐾 Sección de información de la mascota */}
-      <div className="bg-gradient-to-r from-orange-50 to-orange-100 p-6 flex flex-col items-center text-center border-b">
+      <div className="bg-gradient-to-r from-impa-50 to-impa-100 p-6 flex flex-col items-center text-center border-b">
         <img
           src={mascota.imagen_url}
           alt={mascota.mascota_nombre}
-          className="w-32 h-32 object-cover rounded-full shadow-md border border-orange-200 mb-3"
+          className="w-32 h-32 object-cover rounded-full shadow-md border border-impa-200 mb-3"
         />
-        <h2 className="text-2xl font-semibold text-orange-800">
+        <h2 className="text-2xl font-semibold text-impa-800">
           {mascota.mascota_nombre}
         </h2>
         <p className="text-sm text-gray-600 mt-1">Agendar cita veterinaria</p>
@@ -58,7 +58,7 @@ export default function CitaForm({
             name="fecha_cita"
             value={form.fecha_cita}
             onChange={handleChange}
-            className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
+            className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-impa-400 focus:outline-none transition"
           />
         </div>
 
@@ -71,7 +71,7 @@ export default function CitaForm({
             value={form.motivo}
             onChange={handleChange}
             placeholder="Describe brevemente el motivo..."
-            className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
+            className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-impa-400 focus:outline-none transition"
           />
         </div>
 
@@ -87,7 +87,7 @@ export default function CitaForm({
           </Button>
           <Button
             type="submit"
-            className="bg-orange-600 hover:bg-orange-700 text-white shadow-sm"
+            className="bg-impa-600 hover:bg-impa-700 text-white shadow-sm"
           >
             Agendar cita
           </Button>

@@ -5,7 +5,7 @@ export function getEstadoChip(estado: string) {
     case "completado":
       return `${base} bg-green-100 text-green-700`;
     case "activo":
-      return `${base} bg-[#FDE68A] text-[#8B4513]`;
+      return `${base} bg-[#a8f1a8] text-[#0f830f]`;
     case "próximo":
       return `${base} bg-yellow-100 text-yellow-700`;
     default:

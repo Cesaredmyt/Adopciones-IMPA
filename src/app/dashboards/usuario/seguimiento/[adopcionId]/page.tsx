@@ -37,7 +37,7 @@ export default function SeguimientoMascotasPage() {
     <div className="max-w-6xl mx-auto mt-8 px-4">
       <button
         onClick={() => router.push("/dashboards/usuario/mis-mascotas")}
-        className="flex items-center gap-2 mb-4 text-[#8B4513]"
+        className="flex items-center gap-2 mb-4 text-[#0f830f]"
       >
         <ArrowLeft size={18} /> Volver a Mis Mascotas
       </button>

@@ -45,17 +45,17 @@ export default function FormularioAgendarCita({
     const mascota = solicitudActiva.mascota;
 
     return (
-        <section className="rounded-2xl border border-[#eadacb] bg-white p-5 sm:p-8 shadow-sm text-[#2b1b12]">
+        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 sm:p-8 shadow-sm text-[#111811]">
             <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 text-[#8b4513]">
-                    <PawPrint className="h-5 w-5 text-[#BC5F36]" />
+                <h3 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 text-[#0f830f]">
+                    <PawPrint className="h-5 w-5 text-[#17cf17]" />
                     Cita para {mascota?.nombre}
                 </h3>
 
                 <Button
                     variant="ghost"
                     onClick={() => setPaso("inicio")}
-                    className="text-[#BC5F36] hover:bg-[#fff3ee] cursor-pointer"
+                    className="text-[#17cf17] hover:bg-[#fff3ee] cursor-pointer"
                 >
                     ← Regresar
                 </Button>
@@ -67,13 +67,13 @@ export default function FormularioAgendarCita({
                     <img
                         src={mascota?.imagen_url || "/placeholder.jpg"}
                         alt={mascota?.nombre ?? "Mascota"}
-                        className="w-40 h-40 rounded-lg object-cover border border-[#eadacb] mb-4 shadow-md"
+                        className="w-40 h-40 rounded-lg object-cover border border-[#dce5dc] mb-4 shadow-md"
                     />
-                    <h4 className="text-lg font-bold text-[#8b4513]">
+                    <h4 className="text-lg font-bold text-[#0f830f]">
                         {mascota?.nombre}
                     </h4>
                     <p className="text-sm text-[#7a5c49] mt-1">
-                        <MapPin className="inline h-4 w-4 text-[#BC5F36]" /> IMPA Morelia
+                        <MapPin className="inline h-4 w-4 text-[#17cf17]" /> IMPA Morelia
                     </p>
                 </div>
 
@@ -168,7 +168,7 @@ export default function FormularioAgendarCita({
                       ${deshabilitada
                                                 ? "opacity-40 cursor-not-allowed"
                                                 : horaSeleccionada === hora
-                                                    ? "bg-[#BC5F36] text-white"
+                                                    ? "bg-[#17cf17] text-white"
                                                     : "bg-[#fffaf4] hover:bg-[#ffe8df]"
                                             }`}
                                     >
@@ -187,7 +187,7 @@ export default function FormularioAgendarCita({
                             confirmarCitaMutation.isPending
                         }
                         onClick={confirmarCita}
-                        className="w-full bg-[#BC5F36] text-white cursor-pointer"
+                        className="w-full bg-[#17cf17] text-white cursor-pointer"
                     >
                         <CalendarCheck className="h-5 w-5 mr-2" />
                         Confirmar cita

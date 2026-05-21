@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import { Loader2, AlertCircle, CheckCircle2, ArrowLeft, Mail } from "lucide-react";
 
 export default function RecuperarContrasena() {
   const [correo, setCorreo] = useState("");
@@ -48,101 +48,100 @@ export default function RecuperarContrasena() {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center px-4 relative"
-      style={{
-        backgroundImage: "url('/fondo.jpg')", 
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Capa de oscurecimiento (Overlay) */}
-      <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
+    <div className="min-h-screen impa-gradient-bg flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
+            <Image
+              src="/impa-isotipo.svg"
+              alt="IMPA"
+              width={44}
+              height={44}
+              className="rounded-xl shadow-impa-sm"
+            />
+            <span className="font-bold text-2xl text-impa-text">IMPA</span>
+          </Link>
+        </div>
 
-      <div className="w-full max-w-md relative z-10 my-8">
-        
-        {/* Tarjeta Blanca que contiene TODO */}
-        <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-8">
-          
-          {/* Encabezado (Ahora dentro de la tarjeta) */}
-          <div className="text-center mb-8">
-            <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="Logo Instituto"
-                width={900}
-                height={900}
-                className="mx-auto mb-4 h-24 w-auto drop-shadow-sm"
-                priority
-              />
-            </Link>
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+        <div className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8">
+          <div className="text-center mb-6">
+            <div className="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-impa-50 text-impa-600 mb-4">
+              <Mail size={24} />
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight text-impa-text">
               Recuperar contraseña
             </h1>
-            <p className="text-slate-500 text-sm mt-2 font-medium">
-              Ingresa tu correo y te enviaremos instrucciones.
+            <p className="text-impa-muted text-sm mt-2">
+              Ingresa tu correo y te enviaremos las instrucciones para restablecerla.
             </p>
           </div>
 
           {error && (
             <div
               role="alert"
-              className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium text-center"
+              className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 flex items-start gap-2.5 text-sm text-red-700"
             >
-              {error}
+              <AlertCircle size={16} className="shrink-0 mt-0.5" />
+              <span className="font-medium">{error}</span>
             </div>
           )}
 
           {mensaje && (
             <div
               role="alert"
-              className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 font-medium text-center"
+              className="mb-5 rounded-xl border border-impa-200 bg-impa-50 px-4 py-3 flex items-start gap-2.5 text-sm text-impa-800"
             >
-              {mensaje}
+              <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-impa-600" />
+              <span className="font-medium">{mensaje}</span>
             </div>
           )}
 
-          <form onSubmit={onSubmit} className="space-y-5">
-            <label className="block">
-              <span className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <form onSubmit={onSubmit} className="space-y-4" noValidate>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold text-impa-text mb-1.5"
+              >
                 Correo electrónico
-              </span>
+              </label>
               <input
+                id="email"
                 type="email"
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
-                placeholder="tucorreo@ejemplo.com"
+                placeholder="tu@correo.com"
                 autoComplete="email"
                 required
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 transition-all"
+                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-[#638863] hover:border-impa-300 focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 transition-all"
               />
-            </label>
-
-            <Button
-              className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 mt-4 shadow-sm transition-colors"
-              type="submit"
-              full
-              disabled={loading}
-            >
-              {loading ? "Enviando..." : "Enviar instrucciones"}
-            </Button>
-
-            <div className="text-center pt-4 border-t border-slate-100 mt-6">
-              <ButtonLink
-                href="/login"
-                variant="ghost"
-                className="text-emerald-600 hover:text-emerald-700 text-sm font-bold transition-colors"
-              >
-                ← Volver al inicio de sesión
-              </ButtonLink>
             </div>
-          </form>
-        </div>
 
-        {/* Texto final sobre la foto */}
-        <p className="mt-6 text-center text-xs font-medium text-white/80 drop-shadow-md flex items-center justify-center gap-1">
-          Hecho con <span className="text-emerald-400 text-sm">💚</span> por IMPA Morelia
-        </p>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 active:bg-impa-700 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  Enviando…
+                </>
+              ) : (
+                "Enviar instrucciones"
+              )}
+            </button>
+          </form>
+
+          <div className="mt-6 pt-5 border-t border-impa-line text-center">
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-impa-600 hover:text-impa-700 hover:underline"
+            >
+              <ArrowLeft size={14} />
+              Volver al inicio de sesión
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

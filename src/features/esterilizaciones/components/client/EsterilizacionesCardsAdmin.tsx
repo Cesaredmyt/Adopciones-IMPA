@@ -45,7 +45,7 @@ export function EsterilizacionesCardsAdmin({
           className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden"
         >
           <header className="px-4 py-3 bg-[#FFF6E5] flex justify-between items-center">
-            <span className="text-sm font-bold text-[#8B4513]">
+            <span className="text-sm font-bold text-[#0f830f]">
               {item.folio}
             </span>
             <EsterilizacionEstadoBadge estado={item.estado} />
@@ -89,7 +89,7 @@ export function EsterilizacionesCardsAdmin({
             <div className="flex flex-wrap gap-2 pt-2">
               <button
                 onClick={() => onVer(item)}
-                className="p-2 text-slate-500 hover:text-[#8B4513] hover:bg-orange-50 rounded-md transition"
+                className="p-2 text-slate-500 hover:text-[#0f830f] hover:bg-impa-50 rounded-md transition"
                 title="Ver expediente"
               >
                 <Eye className="w-4 h-4" />

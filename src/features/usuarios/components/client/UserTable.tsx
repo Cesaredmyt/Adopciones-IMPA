@@ -11,9 +11,9 @@ export default function UserTable({
   onSelect: (u: PerfilConDireccion) => void;
 }) {
   return (
-    <div className="rounded-2xl border border-[#EADACB] bg-white overflow-hidden">
+    <div className="rounded-2xl border border-[#dce5dc] bg-white overflow-hidden">
       {/* ===== DESKTOP HEADER ===== */}
-      <div className="hidden md:grid grid-cols-5 bg-[#FFF4E7] border-b border-[#EADACB] text-[11px] font-bold uppercase tracking-wide text-[#2B1B12] px-4 py-2">
+      <div className="hidden md:grid grid-cols-5 bg-[#FFF4E7] border-b border-[#dce5dc] text-[11px] font-bold uppercase tracking-wide text-[#2B1B12] px-4 py-2">
         <div>Nombre</div>
         <div>Correo</div>
         <div>Teléfono</div>
@@ -36,7 +36,7 @@ export default function UserTable({
             {/* ===== MOBILE CARD ===== */}
             <div className="md:hidden p-4 flex flex-col gap-2">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full border border-[#EADACB] bg-[#FFF7F0] grid place-items-center text-[#BC5F36] shadow-inner">
+                <div className="h-10 w-10 rounded-full border border-[#dce5dc] bg-[#FFF7F0] grid place-items-center text-[#17cf17] shadow-inner">
                   <UserCircle className="h-5 w-5" />
                 </div>
                 <div>
@@ -74,7 +74,7 @@ export default function UserTable({
             {/* ===== DESKTOP ROW ===== */}
             <div className="hidden md:grid grid-cols-5 items-center px-4 py-2">
               <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full border border-[#EADACB] bg-[#FFF7F0] grid place-items-center text-[#BC5F36] shadow-inner">
+                <div className="h-8 w-8 rounded-full border border-[#dce5dc] bg-[#FFF7F0] grid place-items-center text-[#17cf17] shadow-inner">
                   <UserCircle className="h-4 w-4" />
                 </div>
                 <div className="leading-tight">

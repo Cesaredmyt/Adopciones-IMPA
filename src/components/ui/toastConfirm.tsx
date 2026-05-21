@@ -2,30 +2,31 @@ import { toast } from "sonner";
 
 export function toastConfirm(message: string): Promise<boolean> {
   return new Promise((resolve) => {
-    const t = toast.custom(
+    toast.custom(
       (id) => (
-        <div className="flex flex-col items-center gap-4 bg-white rounded-2xl border border-gray-200 p-5 shadow-lg w-[320px] text-center">
-          <p className="text-gray-800 text-[15px] font-medium">{message}</p>
+        <div className="flex flex-col items-center gap-4 bg-white rounded-2xl border border-impa-line p-5 shadow-impa-lg w-[340px] text-center">
+          <p className="text-impa-text text-sm font-medium leading-snug">
+            {message}
+          </p>
 
-          <div className="flex justify-center gap-3">
-            <button
-              onClick={() => {
-                toast.dismiss(id);
-                resolve(true);
-              }}
-              className="px-4 py-1.5 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm font-semibold transition-all shadow-sm"
-            >
-              Sí
-            </button>
-
+          <div className="flex justify-center gap-2 w-full">
             <button
               onClick={() => {
                 toast.dismiss(id);
                 resolve(false);
               }}
-              className="px-4 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium transition-all shadow-sm"
+              className="flex-1 h-9 rounded-lg bg-white border border-impa-line text-impa-text text-sm font-semibold hover:bg-impa-50 transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/15"
             >
-              No
+              Cancelar
+            </button>
+            <button
+              onClick={() => {
+                toast.dismiss(id);
+                resolve(true);
+              }}
+              className="flex-1 h-9 rounded-lg bg-impa-500 hover:bg-impa-600 text-white text-sm font-semibold transition shadow-impa-sm focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20"
+            >
+              Confirmar
             </button>
           </div>
         </div>

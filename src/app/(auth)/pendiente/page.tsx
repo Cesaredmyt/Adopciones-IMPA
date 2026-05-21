@@ -1,11 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { Mail, RotateCw, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 
 export default function Pendiente() {
   const router = useRouter();
@@ -15,13 +16,8 @@ export default function Pendiente() {
   const [reenviado, setReenviado] = useState(false);
   const [cooldown, setCooldown] = useState(0);
 
-  // ================================================================
-  // 🔥 RECUPERAR DATOS DEL REGISTRO (sólo email — el link NO vive
-  // en el cliente; lo regenera el server al reenviar.)
-  // ================================================================
   const getRegistroData = () => {
     if (typeof window === "undefined") return { email: null, nombre: null };
-
     return {
       email:
         localStorage.getItem("registro_email") ||
@@ -32,33 +28,21 @@ export default function Pendiente() {
     };
   };
 
-  const registroData = getRegistroData();
-  const { email, nombre } = registroData;
+  const { email } = getRegistroData();
 
-  // ================================================================
-  // 🔥  AUTO-DETECTAR SI YA CONFIRMÓ EL CORREO
-  // ================================================================
   useEffect(() => {
     const interval = setInterval(async () => {
       const { data } = await supabase.auth.getUser();
-
       if (data?.user?.email_confirmed_at) {
         router.push("/dashboards/usuario/mascotas");
         clearInterval(interval);
       }
     }, 3000);
-
     return () => clearInterval(interval);
-  }, []);
+  }, [router, supabase]);
 
-  // ================================================================
-  // 🔥  FUNCIÓN PARA REENVIAR CORREO
-  // ================================================================
   const reenviarCorreo = async () => {
-    if (!email) {
-      return;
-    }
-
+    if (!email) return;
     setReenviando(true);
     setReenviado(false);
 
@@ -69,11 +53,8 @@ export default function Pendiente() {
     });
 
     setReenviando(false);
-
     if (res.ok) {
       setReenviado(true);
-
-      // Iniciar cooldown
       setCooldown(30);
       const interval = setInterval(() => {
         setCooldown((prev) => {
@@ -88,116 +69,95 @@ export default function Pendiente() {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-slate-50 px-4"
-      style={{
-        backgroundImage:
-          "radial-gradient(ellipse at 20% 10%, rgba(91,75,182,0.08), transparent 45%), radial-gradient(ellipse at 80% 0%, rgba(240,79,147,0.08), transparent 45%)",
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative bg-white rounded-2xl shadow-lg border border-[var(--brand-purple)]/15 p-8 w-full max-w-md text-center overflow-hidden"
-      >
-        {/* Shimmer */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none bg-gradient-to-br from-[#9B2E45] via-transparent to-transparent animate-[pulse_6s_ease-in-out_infinite]" />
+    <div className="min-h-screen impa-gradient-bg flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
+            <Image
+              src="/impa-isotipo.svg"
+              alt="IMPA"
+              width={44}
+              height={44}
+              className="rounded-xl shadow-impa-sm"
+            />
+            <span className="font-bold text-2xl text-impa-text">IMPA</span>
+          </Link>
+        </div>
 
-        <Image
-          src="/logo.png"
-          alt="Logo IMPA"
-          width={120}
-          height={120}
-          className="mx-auto mb-4 relative z-10"
-        />
-
-        <h1 className="text-3xl font-bold text-[#9B2E45] relative z-10">
-          IMPA
-        </h1>
-        <h2 className="text-xl font-bold text-[#9B2E45] mb-2 relative z-10">
-          Instituto Michoacano de Protección Animal
-        </h2>
-        <h3 className="text-lg font-semibold text-[#9B2E45] mb-8 relative z-10">
-          Morelia, Michoacán
-        </h3>
-
-        <h1 className="text-3xl font-bold text-[#9B2E45] mb-8 relative z-10">
-          Verifica tu correo
-        </h1>
-
-        <p className="text-gray-700 mb-6 relative z-10">
-          Te enviamos un enlace a tu correo electrónico para confirmar tu
-          cuenta.
-          <br />
-          Por favor revisa tu bandeja de entrada y también tu carpeta de spam.
-          <br />
-          <span className="text-[#9B2E45] font-semibold">
-            El correo puede tardar hasta 2 minutos en llegar.
-          </span>
-        </p>
-
-        {/* ============================================================
-              BOTÓN REENVIAR CORREO
-        ============================================================ */}
-        {!email ? (
-          <p className="text-sm text-red-600 relative z-10">
-            No se puede reenviar el correo porque faltan datos del registro.
-          </p>
-        ) : (
-          <>
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.03 }}
-              onClick={reenviarCorreo}
-              disabled={reenviando || cooldown > 0}
-              className="mt-4 text-[#9B2E45] font-semibold underline disabled:opacity-40 relative z-10"
-            >
-              {reenviando ? (
-                <span className="inline-flex items-center">
-                  Reenviando
-                  <motion.span
-                    initial={{ opacity: 0.3 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ repeat: Infinity, duration: 0.6 }}
-                    className="ml-1"
-                  >
-                    ...
-                  </motion.span>
-                </span>
-              ) : (
-                "Reenviar correo"
-              )}
-            </motion.button>
-
-            {cooldown > 0 && (
-              <p className="text-sm text-gray-500 mt-2 relative z-10">
-                Puedes reenviar en {cooldown}s
-              </p>
-            )}
-
-            {reenviado && (
-              <motion.p
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-green-600 mt-2 relative z-10"
-              >
-                ✔️ Correo reenviado
-              </motion.p>
-            )}
-          </>
-        )}
-
-        {/* Botón de login */}
-        <Button
-          variant="primary"
-          full
-          onClick={() => router.push("/login")}
-          className="relative z-10 mt-6"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8 text-center"
         >
-          Volver al inicio de sesión
-        </Button>
-      </motion.div>
+          <div className="mx-auto grid place-items-center w-16 h-16 rounded-2xl bg-impa-50 text-impa-600 mb-5">
+            <Mail size={28} />
+          </div>
+
+          <h1 className="text-2xl font-bold tracking-tight text-impa-text mb-2">
+            Verifica tu correo
+          </h1>
+          <p className="text-impa-muted text-sm leading-relaxed mb-6">
+            Te enviamos un enlace a tu correo para confirmar tu cuenta. Revisa tu
+            bandeja de entrada y también la carpeta de spam.
+          </p>
+
+          <div className="rounded-xl border border-impa-line bg-impa-50/50 p-4 text-left mb-6">
+            <p className="text-xs font-semibold text-impa-text mb-1">
+              ⏱ Tiempo estimado
+            </p>
+            <p className="text-xs text-impa-muted">
+              El correo puede tardar hasta 2 minutos en llegar.
+            </p>
+          </div>
+
+          {!email ? (
+            <div className="flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 text-left">
+              <AlertCircle size={16} className="shrink-0 mt-0.5" />
+              <span className="font-medium">
+                No se puede reenviar el correo porque faltan datos del registro.
+              </span>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <button
+                onClick={reenviarCorreo}
+                disabled={reenviando || cooldown > 0}
+                className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl border border-impa-line bg-white text-impa-text font-semibold text-sm hover:bg-impa-50 hover:border-impa-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <RotateCw
+                  size={15}
+                  className={reenviando ? "animate-spin" : ""}
+                />
+                {reenviando
+                  ? "Reenviando…"
+                  : cooldown > 0
+                  ? `Puedes reenviar en ${cooldown}s`
+                  : "Reenviar correo"}
+              </button>
+
+              {reenviado && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center justify-center gap-1.5 text-sm text-impa-700 font-medium"
+                >
+                  <CheckCircle2 size={15} />
+                  Correo reenviado
+                </motion.div>
+              )}
+            </div>
+          )}
+
+          <button
+            onClick={() => router.push("/login")}
+            className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 transition mt-4"
+          >
+            Volver al inicio de sesión
+            <ArrowRight size={15} />
+          </button>
+        </motion.div>
+      </div>
     </div>
   );
 }

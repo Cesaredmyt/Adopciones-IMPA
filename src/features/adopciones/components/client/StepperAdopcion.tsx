@@ -67,7 +67,7 @@ export default function StepperAdopcion({
   return (
     <div className="relative mt-8">
       {/* Línea base */}
-      <div className="absolute top-1/2 left-0 right-0 h-[4px] bg-[#eadacb] -translate-y-1/2 z-0 rounded-full" />
+      <div className="absolute top-1/2 left-0 right-0 h-[4px] bg-[#dce5dc] -translate-y-1/2 z-0 rounded-full" />
 
       {/* Línea de progreso */}
       <div
@@ -120,10 +120,10 @@ export default function StepperAdopcion({
                   completado
                     ? "border-[#2563eb] bg-[#e0edff] text-[#1d3a8a]"
                     : activo
-                    ? "border-[#BC5F36] bg-[#fff4e7] text-[#2b1b12] scale-[1.02]"
+                    ? "border-[#17cf17] bg-[#ecfdec] text-[#111811] scale-[1.02]"
                     : bloqueado
                     ? "border-[#e5d5c5] bg-[#f9f3ec] text-[#b5a090] opacity-80"
-                    : "border-[#eadacb] bg-white text-[#7a5c49]"
+                    : "border-[#dce5dc] bg-white text-[#7a5c49]"
                 }
                 ${
                   bloqueado
@@ -140,10 +140,10 @@ export default function StepperAdopcion({
                       completado
                         ? "border-[#2563eb] bg-[#2563eb] text-white"
                         : activo
-                        ? "border-[#BC5F36] bg-white text-[#BC5F36]"
+                        ? "border-[#17cf17] bg-white text-[#17cf17]"
                         : bloqueado
                         ? "border-[#e5d5c5] bg-[#f5ebe1] text-[#b5a090]"
-                        : "border-[#eadacb] bg-white text-[#7a5c49]"
+                        : "border-[#dce5dc] bg-white text-[#7a5c49]"
                     }
                   `}
                 >
@@ -167,7 +167,7 @@ export default function StepperAdopcion({
                     completado
                       ? "text-[#2563eb]"
                       : activo
-                      ? "text-[#BC5F36]"
+                      ? "text-[#17cf17]"
                       : bloqueado
                       ? "text-[#c49b80]"
                       : "text-[#a88b77]"
@@ -188,12 +188,12 @@ export default function StepperAdopcion({
                 <div
                   className="
                     absolute left-1/2 -translate-x-1/2 top-full mt-3 w-56
-                    rounded-xl border border-[#eadacb] bg-white shadow-xl 
+                    rounded-xl border border-[#dce5dc] bg-white shadow-xl 
                     p-4 text-xs text-[#7a5c49] leading-relaxed
                     animate-fade-in z-20
                   "
                 >
-                  <p className="font-extrabold text-[#2b1b12] mb-1">
+                  <p className="font-extrabold text-[#111811] mb-1">
                     {paso.titulo}
                   </p>
                   <p>{paso.detalle}</p>

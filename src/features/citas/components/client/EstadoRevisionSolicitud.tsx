@@ -20,7 +20,7 @@ export default function EstadoRevisionSolicitud() {
                     className="
                         h-14 w-14 
                         rounded-full 
-                        bg-[#BC5F36] 
+                        bg-[#17cf17] 
                         text-white 
                         flex items-center justify-center 
                         shadow-md
@@ -30,7 +30,7 @@ export default function EstadoRevisionSolicitud() {
                 </div>
 
                 <div>
-                    <h3 className="text-xl font-extrabold text-[#8b4513]">
+                    <h3 className="text-xl font-extrabold text-[#0f830f]">
                         Tu formulario está en revisión
                     </h3>
                     <p className="text-sm text-[#7a5c49] mt-1">

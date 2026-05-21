@@ -182,7 +182,7 @@ export default function MascotasPage() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="
           fixed bottom-5 right-5 z-50
-          bg-[#BC5F36] text-white p-3 rounded-full
+          bg-[#17cf17] text-white p-3 rounded-full
           shadow-lg hover:bg-[#a24f2d] hover:shadow-xl
           transition-all duration-200
         "

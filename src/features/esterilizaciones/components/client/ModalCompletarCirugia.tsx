@@ -56,7 +56,7 @@ export function ModalCompletarCirugia({
         </p>
 
         <div>
-          <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-2 block">
+          <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-2 block">
             Resultado
           </span>
           <div className="flex gap-2">
@@ -76,7 +76,7 @@ export function ModalCompletarCirugia({
               onClick={() => setEstado("complicacion")}
               className={`px-4 py-2 rounded-lg text-sm font-semibold border transition ${
                 estado === "complicacion"
-                  ? "bg-orange-100 text-orange-700 border-orange-300"
+                  ? "bg-impa-100 text-impa-700 border-impa-300"
                   : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
               }`}
             >
@@ -86,7 +86,7 @@ export function ModalCompletarCirugia({
         </div>
 
         <label className="block text-sm">
-          <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+          <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
             Notas del resultado *
           </span>
           <textarea
@@ -94,13 +94,13 @@ export function ModalCompletarCirugia({
             value={resultadoNotas}
             onChange={(e) => setResultadoNotas(e.target.value)}
             placeholder="Procedimiento, anestesia, medicación post-operatoria…"
-            className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+            className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
           />
         </label>
 
         {estado === "complicacion" && (
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
               Complicaciones *
             </span>
             <textarea
@@ -108,7 +108,7 @@ export function ModalCompletarCirugia({
               value={complicaciones}
               onChange={(e) => setComplicaciones(e.target.value)}
               placeholder="Describe las complicaciones presentadas y manejo…"
-              className="w-full border border-orange-200 rounded-md px-3 py-2 bg-orange-50/40 focus:outline-none focus:ring-2 focus:ring-orange-400/30"
+              className="w-full border border-impa-200 rounded-md px-3 py-2 bg-impa-50/40 focus:outline-none focus:ring-2 focus:ring-impa-400/30"
             />
           </label>
         )}

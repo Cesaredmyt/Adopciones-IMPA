@@ -58,7 +58,7 @@ export default function AdopcionCardFull({
                         animate={{opacity: 1, scale: 1, y: 0}}
                         exit={{opacity: 0, scale: 0.95, y: 20}}
                         transition={{duration: 0.25}}
-                        className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#FF8414]"
+                        className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#17cf17]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* 🐾 Columna izquierda */}
@@ -90,7 +90,7 @@ export default function AdopcionCardFull({
                         </div>
 
                         {/* 📄 Columna derecha */}
-                        <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-[#2b1b12]">
+                        <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-[#111811]">
                             <section className="space-y-4">
                                 {/* Estado */}
                                 <div className="flex flex-wrap gap-2">

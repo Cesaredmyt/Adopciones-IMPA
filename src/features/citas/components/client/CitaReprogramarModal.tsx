@@ -103,12 +103,12 @@ export default function CitaReprogramarModal({
         <div className="fixed inset-0 z-[999] grid place-items-center bg-black/40 backdrop-blur-sm p-4 animate-fadeIn cursor-default">
 
             {/* CONTENEDOR */}
-            <div className="w-full max-w-lg rounded-2xl bg-white border border-[#EADACB] shadow-2xl overflow-hidden animate-slideUp">
+            <div className="w-full max-w-lg rounded-2xl bg-white border border-[#dce5dc] shadow-2xl overflow-hidden animate-slideUp">
 
                 {/* HEADER */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#EADACB] bg-[#FFF8F2]">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-[#dce5dc] bg-[#FFF8F2]">
                     <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-[#BC5F36]" />
+                        <Calendar className="w-5 h-5 text-[#17cf17]" />
                         <h3 className="text-lg font-extrabold text-[#2B1B12]">Reprogramar cita</h3>
                     </div>
 
@@ -124,7 +124,7 @@ export default function CitaReprogramarModal({
                 <div className="px-6 py-5 space-y-6">
 
                     {/* INFO DEL USUARIO */}
-                    <div className="bg-[#FFF4E7] border border-[#EADACB] rounded-xl px-4 py-3">
+                    <div className="bg-[#FFF4E7] border border-[#dce5dc] rounded-xl px-4 py-3">
                         <p className="text-sm">
                             <span className="font-semibold text-[#2B1B12]">
                                 {cita.usuario?.nombres} {cita.usuario?.apellido_paterno} {cita.usuario?.apellido_materno}
@@ -165,7 +165,7 @@ export default function CitaReprogramarModal({
 
                                 dateFormat="dd/MM/yyyy"
                                 placeholderText="Selecciona la fecha"
-                                className="w-full pl-11 pr-10 py-2 border rounded-md cursor-pointer hover:border-[#BC5F36] focus:border-[#BC5F36] focus:ring-2 focus:ring-[#BC5F36]/20 focus:outline-none border-[#EADACB]"
+                                className="w-full pl-11 pr-10 py-2 border rounded-md cursor-pointer hover:border-[#17cf17] focus:border-[#17cf17] focus:ring-2 focus:ring-[#17cf17]/20 focus:outline-none border-[#dce5dc]"
                                 wrapperClassName="w-full cursor-pointer"
                                 calendarClassName="react-datepicker-full"
                                 showYearDropdown
@@ -176,7 +176,7 @@ export default function CitaReprogramarModal({
                                 popperClassName="z-[2000]"
                             />
 
-                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-[#BC5F36] opacity-60 h-5 w-5 pointer-events-none" />
+                            <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 text-[#17cf17] opacity-60 h-5 w-5 pointer-events-none" />
                         </div>
                     </div>
 
@@ -200,8 +200,8 @@ export default function CitaReprogramarModal({
                                             ${disabled
                                                 ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
                                                 : hora === h
-                                                    ? "bg-[#BC5F36] text-white border-[#BC5F36] cursor-pointer"
-                                                    : "bg-white text-[#2B1B12] border-[#EADACB] hover:bg-[#FFF4E7] cursor-pointer"
+                                                    ? "bg-[#17cf17] text-white border-[#17cf17] cursor-pointer"
+                                                    : "bg-white text-[#2B1B12] border-[#dce5dc] hover:bg-[#FFF4E7] cursor-pointer"
                                             }
                                         `}
                                     >
@@ -215,7 +215,7 @@ export default function CitaReprogramarModal({
                 </div>
 
                 {/* FOOTER */}
-                <div className="px-6 py-4 border-t border-[#EADACB] bg-[#FFFDF9] flex justify-end gap-2">
+                <div className="px-6 py-4 border-t border-[#dce5dc] bg-[#FFFDF9] flex justify-end gap-2">
                     <button
                         onClick={onClose}
                         className="px-4 py-2 rounded-lg border text-sm text-[#2B1B12] hover:bg-gray-100 transition cursor-pointer"
@@ -226,7 +226,7 @@ export default function CitaReprogramarModal({
                     <button
                         disabled={isSaving}
                         onClick={onSubmit}
-                        className="px-4 py-2 rounded-lg bg-[#BC5F36] text-white text-sm font-semibold disabled:opacity-50 hover:bg-[#a44f2e] transition cursor-pointer"
+                        className="px-4 py-2 rounded-lg bg-[#17cf17] text-white text-sm font-semibold disabled:opacity-50 hover:bg-[#a44f2e] transition cursor-pointer"
                     >
                         {isSaving ? "Guardando..." : "Guardar cambios"}
                     </button>

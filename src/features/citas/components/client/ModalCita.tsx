@@ -78,10 +78,10 @@ export default function NuevoModal({
         </Field>
 
         <div className="mt-1 flex items-center justify-end gap-2">
-          <button type="button" onClick={onClose} className="rounded-xl border border-[#e1cdbd] bg-white px-4 py-2 text-sm font-bold text-[#8a5d49] hover:bg-[#fff4e7]">
+          <button type="button" onClick={onClose} className="rounded-xl border border-[#e1cdbd] bg-white px-4 py-2 text-sm font-bold text-[#8a5d49] hover:bg-[#ecfdec]">
             Cancelar
           </button>
-          <button type="submit" className="rounded-xl bg-[#BC5F36] px-4 py-2 text-sm font-bold text-white">
+          <button type="submit" className="rounded-xl bg-[#17cf17] px-4 py-2 text-sm font-bold text-white">
             Guardar
           </button>
         </div>
@@ -94,7 +94,7 @@ function Field({ label, required, children }: { label: string; required?: boolea
   return (
     <div>
       <label className="mb-1 block text-xs font-extrabold uppercase tracking-wide text-[#6b4d3e]">
-        {label} {required && <span className="text-[#BC5F36]">*</span>}
+        {label} {required && <span className="text-[#17cf17]">*</span>}
       </label>
       {children}
     </div>

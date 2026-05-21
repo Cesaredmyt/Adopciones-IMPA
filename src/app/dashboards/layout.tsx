@@ -1,20 +1,21 @@
-import { Toaster } from "sonner";
-
-export default function MarketingLayout({
+export default function DashboardsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <>
-      <Toaster richColors position="top-right" />
-
       {children}
 
-      <footer className="border-t border-[#e3c8b4] bg-[#BC5F36] text-[#fffaf4] shadow-inner">
-        <div className="container mx-auto px-4 py-6 text-sm text-center">
-          © 2025 <span className="font-semibold">Instituto Michoacano de Protección Animal</span>.
-          Todos los derechos reservados.
+      <footer className="border-t border-impa-line bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-impa-muted">
+          <p>
+            © {new Date().getFullYear()}{" "}
+            <span className="font-semibold text-impa-text">
+              Instituto Michoacano de Protección Animal
+            </span>
+          </p>
+          <p>Plataforma oficial IMPA · Morelia</p>
         </div>
       </footer>
     </>

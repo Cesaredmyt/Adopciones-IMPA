@@ -147,7 +147,7 @@ export default function MascotasPage() {
                 imagen_url = await uploadImageClient(values.fotoFile, nuevoId);
               }
 
-              const qrLink = `https://caamorelia.vercel.app/mascota/${nuevoId}`;
+              const qrLink = `https://impa.vercel.app/mascota/${nuevoId}`;
               const qrDataUrl = await QRCode.toDataURL(qrLink, { width: 300 });
               const qrBlob = await (await fetch(qrDataUrl)).blob();
               qr_code = await uploadQRClient(qrBlob, nuevoId);
@@ -173,20 +173,22 @@ export default function MascotasPage() {
 
       <PageHead
         title="Mascotas"
-        subtitle="Explora a nuestros adorables compañeros 🐾"
+        subtitle="Catálogo y gestión de animales en adopción."
         right={
           <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              onClick={() => setOpenRazas(true)}
+            >
+              Gestionar razas
+            </Button>
             <Button
               onClick={() => {
                 setSelectedMascota(null);
                 setOpenForm(true);
               }}
             >
-              <Plus size={18} /> Agregar
-            </Button>
-
-            <Button onClick={() => setOpenRazas(true)}>
-              🐶 Gestionar Razas
+              <Plus size={16} /> Nueva mascota
             </Button>
           </div>
         }
@@ -241,11 +243,11 @@ export default function MascotasPage() {
       {openCard &&
         typeof window !== "undefined" &&
         createPortal(
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4 py-8">
-            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden">
+          <div className="fixed inset-0 bg-impa-text/40 backdrop-blur-sm z-50 flex items-center justify-center px-4 py-8">
+            <div className="relative bg-white rounded-2xl shadow-impa-xl border border-impa-line w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden">
               <button
                 onClick={() => setOpenCard(false)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-[#BC5F36] transition"
+                className="absolute top-4 right-4 grid place-items-center w-8 h-8 rounded-lg text-impa-muted hover:text-impa-text hover:bg-impa-50 transition z-10"
               >
                 ✕
               </button>

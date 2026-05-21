@@ -84,7 +84,7 @@ export function CitasVeterinariasUsuarioAgendar({
             }}
             className={`flex items-center gap-4 border rounded-2xl p-4 cursor-pointer transition ${
               mascotaSeleccionada?.mascota_id === m.mascota_id
-                ? "bg-[#FFF1E6] border-[#8B4513]"
+                ? "bg-[#ecfdec] border-[#0f830f]"
                 : "hover:bg-[#FFF8F3]"
             }`}
           >
@@ -94,7 +94,7 @@ export function CitasVeterinariasUsuarioAgendar({
               className="w-24 h-24 rounded-xl object-cover"
             />
             <div>
-              <h2 className="text-lg font-semibold text-[#8B4513]">
+              <h2 className="text-lg font-semibold text-[#0f830f]">
                 {m.mascota_nombre}
               </h2>
               <p className="text-sm text-gray-600">
@@ -113,7 +113,7 @@ export function CitasVeterinariasUsuarioAgendar({
         <div className="border-t pt-6 space-y-6">
           {/* === Fecha === */}
           <div>
-            <h3 className="font-medium text-[#8B4513] mb-3">
+            <h3 className="font-medium text-[#0f830f] mb-3">
               Selecciona la fecha de tu cita
             </h3>
 
@@ -131,7 +131,7 @@ export function CitasVeterinariasUsuarioAgendar({
                 ◀️
               </Button>
 
-              <span className="text-[#8B4513] font-semibold capitalize">
+              <span className="text-[#0f830f] font-semibold capitalize">
                 {nombreMes}
               </span>
 
@@ -176,8 +176,8 @@ export function CitasVeterinariasUsuarioAgendar({
                       cell.deshabilitado
                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                         : fechaSeleccionada === cell.fechaStr
-                        ? "bg-[#8B4513] text-white font-semibold"
-                        : "hover:bg-[#FFF1E6] text-[#8B4513]"
+                        ? "bg-[#0f830f] text-white font-semibold"
+                        : "hover:bg-[#ecfdec] text-[#0f830f]"
                     }`}
                   >
                     {cell.d}
@@ -197,7 +197,7 @@ export function CitasVeterinariasUsuarioAgendar({
           {/* === Horarios === */}
           {fechaSeleccionada && (
             <div>
-              <h3 className="font-medium text-[#8B4513] mb-2">
+              <h3 className="font-medium text-[#0f830f] mb-2">
                 Selecciona un horario
               </h3>
 
@@ -208,8 +208,8 @@ export function CitasVeterinariasUsuarioAgendar({
                     onClick={() => setHoraSeleccionada(hora)}
                     className={`py-2 rounded-lg border text-sm transition ${
                       horaSeleccionada === hora
-                        ? "bg-[#8B4513] text-white border-[#A0522D]"
-                        : "hover:bg-[#FFF1E6]"
+                        ? "bg-[#0f830f] text-white border-[#11a611]"
+                        : "hover:bg-[#ecfdec]"
                     }`}
                   >
                     {hora}
@@ -222,14 +222,14 @@ export function CitasVeterinariasUsuarioAgendar({
           {/* === Motivo === */}
           {horaSeleccionada && (
             <div>
-              <label className="block text-sm font-medium text-[#8B4513] mb-1">
+              <label className="block text-sm font-medium text-[#0f830f] mb-1">
                 Motivo de la cita
               </label>
               <textarea
                 value={motivo}
                 onChange={(e) => setMotivo(e.target.value)}
                 placeholder="Describe brevemente el motivo..."
-                className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-[#FDE68A] focus:outline-none transition"
+                className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-[#a8f1a8] focus:outline-none transition"
               />
             </div>
           )}

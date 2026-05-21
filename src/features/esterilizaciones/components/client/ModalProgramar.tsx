@@ -52,7 +52,7 @@ export function ModalProgramar({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
               Fecha
             </span>
             <input
@@ -60,19 +60,19 @@ export function ModalProgramar({
               min={minDate}
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
-              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
             />
           </label>
 
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#8B4513] mb-1 block">
+            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
               Hora
             </span>
             <input
               type="time"
               value={hora}
               onChange={(e) => setHora(e.target.value)}
-              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#BC5F36]/30"
+              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
             />
           </label>
         </div>

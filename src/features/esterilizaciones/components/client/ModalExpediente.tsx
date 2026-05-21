@@ -42,7 +42,7 @@ export function ModalExpediente({
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white/70 p-4 rounded-xl border border-[#f0e0cc]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B4513] mb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
               Paciente
             </h4>
             <p className="font-semibold">{registro.mascota_nombre}</p>
@@ -52,7 +52,7 @@ export function ModalExpediente({
           </div>
 
           <div className="bg-white/70 p-4 rounded-xl border border-[#f0e0cc]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B4513] mb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
               Solicitante
             </h4>
             <p className="font-semibold">{registro.usuario_nombre}</p>
@@ -67,12 +67,12 @@ export function ModalExpediente({
         </section>
 
         <section>
-          <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B4513] mb-2">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
             Observaciones previas
           </h4>
-          <div className="bg-amber-50 border border-amber-100 p-3 rounded-lg text-sm whitespace-pre-wrap min-h-[60px]">
+          <div className="bg-impa-50 border border-impa-100 p-3 rounded-lg text-sm whitespace-pre-wrap min-h-[60px]">
             {registro.observaciones_previas || (
-              <span className="text-amber-600/60 italic">
+              <span className="text-impa-600/60 italic">
                 Sin observaciones previas.
               </span>
             )}
@@ -81,7 +81,7 @@ export function ModalExpediente({
 
         {(registro.resultado_notas || registro.complicaciones) && (
           <section>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B4513] mb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
               Resultado clínico
             </h4>
             {registro.resultado_notas && (
@@ -90,8 +90,8 @@ export function ModalExpediente({
               </div>
             )}
             {registro.complicaciones && (
-              <div className="bg-orange-50 border border-orange-100 p-3 rounded-lg text-sm whitespace-pre-wrap">
-                <strong className="text-orange-700">Complicaciones:</strong>{" "}
+              <div className="bg-impa-50 border border-impa-100 p-3 rounded-lg text-sm whitespace-pre-wrap">
+                <strong className="text-impa-700">Complicaciones:</strong>{" "}
                 {registro.complicaciones}
               </div>
             )}
@@ -100,7 +100,7 @@ export function ModalExpediente({
 
         {registro.motivo_cancelacion && (
           <section>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B4513] mb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
               Motivo de cancelación / rechazo
             </h4>
             <div className="bg-red-50 border border-red-100 p-3 rounded-lg text-sm whitespace-pre-wrap">

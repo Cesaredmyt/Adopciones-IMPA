@@ -3,9 +3,8 @@ import React from "react";
 
 export default function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <main className="max-w-[1100px] mx-auto mt-6 px-4 text-[#2b1b12] pb-14">
+    <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 text-impa-text">
       {children}
     </main>
   );
 }
-

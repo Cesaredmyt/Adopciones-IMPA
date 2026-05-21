@@ -62,7 +62,7 @@ export default function MascotaInfoModal({
             <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-slate-400 hover:text-[#BC5F36] transition"
+                    className="absolute top-4 right-4 text-slate-400 hover:text-[#17cf17] transition"
                     aria-label="Cerrar"
                 >
                     ✕

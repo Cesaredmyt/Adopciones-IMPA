@@ -46,7 +46,7 @@ export default function UserModal({
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
                         transition={{ type: "spring", stiffness: 140, damping: 18 }}
-                        className="w-full max-w-2xl bg-[#FFF8F2] rounded-3xl border border-[#EADACB] shadow-[0_25px_80px_rgba(0,0,0,0.28)] overflow-hidden"
+                        className="w-full max-w-2xl bg-[#FFF8F2] rounded-3xl border border-[#dce5dc] shadow-[0_25px_80px_rgba(0,0,0,0.28)] overflow-hidden"
                         onMouseDown={(e) => e.stopPropagation()}
                     >
                         {/* HEADER */}
@@ -56,7 +56,7 @@ export default function UserModal({
                             </h2>
                             <button
                                 onClick={onClose}
-                                className="rounded-full p-1.5 hover:bg-[#E0C7B6] transition text-[#BC5F36]"
+                                className="rounded-full p-1.5 hover:bg-[#E0C7B6] transition text-[#17cf17]"
                             >
                                 <X className="h-5 w-5" />
                             </button>
@@ -80,7 +80,7 @@ export default function UserModal({
                                     animate={{ opacity: 1 }}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="h-16 w-16 rounded-full border border-[#EADACB] bg-white grid place-items-center text-[#BC5F36] shadow-inner">
+                                    <div className="h-16 w-16 rounded-full border border-[#dce5dc] bg-white grid place-items-center text-[#17cf17] shadow-inner">
                                         <UserCircle className="h-9 w-9" />
                                     </div>
 
@@ -97,7 +97,7 @@ export default function UserModal({
                             )}
 
                             {/* ===== INFO DE CONTACTO ===== */}
-                            <div className="space-y-4 bg-white border border-[#EADACB] rounded-2xl p-5 shadow-sm">
+                            <div className="space-y-4 bg-white border border-[#dce5dc] rounded-2xl p-5 shadow-sm">
                                 {isLoading ? (
                                     <div className="space-y-3">
                                         <Skeleton className="h-4 w-48" />
@@ -109,32 +109,32 @@ export default function UserModal({
                                 ) : (
                                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
 
-                                        <h4 className="font-semibold text-[#BC5F36] text-sm tracking-wide border-b border-[#F3E8DC] pb-2 mb-3">
+                                        <h4 className="font-semibold text-[#17cf17] text-sm tracking-wide border-b border-[#F3E8DC] pb-2 mb-3">
                                             Información de contacto
                                         </h4>
 
                                         <div className="space-y-3 text-sm text-[#2B1B12] mt-1">
                                             <div className="flex items-center gap-3">
-                                                <Mail className="h-4 w-4 text-[#BC5F36]" />
+                                                <Mail className="h-4 w-4 text-[#17cf17]" />
                                                 <span>{user.email}</span>
                                             </div>
 
                                             {user.telefono && (
                                                 <div className="flex items-center gap-3">
-                                                    <Phone className="h-4 w-4 text-[#BC5F36]" />
+                                                    <Phone className="h-4 w-4 text-[#17cf17]" />
                                                     <span>{user.telefono}</span>
                                                 </div>
                                             )}
 
                                             {user.ocupacion && (
                                                 <div className="flex items-center gap-3">
-                                                    <BriefcaseBusiness className="h-4 w-4 text-[#BC5F36]" />
+                                                    <BriefcaseBusiness className="h-4 w-4 text-[#17cf17]" />
                                                     <span>{user.ocupacion}</span>
                                                 </div>
                                             )}
 
                                             <div className="flex items-start gap-3">
-                                                <MapPin className="h-4 w-4 mt-1 text-[#BC5F36]" />
+                                                <MapPin className="h-4 w-4 mt-1 text-[#17cf17]" />
                                                 {direccion ? (
                                                     <div className="leading-tight">
                                                         <p>
@@ -167,7 +167,7 @@ export default function UserModal({
                                 {isLoading ? (
                                     <div className="space-y-4">
                                         {[...Array(Math.min((solicitudesActivas?.length || 1), 2))].map((_, i) => (
-                                            <div key={i} className="flex gap-4 p-4 border border-[#EADACB] bg-white rounded-2xl">
+                                            <div key={i} className="flex gap-4 p-4 border border-[#dce5dc] bg-white rounded-2xl">
                                                 <Skeleton className="h-[80px] w-[80px] rounded-xl" />
                                                 <div className="space-y-2 w-full">
                                                     <Skeleton className="h-4 w-40" />
@@ -190,9 +190,9 @@ export default function UserModal({
                                         {solicitudesActivas.map((s: any) => (
                                             <div
                                                 key={s.id}
-                                                className="flex gap-4 border border-[#EADACB] bg-white rounded-2xl p-4 hover:shadow-md transition"
+                                                className="flex gap-4 border border-[#dce5dc] bg-white rounded-2xl p-4 hover:shadow-md transition"
                                             >
-                                                <div className="w-[80px] h-[80px] rounded-xl overflow-hidden bg-[#FFF4E7] border border-[#EADACB]">
+                                                <div className="w-[80px] h-[80px] rounded-xl overflow-hidden bg-[#FFF4E7] border border-[#dce5dc]">
                                                     {s.mascota?.imagen_url ? (
                                                         <img
                                                             src={
@@ -204,7 +204,7 @@ export default function UserModal({
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="w-full h-full grid place-items-center text-[#BC5F36] opacity-70">
+                                                        <div className="w-full h-full grid place-items-center text-[#17cf17] opacity-70">
                                                             <PawPrint className="h-8 w-8" />
                                                         </div>
                                                     )}
@@ -215,7 +215,7 @@ export default function UserModal({
                                                     <p className="text-xs text-[#8B6F5D]">
                                                         Fecha: {new Date(s.fecha_creada).toLocaleDateString()}
                                                     </p>
-                                                    <p className="text-xs text-[#BC5F36] font-semibold capitalize">
+                                                    <p className="text-xs text-[#17cf17] font-semibold capitalize">
                                                         Estado: {s.estado.replace("_", " ")}
                                                     </p>
                                                 </div>
@@ -234,7 +234,7 @@ export default function UserModal({
                                 {isLoading ? (
                                     <div className="space-y-4">
                                         {[...Array(Math.min((adopciones?.length || 1), 2))].map((_, i) => (
-                                            <div key={i} className="flex gap-4 p-4 border border-[#EADACB] bg-white rounded-2xl">
+                                            <div key={i} className="flex gap-4 p-4 border border-[#dce5dc] bg-white rounded-2xl">
                                                 <Skeleton className="h-[80px] w-[80px] rounded-xl" />
                                                 <div className="space-y-2 w-full">
                                                     <Skeleton className="h-4 w-40" />
@@ -257,9 +257,9 @@ export default function UserModal({
                                         {adopciones.map((a) => (
                                             <div
                                                 key={a.id}
-                                                className="flex gap-4 border border-[#EADACB] bg-white rounded-2xl p-4 hover:shadow-md transition"
+                                                className="flex gap-4 border border-[#dce5dc] bg-white rounded-2xl p-4 hover:shadow-md transition"
                                             >
-                                                <div className="w-[80px] h-[80px] rounded-xl overflow-hidden bg-[#FFF4E7] border border-[#EADACB]">
+                                                <div className="w-[80px] h-[80px] rounded-xl overflow-hidden bg-[#FFF4E7] border border-[#dce5dc]">
                                                     {a.imagen_url ? (
                                                         <img
                                                             src={
@@ -271,7 +271,7 @@ export default function UserModal({
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="w-full h-full grid place-items-center text-[#BC5F36] opacity-70">
+                                                        <div className="w-full h-full grid place-items-center text-[#17cf17] opacity-70">
                                                             <PawPrint className="h-8 w-8" />
                                                         </div>
                                                     )}
@@ -280,7 +280,7 @@ export default function UserModal({
                                                 <div className="flex flex-col justify-center">
                                                     <p className="font-semibold text-[#2B1B12] text-sm">{a.mascota_nombre}</p>
                                                     <p className="text-xs text-[#8B6F5D]">Fecha: {a.fecha_adopcion}</p>
-                                                    <p className="text-xs text-[#BC5F36] font-semibold capitalize">{a.estado}</p>
+                                                    <p className="text-xs text-[#17cf17] font-semibold capitalize">{a.estado}</p>
                                                 </div>
                                             </div>
                                         ))}

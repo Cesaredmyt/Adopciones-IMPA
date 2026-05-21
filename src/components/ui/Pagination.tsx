@@ -1,14 +1,15 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
   page: number;
   totalPages: number;
   onChange: (page: number) => void;
-  itemsLabel?: string;   // "usuarios", "mascotas", etc.
-  itemsPerPage?: number; // ej: 5 ó 10
-  totalItems?: number;   // cantidad total real de elementos
+  itemsLabel?: string;
+  itemsPerPage?: number;
+  totalItems?: number;
 };
 
 export default function Pagination({
@@ -28,90 +29,85 @@ export default function Pagination({
     }
   };
 
-  // 🔢 Cálculo del rango mostrado
   const start = itemsPerPage && totalItems ? (page - 1) * itemsPerPage + 1 : null;
   const end =
-    itemsPerPage && totalItems
-      ? Math.min(page * itemsPerPage, totalItems)
-      : null;
+    itemsPerPage && totalItems ? Math.min(page * itemsPerPage, totalItems) : null;
+
+  const pageNumbers = (() => {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (page <= 4) return [1, 2, 3, 4, 5, "…", totalPages];
+    if (page >= totalPages - 3)
+      return [1, "…", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    return [1, "…", page - 1, page, page + 1, "…", totalPages];
+  })();
+
+  const chipBase =
+    "min-w-[2rem] h-8 px-2 rounded-lg text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/15";
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 text-sm">
-
-      {/* Texto descriptivo */}
-      <span className="text-slate-500">
+      <span className="text-impa-muted">
         {start && end && totalItems ? (
           <>
-            Mostrando <b>{start}</b>–<b>{end}</b> de <b>{totalItems}</b> {itemsLabel}
+            Mostrando <b className="text-impa-text">{start}</b>–
+            <b className="text-impa-text">{end}</b> de{" "}
+            <b className="text-impa-text">{totalItems}</b> {itemsLabel}
           </>
         ) : (
           <>
-            Página <b>{page}</b> de <b>{totalPages}</b>
+            Página <b className="text-impa-text">{page}</b> de{" "}
+            <b className="text-impa-text">{totalPages}</b>
           </>
         )}
       </span>
 
-      {/* Controles */}
-      <div className="flex items-center gap-2">
-
-        {/* Botón Anterior */}
+      <div className="flex items-center gap-1.5">
         <button
-          onClick={() => {
-            if (page > 1) {
-              goTo(page - 1);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
+          onClick={() => page > 1 && goTo(page - 1)}
           disabled={page === 1}
-          className={`
-            h-8 px-3 rounded-md border text-xs font-semibold flex items-center gap-1
-            transition disabled:opacity-40
-            ${page === 1
-              ? "bg-white border-slate-200 text-slate-400"
-              : "bg-white border-slate-200 text-[#8B4513] hover:bg-amber-50"
-            }
-          `}
+          className={cn(
+            "h-8 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1 transition bg-white",
+            page === 1
+              ? "text-impa-line cursor-not-allowed"
+              : "text-impa-text hover:bg-impa-50 hover:border-impa-300"
+          )}
         >
           <ChevronLeft className="w-4 h-4" />
           Anterior
         </button>
 
-        {/* Chips numerados */}
         <div className="flex items-center gap-1">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <button
-              key={p}
-              onClick={() => goTo(p)}
-              className={`
-                min-w-[2rem] h-8 rounded-full text-xs font-semibold border transition
-                ${p === page
-                  ? "bg-[#BC5F36] text-white border-[#BC5F36]"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-amber-50"
-                }
-              `}
-            >
-              {p}
-            </button>
-          ))}
+          {pageNumbers.map((p, i) =>
+            typeof p === "number" ? (
+              <button
+                key={i}
+                onClick={() => goTo(p)}
+                className={cn(
+                  chipBase,
+                  p === page
+                    ? "bg-impa-500 text-white shadow-impa-sm"
+                    : "bg-white text-impa-text border border-impa-line hover:bg-impa-50 hover:border-impa-300"
+                )}
+              >
+                {p}
+              </button>
+            ) : (
+              <span key={i} className="px-1 text-impa-muted text-xs">
+                {p}
+              </span>
+            )
+          )}
         </div>
 
-        {/* Botón Siguiente */}
         <button
-          onClick={() => {
-            if (page < totalPages) {
-              goTo(page + 1);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
+          onClick={() => page < totalPages && goTo(page + 1)}
           disabled={page === totalPages}
-          className={`
-            h-8 px-3 rounded-md border text-xs font-semibold flex items-center gap-1
-            transition disabled:opacity-40
-            ${page === totalPages
-              ? "bg-white border-slate-200 text-slate-400"
-              : "bg-white border-slate-200 text-[#8B4513] hover:bg-amber-50"
-            }
-          `}
+          className={cn(
+            "h-8 px-3 rounded-lg border border-impa-line text-xs font-semibold flex items-center gap-1 transition bg-white",
+            page === totalPages
+              ? "text-impa-line cursor-not-allowed"
+              : "text-impa-text hover:bg-impa-50 hover:border-impa-300"
+          )}
         >
           Siguiente
           <ChevronRight className="w-4 h-4" />

@@ -96,7 +96,7 @@ export default function MascotaCardFull({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-[#FFF8F2] rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#FF8414]"
+            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-[#FFF8F2] rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#17cf17]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* IMAGEN */}

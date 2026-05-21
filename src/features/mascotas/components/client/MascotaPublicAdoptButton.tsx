@@ -159,7 +159,7 @@ export default function MascotaPublicAdoptButton({
       <Button
         onClick={handleAdopt}
         disabled={loading}
-        className="bg-[#FF8414] hover:bg-[#d86f0f] text-white px-6 py-3 rounded-xl text-lg font-bold shadow"
+        className="bg-[#17cf17] hover:bg-[#d86f0f] text-white px-6 py-3 rounded-xl text-lg font-bold shadow"
       >
         {loading ? "Procesando..." : `Adoptar a ${mascota.nombre}`}
       </Button>

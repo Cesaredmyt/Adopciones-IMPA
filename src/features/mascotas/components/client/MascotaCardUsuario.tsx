@@ -93,7 +93,7 @@ export default function MascotaCardUsuario({
   };
 
   const handleCompartirQR = async () => {
-    const linkQR = `https://caamorelia.vercel.app/mascota/${m.id}`;
+    const linkQR = `https://impa.vercel.app/mascota/${m.id}`;
 
     // 🌟 Mensaje emocional + profesional
     const mensaje = `🐾 *IMPA Morelia – Adopta, cambia vidas*  
@@ -151,12 +151,13 @@ Gracias por abrir tu corazón.
   };
 
   // 🎨 Títulos de sección suaves
-  const tituloSuave = {
-    color: "#CDA285",
+  const tituloSuave: React.CSSProperties = {
+    color: "#638863",
     fontWeight: 700,
-    fontSize: "1.05rem",
-    letterSpacing: "0.2px",
-    marginBottom: "10px",
+    fontSize: "0.75rem",
+    letterSpacing: "0.6px",
+    textTransform: "uppercase",
+    marginBottom: "8px",
     display: "inline-block",
   };
 
@@ -175,11 +176,11 @@ Gracias por abrir tu corazón.
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-[#FFF8F2] rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#FF8414] font-sans"
+            className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-impa-xl grid md:grid-cols-2 overflow-hidden border border-impa-line font-sans"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Imagen */}
-            <div className="relative h-full bg-[#F4E5D5]">
+            <div className="relative h-full bg-impa-50">
               <img
                 src={fotoSrc}
                 alt={m.nombre}
@@ -190,7 +191,7 @@ Gracias por abrir tu corazón.
                 onClick={onClose}
                 className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition"
               >
-                <X className="w-5 h-5 text-slate-700" />
+                <X className="w-5 h-5 text-impa-muted" />
               </button>
 
               <div className="absolute top-4 left-4 flex items-center gap-2">
@@ -220,27 +221,27 @@ Gracias por abrir tu corazón.
             </div>
 
             {/* Info con SCROLL */}
-            <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-[#2B1B12] text-base">
+            <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-impa-text text-sm custom-scroll">
               {/* ⭐ SECCIÓN 1 */}
               <h3 style={tituloSuave}>Información general</h3>
 
               <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 mb-6 mt-2">
                 <div>
-                  <dt className="font-semibold text-slate-700">Tamaño</dt>
+                  <dt className="font-semibold text-impa-muted">Tamaño</dt>
                   <dd className="capitalize mt-1">{m.tamano || "—"}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-700">Edad</dt>
+                  <dt className="font-semibold text-impa-muted">Edad</dt>
                   <dd className="mt-1">{m.edad ? `${m.edad} meses` : "—"}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-700">Peso</dt>
+                  <dt className="font-semibold text-impa-muted">Peso</dt>
                   <dd className="mt-1">
                     {m.peso_kg ? `${m.peso_kg} kg` : "—"}
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-700">Altura</dt>
+                  <dt className="font-semibold text-impa-muted">Altura</dt>
                   <dd className="mt-1">
                     {m.altura_cm ? `${m.altura_cm} cm` : "—"}
                   </dd>
@@ -252,22 +253,22 @@ Gracias por abrir tu corazón.
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 mb-6 mt-2">
                 <div>
-                  <h4 className="font-semibold text-slate-700">Esterilizado</h4>
+                  <h4 className="font-semibold text-impa-muted">Esterilizado</h4>
                   <p className="mt-1">{m.esterilizado ? "Sí" : "No"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">Colores</h4>
+                  <h4 className="font-semibold text-impa-muted">Colores</h4>
                   <p className="mt-1">{coloresFormatted || "—"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">Personalidad</h4>
+                  <h4 className="font-semibold text-impa-muted">Personalidad</h4>
                   <p className="capitalize mt-1">{m.personalidad || "—"}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-700">
+                  <h4 className="font-semibold text-impa-muted">
                     Descripción física
                   </h4>
                   <p className="mt-1">{m.descripcion_fisica || "—"}</p>
@@ -278,13 +279,13 @@ Gracias por abrir tu corazón.
               {(m.lugar_rescate ||
                 m.condicion_ingreso ||
                 m.observaciones_medicas) && (
-                <div className="border-t border-slate-200 pt-4 mt-2">
+                <div className="border-t border-impa-line pt-4 mt-2">
                   <h3 style={tituloSuave}>Datos médicos y rescate</h3>
 
                   <dl className="grid grid-cols-2 gap-x-4 gap-y-3 mt-2">
                     {m.lugar_rescate && (
                       <div>
-                        <dt className="font-semibold text-slate-700">
+                        <dt className="font-semibold text-impa-muted">
                           Lugar de rescate
                         </dt>
                         <dd className="mt-1">{m.lugar_rescate}</dd>
@@ -293,7 +294,7 @@ Gracias por abrir tu corazón.
 
                     {m.condicion_ingreso && (
                       <div>
-                        <dt className="font-semibold text-slate-700">
+                        <dt className="font-semibold text-impa-muted">
                           Condición al ingreso
                         </dt>
                         <dd className="mt-1">{m.condicion_ingreso}</dd>
@@ -303,7 +304,7 @@ Gracias por abrir tu corazón.
 
                   {m.observaciones_medicas && (
                     <p className="mt-2">
-                      <strong className="font-semibold text-slate-700">
+                      <strong className="font-semibold text-impa-muted">
                         Observaciones:
                       </strong>{" "}
                       {m.observaciones_medicas}
@@ -328,7 +329,7 @@ Gracias por abrir tu corazón.
                   />
                   <Button
                     variant="ghost"
-                    className="mt-2 text-[#FF8414]"
+                    className="mt-2 text-[#17cf17]"
                     onClick={handleVerQR}
                   >
                     Ver QR
@@ -337,7 +338,7 @@ Gracias por abrir tu corazón.
                   <div className="flex items-center gap-3 mt-2">
                     <Button
                       variant="ghost"
-                      className="text-[#FF8414]"
+                      className="text-[#17cf17]"
                       onClick={handleDescargarQR}
                     >
                       Descargar
@@ -345,7 +346,7 @@ Gracias por abrir tu corazón.
 
                     <Button
                       variant="ghost"
-                      className="text-[#FF8414]"
+                      className="text-[#17cf17]"
                       onClick={handleCompartirQR}
                     >
                       Compartir
@@ -354,17 +355,17 @@ Gracias por abrir tu corazón.
                 </div>
               )}
 
-              <div className="mt-6 flex justify-end border-t border-slate-200 pt-4">
+              <div className="mt-6 flex justify-end border-t border-impa-line pt-4">
                 <Button
                   variant="primary"
-                  className="bg-[#FF8414] hover:bg-[#e6730f]"
+                  size="lg"
                   disabled={loading || adoptDisabled}
                   onClick={() => {
                     setLoading(true);
                     setTimeout(() => onAdopt(), 150);
                   }}
                 >
-                  {loading ? "Procesando..." : "Adoptar"}
+                  {loading ? "Procesando…" : "Adoptar"}
                 </Button>
               </div>
             </div>

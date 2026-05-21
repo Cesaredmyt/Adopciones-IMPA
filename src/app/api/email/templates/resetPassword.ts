@@ -1,4 +1,5 @@
 import { escapeHtml, safeHttpUrl } from "@/lib/email/safeHtml";
+import { renderImpaEmail } from "./_layout";
 
 type ResetPasswordData = {
   nombre?: string;
@@ -9,46 +10,31 @@ export default function resetPassword({ nombre, url }: ResetPasswordData) {
   const safeNombre = escapeHtml(nombre);
   const safeUrl = safeHttpUrl(url);
 
+  const content = `
+    <p style="margin:0 0 14px;">Hola <strong>${safeNombre}</strong>,</p>
+    <p style="margin:0 0 8px;">
+      Recibimos una solicitud para restablecer la contraseña de tu cuenta IMPA.
+      Haz clic en el siguiente botón para crear una nueva.
+    </p>
+
+    <p style="margin:18px 0 6px;font-size:12px;color:#638863;">
+      Este enlace expira en 60 minutos por seguridad.
+    </p>
+    <p style="margin:14px 0 0;font-size:13px;color:#586e58;">
+      Si no solicitaste este cambio, ignora este mensaje — tu contraseña actual
+      seguirá activa.
+    </p>
+  `;
+
   return {
-    subject: "Restablece tu contraseña – IMPA",
-    body: `
-      <html>
-      <body style="font-family:Arial;background:#faf6f6;padding:20px;">
-        <table align="center" width="480"
-          style="background:#fff;border-radius:14px;padding:30px;">
-
-          <tr><td style="text-align:center;">
-            <img src="https://caamorelia.vercel.app/logo.png" width="120"/>
-            <h2 style="color:#9B2E45;font-weight:900;">
-              Restablecer contraseña
-            </h2>
-          </td></tr>
-
-          <tr><td>
-            <p>Hola <strong>${safeNombre}</strong>,</p>
-            <p>Haz clic en el siguiente botón para cambiar tu contraseña:</p>
-
-            <p style="text-align:center;margin:25px 0;">
-              <a href="${safeUrl}"
-                style="background:#8B4513;color:white;padding:14px 26px;
-                border-radius:10px;text-decoration:none;font-weight:bold;">
-                Restablecer contraseña
-              </a>
-            </p>
-
-            <p style="color:#555;font-size:14px;">
-              Si no solicitaste este cambio, ignora este mensaje.
-            </p>
-
-            <hr style="margin:25px 0;border-top:1px solid #eee;">
-            <p style="text-align:center;color:#888;font-size:12px;">
-              © IMPA – Instituto Michoacano de Protección Animal
-            </p>
-          </td></tr>
-
-        </table>
-      </body>
-      </html>
-    `,
+    subject: "Restablece tu contraseña · IMPA",
+    body: renderImpaEmail({
+      tone: "neutral",
+      title: "Restablecer contraseña",
+      preheader: "Crea una nueva contraseña segura para tu cuenta.",
+      content,
+      cta: { label: "Restablecer contraseña", href: safeUrl },
+      ctaHint: "Si el botón no funciona, copia y pega el enlace en tu navegador.",
+    }),
   };
 }

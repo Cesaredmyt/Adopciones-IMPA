@@ -47,7 +47,7 @@ export async function uploadMascotaArchivos(
         const baseUrl =
             process.env.NODE_ENV === "development"
                 ? "http://localhost:3000"
-                : "https://caamorelia.vercel.app";
+                : "https://impa.vercel.app";
 
         const qrLink = `${baseUrl}/mascota/${uuid}`;
         const qrDataUrl = await QRCode.toDataURL(qrLink, { width: 300 });

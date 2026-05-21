@@ -14,7 +14,7 @@ export default function SeguimientoMascotaCard({
   onSubirSeguimiento: (seguimiento: any) => void;
 }) {
   return (
-    <div className="bg-[#FFF8F0] border border-[#E5D1B8] rounded-2xl shadow-sm p-6 hover:shadow-md transition">
+    <div className="bg-[#f6f8f6] border border-[#E5D1B8] rounded-2xl shadow-sm p-6 hover:shadow-md transition">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
         <img
@@ -24,7 +24,7 @@ export default function SeguimientoMascotaCard({
         />
 
         <div className="flex-1 text-center sm:text-left">
-          <h2 className="text-2xl font-bold text-[#8B4513] flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-[#0f830f] flex items-center gap-2">
             {mascota.nombre} <PawPrint size={20} />
           </h2>
 

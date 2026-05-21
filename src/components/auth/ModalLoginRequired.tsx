@@ -17,7 +17,7 @@ export default function ModalLoginRequired({ open, onClose }: Props) {
             <div className="p-8 space-y-6 text-center">
                 <div className="text-4xl">🔐</div>
 
-                <h2 className="text-xl font-extrabold text-[#2b1b12]">
+                <h2 className="text-xl font-extrabold text-[#111811]">
                     Inicia sesión para adoptar
                 </h2>
 

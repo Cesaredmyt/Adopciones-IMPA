@@ -27,13 +27,13 @@ export function PendientesList({
                             className="flex items-center justify-between border-b pb-2 text-sm text-slate-700"
                         >
                             <div className="flex items-center gap-2">
-                                <ClipboardList className="h-4 w-4 text-[#BC5F36]" />
+                                <ClipboardList className="h-4 w-4 text-[#17cf17]" />
                                 <span>{p.descripcion}</span>
                             </div>
 
                             <button
                                 onClick={() => onNavigate(p.link)}
-                                className="text-[#BC5F36] font-medium hover:underline"
+                                className="text-[#17cf17] font-medium hover:underline"
                             >
                                 Revisar
                             </button>

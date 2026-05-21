@@ -53,11 +53,11 @@ export async function POST(req: Request) {
           <table align="center" width="520" style="background-color: #ffffff; border-radius: 14px; padding: 30px; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
             <tr>
               <td style="text-align: center;">
-                <img src="https://caamorelia.vercel.app/logo.png"
+                <img src="https://impa.vercel.app/logo.png"
                   alt="Logo IMPA"
                   width="120"
                   style="margin: 0 auto 10px; display: block;" />
-                <h2 style="color: #9B2E45; margin-bottom: 6px; font-weight: 900;">
+                <h2 style="color: #0d660d; margin-bottom: 6px; font-weight: 900;">
                   Instituto Michoacano de Protección Animal
                 </h2>
               </td>

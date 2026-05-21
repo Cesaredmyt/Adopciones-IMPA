@@ -47,12 +47,12 @@ export default function CitaEvalModal({
     <div className="fixed inset-0 z-[999] grid place-items-center bg-black/40 backdrop-blur-sm p-4 animate-fadeIn">
 
       {/* CONTENEDOR */}
-      <div className="w-full max-w-lg rounded-2xl bg-white border border-[#EADACB] shadow-2xl overflow-hidden animate-slideUp">
+      <div className="w-full max-w-lg rounded-2xl bg-white border border-[#dce5dc] shadow-2xl overflow-hidden animate-slideUp">
 
         {/* HEADER */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#EADACB] bg-[#FFF8F2]">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#dce5dc] bg-[#FFF8F2]">
           <div className="flex items-center gap-2">
-            <BadgeCheck className="w-5 h-5 text-[#BC5F36]" />
+            <BadgeCheck className="w-5 h-5 text-[#17cf17]" />
             <h3 className="text-lg font-extrabold text-[#2B1B12]">Evaluar cita</h3>
           </div>
 
@@ -68,7 +68,7 @@ export default function CitaEvalModal({
         <div className="px-6 py-5 space-y-6">
 
           {/* INFO */}
-          <div className="bg-[#FFF4E7] border border-[#EADACB] rounded-xl px-4 py-3">
+          <div className="bg-[#FFF4E7] border border-[#dce5dc] rounded-xl px-4 py-3">
             <p className="text-sm leading-snug">
               <span className="font-semibold text-[#2B1B12]">{citaLabel}</span>
             </p>
@@ -89,7 +89,7 @@ export default function CitaEvalModal({
                     flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition
                     ${asistencia === "asistio"
                     ? "border-green-500 bg-green-50"
-                    : "border-[#EADACB] hover:bg-[#FFF8F1]"
+                    : "border-[#dce5dc] hover:bg-[#FFF8F1]"
                   }
                   `}
               >
@@ -112,7 +112,7 @@ export default function CitaEvalModal({
                     flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition
                     ${asistencia === "no_asistio_no_apto"
                     ? "border-red-500 bg-red-50"
-                    : "border-[#EADACB] hover:bg-[#FFF8F1]"
+                    : "border-[#dce5dc] hover:bg-[#FFF8F1]"
                   }
                   `}
               >
@@ -149,7 +149,7 @@ export default function CitaEvalModal({
                       flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition
                       ${interaccion === "buena_aprobada"
                       ? "border-yellow-500 bg-yellow-50"
-                      : "border-[#EADACB] hover:bg-[#FFF8F1]"
+                      : "border-[#dce5dc] hover:bg-[#FFF8F1]"
                     }
                     `}
                 >
@@ -173,7 +173,7 @@ export default function CitaEvalModal({
                       flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition
                       ${interaccion === "no_apta"
                       ? "border-gray-500 bg-gray-100"
-                      : "border-[#EADACB] hover:bg-[#FFF8F1]"
+                      : "border-[#dce5dc] hover:bg-[#FFF8F1]"
                     }
                     `}
                 >
@@ -205,14 +205,14 @@ export default function CitaEvalModal({
               value={nota}
               onChange={(e) => setNota(e.target.value)}
               placeholder="Observaciones…"
-              className="mt-2 w-full rounded-xl border border-[#EADACB] bg-[#FFFAF5] px-3 py-2 text-sm 
-              focus:ring-2 focus:ring-[#BC5F36] outline-none resize-none"
+              className="mt-2 w-full rounded-xl border border-[#dce5dc] bg-[#FFFAF5] px-3 py-2 text-sm 
+              focus:ring-2 focus:ring-[#17cf17] outline-none resize-none"
             />
           </div>
         </div>
 
         {/* FOOTER */}
-        <div className="px-6 py-4 border-t border-[#EADACB] bg-[#FFFDF9] flex justify-end gap-3">
+        <div className="px-6 py-4 border-t border-[#dce5dc] bg-[#FFFDF9] flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg border text-sm text-[#2B1B12] hover:bg-gray-100 transition"
@@ -228,7 +228,7 @@ export default function CitaEvalModal({
                 nota,
               })
             }
-            className="px-4 py-2 rounded-lg bg-[#BC5F36] text-white text-sm font-semibold hover:bg-[#a44f2e] transition"
+            className="px-4 py-2 rounded-lg bg-[#17cf17] text-white text-sm font-semibold hover:bg-[#a44f2e] transition"
           >
             Guardar evaluación
           </button>

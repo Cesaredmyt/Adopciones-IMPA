@@ -21,7 +21,7 @@ export default function ModalValidacionDocumentos({
     return (
         <Modal open={open} onClose={onClose}>
             <div className="
-  p-8 space-y-7 text-[#2b1b12]
+  p-8 space-y-7 text-[#111811]
   bg-gradient-to-br from-[#fffdfb] via-[#fff6ee] to-[#fdf0e6]
   rounded-2xl
 ">                {/* Header */}
@@ -55,7 +55,7 @@ export default function ModalValidacionDocumentos({
                         Para continuar con la adopción de
                     </p>
 
-                    <p className="text-lg font-bold text-[#BC5F36]">
+                    <p className="text-lg font-bold text-[#17cf17]">
                         {mascota?.nombre}
                     </p>
                 </div>
@@ -74,15 +74,15 @@ export default function ModalValidacionDocumentos({
 
                     <ul className="space-y-3 text-sm text-[#6b4c3a]">
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#BC5F36]" />
+                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
                             Identificación oficial (INE o Pasaporte)
                         </li>
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#BC5F36]" />
+                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
                             Comprobante de domicilio (máx. 3 meses)
                         </li>
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#BC5F36]" />
+                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
                             Carta compromiso firmada
                         </li>
                     </ul>
@@ -107,7 +107,7 @@ export default function ModalValidacionDocumentos({
                         className="
               w-full sm:w-auto
               cursor-pointer
-              bg-[#BC5F36]
+              bg-[#17cf17]
               hover:bg-[#a24f2d]
               shadow-md
               hover:shadow-lg

@@ -223,7 +223,7 @@ export default function GestionCitasPage() {
 
         {/* Toggle Tabla / Calendario */}
         <div className="flex items-center gap-3">
-          <div className="flex rounded-xl border border-[#EADACB] overflow-hidden">
+          <div className="flex rounded-xl border border-[#dce5dc] overflow-hidden">
             <button
               className={`px-4 py-2 text-sm ${view === "tabla"
                 ? "bg-[#FFF4E7] text-[#2B1B12] font-semibold"
@@ -319,8 +319,8 @@ export default function GestionCitasPage() {
       </div>
 
       {/* Buscador */}
-      <div className="flex items-center rounded-full border border-[#EADACB] bg-white px-4 py-2 w-full md:w-96 shadow-sm">
-        <Search className="h-4 w-4 text-[#BC5F36]" />
+      <div className="flex items-center rounded-full border border-[#dce5dc] bg-white px-4 py-2 w-full md:w-96 shadow-sm">
+        <Search className="h-4 w-4 text-[#17cf17]" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -357,7 +357,7 @@ export default function GestionCitasPage() {
       ) : (
 
         /* VISTA CALENDARIO */
-        <div className="rounded-2xl border border-[#EADACB] bg-white p-3">
+        <div className="rounded-2xl border border-[#dce5dc] bg-white p-3">
           <Calendar
             localizer={localizer}
             events={events}

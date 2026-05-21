@@ -19,7 +19,7 @@ export default function EstadoSolicitudEnProceso({
             className="
         mt-8
         rounded-2xl 
-        border border-[#eadacb] 
+        border border-[#dce5dc] 
         bg-gradient-to-br from-[#fff7f1] via-white to-[#fff2e3]
         p-8 
         shadow-[0_4px_18px_rgba(188,95,54,0.15)]
@@ -32,7 +32,7 @@ export default function EstadoSolicitudEnProceso({
                     className="
             h-14 w-14 
             rounded-full 
-            bg-[#BC5F36] 
+            bg-[#17cf17] 
             text-white 
             flex items-center justify-center 
             shadow-md
@@ -42,7 +42,7 @@ export default function EstadoSolicitudEnProceso({
                 </div>
 
                 <div>
-                    <h3 className="text-xl font-extrabold text-[#8b4513]">
+                    <h3 className="text-xl font-extrabold text-[#0f830f]">
                         ¡Estás a un paso de adoptar! 🐾
                     </h3>
                     <p className="text-sm text-[#7a5c49] mt-1">
@@ -55,7 +55,7 @@ export default function EstadoSolicitudEnProceso({
             <div className="mt-6 space-y-3">
                 <p className="text-sm sm:text-base text-[#5d4636] leading-relaxed">
                     Solo falta completar el
-                    <strong className="text-[#BC5F36]">
+                    <strong className="text-[#17cf17]">
                         {" "}
                         formulario final de adopción
                     </strong>
@@ -73,7 +73,7 @@ export default function EstadoSolicitudEnProceso({
                     onClick={onIrFormulario}
                     disabled={loading}
                     className="
-            bg-[#BC5F36] 
+            bg-[#17cf17] 
             text-white 
             px-6 py-3 
             rounded-xl 
@@ -81,7 +81,7 @@ export default function EstadoSolicitudEnProceso({
             transition-all 
             cursor-pointer
             flex items-center gap-2
-            hover:bg-[#a64d2e] hover:shadow-lg hover:shadow-[#bc5f36]/40
+            hover:bg-[#a64d2e] hover:shadow-lg hover:shadow-[#17cf17]/40
             active:scale-95
             disabled:opacity-70 disabled:cursor-not-allowed
           "

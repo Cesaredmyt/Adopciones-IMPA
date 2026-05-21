@@ -26,7 +26,7 @@ export function RechazoAdopcionModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-[#8B4513]">Rechazar adopción</DialogTitle>
+          <DialogTitle className="text-[#0f830f]">Rechazar adopción</DialogTitle>
         </DialogHeader>
 
         <p className="text-sm text-gray-600 mb-2">

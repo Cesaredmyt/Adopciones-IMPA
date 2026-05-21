@@ -6,10 +6,10 @@ AdopcionesKPIs.Skeleton = function KPIsSkeleton() {
       {[1, 2, 3].map((i) => (
         <div
           key={i}
-          className="px-3 py-2 rounded-lg border border-[#EADACB] bg-[#FFF8F2] w-[150px]"
+          className="px-3 py-2 rounded-lg border border-[#dce5dc] bg-[#FFF8F2] w-[150px]"
         >
-          <div className="h-3 w-20 bg-[#EADACB] rounded mb-2" />
-          <div className="h-4 w-10 bg-[#EADACB] rounded" />
+          <div className="h-3 w-20 bg-[#dce5dc] rounded mb-2" />
+          <div className="h-4 w-10 bg-[#dce5dc] rounded" />
         </div>
       ))}
     </div>

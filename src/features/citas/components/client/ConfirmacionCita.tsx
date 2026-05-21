@@ -15,19 +15,19 @@ export default function ConfirmacionCita({
     onFinalizar,
 }: ConfirmacionCitaProps) {
     return (
-        <section className="rounded-2xl border border-[#f0e0d6] bg-[#fffdfb] p-10 shadow-md text-[#2b1b12]">
+        <section className="rounded-2xl border border-[#f0e0d6] bg-[#fffdfb] p-10 shadow-md text-[#111811]">
             {/* Encabezado */}
             <div className="flex items-center gap-4 mb-8">
-                <div className="h-14 w-14 rounded-full bg-[#BC5F36] text-white flex items-center justify-center shadow-lg">
+                <div className="h-14 w-14 rounded-full bg-[#17cf17] text-white flex items-center justify-center shadow-lg">
                     <CheckCircle2 className="h-7 w-7" />
                 </div>
                 <div>
-                    <h3 className="text-2xl font-extrabold text-[#2b1b12]">
+                    <h3 className="text-2xl font-extrabold text-[#111811]">
                         ¡Cita confirmada!
                     </h3>
                     <p className="mt-1 text-base text-[#5a4b3f]">
                         Tu visita ha sido agendada exitosamente 🐾. Te esperamos en el{" "}
-                        <span className="font-semibold text-[#BC5F36]">IMPA</span>; por favor
+                        <span className="font-semibold text-[#17cf17]">IMPA</span>; por favor
                         llega <strong>10 minutos antes</strong>.
                     </p>
                 </div>
@@ -42,12 +42,12 @@ export default function ConfirmacionCita({
                         alt={cita.mascota?.nombre || "Mascota"}
                         className="h-56 w-56 rounded-xl object-cover border border-[#e8c9b8] mb-4 shadow-md hover:scale-[1.02] transition-transform"
                     />
-                    <h4 className="text-xl font-bold text-[#8b4513] mb-1">
+                    <h4 className="text-xl font-bold text-[#0f830f] mb-1">
                         {cita.mascota?.nombre}
                     </h4>
                     <p className="text-sm text-[#7a5c49] mb-3">
                         Estado actual:{" "}
-                        <span className="font-semibold text-[#BC5F36]">
+                        <span className="font-semibold text-[#17cf17]">
                             {cita.mascota?.estado === "en_proceso"
                                 ? "Esperando por ti 🧡"
                                 : cita.mascota?.estado}
@@ -56,7 +56,7 @@ export default function ConfirmacionCita({
 
                     <div className="mt-3 text-sm">
                         <p className="flex items-center justify-center gap-1 text-[#5b4032]">
-                            <MapPin className="h-4 w-4 text-[#BC5F36]" />
+                            <MapPin className="h-4 w-4 text-[#17cf17]" />
                             <strong>IMPA - Instituto Michoacano de Protección Animal</strong>
                         </p>
                         <p className="text-xs text-[#a4836b] mt-1">
@@ -67,15 +67,15 @@ export default function ConfirmacionCita({
 
                 {/* Fecha y hora */}
                 <div className="rounded-2xl border border-[#f0d9c9] bg-[#fff8f4] p-8 flex flex-col justify-center items-start shadow-sm hover:shadow-md transition-all duration-300">
-                    <h4 className="text-lg font-extrabold text-[#8b4513] mb-4 flex items-center gap-2">
-                        <CalendarCheck className="h-5 w-5 text-[#BC5F36]" />
+                    <h4 className="text-lg font-extrabold text-[#0f830f] mb-4 flex items-center gap-2">
+                        <CalendarCheck className="h-5 w-5 text-[#17cf17]" />
                         Detalles de tu cita
                     </h4>
 
                     <div className="text-base space-y-3 text-[#4b392f]">
                         <p className="flex items-center gap-2">
                             📅 <strong>Fecha:</strong>{" "}
-                            <span className="text-[#BC5F36] font-semibold">
+                            <span className="text-[#17cf17] font-semibold">
                                 {new Date(cita.fecha_cita + "T00:00:00").toLocaleDateString(
                                     "es-MX",
                                     {
@@ -89,16 +89,16 @@ export default function ConfirmacionCita({
 
                         <p className="flex items-center gap-2">
                             🕒 <strong>Hora:</strong>{" "}
-                            <span className="text-[#BC5F36] font-semibold">
+                            <span className="text-[#17cf17] font-semibold">
                                 {cita.hora_cita.slice(0, 5)}
                             </span>
                         </p>
                     </div>
 
-                    <div className="mt-6 border-t border-[#eadacb] pt-4 text-sm text-[#7a5c49] leading-relaxed">
+                    <div className="mt-6 border-t border-[#dce5dc] pt-4 text-sm text-[#7a5c49] leading-relaxed">
                         <p>
                             Si necesitas reprogramar tu cita, comunícate con el equipo del{" "}
-                            <span className="text-[#BC5F36] font-medium">IMPA</span> o
+                            <span className="text-[#17cf17] font-medium">IMPA</span> o
                             cancélala desde tu panel de usuario.
                         </p>
                     </div>
@@ -110,7 +110,7 @@ export default function ConfirmacionCita({
                 <Button
                     onClick={onFinalizar}
                     className="
-            bg-[#BC5F36]
+            bg-[#17cf17]
             hover:bg-[#a64d2e]
             text-white
             text-base

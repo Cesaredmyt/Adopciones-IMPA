@@ -20,29 +20,29 @@ export default function MascotaSeleccionadaCard({
         <img
           src={mascota?.imagen_url || "/img/placeholder-mascota.jpg"}
           alt={capitalize(mascota?.nombre)}
-          className="h-24 w-24 rounded-full object-cover border border-[#eadacb] shadow-md bg-[#f7eee4]"
+          className="h-24 w-24 rounded-full object-cover border border-[#dce5dc] shadow-md bg-[#f7eee4]"
         />
       </div>
 
       {/* Nombre */}
-      <h3 className="text-xl font-extrabold text-[#2b1b12]">
+      <h3 className="text-xl font-extrabold text-[#111811]">
         {capitalize(mascota?.nombre)}
       </h3>
 
-      <p className="text-sm text-[#BC5F36] mt-1 mb-3">
+      <p className="text-sm text-[#17cf17] mt-1 mb-3">
         Mascota seleccionada para adopción 🐾
       </p>
 
       {/* Chips */}
       <div className="flex justify-center flex-wrap gap-2 mb-5">
         {mascota?.raza?.nombre && (
-          <span className="px-3 py-1 bg-[#f3e7dc] text-[#8b4513] rounded-full text-xs font-semibold">
+          <span className="px-3 py-1 bg-[#f3e7dc] text-[#0f830f] rounded-full text-xs font-semibold">
             {capitalize(mascota.raza.nombre)}
           </span>
         )}
 
         {mascota?.tamano && (
-          <span className="px-3 py-1 bg-[#fff4e7] text-[#BC5F36] rounded-full text-xs font-semibold">
+          <span className="px-3 py-1 bg-[#ecfdec] text-[#17cf17] rounded-full text-xs font-semibold">
             {capitalize(mascota.tamano)}
           </span>
         )}
@@ -58,28 +58,28 @@ export default function MascotaSeleccionadaCard({
       <div className="text-left text-[13px] text-[#7a5c49] space-y-2 mb-6">
         {mascota?.personalidad && (
           <p>
-            <strong className="text-[#2b1b12]">Personalidad:</strong>{" "}
+            <strong className="text-[#111811]">Personalidad:</strong>{" "}
             {capitalize(mascota.personalidad)}
           </p>
         )}
 
         {mascota?.peso_kg && (
           <p>
-            <strong className="text-[#2b1b12]">Peso:</strong> {mascota.peso_kg}{" "}
+            <strong className="text-[#111811]">Peso:</strong> {mascota.peso_kg}{" "}
             kg
           </p>
         )}
 
         {mascota?.altura_cm && (
           <p>
-            <strong className="text-[#2b1b12]">Altura:</strong>{" "}
+            <strong className="text-[#111811]">Altura:</strong>{" "}
             {mascota.altura_cm} cm
           </p>
         )}
 
         {mascota?.descripcion_fisica && (
           <p>
-            <strong className="text-[#2b1b12]">Descripción:</strong>{" "}
+            <strong className="text-[#111811]">Descripción:</strong>{" "}
             {capitalize(mascota.descripcion_fisica)}
           </p>
         )}
@@ -87,7 +87,7 @@ export default function MascotaSeleccionadaCard({
 
       {/* ⭐ NUEVA SECCIÓN PARA LLENAR ESPACIO (elegante y útil) */}
       <div className="mt-6 mb-8 bg-[#fff8f3] border border-[#efd8c7] rounded-xl p-4 text-left shadow-sm">
-        <p className="text-sm font-extrabold text-[#2b1b12] mb-2">
+        <p className="text-sm font-extrabold text-[#111811] mb-2">
           Sobre esta mascota
         </p>
 
@@ -103,12 +103,12 @@ export default function MascotaSeleccionadaCard({
         onClick={onCancelar}
         className="
           w-full text-sm font-semibold text-white
-          bg-[#BC5F36] px-5 py-3 rounded-xl
+          bg-[#17cf17] px-5 py-3 rounded-xl
           border border-[#a64f2b]
-          shadow-md shadow-[#bc5f36]/30
+          shadow-md shadow-[#17cf17]/30
           transition-all duration-200
           hover:bg-[#a64f2b]
-          hover:shadow-lg hover:shadow-[#bc5f36]/50
+          hover:shadow-lg hover:shadow-[#17cf17]/50
           hover:-translate-y-[2px]
           active:scale-95
         "

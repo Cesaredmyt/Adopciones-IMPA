@@ -19,7 +19,7 @@ export default function ModalSeguimiento({
       onClose={onClose}
       title={titulo}
       maxWidth="max-w-2xl"
-      bg="bg-[#FFF8F0]"
+      bg="bg-[#f6f8f6]"
       border="border-[#E5D1B8]"
       padding="p-5"
     >

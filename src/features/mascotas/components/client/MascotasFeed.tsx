@@ -94,7 +94,7 @@ export default function MascotasFeed({
             {/* Loader incremental tipo feed */}
             {isFetchingNextPage && (
                 <div className="py-6 flex justify-center opacity-40 transition-opacity duration-300">
-                    <div className="w-4 h-4 border-2 border-[#BC5F36] border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[#17cf17] border-t-transparent rounded-full animate-spin" />
                 </div>
             )}
         </>

@@ -1,55 +1,41 @@
-// @ts-check
+import { renderImpaEmail, infoBox } from "./_layout";
 
-export default function documentacionRechazada({ nombre, razon }) {
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  "https://impa.vercel.app";
+
+export default function documentacionRechazada({
+  nombre,
+  razon,
+}: {
+  nombre: string;
+  razon: string;
+}) {
+  const subject = "Documentación rechazada · IMPA";
+
+  const content = `
+    <p style="margin:0 0 14px;">Hola <strong>${nombre}</strong>,</p>
+    <p style="margin:0 0 8px;">
+      Tu documentación no pudo ser aprobada en esta revisión.
+    </p>
+
+    ${infoBox("Motivo", razon, { tone: "danger" })}
+
+    <p style="margin:14px 0 0;">
+      Por favor, ajusta los documentos según las observaciones y vuelve a subirlos
+      desde tu panel.
+    </p>
+  `;
+
   return {
-    subject: "Documentación rechazada ❗",
-    body: `
-      <html>
-      <body style="font-family:Arial;background:#faf6f6;padding:20px;">
-
-        <table align="center" width="480"
-          style="background:#fff;border-radius:14px;padding:30px;">
-
-          <tr><td style="text-align:center;">
-            <img src="https://caamorelia.vercel.app/logo.png" width="120"/>
-            <h2 style="color:#9B2E45;font-weight:900;">
-              Documentación rechazada
-            </h2>
-          </td></tr>
-
-          <tr><td>
-
-            <p>Hola <strong>${nombre}</strong>,</p>
-
-            <p>
-              Tu documentación no pudo ser aprobada.
-            </p>
-
-            <p><strong>Motivo:</strong> ${razon}</p>
-
-            <p style="color:#555;">
-              Por favor, vuelve a subir tus documentos cuando lo consideres listo.
-            </p>
-
-            <p style="text-align:center;margin:25px 0;">
-              <a href="https://caamorelia.vercel.app"
-                style="background:#8B4513;color:white;padding:14px 26px;
-                border-radius:10px;text-decoration:none;font-weight:bold;">
-                Subir documentos de nuevo
-              </a>
-            </p>
-
-            <hr style="margin:25px 0;border-top:1px solid #eee;">
-            <p style="text-align:center;color:#888;font-size:12px;">
-              © IMPA – Instituto Michoacano de Protección Animal
-            </p>
-
-          </td></tr>
-
-        </table>
-
-      </body>
-      </html>
-    `,
+    subject,
+    body: renderImpaEmail({
+      tone: "danger",
+      title: "Documentación rechazada",
+      preheader: "Revisa las observaciones y vuelve a enviarla.",
+      content,
+      cta: { label: "Subir documentos", href: `${SITE_URL}/dashboards/usuario` },
+    }),
   };
 }

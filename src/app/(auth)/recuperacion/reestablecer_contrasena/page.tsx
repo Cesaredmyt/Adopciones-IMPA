@@ -4,16 +4,26 @@ import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Loader2, Lock } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import {
+  Loader2,
+  Lock,
+  Check,
+  X,
+  ArrowLeft,
+  ShieldCheck,
+} from "lucide-react";
 
 function RequirementItem({ met, text }: { met: boolean; text: string }) {
   return (
-    <div className="flex items-center gap-2 text-xs font-medium">
-      <span className={met ? "text-emerald-600" : "text-rose-500"}>
-        {met ? "✔" : "✘"}
+    <div className="flex items-center gap-2 text-xs">
+      {met ? (
+        <Check size={14} className="text-impa-600" />
+      ) : (
+        <X size={14} className="text-impa-line" />
+      )}
+      <span className={met ? "text-impa-700 font-medium" : "text-impa-muted"}>
+        {text}
       </span>
-      <span className={met ? "text-emerald-700" : "text-slate-500"}>{text}</span>
     </div>
   );
 }
@@ -36,7 +46,6 @@ function NuevaContrasenaInner() {
     hasNumber: false,
   });
 
-  // Validación visual de requisitos.
   useEffect(() => {
     setPasswordRequirements({
       minLength: password.length >= 8,
@@ -46,7 +55,6 @@ function NuevaContrasenaInner() {
     });
   }, [password]);
 
-  // Si no llega token en la URL, el flujo es inválido desde el principio.
   const hasToken = token.length > 0;
 
   async function handleSubmit(e: React.FormEvent) {
@@ -88,9 +96,7 @@ function NuevaContrasenaInner() {
         return;
       }
 
-      setMensaje(
-        "Contraseña actualizada. Inicia sesión con tu nueva contraseña."
-      );
+      setMensaje("Contraseña actualizada. Redirigiendo al inicio de sesión…");
       setPassword("");
       setLoading(false);
       setTimeout(() => router.push("/login"), 2000);
@@ -101,74 +107,83 @@ function NuevaContrasenaInner() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+    <div className="min-h-screen impa-gradient-bg flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8 mt-10">
-          <Link href="/">
+        <div className="text-center mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
             <Image
-              src="/logo.png"
-              alt="Logo Instituto"
-              width={900}
-              height={900}
-              className="mx-auto mb-4 h-24 w-auto drop-shadow-sm"
-              priority
+              src="/impa-isotipo.svg"
+              alt="IMPA"
+              width={44}
+              height={44}
+              className="rounded-xl shadow-impa-sm"
             />
+            <span className="font-bold text-2xl text-impa-text">IMPA</span>
           </Link>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
-            Restablecer contraseña
-          </h1>
-          <p className="text-slate-500 text-sm mt-2">
-            Ingresa una nueva contraseña para recuperar el acceso a tu cuenta.
-          </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-8">
+        <div className="bg-white rounded-2xl shadow-impa-lg border border-impa-line p-7 sm:p-8">
+          <div className="text-center mb-6">
+            <div className="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-impa-50 text-impa-600 mb-4">
+              <ShieldCheck size={24} />
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight text-impa-text">
+              Nueva contraseña
+            </h1>
+            <p className="text-impa-muted text-sm mt-2">
+              Crea una nueva contraseña segura para tu cuenta.
+            </p>
+          </div>
+
           {!hasToken && (
-            <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 font-medium text-center">
-              Este enlace es inválido o ya expiró. Solicita uno nuevo en{" "}
+            <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              Este enlace es inválido o ya expiró. Solicita uno nuevo desde{" "}
               <Link href="/recuperacion" className="underline font-semibold">
-                /recuperacion
+                recuperación
               </Link>
               .
             </div>
           )}
 
           {error && (
-            <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 font-medium text-center">
+            <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium">
               {error}
             </div>
           )}
 
           {mensaje && (
-            <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 font-medium text-center">
+            <div className="mb-5 rounded-xl border border-impa-200 bg-impa-50 px-4 py-3 text-sm text-impa-800 font-medium">
               {mensaje}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <label className="block">
-              <span className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label
+                htmlFor="pwd"
+                className="block text-sm font-semibold text-impa-text mb-1.5"
+              >
                 Nueva contraseña
-              </span>
+              </label>
               <input
+                id="pwd"
                 type="password"
                 value={password}
                 onFocus={() => setShowRequirements(true)}
                 onBlur={() => password === "" && setShowRequirements(false)}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 transition-all"
+                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-[#638863] hover:border-impa-300 focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 transition-all"
                 required
                 disabled={!hasToken}
               />
-            </label>
+            </div>
 
             {showRequirements && (
-              <div className="mt-3 p-4 bg-slate-50/50 rounded-xl space-y-2.5 border border-slate-100 transition-all">
-                <p className="text-xs font-bold text-slate-700 mb-1">
-                  Requisitos de la contraseña:
+              <div className="rounded-xl bg-impa-50/60 border border-impa-line p-3.5 space-y-2 animate-fade-slide">
+                <p className="text-xs font-semibold text-impa-text mb-1">
+                  Requisitos de la contraseña
                 </p>
-
                 <RequirementItem
                   met={passwordRequirements.minLength}
                   text="Mínimo 8 caracteres"
@@ -188,47 +203,41 @@ function NuevaContrasenaInner() {
               </div>
             )}
 
-            <Button
+            <button
               type="submit"
-              full
               disabled={loading || !hasToken}
-              className="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 mt-4 shadow-sm transition-colors flex items-center justify-center gap-2"
+              className="w-full h-11 inline-flex items-center justify-center gap-1.5 rounded-xl bg-impa-500 text-white font-semibold text-sm shadow-impa-sm hover:bg-impa-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 size={16} className="animate-spin" />
               ) : (
-                <Lock className="w-4 h-4" />
+                <Lock size={15} />
               )}
-              {loading ? "Actualizando..." : "Guardar nueva contraseña"}
-            </Button>
+              {loading ? "Actualizando…" : "Guardar nueva contraseña"}
+            </button>
           </form>
 
-          <div className="text-center mt-6 pt-4 border-t border-slate-100">
+          <div className="mt-6 pt-5 border-t border-impa-line text-center">
             <Link
               href="/login"
-              className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-impa-600 hover:text-impa-700 hover:underline"
             >
-              ← Volver al inicio de sesión
+              <ArrowLeft size={14} />
+              Volver al inicio de sesión
             </Link>
           </div>
         </div>
-
-        <p className="mt-8 text-center text-xs font-medium text-slate-400 flex items-center justify-center gap-1">
-          Hecho con <span className="text-emerald-500 text-sm">💚</span> por
-          IMPA Morelia
-        </p>
       </div>
     </div>
   );
 }
 
-// useSearchParams requiere Suspense boundary en Next 15.
 export default function NuevaContrasenaPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
+        <div className="min-h-screen impa-gradient-bg flex items-center justify-center">
+          <Loader2 className="w-6 h-6 animate-spin text-impa-600" />
         </div>
       }
     >

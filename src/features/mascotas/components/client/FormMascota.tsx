@@ -11,13 +11,13 @@ import { FormRow } from "@/components/form/FormRow";
 import { FieldWrapper } from "@/components/form/FieldWrapper";
 import { FieldLabel } from "@/components/form/FieldLabel";
 
-import { CAAMInput } from "@/components/form/CAAMInput";
-import { CAAMNumberInput } from "@/components/form/CAAMNumberInput";
-import { CAAMTextarea } from "@/components/form/CAAMTextarea";
-import { CAAMSelect } from "@/components/form/CAAMSelect";
-import { CAAMRazaCombobox } from "@/components/form/CAAMRazaCombobox";
-import { CAAMColorSelectorWrapper } from "@/components/form/CAAMColorSelectorWrapper";
-import { CAAMPhotoInput } from "@/components/form/CAAMPhotoInput";
+import { IMPAInput } from "@/components/form/IMPAInput";
+import { IMPANumberInput } from "@/components/form/IMPANumberInput";
+import { IMPATextarea } from "@/components/form/IMPATextarea";
+import { IMPASelect } from "@/components/form/IMPASelect";
+import { IMPARazaCombobox } from "@/components/form/IMPARazaCombobox";
+import { IMPAColorSelectorWrapper } from "@/components/form/IMPAColorSelectorWrapper";
+import { IMPAPhotoInput } from "@/components/form/IMPAPhotoInput";
 import { string } from "zod";
 
 export default function FormMascota({
@@ -43,7 +43,7 @@ export default function FormMascota({
   });
 
   return (
-    <form onSubmit={submit} className="space-y-10 text-[#2b1b12]">
+    <form onSubmit={submit} className="space-y-10 text-[#111811]">
       {/* INFORMACIÓN GENERAL */}
       <FormSection title="Información general">
         <FormGrid cols={2}>
@@ -58,7 +58,7 @@ export default function FormMascota({
               return (
                 <FieldWrapper>
                   <FieldLabel>Nombre</FieldLabel>
-                  <CAAMInput {...field} />
+                  <IMPAInput {...field} />
 
                   {errorMessage && (
                     <p className="text-red-500 text-xs">{errorMessage}</p>
@@ -72,7 +72,7 @@ export default function FormMascota({
           <FieldWrapper>
             <FieldLabel>Especie</FieldLabel>
 
-            <CAAMSelect
+            <IMPASelect
               value={especieUI}
               onChange={(v) => {
                 setEspecieUI(v);
@@ -99,7 +99,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Sexo</FieldLabel>
 
-                  <CAAMSelect
+                  <IMPASelect
                     value={field.value ?? ""}
                     onChange={field.onChange}
                     options={[
@@ -128,7 +128,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Tamaño</FieldLabel>
 
-                  <CAAMSelect
+                  <IMPASelect
                     value={field.value ?? ""}
                     onChange={field.onChange}
                     options={[
@@ -179,7 +179,7 @@ export default function FormMascota({
                       Cargando razas...
                     </div>
                   ) : (
-                    <CAAMRazaCombobox
+                    <IMPARazaCombobox
                       value={field.value || ""}
                       onChange={(v) => {
                         field.onChange(v);
@@ -214,7 +214,7 @@ export default function FormMascota({
               <FieldWrapper>
                 <FieldLabel>Personalidad</FieldLabel>
 
-                <CAAMSelect
+                <IMPASelect
                   value={field.value ?? ""}
                   onChange={field.onChange}
                   options={[
@@ -248,7 +248,7 @@ export default function FormMascota({
               return (
                 <FieldWrapper>
                   <FieldLabel>Edad (meses)</FieldLabel>
-                  <CAAMNumberInput {...field} />
+                  <IMPANumberInput {...field} />
 
                   {errorMessage && (
                     <p className="text-red-500 text-xs">{errorMessage}</p>
@@ -270,7 +270,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Peso (kg)</FieldLabel>
 
-                  <CAAMNumberInput
+                  <IMPANumberInput
                     value={field.value ?? ""}
                     onChange={(e) => {
                       const v = e.target.value;
@@ -298,7 +298,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Altura (cm)</FieldLabel>
 
-                  <CAAMNumberInput
+                  <IMPANumberInput
                     value={field.value ?? ""}
                     onChange={(e) => {
                       const v = e.target.value;
@@ -328,7 +328,7 @@ export default function FormMascota({
             return (
               <FieldWrapper>
                 <FieldLabel>Colores del pelaje</FieldLabel>
-                <CAAMColorSelectorWrapper
+                <IMPAColorSelectorWrapper
                   value={field.value ?? []}
                   onChange={field.onChange}
                 />
@@ -352,7 +352,7 @@ export default function FormMascota({
               <FieldWrapper>
                 <FieldLabel>Descripción física</FieldLabel>
 
-                <CAAMTextarea
+                <IMPATextarea
                   rows={4}
                   value={field.value ?? ""}
                   onChange={field.onChange}
@@ -382,7 +382,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Lugar de rescate</FieldLabel>
 
-                  <CAAMInput
+                  <IMPAInput
                     value={field.value ?? ""}
                     onChange={(e) => field.onChange(e.target.value)}
                   />
@@ -407,7 +407,7 @@ export default function FormMascota({
                 <FieldWrapper>
                   <FieldLabel>Condición al ingreso</FieldLabel>
 
-                  <CAAMSelect
+                  <IMPASelect
                     value={field.value ?? ""}
                     onChange={field.onChange}
                     options={[
@@ -441,7 +441,7 @@ export default function FormMascota({
               <FieldWrapper>
                 <FieldLabel>Observaciones médicas</FieldLabel>
 
-                <CAAMTextarea
+                <IMPATextarea
                   rows={4}
                   value={field.value ?? ""}
                   onChange={field.onChange}
@@ -458,7 +458,7 @@ export default function FormMascota({
 
       {/* FOTO */}
       <FormSection title="Foto de la mascota">
-        <CAAMPhotoInput
+        <IMPAPhotoInput
           previewUrl={fotoPreview}
           onSelectFile={handleSelectFoto}
         />
@@ -468,7 +468,7 @@ export default function FormMascota({
       <div className="flex justify-end gap-3 pt-4">
         <button
           type="button"
-          className="secondary px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#8B4513] transition"
+          className="secondary px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#0f830f] transition"
           onClick={onCancel}
         >
           Cancelar
@@ -476,7 +476,7 @@ export default function FormMascota({
 
         <button
           type="submit"
-          className="primary px-4 py-2 rounded-lg bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold transition"
+          className="primary px-4 py-2 rounded-lg bg-[#0f830f] hover:bg-[#11a611] text-white font-semibold transition"
         >
           {isEditing ? "Guardar cambios" : "Registrar mascota"}
         </button>

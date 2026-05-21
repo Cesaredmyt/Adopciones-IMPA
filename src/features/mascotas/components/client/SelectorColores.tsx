@@ -6,7 +6,7 @@ const COLORES_DISPONIBLES = [
   { nombre: "negro", hex: "#000000" },
   { nombre: "gris", hex: "#808080" },
   { nombre: "gris oscuro", hex: "#4B4B4B" },
-  { nombre: "café", hex: "#8B4513" },
+  { nombre: "café", hex: "#0f830f" },
   { nombre: "café claro", hex: "#B97A57" },
   { nombre: "beige", hex: "#D6B591" },
   { nombre: "crema", hex: "#F5E8C7" },
@@ -65,15 +65,15 @@ export function SelectorColores({
             className={`flex items-center gap-2 px-3 py-1.5 rounded-2xl border transition font-medium 
         ${
           activo
-            ? "bg-[#FF8414] border-[#FF8414] text-white cursor-pointer"
+            ? "bg-[#17cf17] border-[#17cf17] text-white cursor-pointer"
             : maximoAlcanzado
             ? "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
-            : "bg-white border-[#FF8414] text-[#2b1b12] hover:bg-[#fff0e0] cursor-pointer"
+            : "bg-white border-[#17cf17] text-[#111811] hover:bg-[#fff0e0] cursor-pointer"
         }
     `}
           >
             <span
-              className="w-4 h-4 rounded-full border border-[#2b1b12]/30"
+              className="w-4 h-4 rounded-full border border-[#111811]/30"
               style={{ backgroundColor: hex }}
             />
             {nombre}
