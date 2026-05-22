@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/dashboards/mascotas", label: "Adopciones" },
   { href: "/nosotros", label: "Nosotros" },
+  { href: "/reportar-maltrato", label: "Reportar maltrato" },
 ];
 
 export default function Header() {
