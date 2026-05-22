@@ -112,11 +112,11 @@ function NuevaContrasenaInner() {
         <div className="text-center mb-6">
           <Link href="/" className="inline-flex items-center gap-2">
             <Image
-              src="/impa-isotipo.svg"
+              src="/ISOTIPO IMPA.png"
               alt="IMPA"
               width={44}
               height={44}
-              className="rounded-xl shadow-impa-sm"
+              className="rounded-xl shadow-impa-sm impa-logo-mark"
             />
             <span className="font-bold text-2xl text-impa-text">IMPA</span>
           </Link>
@@ -173,7 +173,7 @@ function NuevaContrasenaInner() {
                 onBlur={() => password === "" && setShowRequirements(false)}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-[#638863] hover:border-impa-300 focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 transition-all"
+                className="w-full h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:outline-none focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 transition-all"
                 required
                 disabled={!hasToken}
               />

@@ -24,7 +24,7 @@ export default function NuevoModal({
   const [lugar, setLugar] = useState("");
   const [notas, setNotas] = useState("");
 
-  const field = "w-full rounded-2xl border border-[#e1cdbd] bg-white px-3 py-2.5 text-[15px] outline-none placeholder:text-[#a88f80] focus:border-[#d9c6b7]";
+  const field = "w-full rounded-2xl border border-impa-line bg-white px-3 py-2.5 text-[15px] text-impa-text shadow-impa-xs outline-none transition placeholder:text-impa-subtle hover:border-impa-300 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15";
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,10 +78,10 @@ export default function NuevoModal({
         </Field>
 
         <div className="mt-1 flex items-center justify-end gap-2">
-          <button type="button" onClick={onClose} className="rounded-xl border border-[#e1cdbd] bg-white px-4 py-2 text-sm font-bold text-[#8a5d49] hover:bg-[#ecfdec]">
+          <button type="button" onClick={onClose} className="cursor-pointer rounded-xl border border-impa-line bg-white px-4 py-2 text-sm font-bold text-impa-700 shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50">
             Cancelar
           </button>
-          <button type="submit" className="rounded-xl bg-[#17cf17] px-4 py-2 text-sm font-bold text-white">
+          <button type="submit" className="cursor-pointer rounded-xl bg-impa-500 px-4 py-2 text-sm font-bold text-white shadow-impa-sm transition hover:bg-impa-600 hover:shadow-impa-md">
             Guardar
           </button>
         </div>
@@ -93,8 +93,8 @@ export default function NuevoModal({
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-extrabold uppercase tracking-wide text-[#6b4d3e]">
-        {label} {required && <span className="text-[#17cf17]">*</span>}
+      <label className="mb-1 block text-xs font-extrabold uppercase text-impa-muted">
+        {label} {required && <span className="text-impa-600">*</span>}
       </label>
       {children}
     </div>

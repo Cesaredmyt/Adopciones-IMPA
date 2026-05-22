@@ -31,17 +31,7 @@ export default function DashboardUsuarioPage() {
     <div className="space-y-16 sm:space-y-20">
       {/* ============ HERO ============ */}
       <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-impa-mesh shadow-impa-md p-8 md:p-14">
-        {/* Soft blobs */}
-        <motion.div
-          animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.7, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-16 -right-12 w-[420px] h-[420px] rounded-full bg-impa-300/25 blur-3xl pointer-events-none"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.04, 1], opacity: [0.15, 0.3, 0.15] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-24 -left-20 w-[360px] h-[360px] rounded-full bg-impa-500/20 blur-3xl pointer-events-none"
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.62)_0%,rgba(255,255,255,0)_46%,rgba(237,248,237,0.84)_100%)] pointer-events-none" />
 
         {/* Grid pattern */}
         <div
@@ -117,8 +107,6 @@ export default function DashboardUsuarioPage() {
             className="relative flex justify-center"
           >
             <div className="relative w-[280px] sm:w-[340px] aspect-square">
-              {/* Halo */}
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-impa-200/40 to-impa-100/20 blur-2xl" />
               {/* Card frame */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}

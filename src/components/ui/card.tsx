@@ -13,10 +13,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(
-        "group/card relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color] duration-200 ease-impa-out overflow-hidden",
+        "group/card relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color,background-color] duration-200 ease-impa-out overflow-hidden",
         elevated
-          ? "bg-gradient-to-b from-white to-impa-surface-2 shadow-impa-md"
-          : "bg-white",
+          ? "bg-gradient-to-b from-white via-white to-impa-surface-2/70 shadow-impa-md"
+          : "bg-white/95",
         interactive && "cursor-pointer hover:-translate-y-0.5 hover:shadow-impa-lg hover:border-impa-line-strong",
         className
       )}
@@ -81,7 +81,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(
-        "flex items-center gap-2 p-5 sm:p-6 pt-4 border-t border-impa-line bg-impa-surface-2/40 rounded-b-2xl",
+        "flex items-center gap-2 p-5 sm:p-6 pt-4 border-t border-impa-line bg-impa-surface-2/55 rounded-b-2xl",
         className
       )}
       {...props}

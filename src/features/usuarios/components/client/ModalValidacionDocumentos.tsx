@@ -21,8 +21,8 @@ export default function ModalValidacionDocumentos({
     return (
         <Modal open={open} onClose={onClose}>
             <div className="
-  p-8 space-y-7 text-[#111811]
-  bg-gradient-to-br from-[#fffdfb] via-[#fff6ee] to-[#fdf0e6]
+  p-8 space-y-7 text-impa-text
+  bg-impa-tinted
   rounded-2xl
 ">                {/* Header */}
                 <div className="flex flex-col items-center text-center gap-3">
@@ -30,7 +30,7 @@ export default function ModalValidacionDocumentos({
                     <div className="
   relative w-28 h-28 rounded-full overflow-hidden
   shadow-lg
-  border border-[#e8d3c1]
+  border border-impa-line
   bg-white
 ">
 
@@ -41,8 +41,8 @@ export default function ModalValidacionDocumentos({
                                 className="w-full h-full object-cover"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center text-4xl">
-                                🐶
+                            <div className="flex h-full w-full items-center justify-center bg-impa-50 text-sm font-semibold text-impa-700">
+                                IMPA
                             </div>
                         )}
                     </div>
@@ -51,11 +51,11 @@ export default function ModalValidacionDocumentos({
                         Antes de adoptar
                     </h2>
 
-                    <p className="text-sm text-[#7a5c49]">
+                    <p className="text-sm text-impa-muted">
                         Para continuar con la adopción de
                     </p>
 
-                    <p className="text-lg font-bold text-[#17cf17]">
+                    <p className="text-lg font-bold text-impa-700">
                         {mascota?.nombre}
                     </p>
                 </div>
@@ -63,26 +63,26 @@ export default function ModalValidacionDocumentos({
                 {/* Card documentos */}
                 <div className="
   rounded-2xl
-  border border-[#ecd6c5]
+  border border-impa-line
   bg-white/70
   backdrop-blur-sm
   p-5 space-y-4
-  shadow-sm
-">                    <p className="text-sm font-semibold text-[#5a3f2d]">
+  shadow-impa-xs
+">                    <p className="text-sm font-semibold text-impa-text">
                         Necesitamos validar los siguientes documentos:
                     </p>
 
-                    <ul className="space-y-3 text-sm text-[#6b4c3a]">
+                    <ul className="space-y-3 text-sm text-impa-muted">
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
+                            <span className="h-2 w-2 rounded-full bg-impa-500" />
                             Identificación oficial (INE o Pasaporte)
                         </li>
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
+                            <span className="h-2 w-2 rounded-full bg-impa-500" />
                             Comprobante de domicilio (máx. 3 meses)
                         </li>
                         <li className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#17cf17]" />
+                            <span className="h-2 w-2 rounded-full bg-impa-500" />
                             Carta compromiso firmada
                         </li>
                     </ul>
@@ -95,7 +95,7 @@ export default function ModalValidacionDocumentos({
                         className="
               w-full sm:w-auto
               cursor-pointer
-              hover:bg-[#f3e6db]
+              hover:bg-impa-50
               transition-colors
             "
                         onClick={onClose}
@@ -107,10 +107,10 @@ export default function ModalValidacionDocumentos({
                         className="
               w-full sm:w-auto
               cursor-pointer
-              bg-[#17cf17]
-              hover:bg-[#a24f2d]
-              shadow-md
-              hover:shadow-lg
+              bg-impa-500
+              hover:bg-impa-600
+              shadow-impa-sm
+              hover:shadow-impa-md
               transition-all
             "
                         onClick={() => {

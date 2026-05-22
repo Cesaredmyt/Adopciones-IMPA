@@ -3,7 +3,6 @@
    Design Tokens & Global Styles  ·  v2 (Premium SaaS)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
@@ -25,13 +24,13 @@
   --color-impa-900: #0a4f0a;
 
   /* Superficies y semánticos (con tinte verde más perceptible) */
-  --color-impa-bg:           #e7f1e7;
-  --color-impa-bg-elev:      #f0f6f0;
+  --color-impa-bg:           #f6f8f6;
+  --color-impa-bg-elev:      #f2f6f2;
   --color-impa-surface:      #ffffff;
-  --color-impa-surface-2:    #f0f6f0;
-  --color-impa-surface-3:    #e3ebe3;
+  --color-impa-surface-2:    #f3f7f3;
+  --color-impa-surface-3:    #e7eee7;
   --color-impa-card:         #ffffff;
-  --color-impa-tinted:       #e8f7e8;
+  --color-impa-tinted:       #edf8ed;
 
   /* Texto */
   --color-impa-text:         #0f160f;
@@ -80,14 +79,14 @@
   --impa-900: #0a4f0a;
 
   /* Surfaces — Sistema de capas (con más profundidad y tinte verde) */
-  --impa-bg:           #e7f1e7;   /* Page background — verde perceptible */
-  --impa-bg-elevated: #f0f6f0;   /* Elevated regions sobre bg */
+  --impa-bg:           #f6f8f6;   /* Page background */
+  --impa-bg-elevated:  #f2f6f2;   /* Elevated regions sobre bg */
   --impa-surface-1:   #ffffff;   /* Card por defecto */
-  --impa-surface-2:   #f0f6f0;   /* Subsection / muted card */
-  --impa-surface-3:   #e3ebe3;   /* Hover surface / chip / tag */
+  --impa-surface-2:   #f3f7f3;   /* Subsection / muted card */
+  --impa-surface-3:   #e7eee7;   /* Hover surface / chip / tag */
   --impa-card:         #ffffff;
-  --impa-muted-bg:     #eaf2ea;
-  --impa-tinted-bg:    #e8f7e8;   /* Tinte verde más perceptible */
+  --impa-muted-bg:     #eef4ee;
+  --impa-tinted-bg:    #edf8ed;
 
   /* Text */
   --impa-text:         #0f160f;
@@ -144,8 +143,8 @@
   --impa-duration-slow: 320ms;
 
   /* Typography */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* ---- shadcn-compatible tokens (HSL) ---- */
   --background: 120 14% 97%;
@@ -187,10 +186,11 @@ body {
   margin: 0;
   padding: 0;
   background:
-    radial-gradient(1100px 600px at 88% -10%, rgba(23,207,23,0.18), transparent 55%),
-    radial-gradient(900px 500px at -10% 5%, rgba(63,210,63,0.14), transparent 60%),
-    radial-gradient(900px 500px at 50% 110%, rgba(168,241,168,0.20), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(246,248,246,0.96) 42%, rgba(246,248,246,1) 100%),
+    linear-gradient(90deg, rgba(220,229,220,0.42) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(220,229,220,0.36) 1px, transparent 1px),
     var(--impa-bg);
+  background-size: auto, 44px 44px, 44px 44px, auto;
   background-attachment: fixed;
   color: var(--impa-text);
   font-family: var(--font-sans);
@@ -201,11 +201,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--impa-text);
-  letter-spacing: -0.018em;
+  letter-spacing: 0;
   font-weight: 700;
 }
 
-h1 { letter-spacing: -0.025em; }
+h1 { letter-spacing: 0; }
+
+.tracking-tight,
+.tracking-tighter {
+  letter-spacing: 0 !important;
+}
 
 a {
   color: inherit;
@@ -225,6 +230,17 @@ button, [role="button"], a, input, select, textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 /* ============================================================
    Utility classes — IMPA premium surfaces
    ============================================================ */
@@ -235,6 +251,24 @@ button, [role="button"], a, input, select, textarea {
   border: 1px solid var(--impa-border);
   border-radius: var(--impa-radius-md);
   box-shadow: var(--impa-shadow-sm);
+}
+
+.impa-data-panel {
+  background: var(--impa-card);
+  border: 1px solid var(--impa-border);
+  border-radius: var(--impa-radius-md);
+  box-shadow: var(--impa-shadow-sm);
+  overflow: hidden;
+}
+
+.impa-table-head {
+  background: linear-gradient(180deg, var(--impa-surface-2) 0%, rgba(243,247,243,0.45) 100%);
+  border-bottom: 1px solid var(--impa-border);
+}
+
+.impa-logo-mark {
+  object-fit: contain;
+  filter: saturate(1.05) contrast(1.02);
 }
 
 .impa-card-elevated {

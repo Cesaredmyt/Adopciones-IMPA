@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
+import { X } from "lucide-react";
 
 import type { Mascota } from "@/features/mascotas/types/mascotas";
 import MascotaCardUsuario from "@/features/mascotas/components/client/MascotaCardUsuario";
@@ -58,14 +59,14 @@ export default function MascotaInfoModal({
     if (typeof window === "undefined") return null;
 
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4 py-8">
-            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-impa-text/60 px-4 py-8 backdrop-blur-sm">
+            <div className="relative flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-xl">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-slate-400 hover:text-[#17cf17] transition"
+                    className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-impa-line bg-white text-impa-muted shadow-impa-xs transition hover:bg-impa-50 hover:text-impa-700"
                     aria-label="Cerrar"
                 >
-                    ✕
+                    <X size={18} />
                 </button>
 
                 <div className="flex-1 overflow-y-auto rounded-2xl">

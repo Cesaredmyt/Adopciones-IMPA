@@ -50,11 +50,13 @@ export function StatCard({
           : "border-impa-line bg-gradient-to-br from-white to-impa-surface-2/60 hover:border-impa-line-strong"
       )}
     >
-      {/* Decorative blob */}
+      {/* Subtle depth wash */}
       <span
         className={cn(
-          "pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500",
-          hasAlert ? "bg-impa-300/40" : "bg-impa-200/30"
+          "pointer-events-none absolute inset-0 opacity-55 transition-opacity duration-500 group-hover:opacity-85",
+          hasAlert
+            ? "bg-[linear-gradient(135deg,rgba(236,253,236,0)_0%,rgba(168,241,168,0.28)_100%)]"
+            : "bg-[linear-gradient(135deg,rgba(255,255,255,0)_0%,rgba(231,238,231,0.55)_100%)]"
         )}
       />
 

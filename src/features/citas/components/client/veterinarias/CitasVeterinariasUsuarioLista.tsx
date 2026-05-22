@@ -20,9 +20,9 @@ export default function CitasVeterinariasUsuarioLista({
   const ITEMS_PER_PAGE = isMobile ? 5 : 10;
 
   const estadoColor = {
-    pendiente: "text-impa-700 bg-impa-50",
-    aprobada: "text-green-700 bg-green-50",
-    cancelada: "text-red-700 bg-red-50",
+    pendiente: "text-amber-700 bg-amber-50 border-amber-200",
+    aprobada: "text-emerald-700 bg-emerald-50 border-emerald-200",
+    cancelada: "text-red-700 bg-red-50 border-red-200",
   } as const;
 
   const [page, setPage] = useState(1);
@@ -50,12 +50,12 @@ export default function CitasVeterinariasUsuarioLista({
     <div>
       {/* Filtro */}
       <div className="flex justify-end mt-6 mb-4">
-        <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-[#0f830f]" />
+        <div className="flex items-center gap-2 rounded-2xl border border-impa-line bg-white p-2 shadow-impa-sm">
+          <Filter className="w-4 h-4 text-impa-600" />
           <select
             value={filtro}
             onChange={(e) => setFiltro(e.target.value as any)}
-            className="border rounded-lg px-3 py-1 text-sm text-[#0f830f] bg-[#FFF8F3] focus:ring-[#0f830f] focus:outline-none"
+            className="h-10 rounded-xl border border-impa-line bg-white px-3 text-sm font-medium text-impa-text shadow-impa-xs hover:border-impa-300 hover:bg-impa-tinted focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none transition-all"
           >
             <option value="todas">Todas</option>
             <option value="pendiente">Pendientes</option>
@@ -66,15 +66,15 @@ export default function CitasVeterinariasUsuarioLista({
       </div>
 
       {/* Tabla Desktop */}
-      <div className="hidden sm:block overflow-x-auto rounded-xl border border-gray-200">
+      <div className="hidden sm:block overflow-x-auto rounded-2xl border border-impa-line bg-white shadow-impa-sm custom-scroll">
         <table className="min-w-full text-sm">
-          <thead className="bg-[#ecfdec] text-[#0f830f]">
+          <thead className="bg-gradient-to-b from-impa-surface-2 to-impa-surface-2/40 text-impa-muted border-b border-impa-line">
             <tr>
-              <th className="px-4 py-3 text-left">Mascota</th>
-              <th className="px-4 py-3 text-left">Fecha</th>
-              <th className="px-4 py-3 text-left">Hora</th>
-              <th className="px-4 py-3 text-left">Motivo</th>
-              <th className="px-4 py-3 text-left">Estado</th>
+              <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em]">Mascota</th>
+              <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em]">Fecha</th>
+              <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em]">Hora</th>
+              <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em]">Motivo</th>
+              <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em]">Estado</th>
             </tr>
           </thead>
 
@@ -96,19 +96,19 @@ export default function CitasVeterinariasUsuarioLista({
               return (
                 <tr
                   key={cita.id}
-                  className="border-t hover:bg-[#FFF8F3] transition"
+                  className="border-t border-impa-line-faint hover:bg-impa-tinted/60 transition-colors duration-150"
                 >
-                  <td className="px-4 py-3 font-semibold text-[#0f830f]">
+                  <td className="px-4 py-3 font-semibold text-impa-text">
                     {mascota}
                   </td>
-                  <td className="px-4 py-3 font-medium">{fechaStr}</td>
-                  <td className="px-4 py-3 font-medium">{horaStr}</td>
-                  <td className="px-4 py-3">{cita.motivo}</td>
-                  <td
-                    className={`px-4 py-3 rounded-lg ${estadoColor[cita.estado]}`}
-                  >
-                    {cita.estado.charAt(0).toUpperCase() +
-                      cita.estado.slice(1)}
+                  <td className="px-4 py-3 font-medium text-impa-text">{fechaStr}</td>
+                  <td className="px-4 py-3 font-medium text-impa-text">{horaStr}</td>
+                  <td className="px-4 py-3 text-impa-muted">{cita.motivo}</td>
+                  <td className="px-4 py-3">
+                    <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold ${estadoColor[cita.estado]}`}>
+                      {cita.estado.charAt(0).toUpperCase() +
+                        cita.estado.slice(1)}
+                    </span>
                   </td>
                 </tr>
               );
@@ -135,26 +135,26 @@ export default function CitasVeterinariasUsuarioLista({
           return (
             <div
               key={cita.id}
-              className="bg-white border border-[#E5D1B8] rounded-xl p-4 shadow-sm"
+              className="bg-white border border-impa-line rounded-2xl p-4 shadow-impa-sm"
             >
               <div className="flex justify-between items-center mb-2">
-                <h3 className="font-semibold text-[#0f830f]">{mascota}</h3>
+                <h3 className="font-semibold text-impa-text">{mascota}</h3>
                 <span
-                  className={`text-xs px-2 py-1 rounded-full ${estadoColor[cita.estado]}`}
+                  className={`text-xs px-2.5 py-1 rounded-full border font-semibold ${estadoColor[cita.estado]}`}
                 >
                   {cita.estado}
                 </span>
               </div>
 
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-impa-muted">
                 <b>Fecha:</b> {fechaStr}
               </p>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-impa-muted">
                 <b>Hora:</b> {horaStr}
               </p>
 
               {cita.motivo && (
-                <p className="text-sm text-gray-700 mt-1">
+                <p className="text-sm text-impa-muted mt-1">
                   <b>Motivo:</b> {cita.motivo}
                 </p>
               )}

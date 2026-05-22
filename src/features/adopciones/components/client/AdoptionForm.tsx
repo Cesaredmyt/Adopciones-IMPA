@@ -3,7 +3,7 @@ import { useState } from "react";
 import { subirFotosEvidencia } from "@/lib/supabase/upload-adopciones";
 import "@/styles/form-mascota.css";
 import { toast } from "sonner";
-import { Info } from "lucide-react";
+import { Camera, Info } from "lucide-react";
 import ModalSeguimiento from "@/components/terminos/ModalSeguimiento";
 import ModalBienestar from "@/components/terminos/ModalBienestar";
 
@@ -119,8 +119,6 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [openSeguimiento, setOpenSeguimiento] = useState(false);
   const [openBienestar, setOpenBienestar] = useState(false);
-  const linkClasses =
-    "text-[#B87333] hover:text-[#8B5E34] underline underline-offset-2 cursor-pointer font-medium";
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (selectedFiles.length + files.length > 3) {
@@ -266,7 +264,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
           />
           {form.tipoVivienda === "otro" && (
             <input
-              className="mt-2 w-full rounded-lg border border-[#17cf17]/40 px-3 py-2 text-sm focus:border-[#17cf17] focus:outline-none bg-white"
+              className="mt-2 w-full rounded-lg border border-impa-line px-3 py-2 text-sm focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none bg-white hover:border-impa-300 hover:bg-impa-tinted transition-all"
               placeholder="Especifica tu tipo de vivienda"
               value={form.detalleTipoVivienda || ""}
               onChange={(e) => set("detalleTipoVivienda", e.target.value)}
@@ -294,7 +292,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
           />
           {form.espacioDisponible === "otro" && (
             <input
-              className="mt-2 w-full rounded-lg border border-[#17cf17]/40 px-3 py-2 text-sm focus:border-[#17cf17] focus:outline-none bg-white"
+              className="mt-2 w-full rounded-lg border border-impa-line px-3 py-2 text-sm focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none bg-white hover:border-impa-300 hover:bg-impa-tinted transition-all"
               placeholder="Especifica el tipo de espacio"
               value={form.detalleEspacio || ""}
               onChange={(e) => set("detalleEspacio", e.target.value)}
@@ -321,7 +319,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
         <div className="field">
           <label>Especifica tipo y cantidad de mascotas</label>
           <input
-            className="w-full rounded-lg border border-[#17cf17]/40 px-3 py-2 focus:border-[#17cf17] focus:outline-none bg-white"
+            className="w-full rounded-lg border border-impa-line px-3 py-2 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none bg-white hover:border-impa-300 hover:bg-impa-tinted transition-all"
             value={form.detalleOtrasMascotas}
             onChange={(e) => set("detalleOtrasMascotas", e.target.value)}
             placeholder="Ej. 2 perros y 1 gato"
@@ -339,7 +337,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
           <div className="flex flex-wrap gap-2 mb-2">
             {selectedFiles.map((file, i) => (
               <div key={i} className="relative">
-                <div className="w-28 h-20 bg-white border border-[#17cf17]/30 rounded-lg overflow-hidden shadow-sm">
+                <div className="w-28 h-20 bg-white border border-impa-line rounded-lg overflow-hidden shadow-impa-xs">
                   <img
                     src={URL.createObjectURL(file)}
                     alt={file.name}
@@ -349,7 +347,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
                 <button
                   type="button"
                   onClick={() => removeSelectedFile(i)}
-                  className="absolute -top-2 -right-2 bg-white border border-[#17cf17]/40 text-[#0f830f] rounded-full w-6 h-6 grid place-items-center text-xs hover:bg-[#ecfdec]"
+                  className="absolute -top-2 -right-2 bg-white border border-impa-line text-impa-700 rounded-full w-6 h-6 grid place-items-center text-xs hover:bg-impa-50 hover:border-impa-300 shadow-impa-xs transition-colors"
                   title="Quitar"
                 >
                   ×
@@ -360,7 +358,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
             {form.evidenciaHogarUrls.map((u, i) => (
               <div
                 key={`url-${i}`}
-                className="w-28 h-20 bg-white border border-[#17cf17]/30 rounded-lg overflow-hidden shadow-sm"
+                className="w-28 h-20 bg-white border border-impa-line rounded-lg overflow-hidden shadow-impa-xs"
               >
                 <img src={u} alt="" className="w-full h-full object-cover" />
               </div>
@@ -370,8 +368,8 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
 
         {/* Input de archivos (estilo drop target como en FormMascota) */}
         <label className="mt-1 flex justify-center items-center w-full">
-          <div className="flex flex-col items-center justify-center w-full rounded-xl border-2 border-dashed border-[#17cf17]/50 bg-[#fff9f4] text-[#0f830f] hover:border-[#17cf17] transition cursor-pointer p-6">
-            <span className="text-3xl mb-1">📷</span>
+          <div className="flex flex-col items-center justify-center w-full rounded-xl border-2 border-dashed border-impa-300 bg-impa-50/70 text-impa-700 hover:border-impa-500 hover:bg-impa-100/70 transition cursor-pointer p-6">
+            <Camera className="h-7 w-7 mb-1" />
             <p className="text-sm font-medium">Sube hasta 3 fotos</p>
             <p className="text-xs opacity-70 mt-1">Haz clic para seleccionar</p>
             <input
@@ -383,14 +381,14 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
             />
           </div>
         </label>
-        <p className="text-xs text-[#0f830f]/80 mt-2">
+        <p className="text-xs text-impa-700/80 mt-2">
           Máximo 3 fotos (JPG/PNG).
         </p>
       </div>
 
       {/* COMPROMISOS */}
       <div className="field">
-        <label className="mb-2 text-[#0f830f] font-semibold">Compromisos</label>
+        <label className="mb-2 text-impa-700 font-semibold">Compromisos</label>
 
         <>
           <ModalSeguimiento open={openSeguimiento} onClose={() => setOpenSeguimiento(false)} />
@@ -399,19 +397,19 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
           <div className="flex flex-col gap-4 mt-2">
 
             {/* SEGUIMIENTO */}
-            <label className="inline-flex items-start gap-2 text-sm text-[#4A2C1E] leading-snug select-none">
+            <label className="inline-flex items-start gap-2 text-sm text-impa-text leading-snug select-none">
               <input
                 type="checkbox"
                 checked={form.compromisoSeguimiento}
                 onChange={(e) => set("compromisoSeguimiento", e.target.checked)}
-                className="h-4 w-4 accent-[#17cf17] cursor-pointer mt-0.5"
+                className="h-4 w-4 accent-impa-500 cursor-pointer mt-0.5"
               />
 
               <span className="flex flex-wrap items-center gap-1">
                 Acepto{" "}
                 <span
                   onClick={() => setOpenSeguimiento(true)}
-                  className="font-semibold cursor-pointer hover:text-[#8B5E34]"
+                  className="font-semibold cursor-pointer hover:text-impa-700 transition-colors"
                 >
                   <b>visitas o llamadas de seguimiento</b>
                 </span>{" "}
@@ -419,7 +417,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
 
                 <span
                   onClick={() => setOpenSeguimiento(true)}
-                  className="text-[#B87333] hover:text-[#8B5E34] underline underline-offset-2 cursor-pointer flex items-center gap-1 ml-2"
+                  className="text-impa-600 hover:text-impa-700 underline underline-offset-2 cursor-pointer flex items-center gap-1 ml-2 transition-colors"
                 >
                   Leer más <Info size={14} />
                 </span>
@@ -427,19 +425,19 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
             </label>
             
             {/* BIENESTAR */}
-            <label className="inline-flex items-start gap-2 text-sm text-[#4A2C1E] leading-snug select-none">
+            <label className="inline-flex items-start gap-2 text-sm text-impa-text leading-snug select-none">
               <input
                 type="checkbox"
                 checked={form.compromisoCuidado}
                 onChange={(e) => set("compromisoCuidado", e.target.checked)}
-                className="h-4 w-4 accent-[#17cf17] cursor-pointer mt-0.5"
+                className="h-4 w-4 accent-impa-500 cursor-pointer mt-0.5"
               />
 
               <span className="flex flex-wrap items-center gap-1">
                 Me comprometo a{" "}
                 <span
                   onClick={() => setOpenBienestar(true)}
-                  className="font-semibold cursor-pointer hover:text-[#8B5E34]"
+                  className="font-semibold cursor-pointer hover:text-impa-700 transition-colors"
                 >
                   <b>mantener el bienestar de la mascota</b>
                 </span>{" "}
@@ -447,7 +445,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
 
                 <span
                   onClick={() => setOpenBienestar(true)}
-                  className="text-[#B87333] hover:text-[#8B5E34] underline underline-offset-2 cursor-pointer flex items-center gap-1 ml-2"
+                  className="text-impa-600 hover:text-impa-700 underline underline-offset-2 cursor-pointer flex items-center gap-1 ml-2 transition-colors"
                 >
                   Leer más <Info size={14} />
                 </span>
@@ -462,7 +460,7 @@ export default function AdoptionForm({ defaultValues, onSubmit }: Props) {
         <label>Observaciones finales (opcional)</label>
         <textarea
           rows={3}
-          className="w-full rounded-lg border border-[#17cf17]/40 px-3 py-2 focus:border-[#17cf17] focus:outline-none bg-white"
+          className="w-full rounded-lg border border-impa-line px-3 py-2 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15 focus:outline-none bg-white hover:border-impa-300 hover:bg-impa-tinted transition-all"
           value={form.observaciones}
           onChange={(e) => set("observaciones", e.target.value)}
           placeholder="¿Algo más que quieras compartir?"

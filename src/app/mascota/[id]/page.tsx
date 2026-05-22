@@ -7,7 +7,7 @@ const COLORES_DISPONIBLES = [
   { nombre: "negro", hex: "#000000" },
   { nombre: "gris", hex: "#808080" },
   { nombre: "gris oscuro", hex: "#4B4B4B" },
-  { nombre: "café", hex: "#0f830f" },
+  { nombre: "café", hex: "#7A4A32" },
   { nombre: "café claro", hex: "#B97A57" },
   { nombre: "beige", hex: "#D6B591" },
   { nombre: "crema", hex: "#F5E8C7" },
@@ -39,13 +39,13 @@ export default async function MascotaPublicPage({
 
   if (!mascota) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-600">
-        Mascota no encontrada 🐾
+      <div className="min-h-screen flex items-center justify-center text-impa-muted">
+        Mascota no encontrada
       </div>
     );
   }
 
-  const fotoSrc = mascota.imagen_url || "/no-image.png";
+  const fotoSrc = mascota.imagen_url || "/ISOTIPO IMPA.png";
 
   const coloresSeleccionados: string[] = Array.isArray(mascota.colores)
     ? (mascota.colores as string[])
@@ -80,7 +80,7 @@ export default async function MascotaPublicPage({
         <article className="relative w-full max-w-4xl overflow-hidden rounded-3xl shadow-impa-xl border border-impa-line bg-white">
           <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-300/70 to-transparent z-10" />
           {/* 📸 Imagen + fondo blur + chips */}
-          <div className="relative h-[500px] w-full overflow-hidden">
+          <div className="relative h-[360px] w-full overflow-hidden sm:h-[460px] lg:h-[500px]">
             {/* Fondo blur con la misma imagen */}
             <div
               className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-60"
@@ -95,10 +95,10 @@ export default async function MascotaPublicPage({
             />
 
             {/* Capa cálida */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#00000066] via-[#17cf1720] to-transparent z-20" />
+            <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/65 via-impa-700/20 to-transparent" />
 
             {/* Chips superiores distribuidos */}
-            <div className="absolute top-5 left-0 right-0 z-30 px-6 flex items-start justify-between">
+            <div className="absolute top-5 left-0 right-0 z-30 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
               {/* Lado izquierdo: Sexo + Tamaño */}
               <div className="flex flex-wrap gap-2">
                 {/* Sexo */}
@@ -156,7 +156,7 @@ export default async function MascotaPublicPage({
               <h1 className="text-4xl font-extrabold drop-shadow-xl capitalize">
                 {mascota.nombre}
               </h1>
-              <p className="text-sm text-gray-200 mt-1 capitalize">
+              <p className="mt-1 text-sm capitalize text-white/80">
                 {mascota.raza?.nombre || "Mestizo"} •{" "}
                 {mascota.raza?.especie || "Desconocido"}
               </p>

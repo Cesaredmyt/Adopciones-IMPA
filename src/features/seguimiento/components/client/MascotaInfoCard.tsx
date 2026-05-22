@@ -10,28 +10,28 @@ export default function MascotaInfoCard({
   onImageClick?: (url: string | null) => void;
 }) {
   return (
-    <div className="bg-[#f6f8f6] border border-[#E5D1B8] rounded-2xl p-6 flex gap-6 mb-10">
+    <div className="mb-10 flex gap-6 rounded-2xl border border-impa-line bg-impa-tinted p-6 shadow-impa-sm">
       <img
-        src={mascota.imagen_url ?? "/placeholder.png"}
-        className="w-40 h-40 rounded-xl object-cover border border-[#17cf17]/40 cursor-pointer hover:opacity-90 transition"
+        src={mascota.imagen_url ?? "/ISOTIPO IMPA.png"}
+        className="h-40 w-40 cursor-pointer rounded-xl border border-impa-line object-cover shadow-impa-xs transition hover:opacity-90"
         onClick={() => onImageClick?.(mascota.imagen_url)}
       />
 
       <div className="flex flex-col justify-center">
-        <h2 className="text-3xl font-bold text-[#0f830f] flex gap-2 items-center">
+        <h2 className="flex items-center gap-2 text-3xl font-bold text-impa-text">
           {mascota.nombre}
           <PawPrint size={22} />
         </h2>
 
-        <p className="text-sm text-[#5C3D2E] mt-1">
+        <p className="mt-1 text-sm text-impa-muted">
           <b>Raza:</b> {mascota.raza?.nombre}
         </p>
 
-        <p className="text-sm text-[#5C3D2E]">
+        <p className="text-sm text-impa-muted">
           <b>Especie:</b> {mascota.raza?.especie}
         </p>
 
-        <p className="text-sm text-[#5C3D2E]">
+        <p className="text-sm text-impa-muted">
           <b>Sexo:</b> {mascota.sexo === "h" ? "Hembra" : "Macho"}
         </p>
       </div>

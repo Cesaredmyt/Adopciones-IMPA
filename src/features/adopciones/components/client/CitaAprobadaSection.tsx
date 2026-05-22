@@ -20,10 +20,10 @@ export default function CitaAprobadaSection({
             className="
         mt-6 mb-6
         rounded-2xl 
-        border border-blue-200 
-        bg-gradient-to-br from-blue-50 via-white to-blue-100
+        border border-sky-200
+        bg-sky-50
         p-6 sm:p-8 
-        shadow-[0_4px_15px_rgba(0,0,0,0.07)]
+        shadow-impa-sm
         animate-fade-in
       "
         >
@@ -33,8 +33,8 @@ export default function CitaAprobadaSection({
                 </div>
 
                 <div>
-                    <h3 className="text-lg sm:text-xl font-extrabold text-blue-900">
-                        ¡Tu cita fue aprobada! 🎉
+                    <h3 className="text-lg font-extrabold text-sky-900 sm:text-xl">
+                        Tu cita fue aprobada
                     </h3>
                     <p className="text-sm sm:text-base text-blue-700 mt-1">
                         El IMPA confirmó que la interacción con tu mascota fue positiva.
@@ -45,7 +45,7 @@ export default function CitaAprobadaSection({
             <div className="mt-6 grid sm:grid-cols-[140px_1fr] gap-6 items-center">
                 <div className="w-full rounded-2xl overflow-hidden border border-blue-200 shadow-sm bg-white">
                     <img
-                        src={mascota.imagen_url || "/placeholder.jpg"}
+                        src={mascota.imagen_url || "/ISOTIPO IMPA.png"}
                         alt={mascota.nombre}
                         className="w-full h-36 object-cover"
                     />

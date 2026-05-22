@@ -63,15 +63,15 @@ export default function DocumentosSection({
                 />
 
                 {/* FAQs */}
-                <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 text-[#111811] shadow-sm mt-6">
+                <section className="mt-6 rounded-2xl border border-impa-line bg-white p-5 text-impa-text shadow-impa-sm">
                     <div className="flex items-center gap-2">
-                        <Info className="h-5 w-5 text-[#17cf17]" />
+                        <Info className="h-5 w-5 text-impa-600" />
                         <h3 className="text-sm font-extrabold">Preguntas frecuentes</h3>
                     </div>
-                    <ul className="mt-3 grid gap-2 text-sm text-[#7a5c49]">
-                        <li>• Formatos aceptados: PDF, JPG, PNG. Tamaño máx. 5 MB.</li>
-                        <li>• La revisión la realiza un administrador.</li>
-                        <li>• Si hay observaciones, podrás corregir y volver a enviar.</li>
+                    <ul className="mt-3 grid gap-2 text-sm text-impa-muted">
+                        <li>- Formatos aceptados: PDF, JPG, PNG. Tamano max. 5 MB.</li>
+                        <li>- La revision la realiza un administrador.</li>
+                        <li>- Si hay observaciones, podras corregir y volver a enviar.</li>
                     </ul>
                 </section>
             </>
@@ -81,21 +81,21 @@ export default function DocumentosSection({
     /* ---------------- En revisión ---------------- */
     if (estado === "en_revision") {
         return (
-            <section className="rounded-2xl border border-[#dce5dc] bg-[#fff9f3] p-10 text-center shadow-sm">
+            <section className="rounded-2xl border border-impa-line bg-impa-tinted p-10 text-center shadow-impa-sm">
                 <div className="flex flex-col items-center gap-4">
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                        className="flex h-16 w-16 items-center justify-center rounded-full bg-[#17cf17]/10"
+                        className="flex h-16 w-16 items-center justify-center rounded-full bg-impa-50"
                     >
-                        <Clock className="h-10 w-10 text-[#17cf17]" />
+                        <Clock className="h-10 w-10 text-impa-600" />
                     </motion.div>
 
-                    <h2 className="text-xl font-extrabold text-[#111811]">
+                    <h2 className="text-xl font-extrabold text-impa-text">
                         Tus documentos están en revisión
                     </h2>
 
-                    <p className="max-w-md text-sm text-[#7a5c49]">
+                    <p className="max-w-md text-sm text-impa-muted">
                         Un administrador revisará que todo esté correcto. Te avisaremos
                         cuando hayan sido aprobados.
                     </p>

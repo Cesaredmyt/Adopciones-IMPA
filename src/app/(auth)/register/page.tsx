@@ -15,10 +15,11 @@ export default function RegisterPage() {
         <Link href="/" className="flex items-center gap-2.5 group">
           <span className="grid place-items-center w-10 h-10 rounded-xl bg-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.04]">
             <Image
-              src="/impa-isotipo.svg"
+              src="/ISOTIPO IMPA.png"
               alt="IMPA"
               width={28}
               height={28}
+              className="impa-logo-mark"
               priority
             />
           </span>

@@ -4,10 +4,10 @@ export function showSoftToast(message: string) {
     toast.textContent = message;
 
     toast.className = `
-    fixed bottom-6 left-1/2 -translate-x-1/2 
-    bg-[#fff5f3] text-[#8b4513] 
-    border border-[#e8c9b8]
-    px-4 py-2 rounded-xl shadow-lg 
+    fixed bottom-6 left-1/2 -translate-x-1/2
+    bg-white text-impa-text
+    border border-impa-line
+    px-4 py-2 rounded-xl shadow-impa-lg
     text-sm font-medium
     opacity-0 transition-all duration-300
     z-[99999]

@@ -82,10 +82,11 @@ export default function UserHeader() {
         >
           <span className="relative grid place-items-center w-9 h-9 rounded-xl bg-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.04]">
             <Image
-              src="/impa-isotipo.svg"
+              src="/ISOTIPO IMPA.png"
               alt="IMPA"
               width={26}
               height={26}
+              className="impa-logo-mark"
               priority
             />
           </span>

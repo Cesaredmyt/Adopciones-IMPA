@@ -14,7 +14,7 @@ function getFotoSrc(m: Partial<Mascota>) {
     (m as any).image ||
     (m as any).img ||
     m.imagen_url ||
-    "/no-image.png"
+    "/ISOTIPO IMPA.png"
   );
 }
 
@@ -152,10 +152,10 @@ Gracias por abrir tu corazón.
 
   // Títulos de sección — IMPA brand
   const tituloSuave: React.CSSProperties = {
-    color: "#0f830f",
+    color: "var(--impa-700)",
     fontWeight: 800,
     fontSize: "0.72rem",
-    letterSpacing: "0.08em",
+    letterSpacing: 0,
     textTransform: "uppercase",
     marginBottom: "10px",
     display: "inline-block",
@@ -216,7 +216,7 @@ Gracias por abrir tu corazón.
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                   {m.nombre}
                 </h2>
-                <p className="text-xs sm:text-sm text-gray-200">
+                <p className="text-xs text-white/80 sm:text-sm">
                   {razaNombre} • {especieNombre}
                 </p>
               </div>

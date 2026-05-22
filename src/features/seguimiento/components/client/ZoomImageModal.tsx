@@ -12,13 +12,13 @@ export default function ZoomImageModal({
   if (!image) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-impa-text/75 p-4 backdrop-blur-sm">
       <div className="relative max-w-3xl w-full">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 transition"
+          className="absolute right-2 top-2 rounded-full border border-impa-line bg-white p-1 text-impa-muted shadow-impa-xs transition hover:bg-impa-50 hover:text-impa-700"
         >
-          <X size={22} className="text-gray-700" />
+          <X size={22} />
         </button>
 
         <img

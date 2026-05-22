@@ -6,7 +6,7 @@ const COLORES_DISPONIBLES = [
   { nombre: "negro", hex: "#000000" },
   { nombre: "gris", hex: "#808080" },
   { nombre: "gris oscuro", hex: "#4B4B4B" },
-  { nombre: "café", hex: "#0f830f" },
+  { nombre: "café", hex: "#7A4A32" },
   { nombre: "café claro", hex: "#B97A57" },
   { nombre: "beige", hex: "#D6B591" },
   { nombre: "crema", hex: "#F5E8C7" },
@@ -62,18 +62,18 @@ export function SelectorColores({
             type="button"
             onClick={() => toggleColor(nombre)}
             disabled={maximoAlcanzado}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-2xl border transition font-medium 
+            className={`flex items-center gap-2 rounded-2xl border px-3 py-1.5 font-medium shadow-impa-xs transition
         ${
           activo
-            ? "bg-[#17cf17] border-[#17cf17] text-white cursor-pointer"
+            ? "cursor-pointer border-impa-500 bg-impa-500 text-white"
             : maximoAlcanzado
-            ? "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
-            : "bg-white border-[#17cf17] text-[#111811] hover:bg-[#fff0e0] cursor-pointer"
+            ? "cursor-not-allowed border-impa-line bg-impa-bg-elevated text-impa-subtle"
+            : "cursor-pointer border-impa-line bg-white text-impa-text hover:border-impa-300 hover:bg-impa-50"
         }
     `}
           >
             <span
-              className="w-4 h-4 rounded-full border border-[#111811]/30"
+              className="h-4 w-4 rounded-full border border-impa-text/30"
               style={{ backgroundColor: hex }}
             />
             {nombre}

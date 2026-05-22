@@ -12,6 +12,8 @@ export default function CalendarioVeterinarias({
   citas: any[];
   vistaCompacta?: boolean;
 }) {
+  void vistaCompacta;
+
   const eventos = useMemo(
     () =>
       citas.map((c) => ({
@@ -39,16 +41,16 @@ export default function CalendarioVeterinarias({
         contentHeight={200}
         dayMaxEventRows={2}
         eventDisplay="block"
-        eventTextColor="#4a2e0e"
-        eventBorderColor="#8b4513"
-        dayHeaderClassNames="text-[#8b4513] font-semibold"
+        eventTextColor="#111811"
+        eventBorderColor="#dce5dc"
+        dayHeaderClassNames="text-impa-700 font-semibold"
         titleFormat={{ month: "long", year: "numeric" }}
         headerToolbar={{
           left: "prev,next",
           center: "title",
           right: "",
         }}
-        dayCellClassNames="hover:bg-[#fff6e5] cursor-pointer"
+        dayCellClassNames="hover:bg-impa-50 cursor-pointer"
         eventDidMount={(info) => {
           info.el.classList.add(
             "rounded-md",

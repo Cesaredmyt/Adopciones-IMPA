@@ -18,7 +18,7 @@ const STYLES: Record<EstadoEsterilizacion, string> = {
   en_quirofano: "bg-indigo-100 text-indigo-700 border-indigo-200",
   completada: "bg-green-100 text-green-700 border-green-200",
   complicacion: "bg-impa-100 text-impa-700 border-impa-200",
-  cancelada: "bg-slate-100 text-slate-600 border-slate-200",
+  cancelada: "bg-impa-bg-elevated text-impa-muted border-impa-line",
   rechazada: "bg-red-100 text-red-700 border-red-200",
 };
 
@@ -27,7 +27,7 @@ export function labelEstadoEsterilizacion(estado: EstadoEsterilizacion) {
 }
 
 export function styleEstadoEsterilizacion(estado: EstadoEsterilizacion) {
-  return STYLES[estado] ?? "bg-slate-100 text-slate-700 border-slate-200";
+  return STYLES[estado] ?? "bg-impa-bg-elevated text-impa-muted border-impa-line";
 }
 
 export const PRIORIDAD_ESTADO_ESTERILIZACION: Record<

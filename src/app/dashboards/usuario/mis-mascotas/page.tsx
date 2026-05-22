@@ -21,8 +21,8 @@ export default function MisMascotasPage() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-[#8b4513]">
-        <Loader2 className="animate-spin h-8 w-8 mb-2" />
+      <div className="flex min-h-screen flex-col items-center justify-center text-impa-muted">
+        <Loader2 className="mb-2 h-8 w-8 animate-spin text-impa-600" />
         <p>Cargando tus mascotas...</p>
       </div>
     );
@@ -40,7 +40,7 @@ export default function MisMascotasPage() {
   if (!mascotas || mascotas.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-[70vh] text-center">
-        <p className="text-lg mb-4">Aún no has adoptado ninguna mascota 🐾</p>
+        <p className="mb-4 text-lg text-impa-muted">Aún no has adoptado ninguna mascota.</p>
         <Link href="/dashboards/usuario/adopcion">
           <Button>Ir a adoptar</Button>
         </Link>

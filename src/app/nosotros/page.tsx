@@ -67,8 +67,7 @@ export default function SobreNosotros() {
         {/* ============ HERO ============ */}
         <section className="relative overflow-hidden pt-20 lg:pt-28 pb-16">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute -top-20 -left-20 w-[500px] h-[500px] rounded-full bg-impa-100 blur-3xl opacity-50" />
-            <div className="absolute top-10 right-0 w-[400px] h-[400px] rounded-full bg-impa-200/40 blur-3xl" />
+            <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.72)_0%,rgba(246,248,246,0.94)_52%,rgba(255,255,255,0.82)_100%)]" />
           </div>
 
           <div className="max-w-5xl mx-auto px-6 text-center">
@@ -160,7 +159,7 @@ export default function SobreNosotros() {
               transition={{ delay: 0.1 }}
               className="p-8 rounded-2xl bg-impa-500 text-white shadow-impa-lg relative overflow-hidden"
             >
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-impa-300 blur-2xl opacity-40" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_50%,rgba(7,18,10,0.18)_100%)]" />
               <div className="relative">
                 <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur grid place-items-center text-white">
                   <Eye size={22} />
@@ -181,8 +180,7 @@ export default function SobreNosotros() {
         {/* ============ HISTORIA ============ */}
         <section className="relative py-20 bg-white border-y border-impa-line overflow-hidden">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute left-0 top-10 w-64 h-64 bg-impa-100 blur-3xl rounded-full opacity-50" />
-            <div className="absolute right-0 bottom-10 w-72 h-72 bg-impa-200/50 blur-3xl rounded-full" />
+            <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(243,247,243,0.82)_0%,rgba(255,255,255,0)_54%,rgba(236,253,236,0.58)_100%)]" />
           </div>
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">

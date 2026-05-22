@@ -67,7 +67,7 @@ export default function ModalEditarDireccion({
             name="estado"
             value={formDir.estado ?? ""}
             onChange={onChange}
-            className="border rounded-md p-2"
+            className="h-11 rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           >
             <option value="">Estado</option>
             {ESTADOS_MEXICO.map((e) => (
@@ -91,7 +91,7 @@ export default function ModalEditarDireccion({
           <Button
             onClick={onSave}
             disabled={!!errors && Object.keys(errors).length > 0}
-            className="bg-[#8b4513]"
+            variant="primary"
           >
             Guardar dirección
           </Button>

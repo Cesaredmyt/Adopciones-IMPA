@@ -57,13 +57,13 @@ const config: Config = {
           900: '#0a4f0a',
 
           // Surfaces & semantic
-          bg:           '#eef3ee',
-          'bg-elev':    '#f4f8f4',
+          bg:           '#f6f8f6',
+          'bg-elev':    '#f2f6f2',
           surface:      '#ffffff',
           'surface-2':  '#f3f7f3',
-          'surface-3':  '#e9efe9',
+          'surface-3':  '#e7eee7',
           card:         '#ffffff',
-          tinted:       '#effaef',
+          tinted:       '#edf8ed',
 
           // Text
           text:        '#0f160f',
@@ -108,8 +108,8 @@ const config: Config = {
           'linear-gradient(135deg, #17cf17 0%, #11a611 100%)',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
     },
   },

@@ -21,27 +21,27 @@ export function Calendar({
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium text-[#5a3b2d]",
+        caption_label: "text-sm font-semibold text-impa-text",
         nav: "space-x-1 flex items-center",
         nav_button:
-          "h-7 w-7 bg-transparent hover:bg-[#17cf17]/10 rounded-md transition",
+          "h-8 w-8 rounded-lg bg-white text-impa-muted shadow-impa-xs ring-1 ring-impa-line transition hover:bg-impa-50 hover:text-impa-700",
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
-        head_cell: "text-[#17cf17] rounded-md w-9 font-semibold text-[0.8rem]",
+        head_cell: "text-impa-700 rounded-md w-9 font-semibold text-[0.8rem]",
         row: "flex w-full mt-2",
         cell: "text-center text-sm rounded-md w-9 h-9 p-0 relative focus-within:relative focus-within:z-20",
-        day: "h-9 w-9 p-0 font-normal text-[#111811] aria-selected:opacity-100",
+        day: "h-9 w-9 rounded-lg p-0 font-medium text-impa-text transition hover:bg-impa-50 hover:text-impa-700 aria-selected:opacity-100",
         day_selected:
-          "bg-[#17cf17] text-white hover:bg-[#a14a2b] focus:bg-[#a14a2b]",
-        day_today: "bg-[#fff1e8] text-[#17cf17]",
-        day_disabled: "text-gray-300 opacity-40",
-        day_outside: "text-gray-400 opacity-40",
+          "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 focus:bg-impa-600",
+        day_today: "bg-impa-50 text-impa-700 ring-1 ring-impa-200",
+        day_disabled: "text-impa-subtle opacity-40",
+        day_outside: "text-impa-subtle opacity-45",
         ...classNames,
       }}
       components={{
-        // 🚀 Actualización para nuevas versiones de react-day-picker
+        // Adaptacion para versiones nuevas de react-day-picker.
         Chevron: ({ orientation }: { orientation: "left" | "right" }) =>
           orientation === "left" ? (
             <ChevronLeft className="h-4 w-4" />

@@ -31,7 +31,7 @@ export function EsterilizacionesCardsAdmin({
 }: Props) {
   if (items.length === 0) {
     return (
-      <div className="lg:hidden p-8 text-center text-slate-400 italic bg-white rounded-xl border border-slate-100">
+      <div className="lg:hidden rounded-2xl border border-impa-line bg-white p-8 text-center text-sm text-impa-muted shadow-impa-sm">
         No hay esterilizaciones que mostrar.
       </div>
     );
@@ -42,10 +42,10 @@ export function EsterilizacionesCardsAdmin({
       {items.map((item) => (
         <article
           key={item.id}
-          className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden"
+          className="bg-white rounded-2xl border border-impa-line shadow-impa-sm overflow-hidden transition-[box-shadow,border-color,transform] duration-200 ease-impa-out hover:-translate-y-0.5 hover:shadow-impa-md hover:border-impa-line-strong"
         >
-          <header className="px-4 py-3 bg-[#FFF6E5] flex justify-between items-center">
-            <span className="text-sm font-bold text-[#0f830f]">
+          <header className="px-4 py-3 bg-gradient-to-b from-impa-surface-2 to-impa-surface-2/40 border-b border-impa-line flex justify-between items-center gap-3">
+            <span className="text-sm font-bold text-impa-700">
               {item.folio}
             </span>
             <EsterilizacionEstadoBadge estado={item.estado} />
@@ -57,26 +57,26 @@ export function EsterilizacionesCardsAdmin({
                 <img
                   src={item.mascota_imagen}
                   alt={item.mascota_nombre}
-                  className="w-12 h-12 rounded-lg object-cover"
+                  className="w-12 h-12 rounded-xl object-cover border border-impa-line shadow-impa-xs"
                 />
               )}
-              <div>
-                <p className="font-bold text-slate-800">
+              <div className="min-w-0">
+                <p className="font-bold text-impa-text truncate">
                   {item.mascota_nombre}
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-impa-muted">
                   {item.peso_kg ?? "—"} kg
                 </p>
               </div>
             </div>
 
-            <div className="text-sm text-slate-600">
-              <p className="font-medium text-slate-700">{item.usuario_nombre}</p>
-              <p className="text-xs text-slate-500">{item.usuario_correo}</p>
+            <div className="text-sm text-impa-muted">
+              <p className="font-medium text-impa-text">{item.usuario_nombre}</p>
+              <p className="text-xs text-impa-muted break-all">{item.usuario_correo}</p>
             </div>
 
             {item.fecha_programada && (
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-impa-muted">
                 Programada:{" "}
                 {format(
                   new Date(item.fecha_programada),
@@ -89,7 +89,7 @@ export function EsterilizacionesCardsAdmin({
             <div className="flex flex-wrap gap-2 pt-2">
               <button
                 onClick={() => onVer(item)}
-                className="p-2 text-slate-500 hover:text-[#0f830f] hover:bg-impa-50 rounded-md transition"
+                className="grid place-items-center h-8 w-8 rounded-lg border border-impa-line bg-white text-impa-muted shadow-impa-xs hover:text-impa-700 hover:bg-impa-50 hover:border-impa-300 transition-colors cursor-pointer"
                 title="Ver expediente"
               >
                 <Eye className="w-4 h-4" />
@@ -106,7 +106,7 @@ export function EsterilizacionesCardsAdmin({
                   </Button>
                   <Button
                     size="sm"
-                    variant="ghost"
+                    variant="outline"
                     onClick={() => onRechazar(item)}
                   >
                     Rechazar
@@ -149,7 +149,7 @@ export function EsterilizacionesCardsAdmin({
               ) && (
                 <Button
                   size="sm"
-                  variant="ghost"
+                  variant="outline"
                   onClick={() => onCancelar(item)}
                 >
                   Cancelar

@@ -18,7 +18,6 @@ import { IMPASelect } from "@/components/form/IMPASelect";
 import { IMPARazaCombobox } from "@/components/form/IMPARazaCombobox";
 import { IMPAColorSelectorWrapper } from "@/components/form/IMPAColorSelectorWrapper";
 import { IMPAPhotoInput } from "@/components/form/IMPAPhotoInput";
-import { string } from "zod";
 
 export default function FormMascota({
   mascota,
@@ -43,7 +42,7 @@ export default function FormMascota({
   });
 
   return (
-    <form onSubmit={submit} className="space-y-10 text-[#111811]">
+    <form onSubmit={submit} className="space-y-10 text-impa-text">
       {/* INFORMACIÓN GENERAL */}
       <FormSection title="Información general">
         <FormGrid cols={2}>
@@ -175,7 +174,7 @@ export default function FormMascota({
                   <FieldLabel>Raza</FieldLabel>
 
                   {isLoading ? (
-                    <div className="px-3 py-2 text-sm text-gray-500">
+                    <div className="rounded-xl border border-dashed border-impa-line bg-impa-tinted px-3 py-2 text-sm text-impa-muted">
                       Cargando razas...
                     </div>
                   ) : (
@@ -468,7 +467,7 @@ export default function FormMascota({
       <div className="flex justify-end gap-3 pt-4">
         <button
           type="button"
-          className="secondary px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#0f830f] transition"
+          className="cursor-pointer rounded-xl border border-impa-line bg-white px-4 py-2 text-sm font-semibold text-impa-700 shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50"
           onClick={onCancel}
         >
           Cancelar
@@ -476,7 +475,7 @@ export default function FormMascota({
 
         <button
           type="submit"
-          className="primary px-4 py-2 rounded-lg bg-[#0f830f] hover:bg-[#11a611] text-white font-semibold transition"
+          className="cursor-pointer rounded-xl bg-impa-500 px-4 py-2 text-sm font-semibold text-white shadow-impa-sm transition hover:bg-impa-600 hover:shadow-impa-md"
         >
           {isEditing ? "Guardar cambios" : "Registrar mascota"}
         </button>

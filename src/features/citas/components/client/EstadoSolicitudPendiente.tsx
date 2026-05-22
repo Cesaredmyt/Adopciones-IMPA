@@ -1,213 +1,134 @@
 "use client";
 
-import { CalendarCheck, MapPin } from "lucide-react";
+import { CalendarCheck, Clock, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 type MascotaMin = {
-    nombre?: string;
+  nombre?: string;
 };
 
 type EstadoSolicitudPendienteProps = {
-    mascota?: MascotaMin | null;
-    onAgendar: () => void;
-    onCancelar: () => void;
-    diasRestantes?: number | null;
+  mascota?: MascotaMin | null;
+  onAgendar: () => void;
+  onCancelar: () => void;
+  diasRestantes?: number | null;
 };
 
 export default function EstadoSolicitudPendiente({
-    mascota,
-    onAgendar,
-    onCancelar,
-    diasRestantes,
+  mascota,
+  onAgendar,
+  onCancelar,
+  diasRestantes,
 }: EstadoSolicitudPendienteProps) {
-    return (
-        <div className="rounded-2xl border border-[#dce5dc] bg-[#fffdf9] shadow-md p-8 space-y-6">
-            {/* Encabezado */}
-            <div className="text-center">
-                <h3 className="text-xl font-extrabold text-[#0f830f]">
-                    Agenda tu visita 🐾
-                </h3>
+  return (
+    <div className="space-y-6 rounded-2xl border border-impa-line bg-white p-8 shadow-impa-sm">
+      <div className="text-center">
+        <h3 className="text-xl font-extrabold text-impa-text">
+          Agenda tu visita
+        </h3>
 
-                <p className="mt-2 text-sm text-[#7a5c49] max-w-md mx-auto leading-relaxed">
-                    Estás a un paso de convivir con{" "}
-                    <span className="font-semibold text-[#17cf17]">
-                        {mascota?.nombre}
-                    </span>
-                    . Elige un día y horario para tu visita al IMPA.
-                </p>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-impa-muted">
+          Estas a un paso de convivir con{" "}
+          <span className="font-semibold text-impa-700">{mascota?.nombre}</span>.
+          Elige un dia y horario para tu visita al IMPA.
+        </p>
 
-                <p className="mt-3 text-xs text-[#a4836b] italic">
-                    “La conexión empieza con un primer encuentro.”
-                </p>
-            </div>
+        <p className="mt-3 text-xs italic text-impa-muted">
+          La conexion empieza con un primer encuentro.
+        </p>
+      </div>
 
-            {/* BARRAS DECORATIVAS */}
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#17cf17] to-[#d9a48f] lg:hidden" />
-            <div className="hidden lg:block w-2 rounded-full bg-gradient-to-b from-[#17cf17] to-[#d9a48f] opacity-80 shadow-sm" />
+      <div className="mx-auto flex w-full max-w-[820px] flex-col gap-5 rounded-2xl border border-impa-line bg-impa-tinted p-4 shadow-impa-xs sm:p-5 lg:flex-row">
+        <div className="flex-1 space-y-3 text-center lg:text-left">
+          <h4 className="flex items-center justify-center gap-2 text-base font-extrabold text-impa-text sm:text-lg lg:justify-start">
+            <MapPin className="h-4 w-4 text-impa-600" />
+            Instituto Michoacano de Proteccion Animal (IMPA)
+          </h4>
 
-            {/* CONTENIDO PRINCIPAL */}
-            <div
-                className="
-                    w-full 
-                    max-w-[820px]
-                    mx-auto
-                    rounded-2xl 
-                    border border-[#dce5dc] 
-                    bg-[#fffaf4] 
-                    shadow-md 
-                    p-4 sm:p-5
-                    flex flex-col lg:flex-row
-                    gap-5
-                    scale-[0.92] sm:scale-[0.94] lg:scale-[0.88]
-                    origin-top
-                "
-            >
-                {/* Barra interna */}
-                <div className="h-1.5 w-full rounded-full bg-gradient-to-r from-[#17cf17] to-[#d9a48f] lg:hidden" />
-                <div className="hidden lg:block w-1.5 rounded-full bg-gradient-to-b from-[#17cf17] to-[#d9a48f] opacity-80 shadow-sm" />
+          <p className="mx-auto max-w-[360px] text-xs leading-relaxed text-impa-muted sm:text-sm lg:mx-0">
+            Elige una fecha y horario para tu visita.
+          </p>
 
-                {/* CARD INTERNO */}
-                <div
-                    className="
-                        w-full 
-                        max-w-[760px]
-                        mx-auto
-                        rounded-2xl 
-                        border border-[#dce5dc] 
-                        bg-[#fffaf4] 
-                        shadow-md 
-                        p-4 sm:p-5
-                        flex flex-col lg:flex-row
-                        gap-4
-                    "
-                >
-                    {/* INFO */}
-                    <div className="flex-1 text-center lg:text-left space-y-2">
-                        <h4 className="text-base sm:text-lg font-extrabold text-[#0f830f] flex items-center justify-center lg:justify-start gap-2">
-                            <MapPin className="h-4 w-4 text-[#17cf17]" />
-                            Instituto Michoacano de Protección Animal (IMPA)
-                        </h4>
-
-                        <p className="text-xs sm:text-sm text-[#7a5c49] leading-relaxed max-w-[360px] mx-auto lg:mx-0">
-                            Elige una fecha y horario para tu visita.
-                        </p>
-
-                        <div className="space-y-1.5 text-xs sm:text-sm">
-                            <p className="font-semibold">
-                                📍 Álamos No. 395, Col. Centenario, Morelia
-                            </p>
-                            <p className="font-semibold">
-                                📞 443 321 4731 / 443 321 1392
-                            </p>
-                            <p>
-                                🕒 <strong>Horario:</strong> 8:30 AM – 2:00 PM
-                            </p>
-                            <p>
-                                📅 <strong>Días:</strong> Lunes a Viernes
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* MAPA */}
-                    <div
-                        className="
-                            w-full 
-                            lg:w-56
-                            rounded-xl 
-                            bg-[#fffaf4]
-                            border border-[#dce5dc]
-                            shadow-md 
-                            overflow-hidden
-                            flex flex-col
-                        "
-                    >
-                        <div className="w-full h-32 sm:h-36 relative">
-                            <iframe
-                                title="IMPA Mapa"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.2406524803994!2d-101.1734343!3d19.7266529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86a28e98ea321735%3A0x191bd93c0bd16085!2sCentro%20de%20Atenci%C3%B3n%20Animal!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                loading="lazy"
-                                allowFullScreen
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
-
-                            {/* Overlay clicable */}
-                            <a
-                                href="https://www.google.com/maps/place/Centro+de+Atenci%C3%B3n+Animal/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="absolute inset-0 cursor-pointer bg-transparent"
-                                title="Abrir en Google Maps"
-                            />
-                        </div>
-
-                        <div className="p-3 text-center">
-                            <h5 className="text-xs font-bold text-[#0f830f]">
-                                Ubicación del IMPA
-                            </h5>
-                            <p className="text-[11px] text-[#7a5c49] mt-1 leading-relaxed">
-                                Haz clic en el mapa para abrir la ubicación en Google Maps.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* BOTONES */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button
-                    onClick={onAgendar}
-                    className="
-                        w-full sm:w-auto
-                        bg-[#17cf17]
-                        hover:bg-[#a64d2e]
-                        text-white font-semibold
-                        px-8 py-4 
-                        rounded-xl
-                        shadow-md
-                        transition-all
-                        cursor-pointer
-                        hover:-translate-y-[2px]
-                        active:scale-95
-                        flex items-center gap-2
-                    "
-                >
-                    <CalendarCheck className="h-5 w-5" />
-                    Agendar cita
-                </Button>
-
-                <Button
-                    onClick={onCancelar}
-                    className="
-                        w-full sm:w-auto
-                        bg-[#fff5f3]
-                        border border-[#e8c9b8]
-                        text-[#17cf17]
-                        hover:bg-[#ffe7e2]
-                        px-8 py-4 
-                        rounded-xl
-                        font-semibold
-                        transition-all
-                        cursor-pointer
-                        hover:-translate-y-[2px]
-                        active:scale-95
-                    "
-                >
-                    Cancelar solicitud
-                </Button>
-            </div>
-
-            {/* Expiración */}
-            {diasRestantes !== null && diasRestantes !== undefined && (
-                <p className="text-center text-xs font-semibold text-[#17cf17]">
-                    ⏳ Tu solicitud expira en{" "}
-                    {diasRestantes > 0
-                        ? `${diasRestantes} días`
-                        : "0 días (expirada)"}
-                </p>
-            )}
+          <div className="space-y-1.5 text-xs text-impa-muted sm:text-sm">
+            <p className="flex items-center justify-center gap-2 font-semibold lg:justify-start">
+              <MapPin size={14} className="text-impa-600" />
+              Alamos No. 395, Col. Centenario, Morelia
+            </p>
+            <p className="flex items-center justify-center gap-2 font-semibold lg:justify-start">
+              <Phone size={14} className="text-impa-600" />
+              443 321 4731 / 443 321 1392
+            </p>
+            <p className="flex items-center justify-center gap-2 lg:justify-start">
+              <Clock size={14} className="text-impa-600" />
+              <strong>Horario:</strong> 8:30 AM a 2:00 PM
+            </p>
+            <p className="flex items-center justify-center gap-2 lg:justify-start">
+              <CalendarCheck size={14} className="text-impa-600" />
+              <strong>Dias:</strong> Lunes a Viernes
+            </p>
+          </div>
         </div>
-    );
+
+        <div className="flex w-full flex-col overflow-hidden rounded-xl border border-impa-line bg-white shadow-impa-xs lg:w-56">
+          <div className="relative h-32 w-full sm:h-36">
+            <iframe
+              title="IMPA Mapa"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.2406524803994!2d-101.1734343!3d19.7266529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86a28e98ea321735%3A0x191bd93c0bd16085!2sCentro%20de%20Atenci%C3%B3n%20Animal!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+
+            <a
+              href="https://www.google.com/maps/place/Centro+de+Atenci%C3%B3n+Animal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 cursor-pointer bg-transparent"
+              title="Abrir en Google Maps"
+            />
+          </div>
+
+          <div className="p-3 text-center">
+            <h5 className="text-xs font-bold text-impa-text">
+              Ubicacion del IMPA
+            </h5>
+            <p className="mt-1 text-[11px] leading-relaxed text-impa-muted">
+              Haz clic en el mapa para abrir la ubicacion en Google Maps.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        <Button
+          onClick={onAgendar}
+          variant="primary"
+          className="w-full gap-2 px-8 py-4 sm:w-auto"
+        >
+          <CalendarCheck className="h-5 w-5" />
+          Agendar cita
+        </Button>
+
+        <Button
+          onClick={onCancelar}
+          variant="outline"
+          className="w-full px-8 py-4 sm:w-auto"
+        >
+          Cancelar solicitud
+        </Button>
+      </div>
+
+      {diasRestantes !== null && diasRestantes !== undefined && (
+        <p className="text-center text-xs font-semibold text-impa-700">
+          Tu solicitud expira en{" "}
+          {diasRestantes > 0
+            ? `${diasRestantes} dias`
+            : "0 dias (expirada)"}
+        </p>
+      )}
+    </div>
+  );
 }

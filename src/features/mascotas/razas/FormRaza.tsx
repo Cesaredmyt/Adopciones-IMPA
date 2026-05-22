@@ -45,7 +45,7 @@ export default function FormRaza({
   });
 
   return (
-    <form onSubmit={submit} className="space-y-6 text-[#111811]">
+    <form onSubmit={submit} className="space-y-6 text-impa-text">
       <FormSection title="Información de la raza">
         <FormGrid cols={3}>
           {/* Nombre */}
@@ -126,7 +126,7 @@ export default function FormRaza({
           type="button"
           onClick={onCancel}
           disabled={crearRaza.isPending}
-          className="px-4 py-2 rounded-lg bg-[#f4ece4] hover:bg-[#ffede1] text-[#0f830f] transition"
+          className="cursor-pointer rounded-xl border border-impa-line bg-white px-4 py-2 text-sm font-semibold text-impa-700 shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50 disabled:cursor-not-allowed disabled:opacity-55"
         >
           Cancelar
         </button>
@@ -134,7 +134,7 @@ export default function FormRaza({
         <button
           type="submit"
           disabled={crearRaza.isPending}
-          className="px-4 py-2 rounded-lg bg-[#0f830f] hover:bg-[#11a611] text-white font-semibold transition"
+          className="cursor-pointer rounded-xl bg-impa-500 px-4 py-2 text-sm font-semibold text-white shadow-impa-sm transition hover:bg-impa-600 hover:shadow-impa-md disabled:cursor-not-allowed disabled:opacity-55"
         >
           {crearRaza.isPending ? "Guardando..." : "Guardar raza"}
         </button>

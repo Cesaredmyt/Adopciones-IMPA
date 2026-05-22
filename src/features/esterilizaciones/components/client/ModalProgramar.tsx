@@ -44,15 +44,15 @@ export function ModalProgramar({
       onClose={onClose}
       title={`Programar cirugía · ${registro.folio}`}
     >
-      <div className="space-y-4 text-[#3b2710]">
-        <p className="text-sm text-slate-600">
+      <div className="space-y-4 text-impa-text">
+        <p className="text-sm text-impa-muted">
           Asigna fecha y hora para la esterilización de{" "}
           <strong>{registro.mascota_nombre}</strong>.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
+            <span className="mb-1 block text-xs font-bold uppercase text-impa-700">
               Fecha
             </span>
             <input
@@ -60,19 +60,19 @@ export function ModalProgramar({
               min={minDate}
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
-              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
+              className="h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
             />
           </label>
 
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
+            <span className="mb-1 block text-xs font-bold uppercase text-impa-700">
               Hora
             </span>
             <input
               type="time"
               value={hora}
               onChange={(e) => setHora(e.target.value)}
-              className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
+              className="h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
             />
           </label>
         </div>

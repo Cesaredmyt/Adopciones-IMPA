@@ -29,10 +29,10 @@ export function ModalExpediente({
       onClose={onClose}
       title={`Expediente · ${registro.folio}`}
     >
-      <div className="space-y-5 text-[#3b2710]">
+      <div className="space-y-5 text-impa-text">
         <div className="flex justify-between items-start">
           <div>
-            <p className="text-xs uppercase tracking-wider text-[#a06b3c] font-bold">
+            <p className="text-xs font-bold uppercase text-impa-muted">
               Folio
             </p>
             <p className="text-2xl font-black">{registro.folio}</p>
@@ -41,22 +41,22 @@ export function ModalExpediente({
         </div>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white/70 p-4 rounded-xl border border-[#f0e0cc]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
+          <div className="rounded-2xl border border-impa-line bg-white/80 p-4 shadow-impa-xs">
+            <h4 className="mb-2 text-xs font-bold uppercase text-impa-700">
               Paciente
             </h4>
             <p className="font-semibold">{registro.mascota_nombre}</p>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-impa-muted">
               Peso: {registro.peso_kg ?? "—"} kg
             </p>
           </div>
 
-          <div className="bg-white/70 p-4 rounded-xl border border-[#f0e0cc]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
+          <div className="rounded-2xl border border-impa-line bg-white/80 p-4 shadow-impa-xs">
+            <h4 className="mb-2 text-xs font-bold uppercase text-impa-700">
               Solicitante
             </h4>
             <p className="font-semibold">{registro.usuario_nombre}</p>
-            <p className="text-sm text-slate-600">{registro.usuario_correo}</p>
+            <p className="text-sm text-impa-muted">{registro.usuario_correo}</p>
           </div>
         </section>
 
@@ -67,10 +67,10 @@ export function ModalExpediente({
         </section>
 
         <section>
-          <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
+          <h4 className="mb-2 text-xs font-bold uppercase text-impa-700">
             Observaciones previas
           </h4>
-          <div className="bg-impa-50 border border-impa-100 p-3 rounded-lg text-sm whitespace-pre-wrap min-h-[60px]">
+          <div className="min-h-[60px] whitespace-pre-wrap rounded-xl border border-impa-100 bg-impa-50 p-3 text-sm">
             {registro.observaciones_previas || (
               <span className="text-impa-600/60 italic">
                 Sin observaciones previas.
@@ -81,16 +81,16 @@ export function ModalExpediente({
 
         {(registro.resultado_notas || registro.complicaciones) && (
           <section>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
+            <h4 className="mb-2 text-xs font-bold uppercase text-impa-700">
               Resultado clínico
             </h4>
             {registro.resultado_notas && (
-              <div className="bg-green-50 border border-green-100 p-3 rounded-lg text-sm whitespace-pre-wrap mb-2">
+              <div className="mb-2 whitespace-pre-wrap rounded-xl border border-impa-100 bg-impa-50 p-3 text-sm">
                 {registro.resultado_notas}
               </div>
             )}
             {registro.complicaciones && (
-              <div className="bg-impa-50 border border-impa-100 p-3 rounded-lg text-sm whitespace-pre-wrap">
+              <div className="whitespace-pre-wrap rounded-xl border border-impa-100 bg-impa-50 p-3 text-sm">
                 <strong className="text-impa-700">Complicaciones:</strong>{" "}
                 {registro.complicaciones}
               </div>
@@ -100,10 +100,10 @@ export function ModalExpediente({
 
         {registro.motivo_cancelacion && (
           <section>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f830f] mb-2">
+            <h4 className="mb-2 text-xs font-bold uppercase text-impa-700">
               Motivo de cancelación / rechazo
             </h4>
-            <div className="bg-red-50 border border-red-100 p-3 rounded-lg text-sm whitespace-pre-wrap">
+            <div className="whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 p-3 text-sm">
               {registro.motivo_cancelacion}
             </div>
           </section>
@@ -115,11 +115,11 @@ export function ModalExpediente({
 
 function Item({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-white/70 p-3 rounded-lg border border-[#f0e0cc]">
-      <p className="text-[11px] uppercase tracking-wider text-[#a06b3c] font-bold">
+    <div className="rounded-xl border border-impa-line bg-white/80 p-3 shadow-impa-xs">
+      <p className="text-[11px] font-bold uppercase text-impa-muted">
         {label}
       </p>
-      <p className="text-slate-700">{value}</p>
+      <p className="text-impa-text">{value}</p>
     </div>
   );
 }

@@ -26,10 +26,10 @@ export function RechazoAdopcionModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-[#0f830f]">Rechazar adopción</DialogTitle>
+          <DialogTitle className="text-impa-text">Rechazar adopción</DialogTitle>
         </DialogHeader>
 
-        <p className="text-sm text-gray-600 mb-2">
+        <p className="mb-2 text-sm leading-relaxed text-impa-muted">
           Escribe el motivo del rechazo. Este texto se guardará en el sistema y se enviará al adoptante por correo.
         </p>
 

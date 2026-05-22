@@ -27,17 +27,17 @@ export default function SeguimientoMascotasPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        <Loader2 className="animate-spin h-8 w-8 mr-2" />
+        <Loader2 className="mr-2 h-8 w-8 animate-spin text-impa-600" />
         Cargando seguimientos...
       </div>
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-8 px-4">
+    <div className="mx-auto mt-8 max-w-6xl px-4">
       <button
         onClick={() => router.push("/dashboards/usuario/mis-mascotas")}
-        className="flex items-center gap-2 mb-4 text-[#0f830f]"
+        className="mb-4 inline-flex items-center gap-2 rounded-xl px-2 py-1.5 font-semibold text-impa-700 transition hover:bg-impa-50 hover:text-impa-800"
       >
         <ArrowLeft size={18} /> Volver a Mis Mascotas
       </button>
@@ -48,7 +48,7 @@ export default function SeguimientoMascotasPage() {
       />
 
       {mascotas.length === 0 ? (
-        <p className="text-center text-gray-600">
+        <p className="rounded-2xl border border-dashed border-impa-line bg-impa-tinted px-5 py-10 text-center text-impa-muted">
           No tienes mascotas adoptadas aún.
         </p>
       ) : (

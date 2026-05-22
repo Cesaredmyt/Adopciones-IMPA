@@ -68,8 +68,7 @@ export default function AdminDashboard() {
       <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-gradient-to-br from-impa-700 via-impa-600 to-impa-500 text-white shadow-impa-lg p-6 sm:p-8">
         {/* Decorative mesh */}
         <div aria-hidden className="absolute inset-0 opacity-50 pointer-events-none">
-          <div className="absolute -top-20 -right-10 w-80 h-80 rounded-full bg-impa-300/40 blur-3xl" />
-          <div className="absolute -bottom-24 -left-10 w-72 h-72 rounded-full bg-impa-800/40 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_42%,rgba(7,18,10,0.18)_100%)]" />
         </div>
 
         {/* Grid pattern */}

@@ -17,10 +17,9 @@ export default async function UserLayout({
 
       {/* Decorative ambient mesh */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 overflow-hidden">
-        <div className="absolute -top-40 -left-32 w-[44rem] h-[44rem] rounded-full bg-impa-200/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-24 w-[48rem] h-[48rem] rounded-full bg-impa-100/40 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.66)_0%,rgba(246,248,246,0.98)_45%,rgba(255,255,255,0.74)_100%)]" />
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(15,131,15,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.6) 1px, transparent 1px)",

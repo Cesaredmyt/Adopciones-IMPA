@@ -27,7 +27,7 @@ export default function ModalRechazo({
 
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-impa-text/45 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
@@ -35,18 +35,18 @@ export default function ModalRechazo({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.15 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg"
+        className="w-full max-w-md rounded-2xl border border-impa-line bg-white p-6 shadow-impa-xl"
       >
-        <h2 className="text-xl font-bold text-[#17cf17] mb-4">
+        <h2 className="mb-4 text-xl font-bold text-impa-text">
           Rechazar documento
         </h2>
 
-        <p className="mb-2 text-sm text-gray-700">
+        <p className="mb-2 text-sm text-impa-muted">
           Documento: <b>{documento.tipo}</b>
         </p>
 
         <textarea
-          className="w-full border rounded-md p-2 mb-4 text-sm"
+          className="mb-4 w-full rounded-xl border border-impa-line bg-white p-3 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           rows={4}
           placeholder="Escribe el motivo del rechazo..."
           value={motivo}
@@ -56,7 +56,7 @@ export default function ModalRechazo({
         <div className="flex justify-end gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-md bg-gray-200 text-sm"
+            className="cursor-pointer rounded-xl border border-impa-line bg-white px-4 py-2 text-sm font-semibold text-impa-700 transition hover:bg-impa-50"
           >
             Cancelar
           </button>
@@ -66,7 +66,7 @@ export default function ModalRechazo({
               if (!motivo.trim()) return;
               onConfirm(motivo);
             }}
-            className="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white text-sm"
+            className="cursor-pointer rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-impa-xs transition hover:bg-red-700"
           >
             Rechazar
           </button>

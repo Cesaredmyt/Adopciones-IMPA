@@ -1,18 +1,7 @@
 "use client";
 
 import ModalPremium from "@/components/ui/ModalPremium";
-import { Playfair_Display, Poppins } from "next/font/google";
 import { BookOpen, PawPrint, HeartHandshake, Search, Ban } from "lucide-react";
-
-const playfair = Playfair_Display({
-    subsets: ["latin"],
-    weight: ["400", "700"],
-});
-
-const poppins = Poppins({
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600"],
-});
 
 interface TerminosModalProps {
     open: boolean;
@@ -25,14 +14,14 @@ export default function TerminosModal({ open, onClose }: TerminosModalProps) {
             <div className="modal-container relative">
 
                 {/* HEADER */}
-                <div className="rounded-2xl p-6 shadow-sm border border-slate-100 bg-slate-50 mb-6">
+                <div className="mb-6 rounded-2xl border border-impa-line bg-impa-tinted p-6 shadow-impa-sm">
                     <h2
-                        className={`${playfair.className} text-3xl md:text-4xl font-bold text-slate-900`}
+                        className="font-display text-3xl md:text-4xl font-bold text-impa-text"
                     >
                         Términos y Condiciones
                     </h2>
                     <p
-                        className={`${poppins.className} text-sm text-slate-500 mt-2 leading-relaxed`}
+                        className="mt-2 text-sm leading-relaxed text-impa-muted"
                     >
                         Información importante antes de continuar.
                     </p>
@@ -40,17 +29,17 @@ export default function TerminosModal({ open, onClose }: TerminosModalProps) {
 
                 <div className="space-y-4">
                     {/* SECCIÓN 1 */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
                         <div className="flex items-center gap-3 mb-2">
-                            <BookOpen className="h-5 w-5 text-emerald-600" />
+                            <BookOpen className="h-5 w-5 text-impa-600" />
                             <h3
-                                className={`${playfair.className} text-xl font-semibold text-slate-800`}
+                                className="font-display text-xl font-semibold text-impa-text"
                             >
                                 1. Uso de la plataforma
                             </h3>
                         </div>
                         <p
-                            className={`${poppins.className} text-sm text-slate-600 leading-relaxed pl-8`}
+                            className="pl-8 text-sm leading-relaxed text-impa-muted"
                         >
                             Te comprometes a proporcionar información verdadera, completa y
                             actualizada.
@@ -58,68 +47,68 @@ export default function TerminosModal({ open, onClose }: TerminosModalProps) {
                     </div>
 
                     {/* SECCIÓN 2 */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
                         <div className="flex items-center gap-3 mb-2">
-                            <PawPrint className="h-5 w-5 text-emerald-600" />
+                            <PawPrint className="h-5 w-5 text-impa-600" />
                             <h3
-                                className={`${playfair.className} text-xl font-semibold text-slate-800`}
+                                className="font-display text-xl font-semibold text-impa-text"
                             >
                                 2. Proceso de adopción
                             </h3>
                         </div>
-                        <p className={`${poppins.className} text-sm text-slate-600 leading-relaxed pl-8`}>
+                        <p className="pl-8 text-sm leading-relaxed text-impa-muted">
                             Enviar una solicitud no garantiza aprobación; cada caso será evaluado.
                         </p>
                     </div>
 
                     {/* SECCIÓN 3 */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
                         <div className="flex items-center gap-3 mb-2">
-                            <HeartHandshake className="h-5 w-5 text-emerald-600" />
+                            <HeartHandshake className="h-5 w-5 text-impa-600" />
                             <h3
-                                className={`${playfair.className} text-xl font-semibold text-slate-800`}
+                                className="font-display text-xl font-semibold text-impa-text"
                             >
                                 3. Responsabilidades del adoptante
                             </h3>
                         </div>
-                        <p className={`${poppins.className} text-sm text-slate-600 leading-relaxed pl-8`}>
+                        <p className="pl-8 text-sm leading-relaxed text-impa-muted">
                             Si eres aprobado, deberás brindar cuidados adecuados y un ambiente seguro.
                         </p>
                     </div>
 
                     {/* SECCIÓN 4 */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
                         <div className="flex items-center gap-3 mb-2">
-                            <Search className="h-5 w-5 text-emerald-600" />
+                            <Search className="h-5 w-5 text-impa-600" />
                             <h3
-                                className={`${playfair.className} text-xl font-semibold text-slate-800`}
+                                className="font-display text-xl font-semibold text-impa-text"
                             >
                                 4. Seguimiento
                             </h3>
                         </div>
-                        <p className={`${poppins.className} text-sm text-slate-600 leading-relaxed pl-8`}>
+                        <p className="pl-8 text-sm leading-relaxed text-impa-muted">
                             Aceptas participar en seguimientos posteriores, enviando evidencia del bienestar de la mascota.
                         </p>
                     </div>
 
                     {/* SECCIÓN 5 */}
-                    <div className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="rounded-2xl border border-impa-line bg-white p-5 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
                         <div className="flex items-center gap-3 mb-2">
                             <Ban className="h-5 w-5 text-rose-500" />
                             <h3
-                                className={`${playfair.className} text-xl font-semibold text-slate-800`}
+                                className="font-display text-xl font-semibold text-impa-text"
                             >
                                 5. Prohibiciones
                             </h3>
                         </div>
-                        <p className={`${poppins.className} text-sm text-slate-600 leading-relaxed pl-8`}>
+                        <p className="pl-8 text-sm leading-relaxed text-impa-muted">
                             Está prohibido maltratar, abandonar o comercializar a la mascota.
                         </p>
                     </div>
 
                     <div className="pt-2 text-center">
                         <p
-                            className={`${poppins.className} text-sm text-slate-500 font-medium`}
+                            className="text-sm font-medium text-impa-muted"
                         >
                             Al continuar, confirmas que has leído estos términos y condiciones.
                         </p>
@@ -127,10 +116,10 @@ export default function TerminosModal({ open, onClose }: TerminosModalProps) {
                 </div>
 
                 {/* BOTÓN FINAL */}
-                <div className="mt-6 flex justify-end border-t border-slate-100 pt-4">
+                <div className="mt-6 flex justify-end border-t border-impa-line pt-4">
                     <button
                         onClick={onClose}
-                        className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 transition-colors text-white font-semibold shadow-sm"
+                        className="cursor-pointer rounded-xl bg-impa-500 px-6 py-2.5 font-semibold text-white shadow-impa-sm transition hover:bg-impa-600 hover:shadow-impa-md"
                     >
                         Cerrar
                     </button>

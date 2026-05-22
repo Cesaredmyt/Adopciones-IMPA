@@ -59,18 +59,18 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
 
             <style jsx>{`
                 .card {
-                    background: #fffaf2;
+                    background: #ffffff;
                     border: 1px solid #dce5dc;
                     border-radius: 16px;
                     overflow: hidden;
-                    box-shadow: 0 8px 24px rgba(43, 27, 18, 0.1);
+                    box-shadow: 0 14px 35px rgba(17, 24, 17, 0.08);
                     display: flex;
                     flex-direction: column;
                 }
                 .media {
                     position: relative;
                     height: 320px;
-                    background: #f7eee4;
+                    background: #f6f8f6;
                 }
                 .media img {
                     width: 100%;
@@ -115,13 +115,13 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
                 }
                 .name {
                     margin: 0;
-                    color: #0f830f;
+                    color: #111811;
                     font-weight: 600;
                     font-size: 22px;
                 }
                 .pill {
-                    background: #f3e7dc;
-                    color: #0f830f;
+                    background: #ecfdec;
+                    color: var(--impa-700);
                     border-radius: 999px;
                     padding: 6px 10px;
                     font-weight: 600;
@@ -131,7 +131,7 @@ export default function MascotaCard({m, onView, onAdopt, adoptDisabled = false}:
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 4px;
-                color: #6c5241;
+                color: var(--impa-muted);
                 font-size: 14px;
                 margin-top: 4px;
                 }

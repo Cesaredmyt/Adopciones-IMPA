@@ -24,7 +24,7 @@ const badgeVariants = cva(
         info:
           "bg-sky-50 text-sky-700 border-sky-200",
         neutral:
-          "bg-slate-50 text-slate-700 border-slate-200",
+          "bg-impa-bg-elevated text-impa-muted border-impa-line",
         female:
           "bg-pink-50 text-pink-700 border-pink-200",
         male:
@@ -53,7 +53,7 @@ const dotColorByVariant: Record<string, string> = {
   warning: "bg-amber-500",
   danger: "bg-red-500",
   info: "bg-sky-500",
-  neutral: "bg-slate-500",
+  neutral: "bg-impa-muted",
   female: "bg-pink-500",
   male: "bg-blue-500",
 };

@@ -18,30 +18,28 @@ export default function AdopcionEnProgresoOverlay({
         <div
             className="
         fixed inset-0 z-[9999]
-        bg-black/50
+        bg-impa-text/50 backdrop-blur-sm
         flex items-center justify-center
       "
             style={{ pointerEvents: "auto" }}
         >
             <div
                 className="
-          bg-white rounded-2xl shadow-2xl
+          bg-white rounded-2xl border border-impa-line shadow-impa-xl
           p-8 max-w-sm w-full mx-4
           text-center animate-fade-in
         "
             >
-                <div className="text-4xl mb-3 animate-bounce">🐶</div>
-
-                <h2 className="text-lg font-extrabold text-[#111811] mb-2">
+                <h2 className="mb-2 text-lg font-extrabold text-impa-text">
                     {mensaje ?? "Procesando adopción..."}
                 </h2>
 
-                <p className="text-sm text-[#7a5c49]">
+                <p className="text-sm text-impa-muted">
                     Por favor espera un momento, no cierres la página.
                 </p>
 
                 <div className="mt-5 flex justify-center">
-                    <div className="w-7 h-7 border-4 border-[#17cf17] border-t-transparent rounded-full animate-spin" />
+                    <div className="h-7 w-7 animate-spin rounded-full border-4 border-impa-500 border-t-transparent" />
                 </div>
             </div>
         </div>,

@@ -10,21 +10,21 @@ export default function PerfilDireccionCard({
   onEdit: () => void;
 }) {
   return (
-    <Card className="p-6 bg-[#fffdf9] border border-[#e2cbb3] shadow-md">
+    <Card className="border-impa-line bg-white p-6 shadow-impa-sm">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-[#8b4513]">
+        <h2 className="text-xl font-semibold text-impa-text">
           Dirección principal
         </h2>
         <Button
           onClick={onEdit}
-          className="bg-[#8b4513] hover:bg-[#7a3f11]"
+          variant="primary"
         >
           {direccion ? "Editar" : "Agregar"}
         </Button>
       </div>
 
       {direccion ? (
-        <div className="text-[#5b3e26] space-y-1">
+        <div className="space-y-1 text-impa-muted">
           <p>
             {direccion.calle} {direccion.numero_exterior}
             {direccion.numero_interior

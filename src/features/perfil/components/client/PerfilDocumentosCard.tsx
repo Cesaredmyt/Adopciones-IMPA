@@ -8,28 +8,28 @@ export default function PerfilDocumentosCard({
   documentos: Documento[];
 }) {
   return (
-    <Card className="p-6 bg-[#fffdf9] border border-[#e2cbb3] shadow-md">
-      <h2 className="text-xl font-semibold text-[#8b4513] mb-4">
+    <Card className="border-impa-line bg-white p-6 shadow-impa-sm">
+      <h2 className="mb-4 text-xl font-semibold text-impa-text">
         Documentos aprobados
       </h2>
 
       {documentos.length === 0 ? (
-        <p className="text-[#5b3e26]">No hay documentos aprobados.</p>
+        <p className="text-impa-muted">No hay documentos aprobados.</p>
       ) : (
         <div className="grid sm:grid-cols-3 gap-4">
           {documentos.map((d) => (
             <div
               key={d.id}
-              className="bg-[#fffaf3] border border-[#e2cbb3] rounded-lg p-4 flex flex-col items-center"
+              className="flex flex-col items-center rounded-2xl border border-impa-line bg-impa-tinted p-4 shadow-impa-xs"
             >
-              <div className="w-12 h-12 rounded-full bg-[#f7e8d0] flex items-center justify-center mb-2">
-                <FileCheck className="h-6 w-6 text-[#8b4513]" />
+              <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-impa-50">
+                <FileCheck className="h-6 w-6 text-impa-600" />
               </div>
-              <p className="font-medium text-[#8b4513] capitalize">{d.tipo}</p>
+              <p className="font-medium capitalize text-impa-text">{d.tipo}</p>
               <a
                 href={d.url ?? "#"}
                 target="_blank"
-                className="mt-3 px-3 py-1.5 rounded-md bg-[#8b4513] text-white text-sm"
+                className="mt-3 rounded-xl bg-impa-500 px-3 py-1.5 text-sm font-semibold text-white shadow-impa-xs transition hover:bg-impa-600"
               >
                 Ver documento
               </a>

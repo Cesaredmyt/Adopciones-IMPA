@@ -57,18 +57,18 @@ export default function AdopcionAprobadaSection({
                         : 1;
 
     return (
-        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 shadow-sm text-[#111811]">
+        <section className="rounded-2xl border border-impa-line bg-white p-5 text-impa-text shadow-impa-sm">
             {/* ✅ Banner documentos aprobados */}
-            <div className="flex items-center gap-3 rounded-2xl border border-green-200 border-b-2 border-b-green-300 bg-green-50 p-3 mb-4 shadow-sm">
-                <div className="h-9 w-9 flex items-center justify-center rounded-full bg-green-100 shadow-sm">
-                    <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <div className="mb-4 flex items-center gap-3 rounded-2xl border border-impa-200 bg-impa-50 p-3 shadow-impa-xs">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-impa-600 shadow-impa-xs">
+                    <CheckCircle2 className="h-5 w-5" />
                 </div>
 
                 <div className="flex flex-col">
-                    <span className="text-sm font-extrabold text-green-800">
+                    <span className="text-sm font-extrabold text-impa-800">
                         Documentos validados
                     </span>
-                    <span className="text-xs text-green-700 mt-0.5">
+                    <span className="mt-0.5 text-xs text-impa-700">
                         Todo está en orden. Puedes continuar con tu proceso de adopción.
                     </span>
                 </div>
@@ -97,15 +97,15 @@ export default function AdopcionAprobadaSection({
             <div className="mt-6">
                 {/* CASO 0: NO hay solicitud → NO hay mascota seleccionada */}
                 {!solicitudActiva ? (
-                    <div className="rounded-xl border border-[#dce5dc] bg-[#fffaf4] p-4">
+                    <div className="rounded-2xl border border-impa-line bg-impa-tinted p-4 shadow-impa-xs">
                         <div className="flex items-center gap-2 mb-2">
-                            <PawPrint className="h-5 w-5 text-[#17cf17]" />
-                            <p className="text-sm font-extrabold text-[#111811]">
+                            <PawPrint className="h-5 w-5 text-impa-600" />
+                            <p className="text-sm font-extrabold text-impa-text">
                                 1) Mascota seleccionada
                             </p>
                         </div>
 
-                        <p className="mt-1 text-sm text-[#7a5c49]">
+                        <p className="mt-1 text-sm text-impa-muted">
                             Aún no has seleccionado una mascota.
                         </p>
 
@@ -115,17 +115,17 @@ export default function AdopcionAprobadaSection({
                     </div>
                 ) : citaActiva ? (
                     adopcionEstado === "pendiente" ? (
-                        <div className="mt-0 mb-2 rounded-2xl border border-[#f2d4b7] bg-gradient-to-br from-[#fff7f1] via-white to-[#ffe9d6] p-6 shadow">
+                        <div className="mb-2 mt-0 rounded-2xl border border-impa-line bg-impa-tinted p-6 shadow-impa-sm">
                             <div className="flex items-center gap-3">
-                                <div className="h-12 w-12 rounded-full bg-[#17cf17] text-white flex items-center justify-center">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-impa-500 text-white shadow-impa-sm">
                                     <Info className="h-6 w-6" />
                                 </div>
 
                                 <div>
-                                    <h3 className="text-lg font-extrabold text-[#0f830f]">
+                                    <h3 className="text-lg font-extrabold text-impa-text">
                                         Tu formulario está en revisión
                                     </h3>
-                                    <p className="text-sm text-[#7a5c49] mt-1">
+                                    <p className="mt-1 text-sm text-impa-muted">
                                         Ya completaste el formulario de adopción. El equipo del IMPA lo
                                         está revisando.
                                     </p>
@@ -133,12 +133,12 @@ export default function AdopcionAprobadaSection({
                             </div>
                         </div>
                     ) : adopcionEstado === "aprobada" ? (
-                        <div className="rounded-xl border border-green-300 bg-green-50 p-5 mb-2">
-                            <h3 className="text-sm font-extrabold text-green-800 flex items-center gap-2">
+                        <div className="mb-2 rounded-2xl border border-impa-200 bg-impa-50 p-5">
+                            <h3 className="flex items-center gap-2 text-sm font-extrabold text-impa-800">
                                 <CheckCircle2 className="h-4 w-4" />
                                 ¡Adopción aprobada!
                             </h3>
-                            <p className="mt-2 text-sm text-green-700">
+                            <p className="mt-2 text-sm text-impa-700">
                                 Felicidades, el proceso de adopción ha sido aprobado.
                             </p>
                         </div>

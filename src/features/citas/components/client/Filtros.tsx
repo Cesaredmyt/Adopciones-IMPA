@@ -15,15 +15,15 @@ export default function Filtros({
   onNueva: () => void;
 }) {
   return (
-    <div className="rounded-2xl border border-[#dce5dc] bg-white p-3">
+    <div className="rounded-2xl border border-impa-line bg-white p-3 shadow-impa-xs">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-1 rounded-xl bg-[#fff7ef] p-1 text-sm font-semibold">
+        <div className="flex items-center gap-1 rounded-xl bg-impa-tinted p-1 text-sm font-semibold">
           {(["hoy", "semana", "mes"] as const).map((v) => (
             <button
               key={v}
               onClick={() => onChangeVista(v)}
-              className={`rounded-lg px-3 py-1.5 transition ${
-                vista === v ? "bg-[#17cf17] text-white" : "text-[#6b4d3e] hover:bg-[#f8eee2]"
+              className={`cursor-pointer rounded-lg px-3 py-1.5 transition ${
+                vista === v ? "bg-impa-500 text-white shadow-impa-xs" : "text-impa-muted hover:bg-impa-50 hover:text-impa-700"
               }`}
             >
               {v === "hoy" ? "Hoy" : v === "semana" ? "Esta semana" : "Todo"}
@@ -36,12 +36,12 @@ export default function Filtros({
             value={query}
             onChange={(e) => onChangeQuery(e.target.value)}
             placeholder="Buscar por mascota, motivo, vet..."
-            className="w-full rounded-2xl border border-[#dce5dc] bg-white py-2.5 pl-10 pr-3 text-[15px] outline-none placeholder:text-[#a88f80] focus:border-[#d9c6b7]"
+            className="w-full rounded-2xl border border-impa-line bg-white py-2.5 pl-10 pr-3 text-[15px] text-impa-text shadow-impa-xs outline-none transition placeholder:text-impa-subtle hover:border-impa-300 focus:border-impa-500 focus:ring-4 focus:ring-impa-500/15"
           />
         </div>
         <button
           onClick={onNueva}
-          className="ml-auto inline-flex items-center gap-2 rounded-2xl bg-[#17cf17] px-4 py-2 text-sm font-bold text-white shadow hover:shadow-md transition-shadow"
+          className="ml-auto inline-flex cursor-pointer items-center gap-2 rounded-2xl bg-impa-500 px-4 py-2 text-sm font-bold text-white shadow-impa-sm transition hover:bg-impa-600 hover:shadow-impa-md"
         >
           <Plus size={16} /> Nueva cita
         </button>

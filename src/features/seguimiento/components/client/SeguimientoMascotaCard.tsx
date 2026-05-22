@@ -14,21 +14,21 @@ export default function SeguimientoMascotaCard({
   onSubirSeguimiento: (seguimiento: any) => void;
 }) {
   return (
-    <div className="bg-[#f6f8f6] border border-[#E5D1B8] rounded-2xl shadow-sm p-6 hover:shadow-md transition">
+    <div className="rounded-2xl border border-impa-line bg-impa-tinted p-6 shadow-impa-sm transition hover:border-impa-200 hover:shadow-impa-md">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
         <img
-          src={mascota.imagen?.startsWith("http") ? mascota.imagen : "/placeholder.png"}
+          src={mascota.imagen?.startsWith("http") ? mascota.imagen : "/ISOTIPO IMPA.png"}
           alt={mascota.nombre}
-          className="rounded-2xl object-cover w-32 h-32 mx-auto sm:mx-0"
+          className="mx-auto h-32 w-32 rounded-2xl border border-impa-line object-cover shadow-impa-xs sm:mx-0"
         />
 
         <div className="flex-1 text-center sm:text-left">
-          <h2 className="text-2xl font-bold text-[#0f830f] flex items-center gap-2">
+          <h2 className="flex items-center gap-2 text-2xl font-bold text-impa-text">
             {mascota.nombre} <PawPrint size={20} />
           </h2>
 
-          <p className="text-sm text-[#5C3D2E] mt-1">
+          <p className="mt-1 text-sm text-impa-muted">
             <b>Fecha de adopción:</b> {mascota.fechaAdopcion}
           </p>
 

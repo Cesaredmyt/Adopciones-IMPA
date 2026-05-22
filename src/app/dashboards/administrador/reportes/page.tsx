@@ -1,8 +1,8 @@
 export default function ReportesPage() {
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-800">Reportes</h1>
-      <p className="text-slate-500">Aquí irá la gestión de reportes.</p>
+    <div className="impa-data-panel space-y-3 p-6">
+      <h1 className="text-2xl font-bold text-impa-text">Reportes</h1>
+      <p className="text-sm text-impa-muted">Aqui ira la gestion de reportes.</p>
     </div>
   );
 }

@@ -7,27 +7,27 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center gap-2 rounded-xl font-semibold",
+    "inline-flex min-w-0 items-center justify-center gap-2 rounded-xl font-semibold",
     "transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-impa-out",
     "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25",
-    "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:shadow-none",
+    "disabled:opacity-55 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0",
     "active:translate-y-[1px] cursor-pointer select-none whitespace-nowrap",
   ].join(" "),
   {
     variants: {
       variant: {
         primary:
-          "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 hover:shadow-impa-md active:bg-impa-700",
+          "border border-impa-600/20 bg-impa-500 text-white shadow-impa-md hover:bg-impa-600 hover:shadow-impa-lg active:bg-impa-700",
         cta:
-          "bg-impa-cta text-white shadow-impa-md hover:shadow-impa-glow hover:-translate-y-[1px] active:translate-y-0",
+          "border border-impa-600/20 bg-impa-cta text-white shadow-impa-md hover:shadow-impa-glow hover:-translate-y-[1px] active:translate-y-0",
         secondary:
-          "bg-impa-50 text-impa-700 border border-impa-100 hover:bg-impa-100 hover:border-impa-200 active:bg-impa-200",
+          "bg-impa-50 text-impa-800 border border-impa-200 shadow-impa-xs hover:bg-impa-100 hover:border-impa-300 hover:shadow-impa-sm active:bg-impa-200",
         outline:
-          "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:border-impa-300 hover:bg-impa-50/60 hover:shadow-impa-sm active:bg-impa-50",
+          "bg-white/95 text-impa-text border border-impa-line shadow-impa-xs hover:border-impa-300 hover:bg-impa-50/70 hover:shadow-impa-sm active:bg-impa-50",
         ghost:
-          "text-impa-text hover:bg-impa-surface-3 active:bg-impa-100",
+          "text-impa-700 hover:text-impa-900 hover:bg-impa-50 active:bg-impa-100",
         soft:
-          "bg-impa-surface-2 text-impa-text border border-transparent hover:bg-impa-surface-3 hover:border-impa-line",
+          "bg-impa-surface-2 text-impa-text border border-impa-line/70 shadow-impa-xs hover:bg-impa-surface-3 hover:border-impa-line-strong hover:shadow-impa-sm",
         danger:
           "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         destructive:

@@ -145,10 +145,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     <div className="min-h-screen bg-impa-bg relative">
       {/* Ambient backdrop */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 -left-32 w-[44rem] h-[44rem] rounded-full bg-impa-200/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-24 w-[48rem] h-[48rem] rounded-full bg-impa-100/40 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.70)_0%,rgba(246,248,246,0.96)_42%,rgba(255,255,255,0.74)_100%)]" />
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(15,131,15,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.6) 1px, transparent 1px)",
@@ -171,7 +170,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             className="flex items-center gap-2.5 group rounded-lg impa-focus-ring"
           >
             <span className="relative grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-impa-50 to-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.05]">
-              <Image src="/impa-isotipo.svg" alt="IMPA" width={26} height={26} priority />
+              <Image src="/ISOTIPO IMPA.png" alt="IMPA" width={26} height={26} className="impa-logo-mark" priority />
             </span>
             {!collapsed && (
               <div className="flex flex-col leading-tight overflow-hidden">
@@ -274,7 +273,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         {!collapsed && (
           <div className="px-3 pb-3">
             <div className="relative overflow-hidden rounded-xl border border-impa-line bg-gradient-to-br from-impa-50 via-white to-impa-50/40 p-3 shadow-impa-xs">
-              <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-impa-200/40 blur-2xl pointer-events-none" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0)_0%,rgba(211,249,211,0.38)_100%)] pointer-events-none" />
               <div className="relative flex items-start gap-2.5">
                 <span className="grid place-items-center w-8 h-8 rounded-lg bg-white border border-impa-line text-impa-600 shadow-impa-xs shrink-0">
                   <HelpCircle size={15} />
@@ -364,7 +363,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         <div className="flex items-center justify-between h-14 px-4">
           <Link href="/dashboards/administrador" className="flex items-center gap-2.5">
             <span className="grid place-items-center w-9 h-9 rounded-xl bg-white border border-impa-line shadow-impa-xs">
-              <Image src="/impa-isotipo.svg" alt="IMPA" width={24} height={24} priority />
+              <Image src="/ISOTIPO IMPA.png" alt="IMPA" width={24} height={24} className="impa-logo-mark" priority />
             </span>
             <span className="font-bold text-[14px] text-impa-text tracking-tight">
               IMPA Admin
@@ -396,7 +395,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 className="flex items-center gap-2.5"
               >
                 <span className="grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-impa-50 to-white border border-impa-line shadow-impa-xs">
-                  <Image src="/impa-isotipo.svg" alt="IMPA" width={24} height={24} priority />
+                  <Image src="/ISOTIPO IMPA.png" alt="IMPA" width={24} height={24} className="impa-logo-mark" priority />
                 </span>
                 <span className="font-bold text-[14px] text-impa-text tracking-tight">
                   IMPA Admin

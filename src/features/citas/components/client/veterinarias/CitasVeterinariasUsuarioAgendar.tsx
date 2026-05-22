@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 type Mascota = {
   mascota_id: string;
@@ -82,26 +83,27 @@ export function CitasVeterinariasUsuarioAgendar({
               setHoraSeleccionada(null);
               setMotivo("");
             }}
-            className={`flex items-center gap-4 border rounded-2xl p-4 cursor-pointer transition ${
+            className={`flex cursor-pointer items-center gap-4 rounded-2xl border p-4 shadow-impa-xs transition ${
               mascotaSeleccionada?.mascota_id === m.mascota_id
-                ? "bg-[#ecfdec] border-[#0f830f]"
-                : "hover:bg-[#FFF8F3]"
+                ? "border-impa-500 bg-impa-50 shadow-impa-sm"
+                : "border-impa-line bg-white hover:border-impa-300 hover:bg-impa-tinted hover:shadow-impa-sm"
             }`}
           >
             <img
-              src={m.imagen_url || "/placeholder.jpg"}
+              src={m.imagen_url || "/ISOTIPO IMPA.png"}
               alt={m.mascota_nombre}
-              className="w-24 h-24 rounded-xl object-cover"
+              className="h-24 w-24 rounded-xl border border-impa-line object-cover"
             />
             <div>
-              <h2 className="text-lg font-semibold text-[#0f830f]">
+              <h2 className="text-lg font-semibold text-impa-text">
                 {m.mascota_nombre}
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-impa-muted">
                 Estado: {m.estado_mascota}
               </p>
-              <p className="text-xs text-gray-500 mt-1">
-                📍 IMPA - Instituto Michoacano de Protección Animal
+              <p className="mt-1 inline-flex items-center gap-1 text-xs text-impa-muted">
+                <MapPin size={12} className="text-impa-600" />
+                IMPA - Instituto Michoacano de Proteccion Animal
               </p>
             </div>
           </div>
@@ -110,10 +112,10 @@ export function CitasVeterinariasUsuarioAgendar({
 
       {/* === CONTENIDO SI HAY MASCOTA === */}
       {mascotaSeleccionada && (
-        <div className="border-t pt-6 space-y-6">
+        <div className="space-y-6 border-t border-impa-line pt-6">
           {/* === Fecha === */}
           <div>
-            <h3 className="font-medium text-[#0f830f] mb-3">
+            <h3 className="mb-3 font-semibold text-impa-text">
               Selecciona la fecha de tu cita
             </h3>
 
@@ -128,10 +130,10 @@ export function CitasVeterinariasUsuarioAgendar({
                   new Date(hoy.getFullYear(), hoy.getMonth(), 1)
                 }
               >
-                ◀️
+                <ChevronLeft size={16} />
               </Button>
 
-              <span className="text-[#0f830f] font-semibold capitalize">
+              <span className="font-semibold capitalize text-impa-text">
                 {nombreMes}
               </span>
 
@@ -140,7 +142,7 @@ export function CitasVeterinariasUsuarioAgendar({
                 size="sm"
                 onClick={() => cambiarMes("next")}
               >
-                ▶️
+                <ChevronRight size={16} />
               </Button>
             </div>
 
@@ -149,7 +151,7 @@ export function CitasVeterinariasUsuarioAgendar({
               {["D", "L", "M", "M", "J", "V", "S"].map((d) => (
                 <span
                   key={d}
-                  className="text-xs font-semibold text-gray-500 uppercase tracking-wide"
+                  className="text-xs font-semibold uppercase text-impa-muted"
                 >
                   {d}
                 </span>
@@ -172,12 +174,12 @@ export function CitasVeterinariasUsuarioAgendar({
                         setMotivo("");
                       }
                     }}
-                    className={`py-2 text-sm rounded-lg transition ${
+                    className={`rounded-lg py-2 text-sm font-medium transition ${
                       cell.deshabilitado
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        ? "cursor-not-allowed bg-impa-bg-elevated text-impa-subtle"
                         : fechaSeleccionada === cell.fechaStr
-                        ? "bg-[#0f830f] text-white font-semibold"
-                        : "hover:bg-[#ecfdec] text-[#0f830f]"
+                        ? "bg-impa-600 text-white shadow-impa-sm"
+                        : "text-impa-700 hover:bg-impa-50"
                     }`}
                   >
                     {cell.d}
@@ -186,10 +188,10 @@ export function CitasVeterinariasUsuarioAgendar({
               )}
             </div>
 
-            <p className="text-xs text-gray-500 mt-3">
+            <p className="mt-3 text-xs text-impa-muted">
               * No disponible fines de semana. Puedes agendar a partir de mañana.
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="mt-1 text-xs text-impa-muted">
               * Solo puedes agendar citas dentro de los próximos 30 días.
             </p>
           </div>
@@ -197,7 +199,7 @@ export function CitasVeterinariasUsuarioAgendar({
           {/* === Horarios === */}
           {fechaSeleccionada && (
             <div>
-              <h3 className="font-medium text-[#0f830f] mb-2">
+              <h3 className="mb-2 font-semibold text-impa-text">
                 Selecciona un horario
               </h3>
 
@@ -206,10 +208,10 @@ export function CitasVeterinariasUsuarioAgendar({
                   <button
                     key={hora}
                     onClick={() => setHoraSeleccionada(hora)}
-                    className={`py-2 rounded-lg border text-sm transition ${
+                    className={`rounded-lg border px-3 py-2 text-sm font-medium transition ${
                       horaSeleccionada === hora
-                        ? "bg-[#0f830f] text-white border-[#11a611]"
-                        : "hover:bg-[#ecfdec]"
+                        ? "border-impa-600 bg-impa-600 text-white shadow-impa-sm"
+                        : "border-impa-line bg-white text-impa-700 hover:border-impa-300 hover:bg-impa-50"
                     }`}
                   >
                     {hora}
@@ -222,14 +224,14 @@ export function CitasVeterinariasUsuarioAgendar({
           {/* === Motivo === */}
           {horaSeleccionada && (
             <div>
-              <label className="block text-sm font-medium text-[#0f830f] mb-1">
+              <label className="mb-1 block text-sm font-semibold text-impa-text">
                 Motivo de la cita
               </label>
               <textarea
                 value={motivo}
                 onChange={(e) => setMotivo(e.target.value)}
                 placeholder="Describe brevemente el motivo..."
-                className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-[#a8f1a8] focus:outline-none transition"
+                className="h-24 w-full resize-none rounded-xl border border-impa-line bg-white p-3 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
               />
             </div>
           )}

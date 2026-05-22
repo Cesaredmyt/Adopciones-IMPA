@@ -34,10 +34,10 @@ export default function AdopcionCardFull({
     // 🎨 Estado con color y texto formateado
     const estadoClase =
         adopcion.estado === "pendiente"
-            ? "bg-yellow-100 text-yellow-700"
+            ? "bg-amber-50 text-amber-700 border border-amber-200"
             : adopcion.estado === "aprobada"
-            ? "bg-green-100 text-green-700"
-            : "bg-red-100 text-red-700";
+            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+            : "bg-red-50 text-red-700 border border-red-200";
 
     const estadoTexto = capitalize(adopcion.estado);
 
@@ -49,7 +49,7 @@ export default function AdopcionCardFull({
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
-                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4 py-8"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-impa-text-strong/55 backdrop-blur-md px-4 py-8"
                     onClick={onClose}
                 >
                     <motion.article
@@ -58,13 +58,13 @@ export default function AdopcionCardFull({
                         animate={{opacity: 1, scale: 1, y: 0}}
                         exit={{opacity: 0, scale: 0.95, y: 20}}
                         transition={{duration: 0.25}}
-                        className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden border-[4px] border-[#17cf17]"
+                        className="relative z-10 w-[min(1100px,92vw)] max-h-[90vh] bg-white rounded-3xl shadow-impa-xl grid md:grid-cols-2 overflow-hidden border border-impa-line"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* 🐾 Columna izquierda */}
-                        <div className="relative h-full bg-gray-100">
+                        <div className="relative h-full bg-impa-surface-2">
                             <img
-                                src={adopcion.mascotaImagen || adopcion.evidencias?.[0] || "/no-image.png"}
+                                src={adopcion.mascotaImagen || adopcion.evidencias?.[0] || "/ISOTIPO IMPA.png"}
                                 alt={adopcion.mascotaNombre ?? "Mascota"}
                                 className="w-full h-full object-cover"
                             />
@@ -72,10 +72,10 @@ export default function AdopcionCardFull({
                             {/* Botón cerrar */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 p-2 bg-white/80 hover:bg-white rounded-full shadow transition"
+                                className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-xl bg-white/90 text-impa-text shadow-impa-md transition-all duration-200 hover:bg-white hover:shadow-impa-lg"
                                 aria-label="Cerrar"
                             >
-                                <X className="w-5 h-5 text-gray-700" />
+                                <X className="w-5 h-5" />
                             </button>
 
                             {/* Nombre e info */}
@@ -83,14 +83,14 @@ export default function AdopcionCardFull({
                                 <h2 className="text-2xl font-bold">
                                     {capitalize(adopcion.mascotaNombre ?? "Mascota")}
                                 </h2>
-                                <p className="text-sm text-gray-200">
+                                <p className="text-sm text-white/80">
                                     {capitalize(adopcion.usuarioNombre ?? "Adoptante")}
                                 </p>
                             </div>
                         </div>
 
                         {/* 📄 Columna derecha */}
-                        <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-[#111811]">
+                        <div className="flex flex-col p-6 md:p-8 overflow-y-auto max-h-[90vh] text-impa-text custom-scroll bg-gradient-to-b from-white to-impa-surface-2/40">
                             <section className="space-y-4">
                                 {/* Estado */}
                                 <div className="flex flex-wrap gap-2">
@@ -102,15 +102,15 @@ export default function AdopcionCardFull({
                                 {/* Datos principales */}
                                 <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mt-3">
                                     <div>
-                                        <dt className="font-semibold text-slate-700">Tipo de vivienda</dt>
+                                        <dt className="font-semibold text-impa-muted">Tipo de vivienda</dt>
                                         <dd>{formatText(adopcion.tipo_vivienda)}</dd>
                                     </div>
                                     <div>
-                                        <dt className="font-semibold text-slate-700">Espacio disponible</dt>
+                                        <dt className="font-semibold text-impa-muted">Espacio disponible</dt>
                                         <dd>{formatText(adopcion.espacio_disponible)}</dd>
                                     </div>
                                     <div>
-                                        <dt className="font-semibold text-slate-700">Otras mascotas</dt>
+                                        <dt className="font-semibold text-impa-muted">Otras mascotas</dt>
                                         <dd>{adopcion.otras_mascotas ? "Sí" : "No"}</dd>
                                     </div>
                                 </dl>
@@ -118,10 +118,10 @@ export default function AdopcionCardFull({
                                 {/* Observaciones del adoptante */}
                                 {adopcion.observaciones_usuario && (
                                     <div className="mt-3">
-                                        <h3 className="font-semibold text-slate-800 mb-1">
+                                        <h3 className="font-semibold text-impa-text mb-1">
                                             Observaciones del adoptante
                                         </h3>
-                                        <p className="text-sm text-slate-700">
+                                        <p className="text-sm text-impa-muted">
                                             {capitalize(adopcion.observaciones_usuario)}
                                         </p>
                                     </div>
@@ -130,18 +130,18 @@ export default function AdopcionCardFull({
                                 {/* Observaciones del admin */}
                                 {adopcion.observaciones_admin && (
                                     <div className="mt-3">
-                                        <h3 className="font-semibold text-slate-800 mb-1">
+                                        <h3 className="font-semibold text-impa-text mb-1">
                                             Observaciones del administrador
                                         </h3>
-                                        <p className="text-sm text-slate-700">
+                                        <p className="text-sm text-impa-muted">
                                             {capitalize(adopcion.observaciones_admin)}
                                         </p>
                                     </div>
                                 )}
 
                                 {/* Galería de evidencias */}
-                                <div className="mt-6 border-t border-slate-200 pt-4">
-                                    <h3 className="font-semibold text-slate-800 mb-2">Evidencias del hogar</h3>
+                                <div className="mt-6 border-t border-impa-line pt-4">
+                                    <h3 className="font-semibold text-impa-text mb-2">Evidencias del hogar</h3>
                                     {adopcion.evidencias?.length > 0 ? (
                                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                             {adopcion.evidencias.map((url, i) => (
@@ -150,7 +150,7 @@ export default function AdopcionCardFull({
                                                     href={url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="block border rounded-lg overflow-hidden"
+                                                    className="block border border-impa-line rounded-xl overflow-hidden shadow-impa-xs hover:border-impa-300 transition-colors"
                                                 >
                                                     <img
                                                         src={url}
@@ -161,14 +161,14 @@ export default function AdopcionCardFull({
                                             ))}
                                         </div>
                                     ) : (
-                                        <p className="text-sm text-slate-500">Sin fotos</p>
+                                        <p className="text-sm text-impa-muted">Sin fotos</p>
                                     )}
                                 </div>
                             </section>
 
                             {/* Botones finales */}
                             {adopcion.estado === "pendiente" && (
-                                <div className="mt-6 flex justify-end gap-3 border-t border-slate-200 pt-4">
+                                <div className="mt-6 flex justify-end gap-3 border-t border-impa-line pt-4">
                                     <Button variant="destructive" size="sm" onClick={() => onRechazar(adopcion.id)}>
                                         Rechazar
                                     </Button>

@@ -14,7 +14,7 @@ export default function CitaCard({
   const getEstadoColor = () => {
     switch (estado) {
       case "confirmada":
-        return "bg-green-100 text-green-700 border-green-300";
+        return "bg-impa-50 text-impa-700 border-impa-200";
       case "cancelada":
         return "bg-red-100 text-red-700 border-red-300";
       default:
@@ -23,20 +23,20 @@ export default function CitaCard({
   };
 
   return (
-    <div className="border rounded-2xl shadow-sm p-4 bg-white flex flex-col space-y-3 transition hover:shadow-md">
+    <div className="flex flex-col space-y-3 rounded-2xl border border-impa-line bg-white p-4 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm">
       {/* Imagen y nombre mascota */}
       <div className="flex items-center space-x-3">
         {mascota?.foto_url ? (
           <img
             src={mascota.foto_url}
             alt={mascota.nombre}
-            className="w-16 h-16 object-cover rounded-xl"
+            className="h-16 w-16 rounded-xl border border-impa-line object-cover"
           />
         ) : (
-          <div className="w-16 h-16 bg-gray-200 rounded-xl" />
+          <div className="h-16 w-16 rounded-xl border border-impa-line bg-impa-50" />
         )}
         <div>
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-lg font-semibold text-impa-text">
             {mascota?.nombre || "Mascota"}
           </h2>
           <p
@@ -48,9 +48,9 @@ export default function CitaCard({
       </div>
 
       {/* Información cita */}
-      <div className="text-sm text-gray-600 space-y-1">
+      <div className="space-y-1 text-sm text-impa-muted">
         <p className="flex items-center gap-2">
-          <CalendarDays className="w-4 h-4 text-gray-500" />
+          <CalendarDays className="h-4 w-4 text-impa-600" />
           <span>
             Fecha solicitada:{" "}
             <strong>{new Date(fecha_solicitada).toLocaleDateString()}</strong>
@@ -58,7 +58,7 @@ export default function CitaCard({
         </p>
         {fecha_confirmada && (
           <p className="flex items-center gap-2">
-            <CalendarDays className="w-4 h-4 text-gray-500" />
+            <CalendarDays className="h-4 w-4 text-impa-600" />
             <span>
               Confirmada para:{" "}
               <strong>{new Date(fecha_confirmada).toLocaleDateString()}</strong>

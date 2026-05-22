@@ -7,27 +7,27 @@ export default function PerfilSolicitudesCard({
   solicitudes: SolicitudAdopcionMin[];
 }) {
   return (
-    <Card className="p-6 bg-[#fffdf9] border border-[#e2cbb3] shadow-md">
-      <h2 className="text-xl font-semibold text-[#8b4513] mb-4">
+    <Card className="border-impa-line bg-white p-6 shadow-impa-sm">
+      <h2 className="mb-4 text-xl font-semibold text-impa-text">
         Mascotas en proceso de adopción
       </h2>
 
       {solicitudes.length === 0 ? (
-        <p className="text-[#5b3e26]">No tienes solicitudes pendientes.</p>
+        <p className="text-impa-muted">No tienes solicitudes pendientes.</p>
       ) : (
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {solicitudes.map((sol) => (
             <li
               key={sol.id}
-              className="bg-[#fffaf3] border border-[#e2cbb3] rounded-xl p-4"
+              className="rounded-2xl border border-impa-line bg-impa-tinted p-4 shadow-impa-xs"
             >
-              <p className="font-semibold text-[#8b4513]">
+              <p className="font-semibold text-impa-text">
                 {sol.mascota?.nombre ?? "Mascota"}
               </p>
-              <p className="text-sm text-[#9b7b59]">
+              <p className="text-sm text-impa-muted">
                 Solicitud #{sol.numero_solicitud}
               </p>
-              <span className="mt-2 inline-block bg-[#f7e8d0] text-[#8b4513] text-xs font-semibold px-3 py-1 rounded-full capitalize">
+              <span className="mt-2 inline-block rounded-full border border-impa-200 bg-impa-50 px-3 py-1 text-xs font-semibold capitalize text-impa-700">
                 {sol.estado}
               </span>
             </li>

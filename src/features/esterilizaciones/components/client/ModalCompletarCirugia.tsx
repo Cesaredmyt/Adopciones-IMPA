@@ -49,24 +49,24 @@ export function ModalCompletarCirugia({
       onClose={onClose}
       title={`Registrar resultado · ${registro.folio}`}
     >
-      <div className="space-y-4 text-[#3b2710]">
-        <p className="text-sm text-slate-600">
+      <div className="space-y-4 text-impa-text">
+        <p className="text-sm text-impa-muted">
           Registra el resultado de la cirugía de{" "}
           <strong>{registro.mascota_nombre}</strong>.
         </p>
 
         <div>
-          <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-2 block">
+          <span className="mb-2 block text-xs font-bold uppercase text-impa-700">
             Resultado
           </span>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setEstado("completada")}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold border transition ${
+              className={`cursor-pointer rounded-xl border px-4 py-2 text-sm font-semibold transition ${
                 estado === "completada"
-                  ? "bg-green-100 text-green-700 border-green-300"
-                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                  ? "border-impa-300 bg-impa-50 text-impa-700 shadow-impa-xs"
+                  : "border-impa-line bg-white text-impa-muted hover:border-impa-300 hover:bg-impa-50"
               }`}
             >
               Completada
@@ -74,10 +74,10 @@ export function ModalCompletarCirugia({
             <button
               type="button"
               onClick={() => setEstado("complicacion")}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold border transition ${
+              className={`cursor-pointer rounded-xl border px-4 py-2 text-sm font-semibold transition ${
                 estado === "complicacion"
-                  ? "bg-impa-100 text-impa-700 border-impa-300"
-                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                  ? "border-amber-300 bg-amber-50 text-amber-800 shadow-impa-xs"
+                  : "border-impa-line bg-white text-impa-muted hover:border-impa-300 hover:bg-impa-50"
               }`}
             >
               Con complicaciones
@@ -86,7 +86,7 @@ export function ModalCompletarCirugia({
         </div>
 
         <label className="block text-sm">
-          <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
+          <span className="mb-1 block text-xs font-bold uppercase text-impa-700">
             Notas del resultado *
           </span>
           <textarea
@@ -94,13 +94,13 @@ export function ModalCompletarCirugia({
             value={resultadoNotas}
             onChange={(e) => setResultadoNotas(e.target.value)}
             placeholder="Procedimiento, anestesia, medicación post-operatoria…"
-            className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
+            className="w-full rounded-xl border border-impa-line bg-white px-3.5 py-2.5 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           />
         </label>
 
         {estado === "complicacion" && (
           <label className="block text-sm">
-            <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
+            <span className="mb-1 block text-xs font-bold uppercase text-impa-700">
               Complicaciones *
             </span>
             <textarea
@@ -108,7 +108,7 @@ export function ModalCompletarCirugia({
               value={complicaciones}
               onChange={(e) => setComplicaciones(e.target.value)}
               placeholder="Describe las complicaciones presentadas y manejo…"
-              className="w-full border border-impa-200 rounded-md px-3 py-2 bg-impa-50/40 focus:outline-none focus:ring-2 focus:ring-impa-400/30"
+              className="w-full rounded-xl border border-amber-200 bg-amber-50/70 px-3.5 py-2.5 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-amber-300 focus:border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-300/25"
             />
           </label>
         )}

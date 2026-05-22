@@ -202,7 +202,7 @@ export default function UserModal({
                                                             src={
                                                                 s.mascota.imagen_url.startsWith("http")
                                                                     ? s.mascota.imagen_url
-                                                                    : "/placeholder.png"
+                                                                    : "/ISOTIPO IMPA.png"
                                                             }
                                                             alt={s.mascota.nombre}
                                                             className="w-full h-full object-cover"
@@ -269,7 +269,7 @@ export default function UserModal({
                                                             src={
                                                                 a.imagen_url.startsWith("http")
                                                                     ? a.imagen_url
-                                                                    : "/placeholder.png"
+                                                                    : "/ISOTIPO IMPA.png"
                                                             }
                                                             alt={a.mascota_nombre}
                                                             className="w-full h-full object-cover"

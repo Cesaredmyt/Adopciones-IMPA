@@ -26,13 +26,13 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
   const safeUrl = String(url);
 
   return createPortal(
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-xl shadow-xl border border-neutral-200 max-w-5xl w-full h-[85vh] flex flex-col overflow-hidden animate-[fadeInScale_0.25s_ease-out]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-impa-text/45 p-4 backdrop-blur-sm">
+      <div className="relative flex h-[85vh] w-full max-w-5xl animate-[fadeInScale_0.25s_ease-out] flex-col overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-xl">
 
-        <div className="h-12 px-4 border-b border-neutral-200 bg-white flex items-center justify-between">
+        <div className="flex h-12 items-center justify-between border-b border-impa-line bg-white px-4">
           <div>
-            <h2 className="text-sm font-semibold text-neutral-800">Vista del documento</h2>
-            <p className="text-xs text-neutral-500 -mt-1">Revisa el archivo completo</p>
+            <h2 className="text-sm font-semibold text-impa-text">Vista del documento</h2>
+            <p className="-mt-1 text-xs text-impa-muted">Revisa el archivo completo</p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -40,7 +40,7 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
             <Button
               variant="ghost"
               onClick={() => window.open(safeUrl, "_blank")}
-              className="text-[#17cf17] hover:bg-[#ffe8db] flex items-center gap-1"
+              className="flex items-center gap-1 text-impa-700 hover:bg-impa-50"
             >
               <FileText className="h-4 w-4" /> Abrir pestaña
             </Button>
@@ -53,28 +53,28 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
                 link.download = safeUrl.split("/").pop() || "documento.pdf";
                 link.click();
               }}
-              className="text-[#17cf17] hover:bg-[#ffe8db] flex items-center gap-1"
+              className="flex items-center gap-1 text-impa-700 hover:bg-impa-50"
             >
               Descargar
             </Button>
 
             <button
               onClick={onClose}
-              className="text-neutral-500 hover:text-neutral-800 transition"
+              className="cursor-pointer text-impa-muted transition hover:text-impa-text"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto bg-neutral-100 p-4">
+        <div className="flex-1 overflow-auto bg-impa-bg-elevated p-4">
           <iframe
             src={safeUrl}
-            className="w-full h-full rounded-lg border border-neutral-300 shadow-inner bg-white"
+            className="h-full w-full rounded-xl border border-impa-line bg-white shadow-inner"
           />
         </div>
 
-        <div className="h-12 px-4 border-t border-neutral-200 bg-white flex items-center justify-end">
+        <div className="flex h-12 items-center justify-end border-t border-impa-line bg-white px-4">
           <Button variant="ghost" onClick={onClose}>
             Cerrar visor
           </Button>

@@ -70,9 +70,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden">
         {/* Ambient mesh */}
         <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute -top-32 -left-20 w-[640px] h-[640px] rounded-full bg-impa-100/60 blur-3xl" />
-          <div className="absolute top-10 right-0 w-[520px] h-[520px] rounded-full bg-impa-200/50 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-impa-50/80 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.72)_0%,rgba(255,255,255,0.82)_44%,rgba(246,248,246,0.98)_100%)]" />
         </div>
         {/* Grid pattern */}
         <div
@@ -177,7 +175,6 @@ export default function LandingPage() {
             className="relative h-[460px] lg:h-[560px]"
           >
             {/* Halo glow */}
-            <div className="absolute inset-8 rounded-[40px] bg-gradient-to-br from-impa-200/40 via-transparent to-impa-300/30 blur-2xl" />
 
             {/* Card 1 — large */}
             <motion.div
@@ -341,8 +338,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-impa-700 via-impa-600 to-impa-500 text-white shadow-impa-xl">
             <div aria-hidden className="absolute inset-0 opacity-50 pointer-events-none">
-              <div className="absolute -top-20 -left-10 w-80 h-80 rounded-full bg-impa-300/40 blur-3xl" />
-              <div className="absolute -bottom-24 right-10 w-96 h-96 rounded-full bg-impa-800/40 blur-3xl" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0)_50%,rgba(7,18,10,0.22)_100%)]" />
             </div>
             <div
               aria-hidden
@@ -459,8 +455,7 @@ export default function LandingPage() {
       {/* ============ TESTIMONIOS ============ */}
       <section className="py-20 lg:py-24 relative overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute top-20 -left-20 w-[480px] h-[480px] rounded-full bg-impa-100/50 blur-3xl" />
-          <div className="absolute bottom-10 -right-20 w-[480px] h-[480px] rounded-full bg-impa-50/80 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(243,247,243,0.82)_0%,rgba(255,255,255,0)_46%,rgba(236,253,236,0.58)_100%)]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -536,9 +531,7 @@ export default function LandingPage() {
           <div className="relative overflow-hidden rounded-3xl bg-impa-text-strong text-white p-8 sm:p-12 lg:p-14 shadow-impa-xl">
             {/* Mesh background */}
             <div aria-hidden className="absolute inset-0 opacity-60 pointer-events-none">
-              <div className="absolute -top-32 -left-20 w-[500px] h-[500px] rounded-full bg-impa-600/30 blur-3xl" />
-              <div className="absolute -bottom-32 -right-10 w-[500px] h-[500px] rounded-full bg-impa-500/40 blur-3xl" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full bg-impa-700/30 blur-3xl" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(23,207,23,0.20)_0%,rgba(255,255,255,0)_48%,rgba(17,166,17,0.24)_100%)]" />
             </div>
             {/* Grid pattern */}
             <div
@@ -675,8 +668,7 @@ function FeatureCard({
 }) {
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-impa-line bg-white p-6 shadow-impa-sm hover:shadow-impa-lg hover:-translate-y-1 hover:border-impa-line-strong transition-all duration-300 ease-impa-out cursor-default">
-      {/* Decorative blob */}
-      <span className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full bg-impa-200/40 blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+      <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0)_0%,rgba(237,248,237,0.80)_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       {/* Top hairline */}
       <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
 

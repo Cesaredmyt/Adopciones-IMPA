@@ -29,14 +29,14 @@ export default function MisMascotasCard({
     : mascota.colores || "";
 
   return (
-    <Card className="flex flex-col md:flex-row overflow-hidden rounded-2xl border shadow-md">
+    <Card className="flex flex-col overflow-hidden rounded-2xl border border-impa-line shadow-impa-sm md:flex-row">
       {/* Imagen */}
       <div className="w-full md:w-[45%] h-64 md:h-auto">
         <img
           src={
             mascota.imagen_url?.startsWith("http")
               ? mascota.imagen_url
-              : "/placeholder.png"
+              : "/ISOTIPO IMPA.png"
           }
           alt={mascota.mascota_nombre || "Mascota adoptada"}
           className="w-full h-full object-cover"
@@ -46,15 +46,15 @@ export default function MisMascotasCard({
       {/* Contenido */}
       <div className="flex flex-col justify-between w-full p-6">
         <div>
-          <h2 className="text-2xl font-semibold text-[#5a3d1e]">
+          <h2 className="text-2xl font-semibold text-impa-text">
             {mascota.mascota_nombre || "Sin nombre"}
           </h2>
 
-          <p className="text-sm text-gray-500 italic mb-3">
+          <p className="mb-3 text-sm italic text-impa-muted">
             {lineaSecundaria || "Sin datos"}
           </p>
 
-          <div className="text-sm space-y-1">
+          <div className="space-y-1 text-sm text-impa-muted">
             <p>
               <strong>Adoptada el:</strong>{" "}
               {fechaAdopcion.isValid()
@@ -94,11 +94,11 @@ export default function MisMascotasCard({
           </div>
 
           {/* Seguimientos */}
-          <div className="border-t pt-3 mt-4">
-            <p className="font-semibold mb-1 text-[#8b4513]">
+          <div className="mt-4 border-t border-impa-line pt-3">
+            <p className="mb-1 font-semibold text-impa-text">
               Seguimientos programados:
             </p>
-            <ul className="list-disc ml-5 text-gray-600 text-sm">
+            <ul className="ml-5 list-disc text-sm text-impa-muted">
               {seguimientos.map((f, i) => (
                 <li key={i}>{f}</li>
               ))}

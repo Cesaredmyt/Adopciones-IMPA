@@ -13,14 +13,14 @@ export default function SeguimientoItem({
   onSubirEvidencia: () => void;
 }) {
   return (
-    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3 w-full border border-[#E5D1B8] rounded-xl px-4 py-3 bg-white">
+    <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-impa-line bg-white px-4 py-3 shadow-impa-xs sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-3">
-        <CalendarDays size={18} className="text-[#0f830f]" />
+        <CalendarDays size={18} className="text-impa-600" />
         <div>
-          <p className="text-sm font-medium text-[#0f830f]">
+          <p className="text-sm font-medium text-impa-text">
             {seguimiento.nombre}
           </p>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-impa-muted">
             {dayjs(seguimiento.fecha).format("DD/MM/YYYY")}
           </p>
         </div>

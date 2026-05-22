@@ -18,83 +18,83 @@ export default function MascotaSeleccionadaCard({
       {/* Foto */}
       <div className="flex justify-center mb-4">
         <img
-          src={mascota?.imagen_url || "/img/placeholder-mascota.jpg"}
+          src={mascota?.imagen_url || "/ISOTIPO IMPA.png"}
           alt={capitalize(mascota?.nombre)}
-          className="h-24 w-24 rounded-full object-cover border border-[#dce5dc] shadow-md bg-[#f7eee4]"
+          className="h-24 w-24 rounded-full border border-impa-line bg-impa-tinted object-cover shadow-impa-sm"
         />
       </div>
 
       {/* Nombre */}
-      <h3 className="text-xl font-extrabold text-[#111811]">
+      <h3 className="text-xl font-extrabold text-impa-text">
         {capitalize(mascota?.nombre)}
       </h3>
 
-      <p className="text-sm text-[#17cf17] mt-1 mb-3">
-        Mascota seleccionada para adopción 🐾
+      <p className="mb-3 mt-1 text-sm font-medium text-impa-700">
+        Mascota seleccionada para adopcion
       </p>
 
       {/* Chips */}
       <div className="flex justify-center flex-wrap gap-2 mb-5">
         {mascota?.raza?.nombre && (
-          <span className="px-3 py-1 bg-[#f3e7dc] text-[#0f830f] rounded-full text-xs font-semibold">
+          <span className="rounded-full border border-impa-200 bg-impa-50 px-3 py-1 text-xs font-semibold text-impa-700">
             {capitalize(mascota.raza.nombre)}
           </span>
         )}
 
         {mascota?.tamano && (
-          <span className="px-3 py-1 bg-[#ecfdec] text-[#17cf17] rounded-full text-xs font-semibold">
+          <span className="rounded-full border border-impa-200 bg-white px-3 py-1 text-xs font-semibold text-impa-700">
             {capitalize(mascota.tamano)}
           </span>
         )}
 
         {mascota?.edad && (
-          <span className="px-3 py-1 bg-[#e7f0ff] text-[#1e40af] rounded-full text-xs font-semibold">
+          <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
             {mascota.edad} meses
           </span>
         )}
       </div>
 
       {/* Info */}
-      <div className="text-left text-[13px] text-[#7a5c49] space-y-2 mb-6">
+      <div className="mb-6 space-y-2 text-left text-[13px] text-impa-muted">
         {mascota?.personalidad && (
           <p>
-            <strong className="text-[#111811]">Personalidad:</strong>{" "}
+            <strong className="text-impa-text">Personalidad:</strong>{" "}
             {capitalize(mascota.personalidad)}
           </p>
         )}
 
         {mascota?.peso_kg && (
           <p>
-            <strong className="text-[#111811]">Peso:</strong> {mascota.peso_kg}{" "}
+            <strong className="text-impa-text">Peso:</strong> {mascota.peso_kg}{" "}
             kg
           </p>
         )}
 
         {mascota?.altura_cm && (
           <p>
-            <strong className="text-[#111811]">Altura:</strong>{" "}
+            <strong className="text-impa-text">Altura:</strong>{" "}
             {mascota.altura_cm} cm
           </p>
         )}
 
         {mascota?.descripcion_fisica && (
           <p>
-            <strong className="text-[#111811]">Descripción:</strong>{" "}
+            <strong className="text-impa-text">Descripción:</strong>{" "}
             {capitalize(mascota.descripcion_fisica)}
           </p>
         )}
       </div>
 
       {/* ⭐ NUEVA SECCIÓN PARA LLENAR ESPACIO (elegante y útil) */}
-      <div className="mt-6 mb-8 bg-[#fff8f3] border border-[#efd8c7] rounded-xl p-4 text-left shadow-sm">
-        <p className="text-sm font-extrabold text-[#111811] mb-2">
+      <div className="mb-8 mt-6 rounded-2xl border border-impa-line bg-impa-tinted p-4 text-left shadow-impa-xs">
+        <p className="mb-2 text-sm font-extrabold text-impa-text">
           Sobre esta mascota
         </p>
 
-        <ul className="text-[12px] text-[#7a5c49] space-y-1 leading-relaxed">
-          <li>• Ha sido evaluada y está apta para convivir contigo.</li>
-          <li>• El equipo del IMPA verificó su salud y comportamiento.</li>
-          <li>• Lista para avanzar al siguiente paso de adopción.</li>
+        <ul className="space-y-1 text-[12px] leading-relaxed text-impa-muted">
+          <li>- Ha sido evaluada y esta apta para convivir contigo.</li>
+          <li>- El equipo del IMPA verifico su salud y comportamiento.</li>
+          <li>- Lista para avanzar al siguiente paso de adopcion.</li>
         </ul>
       </div>
 
@@ -102,13 +102,12 @@ export default function MascotaSeleccionadaCard({
       <button
         onClick={onCancelar}
         className="
-          w-full text-sm font-semibold text-white
-          bg-[#17cf17] px-5 py-3 rounded-xl
-          border border-[#a64f2b]
-          shadow-md shadow-[#17cf17]/30
+          w-full cursor-pointer rounded-xl border border-impa-600
+          bg-impa-500 px-5 py-3 text-sm font-semibold text-white
+          shadow-impa-sm
           transition-all duration-200
-          hover:bg-[#a64f2b]
-          hover:shadow-lg hover:shadow-[#17cf17]/50
+          hover:bg-impa-600
+          hover:shadow-impa-md
           hover:-translate-y-[2px]
           active:scale-95
         "

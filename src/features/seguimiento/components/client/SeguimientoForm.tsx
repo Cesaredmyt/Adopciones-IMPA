@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import dayjs from "dayjs";
-import { PawPrint, Upload, Loader2 } from "lucide-react";
+import { PawPrint, Upload, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useCrearSeguimientoMutation } from "../../hooks/useCrearSeguimientoMutation";
 import { useImagePreview } from "../../hooks/useImagePreview";
@@ -92,7 +92,7 @@ export default function SeguimientoForm({
       },
       {
         onSuccess: () => {
-          toast.success("🐾 Seguimiento enviado con éxito");
+          toast.success("Seguimiento enviado con exito");
           reset();
           preview.reset();
           onSuccess?.();
@@ -108,40 +108,40 @@ export default function SeguimientoForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 p-4 rounded-xl bg-[#FFF5EB] border border-[#E3C9A8] text-sm"
+      className="space-y-4 rounded-2xl border border-impa-line bg-impa-tinted p-4 text-sm shadow-impa-sm"
     >
-      <h2 className="text-lg font-bold text-[#0f830f] text-center mb-3">
+      <h2 className="mb-3 text-center text-lg font-bold text-impa-text">
         Registra el seguimiento de tu mascota
       </h2>
 
-      <p className="text-xs text-gray-700 text-center mb-4">
+      <p className="mb-4 text-center text-xs text-impa-muted">
         Seguimiento programado para:{" "}
-        <span className="font-semibold text-[#0f830f]">
+        <span className="font-semibold text-impa-700">
           {dayjs(fechaProgramada).format("DD/MM/YYYY")}
         </span>
       </p>
 
       {/* OBSERVACIONES */}
       <div className="space-y-1">
-        <label className="block text-xs font-semibold text-[#0f830f]">
+        <label className="block text-xs font-semibold text-impa-text">
           Observaciones
         </label>
         <textarea
           {...register("observaciones")}
           rows={3}
-          className="w-full p-2 rounded-lg bg-white border border-[#D9BDA3]"
+          className="w-full rounded-xl border border-impa-line bg-white p-3 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
         />
       </div>
 
       {/* RECOMENDACIONES */}
       <div className="space-y-1">
-        <label className="block text-xs font-semibold text-[#0f830f]">
+        <label className="block text-xs font-semibold text-impa-text">
           Recomendaciones (opcional)
         </label>
         <textarea
           {...register("recomendaciones")}
           rows={2}
-          className="w-full p-2 rounded-lg bg-white border border-[#D9BDA3]"
+          className="w-full rounded-xl border border-impa-line bg-white p-3 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
         />
       </div>
 
@@ -149,7 +149,7 @@ export default function SeguimientoForm({
       <div className="flex flex-col sm:flex-row gap-6">
         {/* ESTADO */}
         <div>
-          <label className="block text-xs font-semibold text-[#0f830f] mb-1">
+          <label className="mb-1 block text-xs font-semibold text-impa-text">
             Estado de la mascota
           </label>
           <div className="flex gap-1">
@@ -164,11 +164,12 @@ export default function SeguimientoForm({
                   onClick={() => setEstadoMascota(val)}
                 >
                   <svg
+                    className={active ? "text-red-500" : "text-impa-line"}
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
-                    fill={active ? "#E63946" : "none"}
-                    stroke={active ? "#E63946" : "#D3D3D3"}
+                    fill={active ? "currentColor" : "none"}
+                    stroke="currentColor"
                     strokeWidth="2"
                   >
                     <path d="M12 21s-6.716-4.437-9.083-8.01C.42 9.843.486 6.35 2.293 4.293 4.1 2.236 7.314 2.236 9.12 4.293L12 7.5l2.88-3.207c1.806-2.057 5.02-2.057 6.827 0 1.807 2.057 1.873 5.55-.624 8.697C18.716 16.563 12 21 12 21z" />
@@ -181,7 +182,7 @@ export default function SeguimientoForm({
 
         {/* CALIFICACIÓN */}
         <div>
-          <label className="block text-xs font-semibold text-[#0f830f] mb-1">
+          <label className="mb-1 block text-xs font-semibold text-impa-text">
             Calificación del seguimiento
           </label>
           <div className="flex gap-1">
@@ -197,7 +198,7 @@ export default function SeguimientoForm({
                 >
                   <PawPrint
                     size={26}
-                    className={active ? "text-[#17cf17]" : "text-gray-300"}
+                    className={active ? "text-impa-600" : "text-impa-line"}
                   />
                 </button>
               );
@@ -208,24 +209,24 @@ export default function SeguimientoForm({
 
       {/* PROBLEMAS */}
       <div>
-        <label className="text-xs font-semibold text-[#0f830f]">
+        <label className="text-xs font-semibold text-impa-text">
           Problemas reportados (separados por comas)
         </label>
         <input
           {...register("problemas_reportados")}
-          className="w-full p-2 rounded-lg bg-white border border-[#D9BDA3]"
+          className="h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
         />
       </div>
 
       {/* FOTOS */}
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-[#0f830f]">
+        <label className="block text-sm font-semibold text-impa-text">
           Fotos del seguimiento
         </label>
 
-        <label className="w-full p-6 border-2 border-dashed rounded-xl bg-white flex flex-col items-center gap-2 cursor-pointer">
-          <Upload size={30} className="text-[#17cf17]" />
-          <span className="text-xs text-gray-600 text-center">
+        <label className="flex w-full cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-dashed border-impa-line bg-white p-6 transition hover:border-impa-300 hover:bg-impa-50/35">
+          <Upload size={30} className="text-impa-600" />
+          <span className="text-center text-xs text-impa-muted">
             Haz clic o arrastra fotos
           </span>
           <input
@@ -249,9 +250,9 @@ export default function SeguimientoForm({
                 <button
                   type="button"
                   onClick={() => removePhoto(i)}
-                  className="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full px-1"
+                  className="absolute right-1 top-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-white shadow-impa-xs"
                 >
-                  ×
+                  <X size={12} />
                 </button>
               </div>
             ))}
@@ -264,7 +265,7 @@ export default function SeguimientoForm({
         <Button
           type="submit"
           disabled={crearSeguimiento.isPending}
-          className="bg-[#17cf17] text-white"
+          variant="primary"
         >
           {crearSeguimiento.isPending ? (
             <Loader2 className="animate-spin w-4 h-4" />

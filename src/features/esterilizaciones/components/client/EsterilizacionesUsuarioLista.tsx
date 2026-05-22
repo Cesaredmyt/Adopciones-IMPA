@@ -23,11 +23,11 @@ export default function EsterilizacionesUsuarioLista({
 }: Props) {
   if (items.length === 0) {
     return (
-      <div className="bg-white border border-slate-100 rounded-2xl p-10 text-center text-slate-500">
+      <div className="rounded-2xl border border-dashed border-impa-line bg-impa-tinted p-10 text-center text-impa-muted">
         <p className="font-medium">
           Aún no has solicitado ninguna esterilización.
         </p>
-        <p className="text-sm text-slate-400 mt-2">
+        <p className="mt-2 text-sm text-impa-muted">
           Cuando lo hagas, podrás darle seguimiento desde aquí.
         </p>
       </div>
@@ -39,10 +39,10 @@ export default function EsterilizacionesUsuarioLista({
       {items.map((item) => (
         <article
           key={item.id}
-          className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden"
+          className="overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-sm transition hover:border-impa-200 hover:shadow-impa-md"
         >
-          <header className="px-4 py-3 bg-[#FFF6E5] flex justify-between items-center">
-            <span className="text-sm font-bold text-[#0f830f]">
+          <header className="flex items-center justify-between border-b border-impa-line bg-impa-tinted px-4 py-3">
+            <span className="text-sm font-bold text-impa-700">
               {item.folio}
             </span>
             <EsterilizacionEstadoBadge estado={item.estado} />
@@ -54,37 +54,37 @@ export default function EsterilizacionesUsuarioLista({
                 <img
                   src={item.mascota_imagen}
                   alt={item.mascota_nombre}
-                  className="w-14 h-14 rounded-xl object-cover"
+                  className="h-14 w-14 rounded-xl border border-impa-line object-cover"
                 />
               ) : (
-                <div className="w-14 h-14 rounded-xl bg-impa-100" />
+                <div className="h-14 w-14 rounded-xl border border-impa-line bg-impa-50" />
               )}
               <div>
-                <p className="font-bold text-slate-800">
+                <p className="font-bold text-impa-text">
                   {item.mascota_nombre}
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-impa-muted">
                   Peso registrado: {item.peso_kg ?? "—"} kg
                 </p>
               </div>
             </div>
 
-            <div className="text-sm text-slate-600 space-y-1">
+            <div className="space-y-1 text-sm text-impa-muted">
               <p>
-                <span className="text-xs font-bold uppercase text-[#0f830f]">
+                <span className="text-xs font-bold uppercase text-impa-700">
                   Solicitada:
                 </span>{" "}
                 {formatoFecha(item.fecha_solicitud)}
               </p>
               <p>
-                <span className="text-xs font-bold uppercase text-[#0f830f]">
+                <span className="text-xs font-bold uppercase text-impa-700">
                   Programada:
                 </span>{" "}
                 {formatoFecha(item.fecha_programada)}
               </p>
               {item.fecha_realizada && (
                 <p>
-                  <span className="text-xs font-bold uppercase text-[#0f830f]">
+                  <span className="text-xs font-bold uppercase text-impa-700">
                     Realizada:
                   </span>{" "}
                   {formatoFecha(item.fecha_realizada)}

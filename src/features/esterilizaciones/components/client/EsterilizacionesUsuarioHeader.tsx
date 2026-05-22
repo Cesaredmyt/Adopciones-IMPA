@@ -20,10 +20,10 @@ export function EsterilizacionesUsuarioHeader({
   return (
     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0f830f]">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-impa-text">
           Esterilizaciones
         </h1>
-        <p className="text-slate-500 text-sm sm:text-base">
+        <p className="text-impa-muted text-sm sm:text-base">
           Solicita la esterilización de tus mascotas adoptadas y sigue el
           proceso desde aquí.
         </p>

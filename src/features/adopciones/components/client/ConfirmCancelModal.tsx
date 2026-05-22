@@ -31,28 +31,28 @@ export default function ConfirmCancelModal({
     const modal = (
         <div
             onClick={handleOverlayClick}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[9999] px-4 py-10 overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto bg-impa-text/45 px-4 py-10 backdrop-blur-sm"
         >
-            <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md border border-[#dce5dc] animate-fadeIn">
-                <h3 className="text-xl font-extrabold text-[#0f830f] text-center mb-3">
+            <div className="w-full max-w-md animate-fadeIn rounded-2xl border border-impa-line bg-white p-8 shadow-impa-xl">
+                <h3 className="mb-3 text-center text-xl font-extrabold text-impa-text">
                     ¿Cancelar tu cita?
                 </h3>
 
-                <p className="text-sm text-[#7a5c49] text-center leading-relaxed">
+                <p className="text-center text-sm leading-relaxed text-impa-muted">
                     Si cancelas tu cita podrás volver a agendar otra, siempre y cuando tu
                     solicitud siga activa.
                 </p>
 
-                <div className="flex justify-center gap-4 mt-8">
+                <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                     <Button
-                        className="bg-[#fff5f3] border border-[#e8c9b8] text-[#17cf17] hover:bg-[#ffe7e2] transition-all cursor-pointer"
+                        variant="outline"
                         onClick={onClose}
                     >
                         No, regresar
                     </Button>
 
                     <Button
-                        className="bg-[#17cf17] hover:bg-[#a64d2e] text-white transition-all cursor-pointer"
+                        variant="primary"
                         onClick={() => {
                             onConfirm();
                             onClose();

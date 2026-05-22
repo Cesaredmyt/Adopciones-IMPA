@@ -63,13 +63,13 @@ export default function MascotaPublicAdoptButton({
         top: 20px;
         right: 20px;
         background: white;
-        border: 1px solid #ccc;
+        border: 1px solid #dce5dc;
         padding: 14px 18px;
-        border-radius: 10px;
+        border-radius: 14px;
         font-size: 14px;
-        color: #333;
+        color: #111811;
         z-index: 99999;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 18px 40px rgba(17,24,17,0.12);
       ">
         ${mensaje}
       </div>`;
@@ -159,7 +159,9 @@ export default function MascotaPublicAdoptButton({
       <Button
         onClick={handleAdopt}
         disabled={loading}
-        className="bg-[#17cf17] hover:bg-[#d86f0f] text-white px-6 py-3 rounded-xl text-lg font-bold shadow"
+        variant="primary"
+        size="lg"
+        className="px-6"
       >
         {loading ? "Procesando..." : `Adoptar a ${mascota.nombre}`}
       </Button>

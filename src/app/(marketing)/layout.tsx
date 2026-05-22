@@ -13,9 +13,15 @@ export default function MarketingLayout({
     <div className="relative min-h-screen flex flex-col">
       {/* Ambient mesh global (verde IMPA) */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-impa-200/40 blur-3xl" />
-        <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-impa-100/55 blur-3xl" />
-        <div className="absolute -bottom-32 left-1/3 w-[700px] h-[400px] rounded-full bg-impa-100/40 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.58)_0%,rgba(246,248,246,0.98)_48%,rgba(255,255,255,0.74)_100%)]" />
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(15,131,15,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.55) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
       </div>
 
       <Navbar />
@@ -27,8 +33,7 @@ export default function MarketingLayout({
 
         {/* Ambient mesh */}
         <div aria-hidden className="pointer-events-none absolute inset-0 opacity-50">
-          <div className="absolute -top-20 -left-20 w-[420px] h-[420px] rounded-full bg-impa-100/60 blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 w-[380px] h-[380px] rounded-full bg-impa-50 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(236,253,236,0.72)_0%,rgba(255,255,255,0)_54%,rgba(243,247,243,0.9)_100%)]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-12 gap-10">
@@ -37,10 +42,11 @@ export default function MarketingLayout({
             <Link href="/" className="inline-flex items-center gap-2.5 group">
               <span className="grid place-items-center w-11 h-11 rounded-2xl bg-white border border-impa-line shadow-impa-xs transition-transform duration-200 ease-impa-out group-hover:scale-[1.04]">
                 <Image
-                  src="/impa-isotipo.svg"
+                  src="/ISOTIPO IMPA.png"
                   alt="IMPA"
                   width={28}
                   height={28}
+                  className="impa-logo-mark"
                 />
               </span>
               <span className="font-bold text-xl text-impa-text-strong tracking-tight">

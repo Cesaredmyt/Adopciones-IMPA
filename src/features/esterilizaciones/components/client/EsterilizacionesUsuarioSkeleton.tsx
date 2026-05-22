@@ -8,7 +8,7 @@ export default function EsterilizacionesUsuarioSkeleton() {
       {Array.from({ length: 4 }).map((_, i) => (
         <div
           key={i}
-          className="bg-white border border-slate-100 rounded-2xl p-4 space-y-3"
+          className="space-y-3 rounded-2xl border border-impa-line bg-white p-4 shadow-impa-sm"
         >
           <Skeleton className="h-6 w-24" />
           <Skeleton className="h-14 w-full" />

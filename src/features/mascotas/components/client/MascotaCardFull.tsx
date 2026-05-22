@@ -18,7 +18,7 @@ function getFotoSrc(m: Partial<Mascota>) {
     (m as any).image ||
     (m as any).img ||
     m.imagen_url ||
-    "/no-image.png"
+    "/ISOTIPO IMPA.png"
   );
 }
 
@@ -66,17 +66,17 @@ export default function MascotaCardFull({
       ? "bg-yellow-500 text-white"
       : m.estado === "adoptada"
       ? "bg-blue-500 text-white"
-      : "bg-gray-400 text-white";
+      : "bg-impa-muted text-white";
 
   const coloresFormatted =
     m.colores?.map((c) => capitalize(c)).join(", ") || null;
 
   // estilo de subtítulos de sección
   const tituloSuave = {
-    color: "#0f830f",
+    color: "var(--impa-700)",
     fontWeight: 700,
     fontSize: "0.78rem",
-    letterSpacing: "0.08em",
+    letterSpacing: 0,
     textTransform: "uppercase" as const,
     marginBottom: "8px",
     display: "inline-block",
@@ -138,7 +138,7 @@ export default function MascotaCardFull({
                 <h2 className="text-3xl font-bold">
                   {capitalize(m.nombre)}
                 </h2>
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-white/80">
                   {capitalize(m.raza?.nombre || "Mestizo")} •{" "}
                   {capitalize(m.raza?.especie || "Desconocido")}
                 </p>

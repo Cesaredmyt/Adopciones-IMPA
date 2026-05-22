@@ -45,35 +45,35 @@ export default function FormularioAgendarCita({
     const mascota = solicitudActiva.mascota;
 
     return (
-        <section className="rounded-2xl border border-[#dce5dc] bg-white p-5 sm:p-8 shadow-sm text-[#111811]">
+        <section className="rounded-2xl border border-impa-line bg-white p-5 text-impa-text shadow-impa-sm sm:p-8">
             <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 text-[#0f830f]">
-                    <PawPrint className="h-5 w-5 text-[#17cf17]" />
+                <h3 className="flex items-center gap-3 text-2xl font-extrabold text-impa-text sm:text-3xl">
+                    <PawPrint className="h-5 w-5 text-impa-600" />
                     Cita para {mascota?.nombre}
                 </h3>
 
                 <Button
                     variant="ghost"
                     onClick={() => setPaso("inicio")}
-                    className="text-[#17cf17] hover:bg-[#fff3ee] cursor-pointer"
+                    className="cursor-pointer text-impa-700 hover:bg-impa-50"
                 >
-                    ← Regresar
+                    Regresar
                 </Button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                 {/* Mascota */}
-                <div className="rounded-xl border border-[#f0e6dc] bg-[#fffaf4] p-5 flex flex-col items-center text-center shadow-sm">
+                <div className="flex flex-col items-center rounded-2xl border border-impa-line bg-impa-tinted p-5 text-center shadow-impa-xs">
                     <img
-                        src={mascota?.imagen_url || "/placeholder.jpg"}
+                        src={mascota?.imagen_url || "/ISOTIPO IMPA.png"}
                         alt={mascota?.nombre ?? "Mascota"}
-                        className="w-40 h-40 rounded-lg object-cover border border-[#dce5dc] mb-4 shadow-md"
+                        className="mb-4 h-40 w-40 rounded-xl border border-impa-line object-cover shadow-impa-sm"
                     />
-                    <h4 className="text-lg font-bold text-[#0f830f]">
+                    <h4 className="text-lg font-bold text-impa-text">
                         {mascota?.nombre}
                     </h4>
-                    <p className="text-sm text-[#7a5c49] mt-1">
-                        <MapPin className="inline h-4 w-4 text-[#17cf17]" /> IMPA Morelia
+                    <p className="mt-1 text-sm text-impa-muted">
+                        <MapPin className="inline h-4 w-4 text-impa-600" /> IMPA Morelia
                     </p>
                 </div>
 
@@ -164,12 +164,12 @@ export default function FormularioAgendarCita({
                                             }
                                             setHoraSeleccionada(hora);
                                         }}
-                                        className={`rounded-lg border px-3 py-2 text-sm font-semibold cursor-pointer
+                                        className={`cursor-pointer rounded-lg border px-3 py-2 text-sm font-semibold transition
                       ${deshabilitada
                                                 ? "opacity-40 cursor-not-allowed"
                                                 : horaSeleccionada === hora
-                                                    ? "bg-[#17cf17] text-white"
-                                                    : "bg-[#fffaf4] hover:bg-[#ffe8df]"
+                                                    ? "bg-impa-500 text-white shadow-impa-xs"
+                                                    : "border-impa-line bg-white text-impa-700 hover:border-impa-300 hover:bg-impa-50"
                                             }`}
                                     >
                                         {hora}
@@ -187,7 +187,8 @@ export default function FormularioAgendarCita({
                             confirmarCitaMutation.isPending
                         }
                         onClick={confirmarCita}
-                        className="w-full bg-[#17cf17] text-white cursor-pointer"
+                        variant="primary"
+                        className="w-full cursor-pointer"
                     >
                         <CalendarCheck className="h-5 w-5 mr-2" />
                         Confirmar cita

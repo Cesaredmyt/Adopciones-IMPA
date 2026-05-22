@@ -33,24 +33,24 @@ export default function CitaForm({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-lg mx-auto">
+    <div className="mx-auto max-w-lg overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-lg">
       {/* 🐾 Sección de información de la mascota */}
-      <div className="bg-gradient-to-r from-impa-50 to-impa-100 p-6 flex flex-col items-center text-center border-b">
+      <div className="flex flex-col items-center border-b border-impa-line bg-impa-tinted p-6 text-center">
         <img
           src={mascota.imagen_url}
           alt={mascota.mascota_nombre}
-          className="w-32 h-32 object-cover rounded-full shadow-md border border-impa-200 mb-3"
+          className="mb-3 h-32 w-32 rounded-full border border-impa-200 object-cover shadow-impa-sm"
         />
         <h2 className="text-2xl font-semibold text-impa-800">
           {mascota.mascota_nombre}
         </h2>
-        <p className="text-sm text-gray-600 mt-1">Agendar cita veterinaria</p>
+        <p className="mt-1 text-sm text-impa-muted">Agendar cita veterinaria</p>
       </div>
 
       {/* 📋 Sección del formulario */}
       <form onSubmit={handleSubmit} className="p-6 space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1 block text-sm font-semibold text-impa-text">
             Fecha tentativa
           </label>
           <input
@@ -58,12 +58,12 @@ export default function CitaForm({
             name="fecha_cita"
             value={form.fecha_cita}
             onChange={handleChange}
-            className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-impa-400 focus:outline-none transition"
+            className="h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1 block text-sm font-semibold text-impa-text">
             Motivo de la cita
           </label>
           <textarea
@@ -71,23 +71,23 @@ export default function CitaForm({
             value={form.motivo}
             onChange={handleChange}
             placeholder="Describe brevemente el motivo..."
-            className="w-full border rounded-lg p-2 h-24 resize-none focus:ring-2 focus:ring-impa-400 focus:outline-none transition"
+            className="h-24 w-full resize-none rounded-xl border border-impa-line bg-white p-3 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           />
         </div>
 
         {/* Barra inferior con botones */}
-        <div className="flex justify-end gap-3 border-t pt-4 bg-gray-50 rounded-b-2xl">
+        <div className="flex justify-end gap-3 rounded-b-2xl border-t border-impa-line bg-impa-tinted pt-4">
           <Button
             type="button"
             variant="outline"
             onClick={onClose}
-            className="hover:bg-gray-100"
+            className="hover:bg-impa-50"
           >
             Cancelar
           </Button>
           <Button
             type="submit"
-            className="bg-impa-600 hover:bg-impa-700 text-white shadow-sm"
+            variant="primary"
           >
             Agendar cita
           </Button>

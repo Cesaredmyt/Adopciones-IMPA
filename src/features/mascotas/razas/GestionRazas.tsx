@@ -37,7 +37,7 @@ export default function GestionRazas({
       case "grande":
         return "bg-rose-100 text-rose-700";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "bg-impa-bg-elevated text-impa-muted";
     }
   }
 
@@ -48,13 +48,13 @@ export default function GestionRazas({
         <FormRaza onCancel={onClose} />
 
         {/* LISTA DE RAZAS */}
-        <div className="bg-[#f6f8f6] border border-impa-200 rounded-lg p-3 max-h-80 overflow-y-auto">
+        <div className="max-h-80 overflow-y-auto rounded-2xl border border-impa-line bg-impa-tinted p-3">
           {isLoading ? (
-            <p className="text-center text-gray-500 py-4 text-sm">
+            <p className="py-4 text-center text-sm text-impa-muted">
               Cargando razas...
             </p>
           ) : razas.length === 0 ? (
-            <p className="text-center text-gray-500 py-4 text-sm">
+            <p className="py-4 text-center text-sm text-impa-muted">
               No hay razas registradas.
             </p>
           ) : (
@@ -62,10 +62,10 @@ export default function GestionRazas({
               {razas.map((r) => (
                 <div
                   key={r.id}
-                  className="flex justify-between items-center bg-white border rounded-lg p-3 shadow-sm hover:shadow-md transition"
+                  className="flex items-center justify-between rounded-xl border border-impa-line bg-white p-3 shadow-impa-xs transition hover:border-impa-200 hover:shadow-impa-sm"
                 >
                   <div>
-                    <p className="font-semibold text-[#4e3728]">{r.nombre}</p>
+                    <p className="font-semibold text-impa-text">{r.nombre}</p>
 
                     <div className="flex gap-2 mt-1">
                       <span className="px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-800">

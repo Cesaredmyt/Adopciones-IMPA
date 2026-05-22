@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@/hooks/useToast";
+import { ArrowUp } from "lucide-react";
 
 import PageHead from "@/components/layout/PageHead";
 import Filters from "@/features/mascotas/components/client/Filters";
@@ -180,15 +181,10 @@ export default function MascotasPage() {
       {/* Scroll top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="
-          fixed bottom-5 right-5 z-50
-          bg-[#17cf17] text-white p-3 rounded-full
-          shadow-lg hover:bg-[#a24f2d] hover:shadow-xl
-          transition-all duration-200
-        "
+        className="fixed bottom-5 right-5 z-50 grid h-11 w-11 place-items-center rounded-xl border border-impa-600/20 bg-impa-cta text-white shadow-impa-md transition-all duration-200 ease-impa-out hover:-translate-y-0.5 hover:shadow-impa-glow focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25"
         aria-label="Volver arriba"
       >
-        ↑
+        <ArrowUp className="h-4 w-4" />
       </button>
     </>
   );

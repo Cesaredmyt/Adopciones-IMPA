@@ -22,7 +22,7 @@ export default function SeguimientoPorMascotaPage() {
 
   if (isLoading)
     return (
-      <div className="text-center py-20 text-[#0f830f]">
+      <div className="text-center py-20 text-impa-700">
         Cargando seguimiento...
       </div>
     );
@@ -35,16 +35,16 @@ export default function SeguimientoPorMascotaPage() {
     );
 
   return (
-    <div className="max-w-5xl mx-auto px-4 pb-20">
+    <div className="mx-auto max-w-5xl px-4 pb-20">
 
       <button
         onClick={() => router.push("/dashboards/administrador/seguimiento")}
-        className="group flex items-center gap-2 text-[#0f830f] mb-4 font-medium cursor-pointer"
+        className="group mb-4 inline-flex cursor-pointer items-center gap-2 rounded-xl px-2 py-1.5 font-semibold text-impa-700 transition hover:bg-impa-50 hover:text-impa-800"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition" />
         <span className="relative">
           Volver a Seguimiento
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-[#0f830f] 
+          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-impa-600
                      group-hover:w-full transition-all"></span>
         </span>
       </button>
@@ -56,12 +56,12 @@ export default function SeguimientoPorMascotaPage() {
 
       <MascotaInfoCard mascota={mascota} onImageClick={setZoomImage} />
 
-      <h3 className="text-2xl font-bold text-[#0f830f] mb-4">
+      <h3 className="mb-4 text-2xl font-bold text-impa-text">
         Seguimientos registrados
       </h3>
 
       {seguimientos.length === 0 ? (
-        <p className="text-gray-600 text-center py-10">
+        <p className="rounded-2xl border border-dashed border-impa-line bg-impa-tinted px-5 py-10 text-center text-impa-muted">
           Aún no hay seguimientos registrados para esta mascota.
         </p>
       ) : (

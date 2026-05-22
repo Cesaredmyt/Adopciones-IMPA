@@ -12,12 +12,12 @@ export default function Button({
   ...rest
 }: Props) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex min-w-0 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ease-impa-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 disabled:opacity-55 disabled:cursor-not-allowed disabled:shadow-none cursor-pointer";
 
   const styles =
     variant === "ghost"
-      ? "bg-white text-impa-text border border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300"
-      : "bg-impa-500 text-white shadow-impa-sm hover:bg-impa-600 active:bg-impa-700";
+      ? "bg-white/95 text-impa-text border border-impa-line shadow-impa-xs hover:bg-impa-50 hover:border-impa-300 hover:shadow-impa-sm"
+      : "bg-impa-500 text-white border border-impa-600/20 shadow-impa-md hover:bg-impa-600 hover:shadow-impa-lg active:bg-impa-700";
 
   return <button type={type} className={cn(base, styles, className)} {...rest} />;
 }

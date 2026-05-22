@@ -121,10 +121,10 @@ export default function ProcesoAdopcionPage() {
   /* -------------------- Estados de carga / error -------------------- */
   if (isLoading || isLoadingDocs) {
     return (
-      <div className="animate-pulse mt-4 rounded-xl border border-[#eadacb] bg-[#fff9f3] p-5 shadow-sm">
-        <div className="h-4 w-32 bg-[#eadacb]/50 rounded mb-3" />
-        <div className="h-3 w-full bg-[#eadacb]/40 rounded mb-2" />
-        <div className="h-3 w-5/6 bg-[#eadacb]/40 rounded" />
+      <div className="animate-pulse mt-4 rounded-2xl border border-impa-line bg-white p-5 shadow-impa-sm">
+        <div className="h-4 w-32 bg-impa-surface-3 rounded mb-3" />
+        <div className="h-3 w-full bg-impa-surface-2 rounded mb-2" />
+        <div className="h-3 w-5/6 bg-impa-surface-2 rounded" />
       </div>
     );
   }

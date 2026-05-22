@@ -105,7 +105,7 @@ export default function MisCitasPage() {
 
   /* -------------------- States -------------------- */
   if (isLoading) {
-    return <p className="text-center py-10 text-[#7a5c49]">Cargando...</p>;
+    return <p className="text-center py-10 text-impa-muted">Cargando...</p>;
   }
 
   if (isError) {
@@ -161,7 +161,7 @@ export default function MisCitasPage() {
               />
             )
           ) : (
-            <p className="text-center text-[#7a5c49] py-10">
+            <p className="text-center text-impa-muted py-10">
               No tienes solicitudes activas ni citas pendientes.
             </p>
           )}

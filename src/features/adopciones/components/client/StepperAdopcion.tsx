@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Info } from "lucide-react";
+import { CheckCircle2, Info, LockKeyhole } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const PASOS_ADOPCION = [
@@ -67,12 +67,12 @@ export default function StepperAdopcion({
   return (
     <div className="relative mt-8">
       {/* Línea base */}
-      <div className="absolute top-1/2 left-0 right-0 h-[4px] bg-[#dce5dc] -translate-y-1/2 z-0 rounded-full" />
+      <div className="absolute left-0 right-0 top-1/2 z-0 h-[4px] -translate-y-1/2 rounded-full bg-impa-line" />
 
       {/* Línea de progreso */}
       <div
         className="
-          absolute top-1/2 left-0 h-[4px] bg-[#2563eb] -translate-y-1/2 z-0 rounded-full
+          absolute left-0 top-1/2 z-0 h-[4px] -translate-y-1/2 rounded-full bg-impa-500
           transition-all duration-700 ease-out
         "
         style={{ width: `${progress}%` }}
@@ -114,21 +114,21 @@ export default function StepperAdopcion({
               onMouseLeave={() => setHovered(null)}
               onClick={handleClick}
               className={`
-                relative rounded-2xl border p-4 shadow-sm text-center 
+                relative rounded-2xl border p-4 text-center shadow-impa-xs
                 transition-all duration-300
                 ${
                   completado
-                    ? "border-[#2563eb] bg-[#e0edff] text-[#1d3a8a]"
+                    ? "border-sky-200 bg-sky-50 text-sky-800"
                     : activo
-                    ? "border-[#17cf17] bg-[#ecfdec] text-[#111811] scale-[1.02]"
+                    ? "scale-[1.02] border-impa-500 bg-impa-50 text-impa-text shadow-impa-sm"
                     : bloqueado
-                    ? "border-[#e5d5c5] bg-[#f9f3ec] text-[#b5a090] opacity-80"
-                    : "border-[#dce5dc] bg-white text-[#7a5c49]"
+                    ? "border-impa-line bg-impa-bg-elevated text-impa-subtle opacity-85"
+                    : "border-impa-line bg-white text-impa-muted"
                 }
                 ${
                   bloqueado
                     ? "cursor-not-allowed"
-                    : "cursor-pointer hover:shadow-md hover:-translate-y-[1px]"
+                    : "cursor-pointer hover:-translate-y-[1px] hover:border-impa-300 hover:shadow-impa-sm"
                 }
               `}
             >
@@ -138,19 +138,19 @@ export default function StepperAdopcion({
                     grid h-9 w-9 place-items-center rounded-full border text-sm font-bold
                     ${
                       completado
-                        ? "border-[#2563eb] bg-[#2563eb] text-white"
+                        ? "border-sky-600 bg-sky-600 text-white"
                         : activo
-                        ? "border-[#17cf17] bg-white text-[#17cf17]"
+                        ? "border-impa-500 bg-white text-impa-600"
                         : bloqueado
-                        ? "border-[#e5d5c5] bg-[#f5ebe1] text-[#b5a090]"
-                        : "border-[#dce5dc] bg-white text-[#7a5c49]"
+                        ? "border-impa-line bg-white text-impa-subtle"
+                        : "border-impa-line bg-white text-impa-muted"
                     }
                   `}
                 >
                   {completado ? (
                     <CheckCircle2 className="h-5 w-5" />
                   ) : bloqueado && paso.id > activeStep ? (
-                    "🔒"
+                    <LockKeyhole className="h-4 w-4" />
                   ) : (
                     paso.id
                   )}
@@ -165,12 +165,12 @@ export default function StepperAdopcion({
                   mt-2 text-[11px] font-medium flex justify-center items-center gap-1
                   ${
                     completado
-                      ? "text-[#2563eb]"
+                      ? "text-sky-700"
                       : activo
-                      ? "text-[#17cf17]"
+                      ? "text-impa-700"
                       : bloqueado
-                      ? "text-[#c49b80]"
-                      : "text-[#a88b77]"
+                      ? "text-impa-subtle"
+                      : "text-impa-muted"
                   }
                 `}
               >
@@ -188,12 +188,12 @@ export default function StepperAdopcion({
                 <div
                   className="
                     absolute left-1/2 -translate-x-1/2 top-full mt-3 w-56
-                    rounded-xl border border-[#dce5dc] bg-white shadow-xl 
-                    p-4 text-xs text-[#7a5c49] leading-relaxed
+                    rounded-xl border border-impa-line bg-white shadow-impa-xl
+                    p-4 text-xs leading-relaxed text-impa-muted
                     animate-fade-in z-20
                   "
                 >
-                  <p className="font-extrabold text-[#111811] mb-1">
+                  <p className="mb-1 font-extrabold text-impa-text">
                     {paso.titulo}
                   </p>
                   <p>{paso.detalle}</p>

@@ -13,34 +13,34 @@ export function CitasVeterinariasPanelLateral({
 }) {
   return (
     <div className="flex flex-col gap-4 self-start">
-      <div className="bg-white rounded-xl shadow-md p-4">
-        <h2 className="text-lg font-semibold text-[#0f830f] mb-3">
+      <div className="rounded-2xl border border-impa-line bg-white p-4 shadow-impa-sm">
+        <h2 className="mb-3 text-lg font-semibold text-impa-text">
           Calendario de citas
         </h2>
         <CalendarioVeterinarias citas={citas} vistaCompacta />
       </div>
 
-      <div className="bg-white rounded-xl shadow-md p-4">
-        <h2 className="text-lg font-semibold text-[#0f830f] mb-3">
+      <div className="rounded-2xl border border-impa-line bg-white p-4 shadow-impa-sm">
+        <h2 className="mb-3 text-lg font-semibold text-impa-text">
           Próximas citas
         </h2>
 
         {proximas.length === 0 ? (
-          <p className="text-sm text-gray-500">No hay próximas citas.</p>
+          <p className="rounded-xl border border-dashed border-impa-line bg-impa-tinted px-4 py-5 text-center text-sm text-impa-muted">No hay próximas citas.</p>
         ) : (
-          <ul className="divide-y divide-[#a8f1a8]">
+          <ul className="divide-y divide-impa-line">
             {proximas.map((c) => (
-              <li key={c.id} className="py-3 flex justify-between">
+              <li key={c.id} className="flex justify-between gap-3 py-3">
                 <div>
-                  <p className="font-medium text-[#0f830f]">{c.mascota_nombre}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="font-semibold text-impa-text">{c.mascota_nombre}</p>
+                  <p className="text-sm text-impa-muted">
                     {format(new Date(c.fecha_cita), "EEEE d 'de' MMMM, h:mm a", {
                       locale: es,
                     })}
                   </p>
                 </div>
 
-                <span className="text-xs font-semibold text-[#0f830f]">
+                <span className="h-fit rounded-full border border-impa-200 bg-impa-50 px-2.5 py-1 text-xs font-semibold text-impa-700">
                   {c.estado}
                 </span>
               </li>

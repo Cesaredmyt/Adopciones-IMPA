@@ -31,9 +31,9 @@ export function ModalMotivo({
 
   return (
     <Modal open={open} onClose={onClose} title={title}>
-      <div className="space-y-4 text-[#3b2710]">
+      <div className="space-y-4 text-impa-text">
         <label className="block text-sm">
-          <span className="font-bold text-xs uppercase tracking-wider text-[#0f830f] mb-1 block">
+          <span className="mb-1 block text-xs font-bold uppercase text-impa-700">
             {label}
           </span>
           <textarea
@@ -41,7 +41,7 @@ export function ModalMotivo({
             value={motivo}
             onChange={(e) => setMotivo(e.target.value)}
             placeholder={placeholder}
-            className="w-full border border-slate-200 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
+            className="w-full rounded-xl border border-impa-line bg-white px-3.5 py-2.5 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           />
         </label>
 

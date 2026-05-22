@@ -133,7 +133,7 @@ export default function EsterilizacionesAdminPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar por folio, mascota o solicitante"
-              className="w-full pl-3 pr-3 py-2 text-sm border border-slate-200 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[#17cf17]/30"
+              className="h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition placeholder:text-impa-subtle hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
             />
           </div>
         }

@@ -31,17 +31,17 @@ export default function SeguimientoCard({
   const estadoTexto = estadoLabels[s.estado_mascota] ?? "No registrado";
   const estadoColor =
     estadoColors[s.estado_mascota] ??
-    "bg-gray-100 text-gray-600 border-gray-300";
+    "bg-impa-bg-elevated text-impa-muted border-impa-line";
 
   return (
-    <div className="bg-white border border-[#E5D1B8] rounded-2xl p-6 shadow-sm">
+    <div className="rounded-2xl border border-impa-line bg-white p-6 shadow-impa-sm">
       {/* ENCABEZADO */}
       <div className="flex justify-between items-center mb-4">
         <div>
-          <p className="text-[#0f830f] font-semibold text-lg">
+          <p className="text-lg font-semibold text-impa-text">
             Seguimiento #{index + 1}
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-impa-muted">
             Programado para:{" "}
             <b>{dayjs(s.fecha_seguimiento).format("DD/MM/YYYY")}</b>
           </p>
@@ -54,7 +54,7 @@ export default function SeguimientoCard({
 
       {/* ESTADO */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#0f830f] mb-1">
+        <p className="mb-1 text-sm font-semibold text-impa-text">
           Estado de la mascota:
         </p>
 
@@ -69,10 +69,10 @@ export default function SeguimientoCard({
       {Array.isArray(s.problemas_reportados) &&
         s.problemas_reportados.length > 0 && (
           <div className="mb-4">
-            <p className="text-sm font-semibold text-[#0f830f] mb-1">
+            <p className="mb-1 text-sm font-semibold text-impa-text">
               Problemas reportados:
             </p>
-            <ul className="list-disc list-inside text-sm text-gray-700">
+            <ul className="list-inside list-disc text-sm text-impa-muted">
               {s.problemas_reportados.map((p: string, idx: number) => (
                 <li key={idx}>{p.replace(/^\w/, (c) => c.toUpperCase())}</li>
               ))}
@@ -82,10 +82,10 @@ export default function SeguimientoCard({
 
       {/* OBSERVACIONES */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#0f830f] mb-1">
+        <p className="mb-1 text-sm font-semibold text-impa-text">
           Observaciones del adoptante:
         </p>
-        <p className="text-sm text-gray-700">
+        <p className="text-sm text-impa-muted">
           {s.observaciones?.replace(/^\w/, (c: string) => c.toUpperCase())}
         </p>
       </div>
@@ -93,10 +93,10 @@ export default function SeguimientoCard({
       {/* RECOMENDACIONES */}
       {s.recomendaciones && (
         <div className="mb-4">
-          <p className="text-sm font-semibold text-[#0f830f] mb-1">
+          <p className="mb-1 text-sm font-semibold text-impa-text">
             Recomendaciones:
           </p>
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-impa-muted">
             {s.recomendaciones.replace(/^\w/, (c) => c.toUpperCase())}
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function SeguimientoCard({
 
       {/* SATISFACCION */}
       <div className="mb-4">
-        <p className="text-sm font-semibold text-[#0f830f] mb-2">
+        <p className="mb-2 text-sm font-semibold text-impa-text">
           Satisfacción del adoptante:
         </p>
 
@@ -115,8 +115,8 @@ export default function SeguimientoCard({
               size={24}
               className={
                 idx < (s.satisfaccion_adoptante ?? 0)
-                  ? "text-[#17cf17]"
-                  : "text-gray-300"
+                  ? "text-impa-600"
+                  : "text-impa-line"
               }
             />
           ))}
@@ -126,7 +126,7 @@ export default function SeguimientoCard({
       {/* FOTOS */}
       {Array.isArray(s.fotos_actuales) && s.fotos_actuales.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-[#0f830f] mb-2">
+          <p className="mb-2 text-sm font-semibold text-impa-text">
             Evidencias fotográficas:
           </p>
 
@@ -135,7 +135,7 @@ export default function SeguimientoCard({
               <img
                 key={j}
                 src={url}
-                className="w-full h-28 object-cover rounded-lg border cursor-pointer hover:opacity-90 transition"
+                className="h-28 w-full cursor-pointer rounded-lg border border-impa-line object-cover transition hover:opacity-90"
                 onClick={() => onImageClick?.(url)}
               />
             ))}

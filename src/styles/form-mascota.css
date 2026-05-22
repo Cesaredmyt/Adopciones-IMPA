@@ -32,7 +32,7 @@
   gap: 6px;
 }
 
-label {
+.form label {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.3px;
@@ -40,8 +40,8 @@ label {
   text-transform: uppercase;
 }
 
-input,
-textarea {
+.form input,
+.form textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--fm-line);
@@ -53,18 +53,20 @@ textarea {
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
-input:hover,
-textarea:hover {
+.form input:hover,
+.form textarea:hover {
   border-color: #74e574;
+  background: #edf8ed;
 }
 
-input:focus-visible,
-textarea:focus-visible {
+.form input:focus-visible,
+.form textarea:focus-visible {
   border-color: var(--fm-green);
   box-shadow: 0 0 0 4px var(--fm-sel-ring);
+  background: #fff;
 }
 
-textarea {
+.form textarea {
   resize: vertical;
 }
 
@@ -244,7 +246,7 @@ textarea {
   font-weight: 600;
 }
 .mselect-item[aria-selected="true"]::after {
-  content: "✓";
+  content: "\2713";
   font-size: 12px;
   color: var(--fm-green);
 }

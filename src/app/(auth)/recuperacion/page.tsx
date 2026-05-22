@@ -53,11 +53,11 @@ export default function RecuperarContrasena() {
         <div className="text-center mb-6">
           <Link href="/" className="inline-flex items-center gap-2">
             <Image
-              src="/impa-isotipo.svg"
+              src="/ISOTIPO IMPA.png"
               alt="IMPA"
               width={44}
               height={44}
-              className="rounded-xl shadow-impa-sm"
+              className="rounded-xl shadow-impa-sm impa-logo-mark"
             />
             <span className="font-bold text-2xl text-impa-text">IMPA</span>
           </Link>

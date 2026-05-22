@@ -26,13 +26,13 @@ export default function CertificadoModal({ open, onClose, mascota }) {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl w-full bg-white p-4 rounded-2xl">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-[#8b4513]">
+          <DialogTitle className="text-xl font-bold text-impa-text">
             Certificado de Adopción – {nombreMascota}
           </DialogTitle>
         </DialogHeader>
 
         {/* Vista previa del PDF */}
-        <div className="h-[500px] border rounded-lg overflow-hidden">
+        <div className="h-[500px] overflow-hidden rounded-xl border border-impa-line">
           <PDFViewer width="100%" height="100%">
             <CertificadoPDF
               adoptante={adoptante}
@@ -63,7 +63,7 @@ export default function CertificadoModal({ open, onClose, mascota }) {
             fileName={`Certificado-Adopcion-${nombreMascota}.pdf`}
           >
             {({ loading }) => (
-              <Button className="bg-impa-500 hover:bg-impa-600 text-white px-6 py-3 rounded-xl">
+              <Button variant="primary" className="px-6 py-3">
                 {loading ? "Generando PDF..." : "Descargar Certificado PDF"}
               </Button>
             )}

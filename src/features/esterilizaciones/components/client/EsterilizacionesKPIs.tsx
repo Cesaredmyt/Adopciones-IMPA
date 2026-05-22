@@ -12,16 +12,16 @@ export function EsterilizacionesKPIs({
 }) {
   return (
     <div className="flex flex-wrap gap-2">
-      <span className="px-2 py-1 text-sm rounded-md border bg-yellow-50 text-yellow-700">
+      <span className="rounded-xl border border-amber-200 bg-amber-50 px-2.5 py-1 text-sm font-semibold text-amber-700">
         Pendientes: {totales.pendientes}
       </span>
-      <span className="px-2 py-1 text-sm rounded-md border bg-blue-50 text-blue-700">
+      <span className="rounded-xl border border-sky-200 bg-sky-50 px-2.5 py-1 text-sm font-semibold text-sky-700">
         Programadas: {totales.programadas}
       </span>
-      <span className="px-2 py-1 text-sm rounded-md border bg-green-50 text-green-700">
+      <span className="rounded-xl border border-impa-200 bg-impa-50 px-2.5 py-1 text-sm font-semibold text-impa-700">
         Completadas: {totales.completadas}
       </span>
-      <span className="px-2 py-1 text-sm rounded-md border bg-slate-50 text-slate-700">
+      <span className="rounded-xl border border-impa-line bg-impa-bg-elevated px-2.5 py-1 text-sm font-semibold text-impa-muted">
         Canceladas: {totales.canceladas}
       </span>
     </div>

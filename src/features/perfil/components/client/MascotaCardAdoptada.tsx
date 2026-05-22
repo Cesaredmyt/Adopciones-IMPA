@@ -19,10 +19,10 @@ export function MascotaCardAdoptada({
   mascota: MascotaAdoptadaMin;
 }) {
   return (
-    <Card className="overflow-hidden bg-[#fffaf3] border border-[#e2cbb3] rounded-2xl shadow-sm hover:shadow-md transition-all">
+    <Card className="overflow-hidden rounded-2xl border-impa-line bg-white shadow-impa-sm transition-all hover:border-impa-200 hover:shadow-impa-md">
       <div className="relative w-full h-48">
         <img
-          src={mascota.imagen_url || "/placeholder.jpg"}
+          src={mascota.imagen_url || "/ISOTIPO IMPA.png"}
           alt={mascota.nombre}
           className="w-full h-full object-cover"
         />
@@ -38,8 +38,8 @@ export function MascotaCardAdoptada({
         )}
       </div>
 
-      <div className="p-4 text-[#5b3e26]">
-        <h3 className="text-lg font-semibold text-[#8b4513]">
+      <div className="p-4 text-impa-muted">
+        <h3 className="text-lg font-semibold text-impa-text">
           {mascota.nombre}
         </h3>
 
@@ -51,7 +51,7 @@ export function MascotaCardAdoptada({
         )}
 
         {mascota.personalidad && (
-          <p className="text-sm italic mt-2 text-[#7a5c49]">
+          <p className="mt-2 text-sm italic text-impa-muted">
             {mascota.personalidad}
           </p>
         )}

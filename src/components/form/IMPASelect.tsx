@@ -54,15 +54,15 @@ export function IMPASelect({
         disabled={disabled}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "w-full h-11 px-3.5 flex items-center justify-between rounded-xl border bg-white text-sm shadow-impa-xs transition-all",
+          "w-full h-11 px-3.5 flex items-center justify-between rounded-xl border bg-white text-sm shadow-impa-xs transition-[box-shadow,border-color,background-color] duration-200 ease-impa-out",
           open
             ? "border-impa-500 ring-4 ring-impa-500/15"
-            : "border-impa-line hover:border-impa-300",
+            : "border-impa-line hover:border-impa-300 hover:bg-impa-tinted",
           "focus:outline-none focus-visible:border-impa-500 focus-visible:ring-4 focus-visible:ring-impa-500/15",
-          "disabled:opacity-50 disabled:bg-impa-50/40 disabled:cursor-not-allowed"
+          "disabled:opacity-60 disabled:bg-impa-surface-2 disabled:cursor-not-allowed"
         )}
       >
-        <span className={cn("truncate text-left", selected ? "text-impa-text" : "text-[#638863]")}>
+        <span className={cn("truncate text-left", selected ? "text-impa-text" : "text-impa-subtle")}>
           {selected?.label || placeholder}
         </span>
         <ChevronDown

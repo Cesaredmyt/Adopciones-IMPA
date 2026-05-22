@@ -58,12 +58,7 @@ export default function LoginPage() {
       <aside className="hidden lg:flex flex-col justify-between p-12 relative overflow-hidden bg-gradient-to-br from-impa-700 via-impa-600 to-impa-500 text-white">
         {/* Decorative mesh */}
         <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-10 -left-10 w-80 h-80 rounded-full bg-impa-300 blur-3xl animate-floating" />
-          <div className="absolute bottom-10 right-0 w-[28rem] h-[28rem] rounded-full bg-impa-800 blur-3xl" />
-          <div
-            className="absolute top-1/2 left-1/2 w-72 h-72 rounded-full bg-impa-200 blur-3xl"
-            style={{ transform: "translate(-50%, -50%)" }}
-          />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_48%,rgba(7,18,10,0.22)_100%)]" />
         </div>
 
         {/* Grid pattern overlay */}
@@ -79,10 +74,11 @@ export default function LoginPage() {
         <Link href="/" className="relative z-10 inline-flex items-center gap-2.5 w-fit group">
           <span className="grid place-items-center w-11 h-11 rounded-2xl bg-white/95 shadow-impa-md transition-transform duration-300 group-hover:scale-105">
             <Image
-              src="/impa-isotipo.svg"
+              src="/ISOTIPO IMPA.png"
               alt="IMPA"
               width={28}
               height={28}
+              className="impa-logo-mark"
               priority
             />
           </span>
@@ -133,10 +129,11 @@ export default function LoginPage() {
             <Link href="/" className="flex items-center gap-2.5">
               <span className="grid place-items-center w-12 h-12 rounded-2xl bg-white border border-impa-line shadow-impa-sm">
                 <Image
-                  src="/impa-isotipo.svg"
+                  src="/ISOTIPO IMPA.png"
                   alt="IMPA"
                   width={30}
                   height={30}
+                  className="impa-logo-mark"
                 />
               </span>
               <span className="font-bold text-2xl text-impa-text tracking-tight">IMPA</span>

@@ -19,22 +19,22 @@ export default function ConfirmCancelSolicitudModal({
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
-      className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-sm flex items-center justify-center px-4"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-impa-text/45 px-4 backdrop-blur-sm"
     >
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-xl border border-[#dce5dc]">
-        <h3 className="text-xl font-extrabold text-[#0f830f] text-center mb-3">
+      <div className="w-full max-w-md rounded-2xl border border-impa-line bg-white p-8 shadow-impa-xl">
+        <h3 className="mb-3 text-center text-xl font-extrabold text-impa-text">
           ¿Cancelar tu solicitud?
         </h3>
 
-        <p className="text-sm text-[#7a5c49] text-center leading-relaxed">
+        <p className="text-center text-sm leading-relaxed text-impa-muted">
           Si cancelas tu solicitud, la mascota se liberará y quedará disponible
           nuevamente para adopción.
         </p>
 
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Button
             onClick={onClose}
-            className="bg-[#fff5f3] border border-[#e8c9b8] text-[#17cf17] hover:bg-[#ffe7e2] transition-all cursor-pointer"
+            variant="outline"
           >
             No, regresar
           </Button>
@@ -44,7 +44,7 @@ export default function ConfirmCancelSolicitudModal({
               onConfirm();
               onClose();
             }}
-            className="bg-[#17cf17] hover:bg-[#a64d2e] text-white transition-all cursor-pointer"
+            variant="primary"
           >
             Sí, cancelar solicitud
           </Button>

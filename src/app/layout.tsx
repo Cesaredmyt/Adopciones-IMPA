@@ -1,14 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
 import Providers from "./providers";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -20,10 +13,10 @@ export const metadata: Metadata = {
   applicationName: "IMPA",
   icons: {
     icon: [
-      { url: "/impa-favicon.svg", type: "image/svg+xml" },
+      { url: "/FAVICON IMPA.png", type: "image/png" },
       { url: "/favicon.ico" },
     ],
-    apple: "/impa-favicon.svg",
+    apple: "/FAVICON IMPA.png",
   },
   openGraph: {
     title: "IMPA · Adopta y cambia una vida",
@@ -47,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es">
       <body
         suppressHydrationWarning
         className="min-h-screen text-[var(--impa-text)] font-sans antialiased"

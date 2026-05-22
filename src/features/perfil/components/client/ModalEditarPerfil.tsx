@@ -38,7 +38,7 @@ export default function ModalEditarPerfil({
             name="ocupacion"
             value={formPerfil.ocupacion}
             onChange={onChange}
-            className="mt-1 w-full border rounded-md py-2 px-3"
+            className="mt-1 h-11 w-full rounded-xl border border-impa-line bg-white px-3.5 text-sm text-impa-text shadow-impa-xs transition hover:border-impa-300 hover:bg-impa-50/35 focus:border-impa-500 focus:outline-none focus:ring-4 focus:ring-impa-500/15"
           >
             <option value="" disabled>
               Selecciona una ocupación
@@ -71,7 +71,7 @@ export default function ModalEditarPerfil({
           <Button
             onClick={onSave}
             disabled={!!errors.telefono}
-            className="bg-[#8b4513]"
+            variant="primary"
           >
             Guardar cambios
           </Button>
