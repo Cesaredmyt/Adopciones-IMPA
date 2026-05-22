@@ -17,6 +17,8 @@ import {
   Dog,
   Stethoscope,
   CalendarCheck,
+  Megaphone,
+  ShieldAlert,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -170,6 +172,27 @@ export default function UserHeader() {
             ]}
           />
 
+          <Dropdown
+            label="Comunidad"
+            icon={Megaphone}
+            open={openDropdown === "comunidad"}
+            onToggle={() =>
+              setOpenDropdown(openDropdown === "comunidad" ? null : "comunidad")
+            }
+            items={[
+              {
+                href: "/dashboards/usuario/platicas",
+                label: "Pláticas de concientización",
+                icon: Megaphone,
+              },
+              {
+                href: "/reportar-maltrato",
+                label: "Reportar maltrato animal",
+                icon: ShieldAlert,
+              },
+            ]}
+          />
+
           <li className="pl-2 ml-1 border-l border-impa-line">
             <Dropdown
               label={userName}
@@ -247,6 +270,25 @@ export default function UserHeader() {
                   href: "/dashboards/usuario/esterilizaciones",
                   label: "Esterilizaciones",
                   icon: Stethoscope,
+                },
+              ]}
+              router={router}
+              setOpenMobile={setOpenMobile}
+            />
+
+            <MobileDropdown
+              label="Comunidad"
+              icon={Megaphone}
+              items={[
+                {
+                  href: "/dashboards/usuario/platicas",
+                  label: "Pláticas de concientización",
+                  icon: Megaphone,
+                },
+                {
+                  href: "/reportar-maltrato",
+                  label: "Reportar maltrato animal",
+                  icon: ShieldAlert,
                 },
               ]}
               router={router}

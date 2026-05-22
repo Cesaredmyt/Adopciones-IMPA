@@ -23,6 +23,8 @@ import {
   ChevronsRight,
   Sparkles,
   HelpCircle,
+  Megaphone,
+  ShieldAlert,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +58,8 @@ const sections: NavSection[] = [
       { href: "/dashboards/administrador/gestion_citas", label: "Citas de adopción", icon: CalendarDays },
       { href: "/dashboards/administrador/citas-veterinarias", label: "Citas veterinarias", icon: CalendarHeart },
       { href: "/dashboards/administrador/esterilizaciones", label: "Esterilizaciones", icon: Stethoscope },
+      { href: "/dashboards/administrador/platicas", label: "Pláticas", icon: Megaphone },
+      { href: "/dashboards/administrador/reportes-maltrato", label: "Reportes de maltrato", icon: ShieldAlert },
     ],
   },
 ];
