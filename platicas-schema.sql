@@ -11,8 +11,9 @@ begin;
 
 -- ---------------------------------------------------------------------
 -- 1. Limpieza previa (idempotente)
+--    DROP TABLE ... CASCADE elimina automáticamente los triggers
+--    asociados, así que no necesitamos drop trigger explícitos.
 -- ---------------------------------------------------------------------
-drop trigger if exists platicas_set_updated_at on platicas_concientizacion;
 drop table if exists platicas_concientizacion cascade;
 drop type if exists estado_platica;
 drop type if exists tipo_lugar_platica;

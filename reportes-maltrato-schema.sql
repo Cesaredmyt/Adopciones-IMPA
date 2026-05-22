@@ -8,9 +8,9 @@ begin;
 
 -- ---------------------------------------------------------------------
 -- 1. Limpieza previa (idempotente)
+--    DROP TABLE ... CASCADE elimina automáticamente los triggers
+--    asociados, así que no necesitamos drop trigger explícitos.
 -- ---------------------------------------------------------------------
-drop trigger if exists reportes_set_updated_at on reportes_maltrato;
-drop trigger if exists reportes_bitacora_estado on reportes_maltrato;
 drop table if exists reportes_maltrato_bitacora cascade;
 drop table if exists reportes_maltrato cascade;
 drop type if exists estado_reporte_maltrato;
