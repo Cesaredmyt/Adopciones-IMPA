@@ -11,6 +11,7 @@ import {
   MapPin,
   Phone,
   Heart,
+  Sparkles,
 } from "lucide-react";
 
 const PILLARS = [
@@ -74,20 +75,22 @@ export default function SobreNosotros() {
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-1.5 rounded-full bg-impa-50 border border-impa-100 px-3 py-1 text-xs font-semibold text-impa-700"
+              className="inline-flex items-center gap-2 rounded-full bg-white border border-impa-200 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-impa-700 shadow-impa-xs"
             >
-              <Heart size={12} className="fill-impa-500 text-impa-500" />
-              Sobre IMPA
+              <Sparkles size={11} />
+              Plataforma oficial IMPA · Morelia
             </motion.span>
 
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-impa-text leading-[1.05]"
+              className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-impa-text-strong leading-[1.05]"
             >
               Trabajamos por una Michoacán <br className="hidden sm:block" />
-              <span className="text-impa-600">más empática.</span>
+              <span className="bg-gradient-to-r from-impa-600 to-impa-500 bg-clip-text text-transparent">
+                más empática.
+              </span>
             </motion.h1>
 
             <motion.p

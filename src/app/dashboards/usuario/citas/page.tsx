@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { CalendarHeart, Sparkles, AlertCircle } from "lucide-react";
 
 import PageHead from "@/components/layout/PageHead";
+import { EmptyState } from "@/components/ui/EmptyState";
+import PanelEstado from "@/features/adopciones/components/client/PanelEstado";
 import ConfirmCancelModal from "@/features/adopciones/components/client/ConfirmCancelModal";
 import ConfirmCancelSolicitudModal from "@/features/adopciones/components/client/ConfirmCancelSolicitudModal";
 
@@ -63,9 +66,7 @@ export default function MisCitasPage() {
 
   const { data: horasOcupadas = [] } = useHorasOcupadasQuery(fecha);
 
-  const diasRestantes = useDiasRestantesSolicitud(
-    solicitudActiva?.created_at
-  );
+  const diasRestantes = useDiasRestantesSolicitud(solicitudActiva?.created_at);
 
   /* -------------------- Handlers -------------------- */
   async function confirmarCita() {
@@ -105,23 +106,50 @@ export default function MisCitasPage() {
 
   /* -------------------- States -------------------- */
   if (isLoading) {
-    return <p className="text-center py-10 text-impa-muted">Cargando...</p>;
+    return (
+      <div className="space-y-6">
+        <div className="h-9 w-44 bg-impa-surface-3 rounded-xl impa-shimmer" />
+        <div className="h-12 w-80 bg-impa-surface-3 rounded-xl impa-shimmer" />
+        <div className="rounded-2xl border border-impa-line bg-white p-6 shadow-impa-sm space-y-3">
+          <div className="h-4 w-44 bg-impa-surface-3 rounded impa-shimmer" />
+          <div className="h-3 w-full bg-impa-surface-2 rounded impa-shimmer" />
+          <div className="h-3 w-5/6 bg-impa-surface-2 rounded impa-shimmer" />
+        </div>
+      </div>
+    );
   }
 
   if (isError) {
     return (
-      <p className="text-center py-10 text-red-600">
-        Error al cargar tus citas.
-      </p>
+      <PanelEstado
+        tone="danger"
+        icon={<AlertCircle className="h-6 w-6" />}
+        title="No pudimos cargar tus citas"
+        desc="Intenta recargar la página. Si el problema persiste, contacta al equipo IMPA."
+      />
     );
   }
 
+  const subtitle =
+    citaProgramada
+      ? "Tienes una cita programada. Revisa los detalles abajo o reprograma si lo necesitas."
+      : solicitudActiva
+      ? "Tu solicitud está activa. Continúa con tu proceso de adopción."
+      : "Consulta o agenda tu cita para conocer a tu futura mascota.";
+
   /* -------------------- Render -------------------- */
   return (
-    <div className="space-y-8">
+    <div className="space-y-7">
       <PageHead
-        title="Mis citas de adopción"
-        subtitle="Consulta o agenda tu cita para conocer a tu futura mascota 🐾"
+        icon={<CalendarHeart size={22} />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Citas de adopción
+          </>
+        }
+        title="Mis citas"
+        subtitle={subtitle}
       />
 
       {/* PASO 1 */}
@@ -161,9 +189,11 @@ export default function MisCitasPage() {
               />
             )
           ) : (
-            <p className="text-center text-impa-muted py-10">
-              No tienes solicitudes activas ni citas pendientes.
-            </p>
+            <EmptyState
+              icon={<CalendarHeart size={28} />}
+              title="No tienes citas ni solicitudes activas"
+              description="Cuando elijas una mascota e inicies tu proceso de adopción, podrás agendar tu cita desde aquí."
+            />
           )}
         </>
       )}
@@ -189,10 +219,7 @@ export default function MisCitasPage() {
 
       {/* PASO 3 */}
       {paso === "confirmacion" && citaProgramada && (
-        <ConfirmacionCita
-          cita={citaProgramada}
-          onFinalizar={handleFinalizar}
-        />
+        <ConfirmacionCita cita={citaProgramada} onFinalizar={handleFinalizar} />
       )}
 
       {/* Modales */}

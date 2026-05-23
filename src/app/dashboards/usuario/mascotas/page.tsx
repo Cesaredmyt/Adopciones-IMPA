@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@/hooks/useToast";
 import { ArrowUp } from "lucide-react";
 
+
+import { PawPrint, Sparkles } from "lucide-react";
 import PageHead from "@/components/layout/PageHead";
 import Filters from "@/features/mascotas/components/client/Filters";
 import MascotasFeed from "@/features/mascotas/components/client/MascotasFeed";
@@ -128,8 +130,15 @@ export default function MascotasPage() {
   return (
     <>
       <PageHead
-        title="Mascotas"
-        subtitle="Encuentra a tu nuevo mejor amigo 🐾"
+        icon={<PawPrint size={22} />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Catálogo de adopción IMPA
+          </>
+        }
+        title="Encuentra a tu nuevo mejor amigo"
+        subtitle="Explora mascotas rescatadas y conoce su historia. Cada una espera por su hogar para siempre."
       />
 
       {/* Filtros */}

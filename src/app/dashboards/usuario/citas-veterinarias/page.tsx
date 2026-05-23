@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { Stethoscope, Sparkles } from "lucide-react";
+
+import PageHead from "@/components/layout/PageHead";
 import Pagination from "@/components/ui/Pagination";
 
 import { useUsuarioAuth } from "@/features/usuarios/hooks/useUsuarioAuth";
@@ -58,12 +61,11 @@ export default function CitasVeterinariasPage() {
 
   const citas = data?.pages.flatMap((p) => p.items) ?? [];
 
-  const totalCitas =
-    data?.pages?.[0]?.total ?? citas.length;
+  const totalCitas = data?.pages?.[0]?.total ?? citas.length;
 
   const bloqueado = citas.some((c) => c.estado === "pendiente");
 
-  const prioridad = {
+  const prioridad: Record<string, number> = {
     pendiente: 1,
     aprobada: 2,
     cancelada: 3,
@@ -74,16 +76,13 @@ export default function CitasVeterinariasPage() {
     const pb = prioridad[b.estado] ?? 99;
     if (pa !== pb) return pa - pb;
     return (
-      new Date(a.fecha_cita).getTime() -
-      new Date(b.fecha_cita).getTime()
+      new Date(a.fecha_cita).getTime() - new Date(b.fecha_cita).getTime()
     );
   });
 
   const pagesLoaded = data?.pages.length ?? 1;
 
-  const totalPages = hasNextPage
-    ? pagesLoaded + 1
-    : pagesLoaded;
+  const totalPages = hasNextPage ? pagesLoaded + 1 : pagesLoaded;
 
   const paginatedCitas = citasOrdenadas.slice(
     (uiPage - 1) * ITEMS_PER_PAGE,
@@ -96,18 +95,13 @@ export default function CitasVeterinariasPage() {
       return;
     }
 
-    if (
-      nextPage > pagesLoaded &&
-      hasNextPage &&
-      !isFetchingNextPage
-    ) {
+    if (nextPage > pagesLoaded && hasNextPage && !isFetchingNextPage) {
       await fetchNextPage();
     }
 
     setUiPage(nextPage);
   };
 
-  // 🔹 Ocultar mensaje después de 5 segundos
   useEffect(() => {
     if (!mensaje) return;
     const t = setTimeout(() => setMensaje(null), 5000);
@@ -142,90 +136,117 @@ export default function CitasVeterinariasPage() {
     mascotas.find((m) => m.adopcion_id === adopcion_id)?.mascota_nombre ||
     "Desconocida";
 
+  const esExito = mensaje?.startsWith("✅");
+
   return (
-    <div className="max-w-6xl mx-auto bg-white rounded-3xl p-5 sm:p-8">
-      <CitasVeterinariasUsuarioHeader
-        modo={modo}
-        setModo={setModo}
-        bloqueado={bloqueado}
-        setMensaje={setMensaje}
+    <div className="space-y-6">
+      <PageHead
+        icon={<Stethoscope size={22} />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Salud de tu mascota
+          </>
+        }
+        title="Citas veterinarias"
+        subtitle="Agenda y administra las citas veterinarias de tus mascotas adoptadas."
       />
 
-      {mensaje && (
-        <div
-          className={`mt-4 text-center text-sm p-3 rounded-lg ${
-            mensaje.startsWith("✅")
-              ? "bg-green-50 text-green-700 border border-green-200"
-              : "bg-yellow-50 text-yellow-800 border border-yellow-200"
-          }`}
-        >
-          {mensaje}
-        </div>
-      )}
+      <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-white shadow-impa-sm p-5 sm:p-8">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
 
-      {loadingCitas ? (
-        <CitasVeterinariasUsuarioSkeleton />
-      ) : modo === "lista" ? (
-        <>
-          <CitasVeterinariasUsuarioLista
-            citas={paginatedCitas}
-            filtro={filtro}
-            setFiltro={setFiltro}
-            obtenerMascota={obtenerMascota}
-          />
-
-          {totalCitas > ITEMS_PER_PAGE && (
-            <Pagination
-              page={uiPage}
-              totalPages={totalPages}
-              onChange={handlePageChange}
-              itemsPerPage={ITEMS_PER_PAGE}
-              totalItems={totalCitas}
-              itemsLabel="citas"
-            />
-          )}
-        </>
-      ) : (
-        <CitasVeterinariasUsuarioAgendar
-          mascotas={mascotas}
-          mascotaSeleccionada={mascotaSeleccionada}
-          setMascotaSeleccionada={setMascotaSeleccionada}
-          fechaSeleccionada={fechaSeleccionada}
-          setFechaSeleccionada={setFechaSeleccionada}
-          horaSeleccionada={horaSeleccionada}
-          setHoraSeleccionada={setHoraSeleccionada}
-          motivo={motivo}
-          setMotivo={setMotivo}
-          horasDisponibles={horasDisponibles}
-          celdas={celdas}
-          cambiarMes={cambiarMes}
-          hoy={hoy}
-          mesActual={mesActual}
-          anioActual={anioActual}
-          nombreMes={nombreMes}
-          onConfirmar={() => {
-            if (
-              !mascotaSeleccionada ||
-              !fechaSeleccionada ||
-              !horaSeleccionada
-            ) {
-              setMensaje("Completa todos los campos antes de confirmar la cita.");
-              return;
-            }
-
-            const fechaLocal = crearFechaLocal(
-              fechaSeleccionada,
-              horaSeleccionada
-            );
-
-            crearCita.mutate({
-              adopcion_id: mascotaSeleccionada.adopcion_id,
-              fecha_cita: fechaLocal.toISOString(),
-              motivo,
-            });
-          }}
+        <CitasVeterinariasUsuarioHeader
+          modo={modo}
+          setModo={setModo}
+          bloqueado={bloqueado}
+          setMensaje={setMensaje}
         />
-      )}
+
+        {mensaje && (
+          <div
+            className={
+              "mt-4 inline-flex items-center gap-2 text-sm p-3 rounded-xl border " +
+              (esExito
+                ? "bg-impa-success-soft text-impa-success-ink border-emerald-200"
+                : "bg-impa-warning-soft text-impa-warning-ink border-amber-200")
+            }
+          >
+            <span
+              className={
+                "impa-dot " +
+                (esExito ? "bg-impa-success" : "bg-impa-warning")
+              }
+            />
+            {mensaje}
+          </div>
+        )}
+
+        {loadingCitas ? (
+          <CitasVeterinariasUsuarioSkeleton />
+        ) : modo === "lista" ? (
+          <>
+            <CitasVeterinariasUsuarioLista
+              citas={paginatedCitas}
+              filtro={filtro}
+              setFiltro={setFiltro}
+              obtenerMascota={obtenerMascota}
+            />
+
+            {totalCitas > ITEMS_PER_PAGE && (
+              <Pagination
+                page={uiPage}
+                totalPages={totalPages}
+                onChange={handlePageChange}
+                itemsPerPage={ITEMS_PER_PAGE}
+                totalItems={totalCitas}
+                itemsLabel="citas"
+              />
+            )}
+          </>
+        ) : (
+          <CitasVeterinariasUsuarioAgendar
+            mascotas={mascotas}
+            mascotaSeleccionada={mascotaSeleccionada}
+            setMascotaSeleccionada={setMascotaSeleccionada}
+            fechaSeleccionada={fechaSeleccionada}
+            setFechaSeleccionada={setFechaSeleccionada}
+            horaSeleccionada={horaSeleccionada}
+            setHoraSeleccionada={setHoraSeleccionada}
+            motivo={motivo}
+            setMotivo={setMotivo}
+            horasDisponibles={horasDisponibles}
+            celdas={celdas}
+            cambiarMes={cambiarMes}
+            hoy={hoy}
+            mesActual={mesActual}
+            anioActual={anioActual}
+            nombreMes={nombreMes}
+            onConfirmar={() => {
+              if (
+                !mascotaSeleccionada ||
+                !fechaSeleccionada ||
+                !horaSeleccionada
+              ) {
+                setMensaje(
+                  "Completa todos los campos antes de confirmar la cita."
+                );
+                return;
+              }
+
+              const fechaLocal = crearFechaLocal(
+                fechaSeleccionada,
+                horaSeleccionada
+              );
+
+              crearCita.mutate({
+                adopcion_id: mascotaSeleccionada.adopcion_id,
+                fecha_cita: fechaLocal.toISOString(),
+                motivo,
+              });
+            }}
+          />
+        )}
+      </section>
     </div>
   );
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Pagination from "@/components/ui/Pagination";
+import { Scissors, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+
+import PageHead from "@/components/layout/PageHead";
+import Pagination from "@/components/ui/Pagination";
 
 import { useUsuarioAuth } from "@/features/usuarios/hooks/useUsuarioAuth";
 import {
@@ -80,7 +83,6 @@ export default function EsterilizacionesUsuarioPage() {
   const [cancelarItem, setCancelarItem] =
     React.useState<EsterilizacionUsuarioRow | null>(null);
 
-  /* ===== Mensaje temporal ===== */
   useEffect(() => {
     if (!mensaje) return;
     toast.warning(mensaje);
@@ -88,58 +90,74 @@ export default function EsterilizacionesUsuarioPage() {
   }, [mensaje, setMensaje]);
 
   return (
-    <div className="max-w-6xl mx-auto bg-white rounded-3xl p-5 sm:p-8">
-      <EsterilizacionesUsuarioHeader
-        modo={modo}
-        setModo={setModo}
-        bloqueado={bloqueado}
-        setMensaje={setMensaje}
+    <div className="space-y-6">
+      <PageHead
+        icon={<Scissors size={22} />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Servicio gratuito IMPA
+          </>
+        }
+        title="Esterilizaciones"
+        subtitle="Solicita la esterilización gratuita de tus mascotas adoptadas y consulta el estado de tus trámites."
       />
 
-      {isLoading ? (
-        <EsterilizacionesUsuarioSkeleton />
-      ) : modo === "lista" ? (
-        <>
-          <EsterilizacionesUsuarioLista
-            items={paginated}
-            onCancelar={setCancelarItem}
-          />
+      <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-white shadow-impa-sm p-5 sm:p-8">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
 
-          {totalItems > ITEMS_PER_PAGE && (
-            <Pagination
-              page={uiPage}
-              totalPages={totalPages}
-              onChange={handlePageChange}
-              itemsPerPage={ITEMS_PER_PAGE}
-              totalItems={totalItems}
-              itemsLabel="solicitudes"
-            />
-          )}
-        </>
-      ) : (
-        <EsterilizacionesUsuarioSolicitar
-          mascotas={mascotas}
-          cargandoMascotas={cargandoMascotas}
-          enviando={crear.isPending}
-          onConfirmar={(input) => crear.mutate(input)}
+        <EsterilizacionesUsuarioHeader
+          modo={modo}
+          setModo={setModo}
+          bloqueado={bloqueado}
+          setMensaje={setMensaje}
         />
-      )}
 
-      <ModalMotivo
-        open={!!cancelarItem}
-        title={`Cancelar solicitud · ${cancelarItem?.folio ?? ""}`}
-        label="Motivo de cancelación *"
-        placeholder="Indica por qué deseas cancelar la solicitud..."
-        onClose={() => setCancelarItem(null)}
-        onConfirm={(motivo) => {
-          if (cancelarItem) {
-            cancelarMutation.mutate(
-              { id: cancelarItem.id, motivo_cancelacion: motivo },
-              { onSettled: () => setCancelarItem(null) }
-            );
-          }
-        }}
-      />
+        {isLoading ? (
+          <EsterilizacionesUsuarioSkeleton />
+        ) : modo === "lista" ? (
+          <>
+            <EsterilizacionesUsuarioLista
+              items={paginated}
+              onCancelar={setCancelarItem}
+            />
+
+            {totalItems > ITEMS_PER_PAGE && (
+              <Pagination
+                page={uiPage}
+                totalPages={totalPages}
+                onChange={handlePageChange}
+                itemsPerPage={ITEMS_PER_PAGE}
+                totalItems={totalItems}
+                itemsLabel="solicitudes"
+              />
+            )}
+          </>
+        ) : (
+          <EsterilizacionesUsuarioSolicitar
+            mascotas={mascotas}
+            cargandoMascotas={cargandoMascotas}
+            enviando={crear.isPending}
+            onConfirmar={(input) => crear.mutate(input)}
+          />
+        )}
+
+        <ModalMotivo
+          open={!!cancelarItem}
+          title={`Cancelar solicitud · ${cancelarItem?.folio ?? ""}`}
+          label="Motivo de cancelación *"
+          placeholder="Indica por qué deseas cancelar la solicitud..."
+          onClose={() => setCancelarItem(null)}
+          onConfirm={(motivo) => {
+            if (cancelarItem) {
+              cancelarMutation.mutate(
+                { id: cancelarItem.id, motivo_cancelacion: motivo },
+                { onSettled: () => setCancelarItem(null) }
+              );
+            }
+          }}
+        />
+      </section>
     </div>
   );
 }

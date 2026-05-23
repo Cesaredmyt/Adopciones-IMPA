@@ -213,7 +213,7 @@ export default function LandingPage() {
               />
             </motion.div>
 
-            {/* Floating chip 1 */}
+            {/* Floating chip 1 — accent amarillo cálido (Stitch signature) */}
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{
@@ -222,16 +222,16 @@ export default function LandingPage() {
                 ease: "easeInOut",
                 delay: 0.5,
               }}
-              className="absolute top-[40%] left-[8%] bg-white rounded-2xl border border-impa-line shadow-impa-xl p-3.5 flex items-center gap-3 max-w-[230px]"
+              className="absolute top-[40%] left-[8%] bg-impa-accent-soft rounded-2xl border border-impa-accent shadow-impa-xl p-3.5 flex items-center gap-3 max-w-[230px]"
             >
-              <div className="grid place-items-center w-11 h-11 rounded-xl bg-gradient-to-br from-impa-50 to-impa-100 border border-impa-200 text-impa-700 shrink-0">
+              <div className="grid place-items-center w-11 h-11 rounded-xl bg-gradient-to-br from-white to-impa-accent-soft border border-impa-accent text-impa-accent-strong shrink-0 shadow-impa-xs">
                 <PawPrint size={20} />
               </div>
               <div>
-                <p className="text-[11px] text-impa-muted font-bold uppercase tracking-wider">
+                <p className="text-[11px] text-impa-accent-ink/80 font-bold uppercase tracking-wider">
                   Adopción
                 </p>
-                <p className="text-sm font-bold text-impa-text-strong">
+                <p className="text-sm font-bold text-impa-accent-ink">
                   +24 esta semana
                 </p>
               </div>
