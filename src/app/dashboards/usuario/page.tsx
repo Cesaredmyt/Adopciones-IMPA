@@ -165,20 +165,21 @@ export default function DashboardUsuarioPage() {
             title="Explorar adoptables"
             desc="Descubre mascotas disponibles y conoce su historia."
             color="from-impa-50 to-impa-100/40"
+            badge="Más populares"
           />
           <QuickAction
-            href="/dashboards/usuario/citas"
-            icon={<CalendarCheck size={20} />}
-            title="Mis citas"
-            desc="Agenda visitas presenciales y revisa tu calendario."
-            color="from-emerald-50 to-emerald-100/40"
+            href="/dashboards/usuario/adopcion"
+            icon={<Heart size={20} className="fill-impa-500" />}
+            title="Mi proceso"
+            desc="Sube documentos y revisa el estado de tu adopción."
+            color="from-impa-tinted to-impa-50/40"
           />
           <QuickAction
             href="/dashboards/usuario/mis-mascotas"
             icon={<Stethoscope size={20} />}
             title="Mis mascotas"
             desc="Cuidados, esterilización y seguimiento veterinario."
-            color="from-sky-50 to-sky-100/40"
+            color="from-impa-accent-soft to-white"
           />
         </div>
       </section>
@@ -299,30 +300,42 @@ function QuickAction({
   title,
   desc,
   color,
+  badge,
 }: {
   href: string;
   icon: React.ReactNode;
   title: string;
   desc: string;
   color: string;
+  badge?: string;
 }) {
   return (
     <Link
       href={href}
       className="group relative overflow-hidden rounded-2xl border border-impa-line bg-white shadow-impa-sm transition-[transform,box-shadow,border-color] duration-300 ease-impa-out hover:-translate-y-1 hover:shadow-impa-lg hover:border-impa-line-strong cursor-pointer p-5"
     >
+      {/* Top hairline */}
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent z-10" />
+
       <div
         className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
       />
       <div className="relative">
-        <span className="grid place-items-center w-12 h-12 rounded-xl bg-impa-50 border border-impa-100 text-impa-600 transition-transform duration-300 group-hover:scale-110">
-          {icon}
-        </span>
-        <h3 className="mt-4 text-lg font-bold text-impa-text tracking-tight">
+        <div className="flex items-start justify-between gap-2">
+          <span className="grid place-items-center w-12 h-12 rounded-xl bg-impa-50 border border-impa-100 text-impa-600 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            {icon}
+          </span>
+          {badge && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-impa-cta text-white text-[10px] font-bold uppercase tracking-wider shadow-impa-sm">
+              {badge}
+            </span>
+          )}
+        </div>
+        <h3 className="mt-4 text-lg font-bold text-impa-text-strong tracking-tight">
           {title}
         </h3>
         <p className="mt-1 text-sm text-impa-muted">{desc}</p>
-        <span className="inline-flex items-center gap-1 mt-4 text-xs font-semibold text-impa-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+        <span className="inline-flex items-center gap-1 mt-4 text-xs font-bold text-impa-700 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
           Continuar
           <ArrowRight size={12} />
         </span>

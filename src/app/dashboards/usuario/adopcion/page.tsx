@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Heart, Sparkles, AlertCircle } from "lucide-react";
 
 import PageHead from "@/components/layout/PageHead";
 import { showSoftToast } from "@/lib/showSoftToast";
+import PanelEstado from "@/features/adopciones/components/client/PanelEstado";
 
 import ConfirmCancelSolicitudModal from "@/features/adopciones/components/client/ConfirmCancelSolicitudModal";
 import DocumentosSection from "@/features/adopciones/components/client/DocumentosSection";
@@ -18,7 +20,6 @@ import { useCancelarSolicitudAdopcionMutation } from "@/features/adopciones/hook
 import { mapCitaToCitaProgramadaUI } from "@/features/adopciones/mappers/mapCitaAdopcionToProgramadaUI";
 
 import { useQueryClient } from "@tanstack/react-query";
-
 
 export default function ProcesoAdopcionPage() {
   const queryClient = useQueryClient();
@@ -35,12 +36,7 @@ export default function ProcesoAdopcionPage() {
   });
 
   /* -------------------- Queries -------------------- */
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-  } = useProcesoAdopcionQuery();
+  const { data, isLoading, isError, error } = useProcesoAdopcionQuery();
 
   const {
     data: documentosData,
@@ -66,10 +62,7 @@ export default function ProcesoAdopcionPage() {
 
   /* -------------------- Handlers -------------------- */
   const handlePickDocumento = (id: string, file?: File) => {
-    setArchivos((prev) => ({
-      ...prev,
-      [id]: file,
-    }));
+    setArchivos((prev) => ({ ...prev, [id]: file }));
   };
 
   const enviar = async () => {
@@ -94,7 +87,6 @@ export default function ProcesoAdopcionPage() {
     showSoftToast("Documentos enviados correctamente");
   };
 
-
   const handleConfirmCancelar = async () => {
     if (!solicitudActiva?.id) return;
 
@@ -109,54 +101,75 @@ export default function ProcesoAdopcionPage() {
     setShowCancelSolicitudModal(false);
   };
 
-
   const deshabilitarEnviar =
     subirDocumentoMutation.isPending ||
     (estado === "sin_documentos"
       ? !Object.values(archivos).every(Boolean)
       : docs
-        .filter((d) => d.estado === "rechazado")
-        .some((d) => !archivos[d.tipo]));
+          .filter((d) => d.estado === "rechazado")
+          .some((d) => !archivos[d.tipo]));
 
   /* -------------------- Estados de carga / error -------------------- */
   if (isLoading || isLoadingDocs) {
     return (
-      <div className="animate-pulse mt-4 rounded-2xl border border-impa-line bg-white p-5 shadow-impa-sm">
-        <div className="h-4 w-32 bg-impa-surface-3 rounded mb-3" />
-        <div className="h-3 w-full bg-impa-surface-2 rounded mb-2" />
-        <div className="h-3 w-5/6 bg-impa-surface-2 rounded" />
+      <div className="space-y-4">
+        <div className="h-10 w-72 bg-impa-surface-3 rounded-xl impa-shimmer" />
+        <div className="rounded-2xl border border-impa-line bg-white p-6 shadow-impa-sm space-y-3">
+          <div className="h-4 w-44 bg-impa-surface-3 rounded impa-shimmer" />
+          <div className="h-3 w-full bg-impa-surface-2 rounded impa-shimmer" />
+          <div className="h-3 w-5/6 bg-impa-surface-2 rounded impa-shimmer" />
+          <div className="h-24 w-full bg-impa-surface-2 rounded-xl impa-shimmer mt-2" />
+        </div>
       </div>
     );
   }
 
   if (isDocsError) {
     return (
-      <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-red-800">
-        Error al cargar documentos
-      </div>
+      <PanelEstado
+        tone="danger"
+        icon={<AlertCircle className="h-6 w-6" />}
+        title="Error al cargar documentos"
+        desc="Intenta recargar la página. Si el problema persiste, contacta a un coordinador IMPA."
+      />
     );
   }
 
   if (isError) {
     return (
-      <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-red-800">
-        <p className="font-bold">Error al cargar tu proceso de adopción</p>
-        <p className="text-sm mt-1">{error.message}</p>
-      </div>
+      <PanelEstado
+        tone="danger"
+        icon={<AlertCircle className="h-6 w-6" />}
+        title="Error al cargar tu proceso de adopción"
+        desc={error.message}
+      />
     );
   }
+
+  /* -------------------- Subtitle dinámico -------------------- */
+  const subtitle =
+    estado === "aprobado"
+      ? "¡Listo! Tus documentos están validados. Continúa con tu proceso seleccionando una mascota."
+      : estado === "en_revision"
+      ? "Tus documentos están siendo revisados por el equipo IMPA."
+      : estado === "rechazado"
+      ? "Algunos documentos requieren corrección. Revísalos y vuelve a enviarlos."
+      : "Sube tus documentos para que un administrador IMPA los valide antes de continuar.";
 
   /* -------------------- Render -------------------- */
   return (
     <>
-      <div className="space-y-8">
+      <div className="space-y-7">
         <PageHead
-          title="Proceso de adopción"
-          subtitle={
-            estado === "aprobado"
-              ? "¡Listo! Ya puedes agendar tu cita para conocer a una mascota."
-              : "Sube tus documentos para que un administrador los valide antes de continuar."
+          icon={<Heart size={22} className="fill-impa-500" />}
+          eyebrow={
+            <>
+              <Sparkles size={12} />
+              Tu camino hacia la adopción
+            </>
           }
+          title="Proceso de adopción"
+          subtitle={subtitle}
         />
 
         <DocumentosSection

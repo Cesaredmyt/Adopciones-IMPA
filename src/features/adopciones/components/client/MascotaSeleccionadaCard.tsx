@@ -1,6 +1,9 @@
 "use client";
 
 import React from "react";
+import { Heart, ShieldCheck, X } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 
 function capitalize(str = "") {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -15,68 +18,66 @@ export default function MascotaSeleccionadaCard({
 }) {
   return (
     <div className="w-full text-center">
-      {/* Foto */}
+      {/* Foto destacada con halo verde */}
       <div className="flex justify-center mb-4">
-        <img
-          src={mascota?.imagen_url || "/ISOTIPO IMPA.png"}
-          alt={capitalize(mascota?.nombre)}
-          className="h-24 w-24 rounded-full border border-impa-line bg-impa-tinted object-cover shadow-impa-sm"
-        />
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-impa-cta blur-2xl opacity-20 scale-110" aria-hidden />
+          <img
+            src={mascota?.imagen_url || "/ISOTIPO IMPA.png"}
+            alt={capitalize(mascota?.nombre)}
+            className="relative h-28 w-28 rounded-full border-[3px] border-white bg-impa-tinted object-cover shadow-impa-md ring-1 ring-impa-200"
+          />
+          <span
+            className="absolute -bottom-1 -right-1 grid place-items-center w-7 h-7 rounded-full bg-impa-cta text-white shadow-impa-sm ring-2 ring-white"
+            aria-hidden
+          >
+            <Heart size={12} className="fill-white" />
+          </span>
+        </div>
       </div>
 
       {/* Nombre */}
-      <h3 className="text-xl font-extrabold text-impa-text">
+      <h3 className="text-xl font-bold text-impa-text-strong tracking-tight">
         {capitalize(mascota?.nombre)}
       </h3>
 
-      <p className="mb-3 mt-1 text-sm font-medium text-impa-700">
-        Mascota seleccionada para adopcion
+      <p className="mb-4 mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-impa-700">
+        <span className="impa-dot bg-impa-500" />
+        Mascota seleccionada para adopción
       </p>
 
       {/* Chips */}
-      <div className="flex justify-center flex-wrap gap-2 mb-5">
+      <div className="flex justify-center flex-wrap gap-1.5 mb-5">
         {mascota?.raza?.nombre && (
-          <span className="rounded-full border border-impa-200 bg-impa-50 px-3 py-1 text-xs font-semibold text-impa-700">
-            {capitalize(mascota.raza.nombre)}
-          </span>
+          <Badge variant="brand" size="sm">{capitalize(mascota.raza.nombre)}</Badge>
         )}
-
         {mascota?.tamano && (
-          <span className="rounded-full border border-impa-200 bg-white px-3 py-1 text-xs font-semibold text-impa-700">
-            {capitalize(mascota.tamano)}
-          </span>
+          <Badge variant="outline" size="sm">{capitalize(mascota.tamano)}</Badge>
         )}
-
         {mascota?.edad && (
-          <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
-            {mascota.edad} meses
-          </span>
+          <Badge variant="info" size="sm">{mascota.edad} meses</Badge>
         )}
       </div>
 
       {/* Info */}
-      <div className="mb-6 space-y-2 text-left text-[13px] text-impa-muted">
+      <div className="mb-5 space-y-1.5 text-left text-[13px] text-impa-muted">
         {mascota?.personalidad && (
           <p>
             <strong className="text-impa-text">Personalidad:</strong>{" "}
             {capitalize(mascota.personalidad)}
           </p>
         )}
-
         {mascota?.peso_kg && (
           <p>
-            <strong className="text-impa-text">Peso:</strong> {mascota.peso_kg}{" "}
-            kg
+            <strong className="text-impa-text">Peso:</strong> {mascota.peso_kg} kg
           </p>
         )}
-
         {mascota?.altura_cm && (
           <p>
             <strong className="text-impa-text">Altura:</strong>{" "}
             {mascota.altura_cm} cm
           </p>
         )}
-
         {mascota?.descripcion_fisica && (
           <p>
             <strong className="text-impa-text">Descripción:</strong>{" "}
@@ -85,35 +86,30 @@ export default function MascotaSeleccionadaCard({
         )}
       </div>
 
-      {/* ⭐ NUEVA SECCIÓN PARA LLENAR ESPACIO (elegante y útil) */}
-      <div className="mb-8 mt-6 rounded-2xl border border-impa-line bg-impa-tinted p-4 text-left shadow-impa-xs">
-        <p className="mb-2 text-sm font-extrabold text-impa-text">
-          Sobre esta mascota
+      {/* Garantía IMPA */}
+      <div className="mb-5 rounded-2xl border border-impa-line bg-impa-tinted/60 p-4 text-left">
+        <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-impa-700">
+          <ShieldCheck size={12} />
+          Garantía IMPA
         </p>
-
         <ul className="space-y-1 text-[12px] leading-relaxed text-impa-muted">
-          <li>- Ha sido evaluada y esta apta para convivir contigo.</li>
-          <li>- El equipo del IMPA verifico su salud y comportamiento.</li>
-          <li>- Lista para avanzar al siguiente paso de adopcion.</li>
+          <li>· Evaluada y apta para convivir contigo.</li>
+          <li>· Salud y comportamiento verificados.</li>
+          <li>· Lista para el siguiente paso de adopción.</li>
         </ul>
       </div>
 
-      {/* BOTÓN MEJORADO con animación */}
-      <button
+      {/* Botón cancelar */}
+      <Button
+        variant="outline"
+        size="md"
+        full
         onClick={onCancelar}
-        className="
-          w-full cursor-pointer rounded-xl border border-impa-600
-          bg-impa-500 px-5 py-3 text-sm font-semibold text-white
-          shadow-impa-sm
-          transition-all duration-200
-          hover:bg-impa-600
-          hover:shadow-impa-md
-          hover:-translate-y-[2px]
-          active:scale-95
-        "
+        className="cursor-pointer hover:border-red-300 hover:bg-impa-danger-soft hover:text-impa-danger-ink"
       >
+        <X size={14} />
         Cancelar solicitud
-      </button>
+      </Button>
     </div>
   );
 }

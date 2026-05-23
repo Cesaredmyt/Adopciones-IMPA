@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import { PawPrint, Heart, Sparkles } from "lucide-react";
 
 import PageHead from "@/components/layout/PageHead";
-import { Button } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import CertificadoModal from "@/components/certificados/CertificadoModal";
 
 import { useMisMascotasQuery } from "@/features/mascotas/hooks/useMisMascotasQuery";
 import MisMascotasCard from "@/features/mascotas/components/client/MisMascotasCard";
+import PanelEstado from "@/features/adopciones/components/client/PanelEstado";
 
 export default function MisMascotasPage() {
   const { data: mascotas, isLoading, error } = useMisMascotasQuery();
@@ -21,38 +22,81 @@ export default function MisMascotasPage() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center text-impa-muted">
-        <Loader2 className="mb-2 h-8 w-8 animate-spin text-impa-600" />
-        <p>Cargando tus mascotas...</p>
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <div className="h-9 w-44 bg-impa-surface-3 rounded-xl impa-shimmer" />
+          <div className="h-12 w-72 bg-impa-surface-3 rounded-xl impa-shimmer" />
+        </div>
+        <div className="rounded-2xl border border-impa-line bg-white p-6 shadow-impa-sm">
+          <div className="flex gap-4">
+            <div className="h-48 w-48 rounded-xl bg-impa-surface-3 impa-shimmer shrink-0" />
+            <div className="flex-1 space-y-2">
+              <div className="h-5 w-44 bg-impa-surface-3 rounded impa-shimmer" />
+              <div className="h-3 w-32 bg-impa-surface-2 rounded impa-shimmer" />
+              <div className="h-3 w-52 bg-impa-surface-2 rounded impa-shimmer" />
+              <div className="h-20 w-full bg-impa-surface-2 rounded-xl impa-shimmer mt-3" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (error) {
-    console.error("Error al cargar mascotas:", error);
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-red-600">
-        <p>Error al cargar tus mascotas</p>
-      </div>
+      <PanelEstado
+        tone="danger"
+        icon={<Heart className="h-6 w-6 fill-white" />}
+        title="No pudimos cargar tus mascotas"
+        desc="Intenta recargar la página. Si el problema persiste, contacta al equipo IMPA."
+      />
     );
   }
 
   if (!mascotas || mascotas.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-[70vh] text-center">
-        <p className="mb-4 text-lg text-impa-muted">Aún no has adoptado ninguna mascota.</p>
-        <Link href="/dashboards/usuario/adopcion">
-          <Button>Ir a adoptar</Button>
-        </Link>
+      <div className="space-y-6">
+        <PageHead
+          icon={<Heart size={22} className="fill-impa-500" />}
+          eyebrow={
+            <>
+              <Sparkles size={12} />
+              Tu familia IMPA
+            </>
+          }
+          title="Mis mascotas adoptadas"
+          subtitle="Aquí encontrarás todas las mascotas que has adoptado a través del IMPA."
+        />
+
+        <EmptyState
+          icon={<PawPrint size={28} />}
+          title="Aún no has adoptado ninguna mascota"
+          description="Cuando completes un proceso de adopción, tu nuevo compañero aparecerá aquí con toda su información y certificado oficial."
+          action={
+            <ButtonLink href="/dashboards/usuario/adopcion" variant="cta">
+              <Heart size={14} className="fill-white" />
+              Iniciar mi adopción
+            </ButtonLink>
+          }
+        />
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-12 px-6">
+    <div className="space-y-6">
       <PageHead
-        title="Mis Mascotas Adoptadas"
-        subtitle="Consulta el seguimiento y la información de las mascotas que has adoptado."
+        icon={<Heart size={22} className="fill-impa-500" />}
+        eyebrow={
+          <>
+            <Sparkles size={12} />
+            Tu familia IMPA
+          </>
+        }
+        title="Mis mascotas adoptadas"
+        subtitle={`${mascotas.length} ${
+          mascotas.length === 1 ? "compañero te acompaña" : "compañeros te acompañan"
+        } gracias al programa IMPA.`}
       />
 
       <div className="grid gap-6">
