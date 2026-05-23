@@ -109,11 +109,11 @@ export default function AdminDashboard() {
             <div className="mt-5 flex flex-wrap items-center gap-2">
               <Link
                 href="/dashboards/administrador/documentos"
-                className="inline-flex items-center gap-1.5 h-10 px-4 rounded-xl bg-white text-impa-700 font-semibold text-sm shadow-impa-md hover:shadow-impa-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ease-impa-out cursor-pointer"
+                className="group/cta inline-flex items-center gap-1.5 h-10 px-4 rounded-xl bg-white !text-impa-text-strong font-semibold text-sm shadow-impa-md hover:shadow-impa-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ease-impa-out cursor-pointer [&>svg]:text-impa-600"
               >
                 <FileCheck2 size={15} />
-                Validar documentos
-                <ArrowRight size={14} />
+                <span className="text-impa-text-strong">Validar documentos</span>
+                <ArrowRight size={14} className="transition-transform duration-200 group-hover/cta:translate-x-0.5" />
               </Link>
               <Link
                 href="/dashboards/administrador/gestion_citas"

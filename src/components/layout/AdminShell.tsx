@@ -18,15 +18,14 @@ import {
   ChevronDown,
   Stethoscope,
   PawPrint,
-  Search,
   ChevronsLeft,
   ChevronsRight,
   Sparkles,
-  HelpCircle,
   Megaphone,
   ShieldAlert,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import DashboardFooter from "@/components/layout/DashboardFooter";
 
 type NavItem = {
   href: string;
@@ -201,30 +200,6 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           </button>
         </div>
 
-        {/* Search */}
-        {!collapsed && (
-          <div className="px-3 pt-3">
-            <div className="relative">
-              <Search
-                size={14}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-impa-muted pointer-events-none"
-              />
-              <input
-                placeholder="Buscar…"
-                className={cn(
-                  "w-full h-9 pl-9 pr-12 rounded-lg border border-impa-line bg-impa-surface-2 text-[13px] text-impa-text",
-                  "transition-[background-color,border-color,box-shadow] duration-200 ease-impa-out",
-                  "placeholder:text-impa-subtle hover:border-impa-300 hover:bg-white",
-                  "focus-visible:outline-none focus-visible:border-impa-500 focus-visible:ring-4 focus-visible:ring-impa-500/15 focus-visible:bg-white"
-                )}
-              />
-              <kbd className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-mono font-semibold text-impa-muted bg-white border border-impa-line rounded px-1.5 py-0.5 shadow-impa-xs">
-                ⌘K
-              </kbd>
-            </div>
-          </div>
-        )}
-
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto custom-scroll px-3 py-3 space-y-5">
           {sections.map((section) => (
@@ -272,28 +247,6 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             </div>
           ))}
         </nav>
-
-        {/* Help card */}
-        {!collapsed && (
-          <div className="px-3 pb-3">
-            <div className="relative overflow-hidden rounded-xl border border-impa-line bg-gradient-to-br from-impa-50 via-white to-impa-50/40 p-3 shadow-impa-xs">
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0)_0%,rgba(211,249,211,0.38)_100%)] pointer-events-none" />
-              <div className="relative flex items-start gap-2.5">
-                <span className="grid place-items-center w-8 h-8 rounded-lg bg-white border border-impa-line text-impa-600 shadow-impa-xs shrink-0">
-                  <HelpCircle size={15} />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[12px] font-bold text-impa-text leading-tight">
-                    ¿Necesitas ayuda?
-                  </p>
-                  <p className="text-[11px] text-impa-muted mt-0.5 leading-tight">
-                    Consulta la guía de uso del panel.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Profile */}
         <div className="relative border-t border-impa-line p-2" ref={profileRef}>
@@ -505,6 +458,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 animate-fade-in">
           <div className="mx-auto max-w-[1400px]">{children}</div>
         </main>
+
+        <DashboardFooter />
       </div>
     </div>
   );

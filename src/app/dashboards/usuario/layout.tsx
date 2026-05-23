@@ -1,5 +1,6 @@
 import { requireRole, ROLES } from "@/lib/auth/requireRole";
 import UserHeader from "@/components/layout/HeaderUsr";
+import DashboardFooter from "@/components/layout/DashboardFooter";
 
 export default async function UserLayout({
   children,
@@ -12,7 +13,7 @@ export default async function UserLayout({
   });
 
   return (
-    <div className="min-h-screen bg-impa-bg relative">
+    <div className="min-h-screen bg-impa-bg relative flex flex-col">
       <UserHeader />
 
       {/* Decorative ambient mesh */}
@@ -28,9 +29,11 @@ export default async function UserLayout({
         />
       </div>
 
-      <main className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
+      <main className="relative flex-1 px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
         <div className="mx-auto max-w-[1400px]">{children}</div>
       </main>
+
+      <DashboardFooter />
     </div>
   );
 }
