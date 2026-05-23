@@ -2,6 +2,15 @@
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
+/**
+ * ModalPremium — modal sin header (full-bleed content), API simple `{ open, onClose, width, children }`.
+ * Pensado para flujos de términos, políticas y vistas de detalle.
+ *
+ * Para casos con header/title/footer/size estructurados, preferir el `Modal` unificado:
+ *   import Modal from "@/components/ui/Modal";
+ *
+ * Ambos comparten el mismo lenguaje visual (rounded-2xl, backdrop-blur, anim scale-in).
+ */
 export default function ModalPremium({
   open,
   onClose,

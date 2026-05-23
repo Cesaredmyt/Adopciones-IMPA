@@ -1,5 +1,36 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
+type EstadoFiltro = "todas" | "pendiente" | "aprobada" | "rechazada";
+
+type ChipPalette = {
+  /** Estado de reposo. */
+  rest: string;
+  /** Estado activo (seleccionado). */
+  active: string;
+  /** Color del dot (bg-*). */
+  dot: string;
+};
+
+const palette: Record<Exclude<EstadoFiltro, "todas">, ChipPalette> = {
+  pendiente: {
+    rest:   "bg-impa-warning-soft text-impa-warning-ink border-amber-200 hover:bg-amber-100",
+    active: "bg-amber-100 text-impa-warning-ink border-amber-300 shadow-impa-xs scale-[1.03]",
+    dot:    "bg-impa-warning",
+  },
+  aprobada: {
+    rest:   "bg-impa-success-soft text-impa-success-ink border-emerald-200 hover:bg-emerald-100",
+    active: "bg-emerald-100 text-impa-success-ink border-emerald-300 shadow-impa-xs scale-[1.03]",
+    dot:    "bg-impa-success",
+  },
+  rechazada: {
+    rest:   "bg-impa-danger-soft text-impa-danger-ink border-red-200 hover:bg-red-100",
+    active: "bg-red-100 text-impa-danger-ink border-red-300 shadow-impa-xs scale-[1.03]",
+    dot:    "bg-impa-danger",
+  },
+};
+
 AdopcionesKPIs.Skeleton = function KPIsSkeleton() {
   return (
     <div className="flex flex-wrap gap-2 pt-1">
@@ -25,56 +56,45 @@ export function AdopcionesKPIs({
     aprobadas: number;
     rechazadas: number;
   };
-  filtroEstado: "todas" | "pendiente" | "aprobada" | "rechazada";
-  onChange: (estado: "todas" | "pendiente" | "aprobada" | "rechazada") => void;
+  filtroEstado: EstadoFiltro;
+  onChange: (estado: EstadoFiltro) => void;
 }) {
+  const chips: Array<{
+    estado: Exclude<EstadoFiltro, "todas">;
+    label: string;
+    count: number;
+  }> = [
+    { estado: "pendiente", label: "Pendientes", count: totales.pendientes },
+    { estado: "aprobada",  label: "Aprobadas",  count: totales.aprobadas  },
+    { estado: "rechazada", label: "Rechazadas", count: totales.rechazadas },
+  ];
+
   return (
     <div className="flex flex-wrap gap-2 pt-1">
-      {/* Pendientes */}
-      <button
-        onClick={() => onChange("pendiente")}
-        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
-          ${filtroEstado === "pendiente"
-            ? "bg-amber-100 text-amber-800 border-amber-300 shadow-impa-xs scale-[1.03]"
-            : "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 hover:-translate-y-px"
-          }
-        `}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-        Pendientes: {totales.pendientes}
-      </button>
+      {chips.map((c) => {
+        const isActive = filtroEstado === c.estado;
+        const p = palette[c.estado];
+        return (
+          <button
+            key={c.estado}
+            type="button"
+            onClick={() => onChange(c.estado)}
+            aria-pressed={isActive}
+            className={cn(
+              "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold cursor-pointer",
+              "transition-all duration-200 ease-impa-out hover:-translate-y-px",
+              isActive ? p.active : p.rest
+            )}
+          >
+            <span className={cn("w-1.5 h-1.5 rounded-full", p.dot)} />
+            {c.label}: {c.count}
+          </button>
+        );
+      })}
 
-      {/* Aprobadas */}
-      <button
-        onClick={() => onChange("aprobada")}
-        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
-          ${filtroEstado === "aprobada"
-            ? "bg-emerald-100 text-emerald-800 border-emerald-300 shadow-impa-xs scale-[1.03]"
-            : "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100 hover:-translate-y-px"
-          }
-        `}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-        Aprobadas: {totales.aprobadas}
-      </button>
-
-      {/* Rechazadas */}
-      <button
-        onClick={() => onChange("rechazada")}
-        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 cursor-pointer
-          ${filtroEstado === "rechazada"
-            ? "bg-red-100 text-red-800 border-red-300 shadow-impa-xs scale-[1.03]"
-            : "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:-translate-y-px"
-          }
-        `}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-        Rechazadas: {totales.rechazadas}
-      </button>
-
-      {/* Mostrar todas */}
       {filtroEstado !== "todas" && (
         <button
+          type="button"
           onClick={() => onChange("todas")}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-impa-line text-xs font-semibold bg-white text-impa-muted hover:bg-impa-surface-2 hover:text-impa-text transition-colors duration-150 cursor-pointer"
         >

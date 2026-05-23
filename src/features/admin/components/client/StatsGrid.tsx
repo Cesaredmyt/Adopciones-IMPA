@@ -22,7 +22,7 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
                 label="Documentos pendientes"
                 value={stats.documentosPendientes}
                 icon={<ClipboardList className="h-5 w-5" />}
-                color="bg-amber-50 border-amber-200 text-amber-700"
+                tone="accent"
                 onClick={() => router.push("/dashboards/administrador/documentos")}
             />
 

@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import '../src/styles/globals.css'
 
 const preview: Preview = {
   parameters: {
@@ -8,11 +9,16 @@ const preview: Preview = {
        date: /Date$/i,
       },
     },
-
+    backgrounds: {
+      default: 'impa-bg',
+      values: [
+        { name: 'impa-bg', value: '#f6f8f6' },
+        { name: 'white', value: '#ffffff' },
+        { name: 'impa-cream', value: '#faf5ef' },
+        { name: 'impa-tinted', value: '#edf8ed' },
+      ],
+    },
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo'
     }
   },

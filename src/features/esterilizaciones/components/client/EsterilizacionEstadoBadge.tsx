@@ -1,23 +1,18 @@
 "use client";
 
-import {
-  labelEstadoEsterilizacion,
-  styleEstadoEsterilizacion,
-} from "@/features/esterilizaciones/utils/formatearEstadoEsterilizacion";
+import { StatusBadge } from "@/components/ui/StatusBadge";
+import { labelEstadoEsterilizacion } from "@/features/esterilizaciones/utils/formatearEstadoEsterilizacion";
 import type { EstadoEsterilizacion } from "@/features/esterilizaciones/types/esterilizacion";
 
+/**
+ * Badge de estado de esterilización. Thin wrapper sobre `<StatusBadge>` que
+ * preserva el API público existente (`<EsterilizacionEstadoBadge estado={...} />`)
+ * y reusa la paleta semántica IMPA centralizada.
+ */
 export function EsterilizacionEstadoBadge({
   estado,
 }: {
   estado: EstadoEsterilizacion;
 }) {
-  return (
-    <span
-      className={`px-2 py-1 rounded-md text-xs font-semibold border ${styleEstadoEsterilizacion(
-        estado
-      )}`}
-    >
-      {labelEstadoEsterilizacion(estado)}
-    </span>
-  );
+  return <StatusBadge estado={estado} label={labelEstadoEsterilizacion(estado)} />;
 }

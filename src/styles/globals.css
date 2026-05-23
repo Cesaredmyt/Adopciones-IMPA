@@ -32,6 +32,17 @@
   --color-impa-card:         #ffffff;
   --color-impa-tinted:       #edf8ed;
 
+  /* Warm / Cream — usado en vista pública (gallery, hero soft) */
+  --color-impa-cream:        #faf5ef;
+  --color-impa-cream-2:      #f5ede0;
+  --color-impa-cream-3:      #ebdcc4;
+
+  /* Accent cálido — stat callouts, chat bubbles, badges destacados */
+  --color-impa-accent:       #f5c842;
+  --color-impa-accent-soft:  #fef6dd;
+  --color-impa-accent-strong:#d99e1b;
+  --color-impa-accent-ink:   #6b4a05;
+
   /* Texto */
   --color-impa-text:         #0f160f;
   --color-impa-text-strong:  #07120a;
@@ -44,6 +55,20 @@
   --color-impa-line-strong:  #bfd0bf;
   --color-impa-line-faint:   #e7eee7;
 
+  /* Estados semánticos (utilidades Tailwind: bg-impa-success, text-impa-warning, etc.) */
+  --color-impa-success:        #16a34a;
+  --color-impa-success-soft:   #dcfce7;
+  --color-impa-success-ink:    #14532d;
+  --color-impa-warning:        #d97706;
+  --color-impa-warning-soft:   #fef3c7;
+  --color-impa-warning-ink:    #7c2d12;
+  --color-impa-danger:         #dc2626;
+  --color-impa-danger-soft:    #fee2e2;
+  --color-impa-danger-ink:     #7f1d1d;
+  --color-impa-info:           #0284c7;
+  --color-impa-info-soft:      #e0f2fe;
+  --color-impa-info-ink:       #0c4a6e;
+
   /* Sombras IMPA */
   --shadow-impa-xs:   0 1px 2px 0 rgb(10 24 14 / 0.04);
   --shadow-impa-sm:   0 1px 3px 0 rgb(10 24 14 / 0.06), 0 1px 2px -1px rgb(10 24 14 / 0.04);
@@ -51,14 +76,23 @@
   --shadow-impa-lg:   0 16px 32px -8px rgb(10 24 14 / 0.12), 0 6px 12px -4px rgb(10 24 14 / 0.06);
   --shadow-impa-xl:   0 28px 56px -12px rgb(10 24 14 / 0.18), 0 12px 20px -8px rgb(10 24 14 / 0.08);
   --shadow-impa-glow: 0 12px 32px -8px rgb(23 207 23 / 0.32);
+  --shadow-impa-accent-glow: 0 12px 32px -8px rgb(245 200 66 / 0.38);
 
   /* Easings IMPA */
   --ease-impa:     cubic-bezier(0.22, 1, 0.36, 1);
   --ease-impa-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-impa-in:  cubic-bezier(0.4, 0, 1, 1);
 
-  /* Imágenes de fondo (gradient CTA) */
-  --background-image-impa-cta: linear-gradient(135deg, #17cf17 0%, #11a611 100%);
+  /* Imágenes de fondo */
+  --background-image-impa-cta:
+    linear-gradient(135deg, #17cf17 0%, #11a611 100%);
+  --background-image-impa-accent-cta:
+    linear-gradient(135deg, #f5c842 0%, #d99e1b 100%);
+  --background-image-impa-mesh-warm:
+    radial-gradient(60% 70% at 12% 18%, rgba(245,200,66,0.16), transparent 60%),
+    radial-gradient(50% 60% at 92% 6%, rgba(23,207,23,0.10), transparent 60%),
+    radial-gradient(70% 80% at 80% 100%, rgba(245,237,224,0.55), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #faf5ef 100%);
 }
 
 /* ============================================================
@@ -87,6 +121,17 @@
   --impa-card:         #ffffff;
   --impa-muted-bg:     #eef4ee;
   --impa-tinted-bg:    #edf8ed;
+
+  /* Warm surfaces (vista pública: gallery, hero) */
+  --impa-cream:        #faf5ef;
+  --impa-cream-2:      #f5ede0;
+  --impa-cream-3:      #ebdcc4;
+
+  /* Accent cálido (stat callouts, chat bubbles, badges destacados) */
+  --impa-accent:       #f5c842;
+  --impa-accent-soft:  #fef6dd;
+  --impa-accent-strong:#d99e1b;
+  --impa-accent-ink:   #6b4a05;
 
   /* Text */
   --impa-text:         #0f160f;
@@ -345,6 +390,44 @@ button:disabled,
     radial-gradient(50% 60% at 92% 6%, rgba(63,210,63,0.12), transparent 60%),
     radial-gradient(70% 80% at 80% 100%, rgba(168,241,168,0.18), transparent 60%),
     linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%);
+}
+
+/* Warm public background (Adoptions Gallery, hero soft) */
+.impa-page-bg-warm {
+  background:
+    radial-gradient(900px 400px at 10% -10%, rgba(245,200,66,0.10), transparent 60%),
+    radial-gradient(700px 300px at 95% 10%, rgba(23,207,23,0.06), transparent 60%),
+    var(--impa-cream);
+}
+
+.impa-hero-mesh-warm {
+  background:
+    radial-gradient(60% 70% at 12% 18%, rgba(245,200,66,0.16), transparent 60%),
+    radial-gradient(50% 60% at 92% 6%, rgba(23,207,23,0.10), transparent 60%),
+    radial-gradient(70% 80% at 80% 100%, rgba(245,237,224,0.55), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--impa-cream) 100%);
+}
+
+/* Warm card variant (Adoptions Gallery cards over cream bg) */
+.impa-card-warm {
+  background: #ffffff;
+  border: 1px solid var(--impa-cream-3);
+  border-radius: var(--impa-radius-md);
+  box-shadow: var(--impa-shadow-sm);
+}
+
+/* Accent CTA pill (yellow callouts) */
+.impa-accent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--impa-accent-soft);
+  color: var(--impa-accent-ink);
+  border: 1px solid var(--impa-accent);
 }
 
 .impa-divider {

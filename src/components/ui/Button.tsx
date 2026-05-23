@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   [
-    "inline-flex min-w-0 items-center justify-center gap-2 rounded-xl font-semibold",
+    "inline-flex min-w-0 items-center justify-center gap-2 font-semibold",
     "transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-impa-out",
     "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/25",
     "disabled:opacity-55 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0",
@@ -20,6 +20,8 @@ const buttonVariants = cva(
           "border border-impa-600/20 bg-impa-500 text-white shadow-impa-md hover:bg-impa-600 hover:shadow-impa-lg active:bg-impa-700",
         cta:
           "border border-impa-600/20 bg-impa-cta text-white shadow-impa-md hover:shadow-impa-glow hover:-translate-y-[1px] active:translate-y-0",
+        accent:
+          "border border-impa-accent-strong/30 bg-impa-accent-cta text-impa-accent-ink shadow-impa-md hover:shadow-impa-accent-glow hover:-translate-y-[1px] active:translate-y-0",
         secondary:
           "bg-impa-50 text-impa-800 border border-impa-200 shadow-impa-xs hover:bg-impa-100 hover:border-impa-300 hover:shadow-impa-sm active:bg-impa-200",
         outline:
@@ -29,9 +31,9 @@ const buttonVariants = cva(
         soft:
           "bg-impa-surface-2 text-impa-text border border-impa-line/70 shadow-impa-xs hover:bg-impa-surface-3 hover:border-impa-line-strong hover:shadow-impa-sm",
         danger:
-          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
+          "bg-impa-danger text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         destructive:
-          "bg-red-600 text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
+          "bg-impa-danger text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         success:
           "bg-impa-600 text-white shadow-impa-sm hover:bg-impa-700 hover:shadow-impa-md active:bg-impa-800",
         link:
@@ -46,11 +48,16 @@ const buttonVariants = cva(
         icon: "h-10 w-10 p-0",
         'icon-sm': "h-8 w-8 p-0",
       },
+      shape: {
+        default: "rounded-xl",
+        pill: "rounded-full",
+      },
       full: { true: "w-full", false: "" },
     },
     defaultVariants: {
       variant: "primary",
       size: "md",
+      shape: "default",
       full: false,
     },
   }
@@ -63,11 +70,11 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, full, type = "button", ...props }, ref) => (
+  ({ className, variant, size, shape, full, type = "button", ...props }, ref) => (
     <button
       ref={ref}
       type={type}
-      className={cn(buttonVariants({ variant, size, full, className }))}
+      className={cn(buttonVariants({ variant, size, shape, full, className }))}
       {...props}
     />
   )
@@ -82,13 +89,14 @@ export function ButtonLink({
   className,
   variant,
   size,
+  shape,
   full,
   ...props
 }: ButtonLinkProps) {
   return (
     <Link
       href={href}
-      className={cn(buttonVariants({ variant, size, full, className }))}
+      className={cn(buttonVariants({ variant, size, shape, full, className }))}
       {...props}
     />
   );

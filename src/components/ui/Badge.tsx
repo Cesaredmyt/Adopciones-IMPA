@@ -15,16 +15,18 @@ const badgeVariants = cva(
           "bg-impa-cta text-white border-impa-600 shadow-impa-xs",
         outline:
           "bg-white text-impa-text border-impa-line shadow-impa-xs",
+        accent:
+          "bg-impa-accent-soft text-impa-accent-ink border-impa-accent",
         success:
-          "bg-emerald-50 text-emerald-700 border-emerald-200",
+          "bg-impa-success-soft text-impa-success-ink border-emerald-200",
         warning:
-          "bg-amber-50 text-amber-700 border-amber-200",
+          "bg-impa-warning-soft text-impa-warning-ink border-amber-200",
         danger:
-          "bg-red-50 text-red-700 border-red-200",
+          "bg-impa-danger-soft text-impa-danger-ink border-red-200",
         info:
-          "bg-sky-50 text-sky-700 border-sky-200",
+          "bg-impa-info-soft text-impa-info-ink border-sky-200",
         neutral:
-          "bg-impa-bg-elevated text-impa-muted border-impa-line",
+          "bg-impa-bg-elev text-impa-muted border-impa-line",
         female:
           "bg-pink-50 text-pink-700 border-pink-200",
         male:
@@ -49,10 +51,11 @@ const dotColorByVariant: Record<string, string> = {
   brand: "bg-impa-500",
   solid: "bg-white",
   outline: "bg-impa-quiet",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  danger: "bg-red-500",
-  info: "bg-sky-500",
+  accent: "bg-impa-accent",
+  success: "bg-impa-success",
+  warning: "bg-impa-warning",
+  danger: "bg-impa-danger",
+  info: "bg-impa-info",
   neutral: "bg-impa-muted",
   female: "bg-pink-500",
   male: "bg-blue-500",

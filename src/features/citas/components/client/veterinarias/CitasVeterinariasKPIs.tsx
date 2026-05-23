@@ -1,21 +1,56 @@
 "use client";
 
-export function CitasVeterinariasKPIs({
-  totales,
-}: {
-  totales: { pendientes: number; aprobadas: number; canceladas: number };
-}) {
+import { cn } from "@/lib/utils";
+
+type Totales = {
+  pendientes: number;
+  aprobadas: number;
+  canceladas: number;
+};
+
+type Chip = {
+  key: keyof Totales;
+  label: string;
+  classes: string;
+  dot: string;
+};
+
+const CHIPS: Chip[] = [
+  {
+    key: "pendientes",
+    label: "Pendientes",
+    classes: "bg-impa-warning-soft text-impa-warning-ink border-amber-200",
+    dot: "bg-impa-warning",
+  },
+  {
+    key: "aprobadas",
+    label: "Aprobadas",
+    classes: "bg-impa-success-soft text-impa-success-ink border-emerald-200",
+    dot: "bg-impa-success",
+  },
+  {
+    key: "canceladas",
+    label: "Canceladas",
+    classes: "bg-impa-danger-soft text-impa-danger-ink border-red-200",
+    dot: "bg-impa-danger",
+  },
+];
+
+export function CitasVeterinariasKPIs({ totales }: { totales: Totales }) {
   return (
     <div className="flex flex-wrap gap-2">
-      <span className="px-2 py-1 text-sm rounded-md border bg-yellow-50 text-yellow-700">
-        Pendientes: {totales.pendientes}
-      </span>
-      <span className="px-2 py-1 text-sm rounded-md border bg-green-50 text-green-700">
-        Aprobadas: {totales.aprobadas}
-      </span>
-      <span className="px-2 py-1 text-sm rounded-md border bg-red-50 text-red-700">
-        Canceladas: {totales.canceladas}
-      </span>
+      {CHIPS.map((c) => (
+        <span
+          key={c.key}
+          className={cn(
+            "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold",
+            c.classes
+          )}
+        >
+          <span className={cn("w-1.5 h-1.5 rounded-full", c.dot)} />
+          {c.label}: {totales[c.key]}
+        </span>
+      ))}
     </div>
   );
 }

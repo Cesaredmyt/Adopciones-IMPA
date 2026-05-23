@@ -1,31 +1,62 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+type CardTone = "default" | "warm" | "tinted" | "accent";
+
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   /** Eleva la card con superficies y sombra más marcada */
   elevated?: boolean;
   /** Aplica un hover-lift sutil */
   interactive?: boolean;
+  /**
+   * Tono de superficie:
+   * - "default": fondo blanco con borde verde sutil (admin, dashboards)
+   * - "warm":    fondo blanco con borde cream (Adoptions Gallery sobre cream bg)
+   * - "tinted":  fondo verde muy suave (cards destacadas en flujos)
+   * - "accent":  fondo amarillo cálido (stat callouts, highlights)
+   */
+  tone?: CardTone;
+};
+
+const toneStyles: Record<CardTone, { base: string; topLine: string }> = {
+  default: {
+    base: "border-impa-line bg-white/95",
+    topLine: "bg-gradient-to-r from-transparent via-impa-200/70 to-transparent",
+  },
+  warm: {
+    base: "border-impa-cream-3 bg-white",
+    topLine: "bg-gradient-to-r from-transparent via-impa-accent/40 to-transparent",
+  },
+  tinted: {
+    base: "border-impa-200 bg-gradient-to-br from-white to-impa-50/40",
+    topLine: "bg-gradient-to-r from-transparent via-impa-300/60 to-transparent",
+  },
+  accent: {
+    base: "border-impa-accent bg-impa-accent-soft text-impa-accent-ink",
+    topLine: "bg-gradient-to-r from-transparent via-impa-accent-strong/40 to-transparent",
+  },
 };
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, elevated, interactive, children, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "group/card relative rounded-2xl border border-impa-line text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color,background-color] duration-200 ease-impa-out overflow-hidden",
-        elevated
-          ? "bg-gradient-to-b from-white via-white to-impa-surface-2/70 shadow-impa-md"
-          : "bg-white/95",
-        interactive && "cursor-pointer hover:-translate-y-0.5 hover:shadow-impa-lg hover:border-impa-line-strong",
-        className
-      )}
-      {...props}
-    >
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-impa-200/70 to-transparent" />
-      {children}
-    </div>
-  )
+  ({ className, elevated, interactive, tone = "default", children, ...props }, ref) => {
+    const t = toneStyles[tone];
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "group/card relative rounded-2xl border text-impa-text shadow-impa-sm transition-[box-shadow,transform,border-color,background-color] duration-200 ease-impa-out overflow-hidden",
+          t.base,
+          elevated && "shadow-impa-md",
+          interactive && "cursor-pointer hover:-translate-y-0.5 hover:shadow-impa-lg hover:border-impa-line-strong",
+          className
+        )}
+        {...props}
+      >
+        <span className={cn("pointer-events-none absolute inset-x-0 top-0 h-px", t.topLine)} />
+        {children}
+      </div>
+    );
+  }
 );
 Card.displayName = "Card";
 

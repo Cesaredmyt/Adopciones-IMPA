@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 import React, { useEffect, useState } from "react";
 
 import PageHead from "@/components/layout/PageHead";
-import Button from "@/components/ui/Button2";
+import { Button } from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 
 import Filters from "@/features/mascotas/components/client/Filters";

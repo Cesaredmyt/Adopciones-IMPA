@@ -42,7 +42,7 @@ export default function Pagination({
   })();
 
   const chipBase =
-    "min-w-[2.25rem] h-9 px-2 rounded-lg text-xs font-semibold transition-all duration-200 ease-impa-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 cursor-pointer";
+    "min-w-[2.25rem] h-9 px-2 rounded-full text-xs font-semibold transition-all duration-200 ease-impa-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-impa-500/20 cursor-pointer";
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 text-sm">

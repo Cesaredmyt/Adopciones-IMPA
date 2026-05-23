@@ -306,9 +306,10 @@ const accentClasses: Record<
   string,
   { bg: string; ring: string; text: string }
 > = {
-  amber: { bg: "bg-amber-50", ring: "border-amber-200", text: "text-amber-700" },
-  sky: { bg: "bg-sky-50", ring: "border-sky-200", text: "text-sky-700" },
-  impa: { bg: "bg-impa-50", ring: "border-impa-200", text: "text-impa-700" },
+  amber:  { bg: "bg-impa-warning-soft", ring: "border-amber-200", text: "text-impa-warning-ink" },
+  sky:    { bg: "bg-impa-info-soft",    ring: "border-sky-200",   text: "text-impa-info-ink" },
+  impa:   { bg: "bg-impa-50",           ring: "border-impa-200",  text: "text-impa-700" },
+  accent: { bg: "bg-impa-accent-soft",  ring: "border-impa-accent", text: "text-impa-accent-ink" },
 };
 
 function SectionCard({

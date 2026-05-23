@@ -17,10 +17,10 @@ function formatTimeAgo(fechaStr: string) {
 }
 
 const colorByTipo: Record<string, { bg: string; text: string; border: string }> = {
-    documento:       { bg: "bg-amber-50",  text: "text-amber-700",   border: "border-amber-200" },
-    cita:            { bg: "bg-sky-50",    text: "text-sky-700",     border: "border-sky-200" },
-    mascota:         { bg: "bg-impa-50",   text: "text-impa-700",    border: "border-impa-200" },
-    esterilizacion:  { bg: "bg-rose-50",   text: "text-rose-700",    border: "border-rose-200" },
+    documento:       { bg: "bg-impa-warning-soft", text: "text-impa-warning-ink",  border: "border-amber-200" },
+    cita:            { bg: "bg-impa-info-soft",    text: "text-impa-info-ink",     border: "border-sky-200" },
+    mascota:         { bg: "bg-impa-50",           text: "text-impa-700",          border: "border-impa-200" },
+    esterilizacion:  { bg: "bg-impa-accent-soft",  text: "text-impa-accent-ink",   border: "border-impa-accent" },
 };
 
 export function ActivityItem({
