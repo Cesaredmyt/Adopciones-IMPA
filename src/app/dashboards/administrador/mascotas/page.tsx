@@ -112,8 +112,10 @@ export default function MascotasPage() {
             setOpenForm(false);
           }}
           onSubmitFinal={async (values) => {
+            console.log("🐾 [1] onSubmitFinal called", values);
             try {
               if (selectedMascota) {
+                console.log("🐾 [2] editando mascota:", selectedMascota.id);
                 let imagen_url = values.imagen_url;
                 let qr_code = values.qr_code;
 
@@ -139,18 +141,24 @@ export default function MascotasPage() {
                 return;
               }
 
+              console.log("🐾 [3] creando nueva mascota...");
               const nuevoId = crypto.randomUUID();
               let imagen_url: string | null = null;
               let qr_code: string | null = null;
 
               if (values.fotoFile) {
+                console.log("🐾 [4] subiendo imagen...");
                 imagen_url = await uploadImageClient(values.fotoFile, nuevoId);
+                console.log("🐾 [4] imagen subida:", imagen_url);
               }
 
+              console.log("🐾 [5] generando QR...");
               const qrLink = `https://impa.vercel.app/mascota/${nuevoId}`;
               const qrDataUrl = await QRCode.toDataURL(qrLink, { width: 300 });
               const qrBlob = await (await fetch(qrDataUrl)).blob();
+              console.log("🐾 [6] subiendo QR...");
               qr_code = await uploadQRClient(qrBlob, nuevoId);
+              console.log("🐾 [6] QR subido:", qr_code);
 
               const payloadCreate = {
                 ...values,
@@ -159,7 +167,9 @@ export default function MascotasPage() {
                 qr_code,
               };
 
+              console.log("🐾 [7] llamando mutateAsync con payload:", payloadCreate);
               await createMascota.mutateAsync(payloadCreate);
+              console.log("🐾 [8] mascota creada OK");
               toast.success("Mascota agregada correctamente");
 
               setOpenForm(false);
