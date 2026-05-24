@@ -111,5 +111,15 @@ export async function POST(req: Request) {
   response.cookies.getAll().forEach((c) => {
     final.cookies.set(c);
   });
+
+  // Cookie de rol — usada por el middleware para routing sin hacer DB call.
+  // httpOnly: false para que el middleware edge la lea vía request.cookies.
+  final.cookies.set("impa-role", String(perfil.rol_id), {
+    path: "/",
+    sameSite: "lax",
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 7, // 7 días — igual que la sesión de Supabase
+  });
+
   return final;
 }

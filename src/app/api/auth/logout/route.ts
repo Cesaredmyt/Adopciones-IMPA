@@ -51,5 +51,8 @@ export async function POST() {
     }
   });
 
+  // Limpia también la cookie de rol que el middleware usa para routing.
+  response.cookies.set("impa-role", "", { maxAge: 0, path: "/" });
+
   return response;
 }
