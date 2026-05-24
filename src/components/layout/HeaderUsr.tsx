@@ -55,8 +55,11 @@ export default function UserHeader() {
   }, [supabase]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
+    // El logout debe ir por el servidor para que pueda borrar las cookies
+    // httpOnly que el login estableció (el cliente browser no puede tocarlas).
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
   };
 
   useEffect(() => {

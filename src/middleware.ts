@@ -26,6 +26,7 @@ const PUBLIC_PATHS = [
   "/mascota",
   "/reportar-maltrato",
   "/api/auth/login",
+  "/api/auth/logout",
   "/api/auth/register",
   "/api/auth/check-email",
   "/api/auth/reset-password",

@@ -125,8 +125,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }, [supabase]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
   };
 
   // Breadcrumb computation
@@ -411,9 +412,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               </Link>
               <button
                 onClick={async () => {
-                  await supabase.auth.signOut();
-                  router.push("/");
                   setMobileOpen(false);
+                  await fetch("/api/auth/logout", { method: "POST" });
+                  router.push("/login");
+                  router.refresh();
                 }}
                 className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-semibold text-white bg-impa-cta hover:shadow-impa-glow transition-shadow duration-150 cursor-pointer"
               >

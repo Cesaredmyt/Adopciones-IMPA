@@ -67,8 +67,11 @@ export default function AdminHeader() {
   }, [supabase]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
+    // El logout debe ir por el servidor para que pueda borrar las cookies
+    // httpOnly que el login estableció (el cliente browser no puede tocarlas).
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
   };
 
   const mainItems = [
@@ -318,9 +321,10 @@ export default function AdminHeader() {
               </button>
               <button
                 onClick={async () => {
-                  await supabase.auth.signOut();
-                  router.push("/");
                   setOpen(false);
+                  await fetch("/api/auth/logout", { method: "POST" });
+                  router.push("/login");
+                  router.refresh();
                 }}
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-impa-cta hover:shadow-impa-glow transition-shadow duration-150 cursor-pointer"
               >
