@@ -187,7 +187,7 @@ export default function UserHeader() {
                 icon: Megaphone,
               },
               {
-                href: "/reportar-maltrato",
+                href: "/dashboards/usuario/reportar-maltrato",
                 label: "Reportar maltrato animal",
                 icon: ShieldAlert,
               },
@@ -286,7 +286,7 @@ export default function UserHeader() {
                   icon: Megaphone,
                 },
                 {
-                  href: "/reportar-maltrato",
+                  href: "/dashboards/usuario/reportar-maltrato",
                   label: "Reportar maltrato animal",
                   icon: ShieldAlert,
                 },

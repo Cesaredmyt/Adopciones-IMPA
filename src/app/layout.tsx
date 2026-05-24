@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   applicationName: "IMPA",
   icons: {
     icon: [
-      { url: "/impa-favicon.svg", type: "image/svg+xml" },
+      { url: "/FAVICON IMPA.png", type: "image/png", sizes: "32x32" },
       { url: "/FAVICON IMPA.png", type: "image/png", sizes: "any" },
     ],
     apple: "/ISOTIPO IMPA.png",
-    shortcut: "/impa-favicon.svg",
+    shortcut: "/FAVICON IMPA.png",
   },
   openGraph: {
     title: "IMPA · Adopta y cambia una vida",

@@ -137,7 +137,7 @@ export default function AdminDashboard() {
             <MiniStat
               icon={<PawPrint size={16} />}
               label="Mascotas"
-              value={stats?.mascotasAdoptables ?? 0}
+              value={stats?.mascotasTotal ?? 0}
             />
             <MiniStat
               icon={<CalendarDays size={16} />}
