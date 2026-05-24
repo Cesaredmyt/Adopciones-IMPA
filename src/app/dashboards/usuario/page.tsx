@@ -12,10 +12,8 @@ import {
   CheckCircle2,
   ArrowRight,
   PawPrint,
-  CalendarCheck,
   Stethoscope,
 } from "lucide-react";
-import { Button, ButtonLink } from "@/components/ui/Button";
 
 export default function DashboardUsuarioPage() {
   const [userName, setUserName] = useState("");
@@ -29,123 +27,152 @@ export default function DashboardUsuarioPage() {
 
   return (
     <div className="space-y-16 sm:space-y-20">
-      {/* ============ HERO ============ */}
-      <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-impa-mesh shadow-impa-md p-8 md:p-14">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.62)_0%,rgba(255,255,255,0)_46%,rgba(237,248,237,0.84)_100%)] pointer-events-none" />
+      {/* ============ HERO premium (verde institucional IMPA) ============ */}
+      <section className="relative overflow-hidden rounded-3xl border border-impa-line bg-gradient-to-br from-impa-700 via-impa-600 to-impa-500 text-white shadow-impa-lg p-7 sm:p-10 md:p-12">
+        {/* Decorative gloss */}
+        <div aria-hidden className="absolute inset-0 opacity-60 pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_42%,rgba(7,18,10,0.20)_100%)]" />
+        </div>
 
-        {/* Grid pattern */}
+        {/* Grid pattern blanco sutil */}
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          className="absolute inset-0 opacity-[0.08] pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(15,131,15,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.6) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
             backgroundSize: "44px 44px",
           }}
         />
 
-        <div className="relative z-10 grid md:grid-cols-[1.15fr_1fr] gap-10 items-center">
+        {/* Halo */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -right-24 w-[420px] h-[420px] rounded-full bg-white/10 blur-3xl"
+        />
+
+        <div className="relative z-10 grid md:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 items-center">
           {/* Texto */}
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-impa-200 text-[11px] font-bold uppercase tracking-wider text-impa-700 shadow-impa-xs">
-              <Sparkles size={12} className="text-impa-600" />
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-[11px] font-bold uppercase tracking-[0.1em]">
+              <Sparkles size={11} />
               Bienvenido a tu espacio
             </span>
 
-            <h1 className="mt-5 text-4xl sm:text-5xl md:text-[56px] font-bold text-impa-text-strong leading-[1.05] tracking-tight">
+            <h1 className="mt-5 text-4xl sm:text-5xl md:text-[56px] font-bold leading-[1.05] tracking-tight">
               Hola{userName ? "," : ""}{" "}
-              <span className="bg-gradient-to-r from-impa-600 to-impa-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white to-impa-100 bg-clip-text text-transparent">
                 {userName || "Usuario"}
               </span>
               .
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-impa-muted max-w-xl leading-relaxed">
-              Tu próxima historia de adopción puede comenzar hoy. Conoce mascotas rescatadas, revisa su compatibilidad y completa tu proceso con acompañamiento del equipo IMPA.
+            <p className="mt-5 text-base sm:text-lg text-white/90 max-w-xl leading-relaxed">
+              Tu próxima historia de adopción puede comenzar hoy. Conoce
+              mascotas rescatadas, revisa su compatibilidad y completa tu
+              proceso con acompañamiento del equipo IMPA.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <ButtonLink
+              <Link
                 href="/dashboards/usuario/mascotas"
-                variant="cta"
-                size="lg"
-                className="group"
+                className="group inline-flex items-center gap-1.5 h-11 px-5 rounded-xl bg-white !text-impa-text-strong font-bold text-sm shadow-impa-md hover:shadow-impa-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ease-impa-out cursor-pointer"
               >
-                Explorar mascotas
+                <PawPrint size={16} className="text-impa-600" />
+                <span className="text-impa-text-strong">Explorar mascotas</span>
                 <ArrowRight
-                  size={16}
-                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  size={15}
+                  className="text-impa-600 transition-transform duration-200 group-hover:translate-x-0.5"
                 />
-              </ButtonLink>
-              <ButtonLink
+              </Link>
+              <Link
                 href="/dashboards/usuario/adopcion"
-                variant="outline"
-                size="lg"
+                className="inline-flex items-center gap-1.5 h-11 px-5 rounded-xl bg-white/10 backdrop-blur text-white font-semibold text-sm border border-white/25 hover:bg-white/20 transition-colors duration-200 cursor-pointer"
               >
-                <Heart size={15} />
+                <Heart size={15} className="fill-white" />
                 Mi proceso
-              </ButtonLink>
+              </Link>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-impa-muted">
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/85">
               <div className="inline-flex items-center gap-1.5">
-                <span className="impa-dot bg-impa-500 impa-pulse-ring" />
+                <span className="impa-dot bg-white impa-pulse-ring" />
                 Adopciones activas
               </div>
-              <span>·</span>
+              <span className="text-white/40">·</span>
               <div className="inline-flex items-center gap-1.5">
-                <ShieldCheck size={13} className="text-impa-600" />
+                <ShieldCheck size={13} className="text-white" />
                 Proceso verificado
               </div>
             </div>
           </div>
 
-          {/* Visual */}
+          {/* Visual — fotos reales (no la silueta Dog.png) */}
           <motion.div
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex justify-center"
+            className="relative justify-center h-[320px] sm:h-[360px] hidden md:flex"
           >
-            <div className="relative w-[280px] sm:w-[340px] aspect-square">
-              {/* Card frame */}
+            <div className="relative w-full max-w-sm h-full">
+              {/* Foto principal */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                className="relative w-full h-full rounded-[2rem] overflow-hidden bg-white border border-impa-line shadow-impa-xl"
+                className="absolute top-0 right-0 w-[78%] h-[68%] rounded-3xl overflow-hidden border-[5px] border-white shadow-impa-xl"
               >
                 <Image
-                  src="/Dog.png"
-                  alt="Mascota rescatada"
+                  src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&q=70&w=600"
+                  alt="Mascota rescatada IMPA"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 340px, 280px"
                   priority
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-impa-text-strong/80 via-impa-text-strong/20 to-transparent p-5">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-impa-text-strong/85 via-impa-text-strong/20 to-transparent p-4">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider text-impa-700">
                     <PawPrint size={11} />
                     Adoptable
                   </div>
-                  <p className="mt-2 text-white text-sm font-semibold">
-                    Más de 500 mascotas esperando un hogar
-                  </p>
                 </div>
               </motion.div>
-              {/* Floating chip */}
+
+              {/* Foto secundaria */}
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 7,
+                  ease: "easeInOut",
+                  delay: 0.8,
+                }}
+                className="absolute bottom-0 left-0 w-[58%] h-[55%] rounded-3xl overflow-hidden border-[5px] border-white shadow-impa-xl"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&q=70&w=400"
+                  alt="Mascota adoptable IMPA"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 220px, 180px"
+                />
+              </motion.div>
+
+              {/* Floating accent chip (yellow signature Stitch) */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute -left-6 sm:-left-10 top-12 hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-white border border-impa-line shadow-impa-lg"
+                className="absolute top-[42%] right-[-6%] hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-impa-accent-soft border border-impa-accent shadow-impa-xl"
               >
-                <span className="grid place-items-center w-8 h-8 rounded-xl bg-impa-50 text-impa-600 border border-impa-100">
-                  <Heart size={14} />
+                <span className="grid place-items-center w-8 h-8 rounded-xl bg-white text-impa-accent-strong border border-impa-accent">
+                  <Heart size={14} className="fill-impa-accent-strong" />
                 </span>
                 <div className="text-xs">
-                  <p className="font-semibold text-impa-text leading-tight">
-                    Adopción responsable
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-impa-accent-ink/80 leading-tight">
+                    Disponibles
                   </p>
-                  <p className="text-impa-muted leading-tight">Con seguimiento</p>
+                  <p className="font-bold text-impa-accent-ink leading-tight">
+                    +500 mascotas
+                  </p>
                 </div>
               </motion.div>
             </div>
