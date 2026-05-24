@@ -2,6 +2,7 @@
 
 import type { RevisionAdopcion } from "@/features/adopciones/types/adopciones";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { SolicitudUsuario, SolicitudCompleta } from "../types/solicitudes";
 import { mapSolicitudUsuario } from "../mappers/solicitudes-mappers";
 import { getUsuarioAuthId } from "@/features/perfil/actions/perfil-actions";
@@ -208,7 +209,7 @@ export async function crearSolicitudAdopcion(mascotaId: string) {
     throw new Error(error.message);
   }
 
-  await supabase
+  await supabaseAdmin
     .from("mascotas")
     .update({
       estado: "en_proceso",

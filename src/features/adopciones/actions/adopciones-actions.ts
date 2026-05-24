@@ -316,12 +316,12 @@ export async function cambiarEstadoAdopcion(params: {
 
   if (parsed.estado === "aprobada") {
     const mod = await import("@/features/mascotas/actions/mascotas-actions");
-    await mod.marcarMascotaAdoptada(supabaseSrv, mascotaId);
+    await mod.marcarMascotaAdoptada(mascotaId);
 
     await moverCitaAGemela(supabaseSrv, usuarioAuthId, mascotaId, solicitud.id);
   } else {
     const mod = await import("@/features/mascotas/actions/mascotas-actions");
-    await mod.marcarMascotaDisponible(supabaseSrv, mascotaId);
+    await mod.marcarMascotaDisponible(mascotaId);
 
     await eliminarCitasPendientes(supabaseSrv, usuarioAuthId, mascotaId);
   }

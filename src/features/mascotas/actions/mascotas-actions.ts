@@ -2,7 +2,6 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { CreateMascotaSchema, UpdateMascotaSchema, DeleteMascotaSchema } from "../schemas/mascotas-schemas";
 import type { Mascota } from "../types/mascotas";
-import type { SupabaseClient } from "@supabase/supabase-js";
 import { deleteMascotaImagen } from "./storage/deleteMascotaImagen";
 import { deleteMascotaQR } from "./storage/deleteMascotaQR";
 import { validarMascotaEliminable } from "./helpers/validarMascotaEliminable";
@@ -183,13 +182,10 @@ export async function fetchMascotasByIds(ids: string[]) {
     return data ?? [];
 }
 
-export async function marcarMascotaAdoptada(
-    supabaseSrv: SupabaseClient,
-    mascotaId: string
-) {
+export async function marcarMascotaAdoptada(mascotaId: string) {
     logger.info("marcarMascotaAdoptada:start", { mascotaId });
 
-    const { error } = await supabaseSrv
+    const { error } = await supabaseAdmin
         .from("mascotas")
         .update({ estado: "adoptada", disponible_adopcion: false })
         .eq("id", mascotaId);
