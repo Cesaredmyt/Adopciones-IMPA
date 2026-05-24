@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FileText, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -11,15 +11,41 @@ interface VisorDocumentoProps {
   onClose: () => void;
 }
 
-export default function VisorDocumento({ open, url, onClose }: VisorDocumentoProps) { 
+export default function VisorDocumento({ open, url, onClose }: VisorDocumentoProps) {
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open || !url) {
+      setBlobUrl(null);
+      setError(false);
+      return;
+    }
+
+    let objectUrl: string | null = null;
+    setLoading(true);
+    setError(false);
+
+    fetch(url)
+      .then((r) => r.blob())
+      .then((blob) => {
+        objectUrl = URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
+        setBlobUrl(objectUrl);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
 
     return () => {
-      document.body.style.overflow = "";
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [open]);
+  }, [open, url]);
 
   if (!open || !url) return null;
 
@@ -36,7 +62,6 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
           </div>
 
           <div className="flex items-center gap-3">
-
             <Button
               variant="ghost"
               onClick={() => window.open(safeUrl, "_blank")}
@@ -68,10 +93,27 @@ export default function VisorDocumento({ open, url, onClose }: VisorDocumentoPro
         </div>
 
         <div className="flex-1 overflow-auto bg-impa-bg-elevated p-4">
-          <iframe
-            src={safeUrl}
-            className="h-full w-full rounded-xl border border-impa-line bg-white shadow-inner"
-          />
+          {loading && (
+            <div className="flex h-full items-center justify-center text-sm text-impa-muted">
+              Cargando documento…
+            </div>
+          )}
+
+          {error && (
+            <div className="flex h-full flex-col items-center justify-center gap-2 text-sm text-impa-muted">
+              <p>No se pudo cargar la vista previa.</p>
+              <Button variant="ghost" onClick={() => window.open(safeUrl, "_blank")}>
+                Abrir en nueva pestaña
+              </Button>
+            </div>
+          )}
+
+          {!loading && !error && blobUrl && (
+            <iframe
+              src={blobUrl}
+              className="h-full w-full rounded-xl border border-impa-line bg-white shadow-inner"
+            />
+          )}
         </div>
 
         <div className="flex h-12 items-center justify-end border-t border-impa-line bg-white px-4">
