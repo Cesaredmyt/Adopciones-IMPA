@@ -3,11 +3,12 @@ export interface DashboardStats {
     citasHoy: number;
     citasSemana: number;
     usuariosProceso: number;
-    mascotasAdoptables: number;
-
+    mascotasTotal: number;
     citasAdopPend: number;
     citasVetPend: number;
     esterilizacionesPend: number;
+    platicasPend: number;
+    reportesPend: number;
 }
 
 export interface DashboardPendiente {

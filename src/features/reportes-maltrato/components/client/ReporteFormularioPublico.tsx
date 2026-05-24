@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2, Send, Upload, X, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -15,13 +15,22 @@ import type { CrearReporteInput } from "@/features/reportes-maltrato/schemas/rep
 type Props = {
   enviando: boolean;
   onSubmit: (input: CrearReporteInput) => void;
+  prefill?: { nombre: string; email: string; telefono: string } | null;
 };
 
-export function ReporteFormularioPublico({ enviando, onSubmit }: Props) {
+export function ReporteFormularioPublico({ enviando, onSubmit, prefill }: Props) {
   const [esAnonimo, setEsAnonimo] = useState(false);
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
+
+  // Pre-llenar datos cuando el usuario está autenticado
+  useEffect(() => {
+    if (!prefill || esAnonimo) return;
+    if (prefill.nombre) setNombre(prefill.nombre);
+    if (prefill.email) setEmail(prefill.email);
+    if (prefill.telefono) setTelefono(prefill.telefono);
+  }, [prefill, esAnonimo]);
   const [asunto, setAsunto] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [direccion, setDireccion] = useState("");

@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logger } from "@/lib/logger";
 
 export async function obtenerStatsDashboard() {
-    const supabase = supabaseAdmin;
+    const db = supabaseAdmin;
 
     logger.info("obtenerStatsDashboard:start");
 
@@ -16,6 +16,9 @@ export async function obtenerStatsDashboard() {
     const finSemana = new Date(inicioSemana);
     finSemana.setDate(inicioSemana.getDate() + 6);
 
+    // Estados que consideramos "activas" (no completadas/canceladas/rechazadas)
+    const ESTADOS_CITA_ACTIVOS = ["programada", "confirmada", "pendiente"];
+
     const [
         docs,
         citasAdopHoy,
@@ -23,86 +26,87 @@ export async function obtenerStatsDashboard() {
         citasAdopSemana,
         citasVetSemana,
         usuarios,
-        adoptables,
+        mascotasTotal,
         citasAdopPend,
         citasVetPend,
         esterilizacionesPend,
+        platicasPend,
+        reportesPend,
     ] = await Promise.all([
-        supabase
-            .from("documentos")
+        db.from("documentos")
             .select("*", { head: true, count: "exact" })
             .eq("status", "pendiente"),
 
-        supabase
-            .from("citas_adopcion")
+        db.from("citas_adopcion")
             .select("*", { head: true, count: "exact" })
-            .eq("fecha_cita", hoyStr),
+            .eq("fecha_cita", hoyStr)
+            .in("estado", ESTADOS_CITA_ACTIVOS),
 
-        supabase
-            .from("citas_veterinarias")
+        db.from("citas_veterinarias")
             .select("*", { head: true, count: "exact" })
             .gte("fecha_cita", hoyStr + "T00:00:00")
-            .lte("fecha_cita", hoyStr + "T23:59:59"),
+            .lte("fecha_cita", hoyStr + "T23:59:59")
+            .in("estado", ESTADOS_CITA_ACTIVOS),
 
-        supabase
-            .from("citas_adopcion")
+        db.from("citas_adopcion")
             .select("*", { head: true, count: "exact" })
             .gte("fecha_cita", inicioSemana.toISOString().split("T")[0])
-            .lte("fecha_cita", finSemana.toISOString().split("T")[0]),
+            .lte("fecha_cita", finSemana.toISOString().split("T")[0])
+            .in("estado", ESTADOS_CITA_ACTIVOS),
 
-        supabase
-            .from("citas_veterinarias")
+        db.from("citas_veterinarias")
             .select("*", { head: true, count: "exact" })
             .gte("fecha_cita", inicioSemana.toISOString())
-            .lte("fecha_cita", finSemana.toISOString()),
+            .lte("fecha_cita", finSemana.toISOString())
+            .in("estado", ESTADOS_CITA_ACTIVOS),
 
-        supabase
-            .from("perfiles")
+        db.from("perfiles")
             .select("*", { head: true, count: "exact" })
             .eq("estado_proceso", "en_revision"),
 
-        supabase
-            .from("mascotas")
-            .select("*", { head: true, count: "exact" })
-            .eq("estado", "disponible"),
+        // TOTAL mascotas (todas, sin importar estado)
+        db.from("mascotas")
+            .select("*", { head: true, count: "exact" }),
 
-        supabase
-            .from("citas_adopcion")
+        db.from("citas_adopcion")
             .select("*", { head: true, count: "exact" })
             .eq("estado", "programada"),
 
-        supabase
-            .from("citas_veterinarias")
+        db.from("citas_veterinarias")
             .select("*", { head: true, count: "exact" })
             .eq("estado", "pendiente"),
 
-        supabase
-            .from("esterilizaciones")
+        db.from("esterilizaciones")
             .select("*", { head: true, count: "exact" })
             .eq("estado", "pendiente"),
+
+        db.from("platicas")
+            .select("*", { head: true, count: "exact" })
+            .eq("estado", "pendiente"),
+
+        db.from("reportes_maltrato")
+            .select("*", { head: true, count: "exact" })
+            .eq("estado", "recibido"),
     ]);
 
     logger.info("obtenerStatsDashboard:success", {
         documentosPendientes: docs.count ?? 0,
         citasHoy: (citasAdopHoy.count ?? 0) + (citasVetHoy.count ?? 0),
-        citasSemana:
-            (citasAdopSemana.count ?? 0) + (citasVetSemana.count ?? 0),
-        usuariosProceso: usuarios.count ?? 0,
-        mascotasAdoptables: adoptables.count ?? 0,
-        citasAdopPend: citasAdopPend.count ?? 0,
-        citasVetPend: citasVetPend.count ?? 0,
-        esterilizacionesPend: esterilizacionesPend.count ?? 0,
+        mascotasTotal: mascotasTotal.count ?? 0,
+        platicasPend: platicasPend.count ?? 0,
+        reportesPend: reportesPend.count ?? 0,
     });
 
     return {
         documentosPendientes: docs.count ?? 0,
         citasHoy: (citasAdopHoy.count ?? 0) + (citasVetHoy.count ?? 0),
-        citasSemana:
-            (citasAdopSemana.count ?? 0) + (citasVetSemana.count ?? 0),
+        citasSemana: (citasAdopSemana.count ?? 0) + (citasVetSemana.count ?? 0),
         usuariosProceso: usuarios.count ?? 0,
-        mascotasAdoptables: adoptables.count ?? 0,
+        mascotasTotal: mascotasTotal.count ?? 0,
         citasAdopPend: citasAdopPend.count ?? 0,
         citasVetPend: citasVetPend.count ?? 0,
         esterilizacionesPend: esterilizacionesPend.count ?? 0,
+        platicasPend: platicasPend.count ?? 0,
+        reportesPend: reportesPend.count ?? 0,
     };
 }

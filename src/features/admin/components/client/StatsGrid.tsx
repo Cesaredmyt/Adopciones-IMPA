@@ -9,6 +9,8 @@ import {
     Users,
     PawPrint,
     Stethoscope,
+    BookOpen,
+    ShieldAlert,
 } from "lucide-react";
 import type { DashboardStats } from "../../types/dashboard";
 import { useRouter } from "next/navigation";
@@ -17,7 +19,7 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
     const router = useRouter();
 
     return (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StatCard
                 label="Documentos pendientes"
                 value={stats.documentosPendientes}
@@ -51,8 +53,8 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
             />
 
             <StatCard
-                label="Mascotas adoptables"
-                value={stats.mascotasAdoptables}
+                label="Total mascotas"
+                value={stats.mascotasTotal}
                 icon={<PawPrint className="h-5 w-5" />}
                 color="bg-impa-50 border-impa-200 text-impa-700"
                 onClick={() => router.push("/dashboards/administrador/mascotas")}
@@ -64,6 +66,22 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
                 icon={<Stethoscope className="h-5 w-5" />}
                 color="bg-rose-50 border-rose-200 text-rose-700"
                 onClick={() => router.push("/dashboards/administrador/esterilizaciones")}
+            />
+
+            <StatCard
+                label="Pláticas pendientes"
+                value={stats.platicasPend}
+                icon={<BookOpen className="h-5 w-5" />}
+                color="bg-amber-50 border-amber-200 text-amber-700"
+                onClick={() => router.push("/dashboards/administrador/platicas")}
+            />
+
+            <StatCard
+                label="Reportes nuevos"
+                value={stats.reportesPend}
+                icon={<ShieldAlert className="h-5 w-5" />}
+                color="bg-orange-50 border-orange-200 text-orange-700"
+                onClick={() => router.push("/dashboards/administrador/reportes")}
             />
         </div>
     );

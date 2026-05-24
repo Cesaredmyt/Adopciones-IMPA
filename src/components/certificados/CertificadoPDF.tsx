@@ -279,11 +279,11 @@ export default function CertificadoPDF({ adoptante, mascota, fecha }) {
             {/* DIRECTOR */}
             <View style={styles.firmaBox}>
               <Image
-                src="https://i.imgur.com/nmqF7ni.png"
+                src={isServer ? `${fontBasePath}/sello.png` : "/sello.png"}
                 style={{
-                  width: 140,
-                  height: 70,
-                  marginTop: 35,
+                  width: 110,
+                  height: 110,
+                  marginTop: 5,
                   marginBottom: 0,
                 }}
               />
