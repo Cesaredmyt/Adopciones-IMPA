@@ -100,19 +100,21 @@ export function useMascotaForm({ mascota, onSubmit }: UseMascotaFormProps) {
   }, []);
 
   /* SUBMIT  */
-  const submit = form.handleSubmit(async (values) => {
-    const valid = await form.trigger("raza_id");
-    if (!valid) return;
-
-    onSubmit({
-      ...values,
-      peso_kg: values.peso_kg ? Number(values.peso_kg) : null,
-      altura_cm: values.altura_cm ? Number(values.altura_cm) : null,
-      fotoFile,
-      fotoPreview,
-      ...(isEditing ? { id: mascota?.id } : {}),
-    });
-  });
+  const submit = form.handleSubmit(
+    async (values) => {
+      onSubmit({
+        ...values,
+        peso_kg: values.peso_kg ? Number(values.peso_kg) : null,
+        altura_cm: values.altura_cm ? Number(values.altura_cm) : null,
+        fotoFile,
+        fotoPreview,
+        ...(isEditing ? { id: mascota?.id } : {}),
+      });
+    },
+    (errors) => {
+      console.error("❌ Errores de validación en formulario mascota:", errors);
+    }
+  );
 
   return {
     form,

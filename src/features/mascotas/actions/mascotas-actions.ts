@@ -1,5 +1,6 @@
 "use server";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { CreateMascotaSchema, UpdateMascotaSchema, DeleteMascotaSchema } from "../schemas/mascotas-schemas";
 import type { Mascota } from "../types/mascotas";
 import type { SupabaseClient } from "@supabase/supabase-js";
@@ -140,14 +141,13 @@ export async function listarMascotasPublicas(
 
 /* ======================== CREAR ======================== */
 export async function crearMascota(input: unknown): Promise<Mascota> {
-    const supabase = await createClient();
     const parsed = CreateMascotaSchema.parse(input);
 
     logger.info("crearMascota:start", {
         nombre: parsed.nombre,
     });
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
         .from("mascotas")
         .insert(parsed)
         .select("*, raza:raza_id(id, nombre, especie)")
@@ -170,14 +170,13 @@ export async function crearMascota(input: unknown): Promise<Mascota> {
 
 /* ======================== ACTUALIZAR ======================== */
 export async function actualizarMascota(payload: unknown) {
-    const supabase = await createClient();
     const parsed = UpdateMascotaSchema.parse(payload);
 
     logger.info("actualizarMascota:start", {
         mascotaId: parsed.id,
     });
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
         .from("mascotas")
         .update({
             ...parsed,
@@ -204,7 +203,6 @@ export async function actualizarMascota(payload: unknown) {
 
 /* ======================== ELIMINAR ======================== */
 export async function eliminarMascota(id: string): Promise<{ success: boolean; reason?: string }> {
-    const supabase = await createClient();
     const parsed = DeleteMascotaSchema.parse({ id });
 
     logger.info("eliminarMascota:start", {
@@ -231,7 +229,7 @@ export async function eliminarMascota(id: string): Promise<{ success: boolean; r
         await deleteMascotaQR(qr_code);
     }
 
-    const { error: deleteError } = await supabase
+    const { error: deleteError } = await supabaseAdmin
         .from("mascotas")
         .delete()
         .eq("id", parsed.id);

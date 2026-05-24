@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 interface ValidacionMascota {
     success: boolean;
@@ -10,13 +10,12 @@ interface ValidacionMascota {
 }
 
 export async function validarMascotaEliminable(id: string): Promise<ValidacionMascota> {
-    const supabase = await createClient();
-
-    const { data: mascota, error } = await supabase
+    const { data: mascota, error } = await supabaseAdmin
         .from("mascotas")
         .select("estado, disponible_adopcion, imagen_url, qr_code")
         .eq("id", id)
         .maybeSingle();
+
 
     if (error) {
         return { success: false, reason: "error_estado" };

@@ -55,12 +55,13 @@ export const CreateMascotaSchema = z.object({
   colores: z
     .array(z.string())
     .min(1, "Selecciona al menos un color")
-    .optional()
-    .nullable(),
+    .nullable()
+    .optional(),
 
   descripcion_fisica: z
     .string()
-    .min(10, "Describe brevemente la apariencia")
+    .min(10, "Describe brevemente la apariencia (mínimo 10 caracteres)")
+    .or(z.literal(""))
     .nullable()
     .optional(),
 
@@ -71,18 +72,21 @@ export const CreateMascotaSchema = z.object({
   lugar_rescate: z
     .string()
     .min(3, "Ingresa un lugar de rescate")
+    .or(z.literal(""))
     .nullable()
     .optional(),
   condicion_ingreso: z
     .string()
     .min(3, "Selecciona o describe la condición")
+    .or(z.literal(""))
     .nullable()
     .optional(),
-  observaciones_medicas:
-    z.string()
-      .min(3, "Describe brevemente alguna observación médica")
-      .nullable()
-      .optional(),
+  observaciones_medicas: z
+    .string()
+    .min(3, "Describe brevemente alguna observación médica")
+    .or(z.literal(""))
+    .nullable()
+    .optional(),
 
   raza_id: z.string().min(1, "Debes seleccionar una raza."),
 
