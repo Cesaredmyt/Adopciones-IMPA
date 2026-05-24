@@ -17,8 +17,6 @@ import { logger } from "@/lib/logger";
 export async function listarMascotas(
     { cursor, search, especie, sexo }: ListarMascotasParams
 ) {
-    const supabase = await createClient();
-
     logger.info("listarMascotas:start", {
         cursor,
         search,
@@ -26,7 +24,7 @@ export async function listarMascotas(
         sexo,
     });
 
-    let query = baseMascotasQuery(supabase);
+    let query = baseMascotasQuery(supabaseAdmin);
 
     if (search?.trim()) {
         query = query.ilike("nombre", `%${search}%`);

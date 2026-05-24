@@ -1,10 +1,8 @@
-import { createClient } from "@/lib/supabase/server";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 const PAGE_SIZE = 10;
 
-export function baseMascotasQuery(
-    supabase: Awaited<ReturnType<typeof createClient>>
-) {
+export function baseMascotasQuery(supabase: SupabaseClient) {
     return supabase
         .from("mascotas")
         .select(
