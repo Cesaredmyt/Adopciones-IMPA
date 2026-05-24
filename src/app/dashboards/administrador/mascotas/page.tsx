@@ -153,7 +153,7 @@ export default function MascotasPage() {
               }
 
               console.log("🐾 [5] generando QR...");
-              const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+              const appUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
               const qrLink = `${appUrl}/mascota/${nuevoId}`;
               const qrDataUrl = await QRCode.toDataURL(qrLink, { width: 300 });
               const qrBlob = await (await fetch(qrDataUrl)).blob();

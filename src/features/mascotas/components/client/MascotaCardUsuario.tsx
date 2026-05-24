@@ -93,7 +93,7 @@ export default function MascotaCardUsuario({
   };
 
   const handleCompartirQR = async () => {
-    const linkQR = `${process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}/mascota/${m.id}`;
+    const linkQR = `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/mascota/${m.id}`;
 
     // 🌟 Mensaje emocional + profesional
     const mensaje = `🐾 *IMPA Morelia – Adopta, cambia vidas*  
