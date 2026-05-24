@@ -1,10 +1,10 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logger } from "@/lib/logger";
 
 export async function obtenerStatsDashboard() {
-    const supabase = await createClient();
+    const supabase = supabaseAdmin;
 
     logger.info("obtenerStatsDashboard:start");
 
