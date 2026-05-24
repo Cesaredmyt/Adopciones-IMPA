@@ -81,7 +81,7 @@ export function StatsGrid({ stats }: { stats: DashboardStats }) {
                 value={stats.reportesPend}
                 icon={<ShieldAlert className="h-5 w-5" />}
                 color="bg-orange-50 border-orange-200 text-orange-700"
-                onClick={() => router.push("/dashboards/administrador/reportes")}
+                onClick={() => router.push("/dashboards/administrador/reportes-maltrato")}
             />
         </div>
     );
