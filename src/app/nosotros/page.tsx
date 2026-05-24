@@ -67,8 +67,9 @@ export default function SobreNosotros() {
       <main className="flex-1">
         {/* ============ HERO ============ */}
         <section className="relative overflow-hidden pt-20 lg:pt-28 pb-16">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.72)_0%,rgba(246,248,246,0.94)_52%,rgba(255,255,255,0.82)_100%)]" />
+          <div className="absolute inset-0 -z-10 pointer-events-none">
+            <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-impa-200/55 blur-3xl" />
+            <div className="absolute top-10 -right-32 w-[600px] h-[600px] rounded-full bg-impa-100/60 blur-3xl" />
           </div>
 
           <div className="max-w-5xl mx-auto px-6 text-center">

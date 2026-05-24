@@ -24,13 +24,13 @@
   --color-impa-900: #0a4f0a;
 
   /* Superficies y semánticos (con tinte verde más perceptible) */
-  --color-impa-bg:           #f6f8f6;
-  --color-impa-bg-elev:      #f2f6f2;
+  --color-impa-bg:           #ecf3ec;
+  --color-impa-bg-elev:      #e8efe8;
   --color-impa-surface:      #ffffff;
-  --color-impa-surface-2:    #f3f7f3;
-  --color-impa-surface-3:    #e7eee7;
+  --color-impa-surface-2:    #eef5ee;
+  --color-impa-surface-3:    #dde9dd;
   --color-impa-card:         #ffffff;
-  --color-impa-tinted:       #edf8ed;
+  --color-impa-tinted:       #e3f2e3;
 
   /* Warm / Cream — usado en vista pública (gallery, hero soft) */
   --color-impa-cream:        #faf5ef;
@@ -51,9 +51,9 @@
   --color-impa-quiet:        #95a795;
 
   /* Bordes */
-  --color-impa-line:         #dbe5db;
-  --color-impa-line-strong:  #bfd0bf;
-  --color-impa-line-faint:   #e7eee7;
+  --color-impa-line:         #cdddcd;
+  --color-impa-line-strong:  #aac3aa;
+  --color-impa-line-faint:   #dee9de;
 
   /* Estados semánticos (utilidades Tailwind: bg-impa-success, text-impa-warning, etc.) */
   --color-impa-success:        #16a34a;
@@ -113,14 +113,14 @@
   --impa-900: #0a4f0a;
 
   /* Surfaces — Sistema de capas (con más profundidad y tinte verde) */
-  --impa-bg:           #f6f8f6;   /* Page background */
-  --impa-bg-elevated:  #f2f6f2;   /* Elevated regions sobre bg */
+  --impa-bg:           #ecf3ec;   /* Page background (más verde) */
+  --impa-bg-elevated:  #e8efe8;   /* Elevated regions sobre bg */
   --impa-surface-1:   #ffffff;   /* Card por defecto */
-  --impa-surface-2:   #f3f7f3;   /* Subsection / muted card */
-  --impa-surface-3:   #e7eee7;   /* Hover surface / chip / tag */
+  --impa-surface-2:   #eef5ee;   /* Subsection / muted card */
+  --impa-surface-3:   #dde9dd;   /* Hover surface / chip / tag */
   --impa-card:         #ffffff;
-  --impa-muted-bg:     #eef4ee;
-  --impa-tinted-bg:    #edf8ed;
+  --impa-muted-bg:     #e3eee3;
+  --impa-tinted-bg:    #e3f2e3;
 
   /* Warm surfaces (vista pública: gallery, hero) */
   --impa-cream:        #faf5ef;
@@ -141,9 +141,9 @@
   --impa-text-quiet:   #95a795;
 
   /* Borders — más definidos para mejor contraste */
-  --impa-border:        #dbe5db;
-  --impa-border-strong: #bfd0bf;
-  --impa-border-faint:  #e7eee7;
+  --impa-border:        #cdddcd;
+  --impa-border-strong: #aac3aa;
+  --impa-border-faint:  #dee9de;
 
   /* Feedback */
   --impa-success:      #16a34a;
@@ -192,7 +192,7 @@
   --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* ---- shadcn-compatible tokens (HSL) ---- */
-  --background: 120 14% 97%;
+  --background: 120 18% 94%;
   --foreground: 120 14% 8%;
   --card: 0 0% 100%;
   --card-foreground: 120 14% 8%;
@@ -200,16 +200,16 @@
   --popover-foreground: 120 14% 8%;
   --primary: 120 80% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 120 20% 95%;
+  --secondary: 120 22% 93%;
   --secondary-foreground: 120 14% 12%;
-  --muted: 120 14% 95%;
-  --muted-foreground: 120 12% 39%;
-  --accent: 120 50% 94%;
+  --muted: 120 18% 92%;
+  --muted-foreground: 120 12% 35%;
+  --accent: 120 50% 92%;
   --accent-foreground: 120 14% 12%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --border: 120 14% 88%;
-  --input: 120 14% 88%;
+  --border: 120 18% 82%;
+  --input: 120 18% 82%;
   --ring: 120 80% 45%;
   --radius: 0.75rem;
 }
@@ -231,11 +231,13 @@ body {
   margin: 0;
   padding: 0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(246,248,246,0.96) 42%, rgba(246,248,246,1) 100%),
-    linear-gradient(90deg, rgba(220,229,220,0.42) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(220,229,220,0.36) 1px, transparent 1px),
+    radial-gradient(1200px 600px at 8% -8%, rgba(23,207,23,0.10), transparent 65%),
+    radial-gradient(900px 500px at 96% 12%, rgba(63,210,63,0.07), transparent 65%),
+    linear-gradient(180deg, rgba(232,243,232,0.50) 0%, rgba(236,243,236,0.90) 42%, rgba(236,243,236,1) 100%),
+    linear-gradient(90deg, rgba(170,195,170,0.30) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(170,195,170,0.24) 1px, transparent 1px),
     var(--impa-bg);
-  background-size: auto, 44px 44px, 44px 44px, auto;
+  background-size: auto, auto, auto, 44px 44px, 44px 44px, auto;
   background-attachment: fixed;
   color: var(--impa-text);
   font-family: var(--font-sans);

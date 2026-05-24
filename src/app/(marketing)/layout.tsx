@@ -11,14 +11,16 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="relative min-h-screen flex flex-col">
-      {/* Ambient mesh global (verde IMPA) */}
+      {/* Ambient mesh global (verde IMPA fuerte) */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.58)_0%,rgba(246,248,246,0.98)_48%,rgba(255,255,255,0.74)_100%)]" />
+        <div className="absolute -top-40 -left-40 w-[720px] h-[720px] rounded-full bg-impa-200/50 blur-3xl" />
+        <div className="absolute top-1/3 -right-40 w-[640px] h-[640px] rounded-full bg-impa-100/50 blur-3xl" />
+        <div className="absolute -bottom-40 left-1/3 w-[800px] h-[460px] rounded-full bg-impa-100/40 blur-3xl" />
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.045]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(15,131,15,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.55) 1px, transparent 1px)",
+              "linear-gradient(rgba(15,131,15,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.6) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
           }}
         />

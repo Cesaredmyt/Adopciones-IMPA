@@ -146,11 +146,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="min-h-screen bg-impa-bg relative">
-      {/* Ambient backdrop */}
+      {/* Ambient backdrop — más verde, menos lavado */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.70)_0%,rgba(246,248,246,0.96)_42%,rgba(255,255,255,0.74)_100%)]" />
+        <div className="absolute -top-40 -left-40 w-[720px] h-[720px] rounded-full bg-impa-200/40 blur-3xl" />
+        <div className="absolute top-1/3 -right-40 w-[640px] h-[640px] rounded-full bg-impa-100/40 blur-3xl" />
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.045]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(15,131,15,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.6) 1px, transparent 1px)",

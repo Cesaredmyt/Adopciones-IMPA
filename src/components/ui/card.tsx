@@ -20,15 +20,16 @@ type CardProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const toneStyles: Record<CardTone, { base: string; topLine: string }> = {
   default: {
-    base: "border-impa-line bg-white/95",
-    topLine: "bg-gradient-to-r from-transparent via-impa-200/70 to-transparent",
+    // bg-white sólido (no /95) para que la card se vea contra el body verde
+    base: "border-impa-line bg-white",
+    topLine: "bg-gradient-to-r from-transparent via-impa-300/70 to-transparent",
   },
   warm: {
     base: "border-impa-cream-3 bg-white",
     topLine: "bg-gradient-to-r from-transparent via-impa-accent/40 to-transparent",
   },
   tinted: {
-    base: "border-impa-200 bg-gradient-to-br from-white to-impa-50/40",
+    base: "border-impa-200 bg-gradient-to-br from-white to-impa-50/60",
     topLine: "bg-gradient-to-r from-transparent via-impa-300/60 to-transparent",
   },
   accent: {

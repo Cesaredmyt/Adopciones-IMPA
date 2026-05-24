@@ -68,14 +68,16 @@ export default function LandingPage() {
     <main className="relative">
       {/* ============ HERO ============ */}
       <section className="relative overflow-hidden">
-        {/* Ambient mesh */}
+        {/* Ambient mesh — verde IMPA fuerte, sin wash blanco */}
         <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(236,253,236,0.72)_0%,rgba(255,255,255,0.82)_44%,rgba(246,248,246,0.98)_100%)]" />
+          <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-impa-200/55 blur-3xl" />
+          <div className="absolute top-10 -right-32 w-[600px] h-[600px] rounded-full bg-impa-100/60 blur-3xl" />
+          <div className="absolute bottom-0 left-1/3 w-[700px] h-[400px] rounded-full bg-impa-100/40 blur-3xl" />
         </div>
         {/* Grid pattern */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 opacity-[0.05] pointer-events-none"
+          className="absolute inset-0 -z-10 opacity-[0.06] pointer-events-none"
           style={{
             backgroundImage:
               "linear-gradient(rgba(15,131,15,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(15,131,15,0.7) 1px, transparent 1px)",

@@ -25,11 +25,11 @@ const buttonVariants = cva(
         secondary:
           "bg-impa-50 text-impa-800 border border-impa-200 shadow-impa-xs hover:bg-impa-100 hover:border-impa-300 hover:shadow-impa-sm active:bg-impa-200",
         outline:
-          "bg-white/95 text-impa-text border border-impa-line shadow-impa-xs hover:border-impa-300 hover:bg-impa-50/70 hover:shadow-impa-sm active:bg-impa-50",
+          "bg-white text-impa-text-strong border border-impa-line shadow-impa-xs hover:border-impa-400 hover:bg-impa-50 hover:shadow-impa-sm active:bg-impa-100",
         ghost:
-          "text-impa-700 hover:text-impa-900 hover:bg-impa-50 active:bg-impa-100",
+          "text-impa-800 hover:text-impa-900 hover:bg-impa-50 active:bg-impa-100",
         soft:
-          "bg-impa-surface-2 text-impa-text border border-impa-line/70 shadow-impa-xs hover:bg-impa-surface-3 hover:border-impa-line-strong hover:shadow-impa-sm",
+          "bg-impa-surface-2 text-impa-text-strong border border-impa-line shadow-impa-xs hover:bg-impa-surface-3 hover:border-impa-line-strong hover:shadow-impa-sm",
         danger:
           "bg-impa-danger text-white shadow-impa-sm hover:bg-red-700 hover:shadow-impa-md active:bg-red-800",
         destructive:
@@ -37,7 +37,7 @@ const buttonVariants = cva(
         success:
           "bg-impa-600 text-white shadow-impa-sm hover:bg-impa-700 hover:shadow-impa-md active:bg-impa-800",
         link:
-          "text-impa-600 hover:text-impa-700 underline-offset-4 hover:underline px-0",
+          "text-impa-700 hover:text-impa-800 underline-offset-4 hover:underline px-0",
       },
       size: {
         xs: "h-7 px-2.5 text-xs gap-1.5",

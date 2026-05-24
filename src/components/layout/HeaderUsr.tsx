@@ -194,22 +194,21 @@ export default function UserHeader() {
             ]}
           />
 
-          <li className="pl-2 ml-1 border-l border-impa-line">
-            <Dropdown
-              label={userName}
-              icon={User}
-              avatar
-              open={openDropdown === "usuario"}
-              onToggle={() =>
-                setOpenDropdown(openDropdown === "usuario" ? null : "usuario")
-              }
-              items={[
-                { href: "/dashboards/perfil", label: "Mi perfil", icon: User },
-                { onClick: handleLogout, label: "Cerrar sesión", icon: LogOutIcon },
-              ]}
-              align="right"
-            />
-          </li>
+          <Dropdown
+            label={userName}
+            icon={User}
+            avatar
+            open={openDropdown === "usuario"}
+            onToggle={() =>
+              setOpenDropdown(openDropdown === "usuario" ? null : "usuario")
+            }
+            items={[
+              { href: "/dashboards/perfil", label: "Mi perfil", icon: User },
+              { onClick: handleLogout, label: "Cerrar sesión", icon: LogOutIcon },
+            ]}
+            align="right"
+            className="pl-2 ml-1 border-l border-impa-line"
+          />
         </ul>
       </nav>
 
@@ -361,6 +360,7 @@ function Dropdown({
   items,
   align = "left",
   avatar = false,
+  className,
 }: {
   label: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
@@ -369,9 +369,10 @@ function Dropdown({
   items: DropdownItem[];
   align?: "left" | "right";
   avatar?: boolean;
+  className?: string;
 }) {
   return (
-    <li className="relative">
+    <li className={cn("relative", className)}>
       <button
         onClick={onToggle}
         className={cn(
